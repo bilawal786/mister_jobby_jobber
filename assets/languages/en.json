@@ -1,0 +1,23 @@
+{
+  "test_text": "Welcome Screen test",
+  "Splash_Heading": "Increase your income by doing service.",
+  "Diy": "DIY",
+  "Pet_Sitting": "Pet Sitting",
+  "Gardening": "Gardening",
+  "Child_Care": "Child Care",
+  "Housework": "Housework",
+  "Computer_Science": "Computer science",
+  "Move": "Move",
+  "Private_Lessons": "Private lessons",
+  "Home_Help": "Home help",
+  "Home_AppBar_Title": "Activity",
+  "Search": "Search",
+  "Chat": "Chat",
+  "Account": "Accounts",
+  "Find_Job": "Find Job",
+  "Chats_TapBar_Title1": "In progress",
+  "Chats_TapBar_Title2": "Archived",
+  "No_Discussion": "No discussion",
+  "Chats_Page_Description": "Submit a service request to discuss with your service demander",
+  "I_need_a_favor": "I need a favor"
+}
