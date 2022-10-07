@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import './index_screen.dart';
 
 import '../../screens/chat_screen/message_screen.dart';
-import '../../screens/serach_screen/search_jobs_screen.dart';
+import '../../screens/search_screen/search_jobs_screen.dart';
+import '../../screens/account_screen/account_screen.dart';
 
 class HomeTabScreen extends StatefulWidget {
   const HomeTabScreen({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                     () {
                   setState(() {
                     currentScreen =
-                    const IndexScreen(); // if user taps on this dashboard tab will be active
+                    const AccountScreen(); // if user taps on this dashboard tab will be active
                     pageIndex = 3;
                   });
                 },
