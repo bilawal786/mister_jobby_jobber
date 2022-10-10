@@ -73,7 +73,7 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                   ],
                 ),
               ),
-              CustomButton(onPress: (){}, buttonName: "Continue"),
+              CustomButton(onPress: () {}, buttonName: "Continue"),
             ],
           ),
         ),

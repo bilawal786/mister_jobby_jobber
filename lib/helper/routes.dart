@@ -13,6 +13,7 @@ class MyRoutes {
   static const String INSURANCESCREENROUTE = "Mister-Jobby-Insurance-Screen";
   static const String LEARNRULESSCREENROUTE = "Learn-Rules-Screen";
   static const String RELIABILITYSCOREROUTE = "Reliability-Score-Screen";
+  static const String TIMEAVAILABILITYSCREENROUTE = "Time-Reliability-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';

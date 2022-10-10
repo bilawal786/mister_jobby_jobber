@@ -108,7 +108,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width /40,
+                    height: MediaQuery.of(context).size.width / 40,
                   ),
                   const Divider(),
                   SizedBox(
@@ -118,7 +118,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
                   ),
-                  CustomButton(onPress: (){}, buttonName: "Skip to quiz"),
+                  CustomButton(onPress: () {}, buttonName: "Skip to quiz"),
                 ],
               ),
             ),

@@ -18,10 +18,12 @@ import './screens/auth_screens/mandatory_steps/indicate_skills/skills_selection_
 import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/mister_jobby_insurance.dart';
 import './screens/auth_screens/mandatory_steps/learn_rules/learn_rules_step.dart';
 import './screens/auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/time_availabilities_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
 import './providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
+import './providers/const_provider/const_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +49,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => LoginProvider()),
         ChangeNotifierProvider(create: (ctx) => RegisterProvider()),
         ChangeNotifierProvider(create: (ctx) => IndicateSkillsProvider()),
+        ChangeNotifierProvider(create: (ctx) => ConstProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -155,19 +158,26 @@ class MyApp extends StatelessWidget {
           ),
         ),
         routes: {
-          MyRoutes.SPLASHSCREENROUTE:(ctx)=>const SplashScreen(),
+          MyRoutes.SPLASHSCREENROUTE: (ctx) => const SplashScreen(),
           MyRoutes.HOMESCREENROUTE: (ctx) => const HomeTabScreen(),
-          MyRoutes.NOTIFICATIONSCREENROUTE: (ctx) => const NotificationDisplay(),
+          MyRoutes.NOTIFICATIONSCREENROUTE: (ctx) =>
+              const NotificationDisplay(),
           MyRoutes.SETTINGSCREENROUTE: (ctx) => const SettingScreen(),
           MyRoutes.REGISTERROUTE: (ctx) => const RegisterScreen(),
           MyRoutes.LOGINSCREENROUTE: (ctx) => const LoginScreen(),
-          MyRoutes.MANDATORYSTEPSSCREENROUTE: (ctx) => const MandatoryStepsScreen(),
-          MyRoutes.AVAILABILITIESSCREENROUTE: (ctx) => const AvailabilitiesScreen(),
+          MyRoutes.MANDATORYSTEPSSCREENROUTE: (ctx) =>
+              const MandatoryStepsScreen(),
+          MyRoutes.AVAILABILITIESSCREENROUTE: (ctx) =>
+              const AvailabilitiesScreen(),
           MyRoutes.PROGRESSSERVICESROUTE: (ctx) => const ProgressServices(),
           MyRoutes.INDICATESKILLSROUTE: (ctx) => const SkillsSelectionScreen(),
-          MyRoutes.INSURANCESCREENROUTE: (ctx) => const MisterJobbyInsuranceScreen(),
+          MyRoutes.INSURANCESCREENROUTE: (ctx) =>
+              const MisterJobbyInsuranceScreen(),
           MyRoutes.LEARNRULESSCREENROUTE: (ctx) => const LearnRulesStepScreen(),
-          MyRoutes.RELIABILITYSCOREROUTE: (ctx) => const ReliabilityScoreScreen(),
+          MyRoutes.RELIABILITYSCOREROUTE: (ctx) =>
+              const ReliabilityScoreScreen(),
+          MyRoutes.TIMEAVAILABILITYSCREENROUTE: (ctx) =>
+              const TimeAvailabilitiesScreen(),
         },
       ),
     );

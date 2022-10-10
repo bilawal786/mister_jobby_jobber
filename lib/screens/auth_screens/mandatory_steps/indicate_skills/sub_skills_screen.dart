@@ -6,7 +6,10 @@ import '../../../../models/mandatory_steps_model/indicate_skills_model/indicate_
 
 class SubSkillsScreen extends StatefulWidget {
   final IndicateSkillsModel? skills;
-  const SubSkillsScreen({Key? key, required this.skills,}) : super(key: key);
+  const SubSkillsScreen({
+    Key? key,
+    required this.skills,
+  }) : super(key: key);
 
   @override
   State<SubSkillsScreen> createState() => _SubSkillsScreenState();
@@ -72,7 +75,7 @@ class _SubSkillsScreenState extends State<SubSkillsScreen> {
                   ],
                 ),
               ),
-              CustomButton(onPress: (){}, buttonName: "Continue"),
+              CustomButton(onPress: () {}, buttonName: "Continue"),
             ],
           ),
         ),

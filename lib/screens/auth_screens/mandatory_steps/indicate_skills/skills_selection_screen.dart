@@ -11,7 +11,8 @@ class SkillsSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final getSkillsData = Provider.of<IndicateSkillsProvider>(context, listen: false);
+    final getSkillsData =
+        Provider.of<IndicateSkillsProvider>(context, listen: false);
     final extractedSkills = getSkillsData.skills;
     return Scaffold(
       appBar: AppBar(
@@ -31,150 +32,353 @@ class SkillsSelectionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Skills", style: Theme.of(context).textTheme.titleMedium,).tr(),
+                  Text(
+                    "Skills",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ).tr(),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
-                  Text(extractedSkills![0].title, style: Theme.of(context).textTheme.bodyLarge,),
+                  Text(
+                    extractedSkills![0].title,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: extractedSkills[0].subCategories.length,
                     itemBuilder: (ctx, index) => ListTile(
-                      onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ChildSkillsScreen(skillSubCategory: extractedSkills[0].subCategories[index],),),),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => ChildSkillsScreen(
+                            skillSubCategory:
+                                extractedSkills[0].subCategories[index],
+                          ),
+                        ),
+                      ),
                       dense: true,
-                      leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                      title: Text(extractedSkills[0].subCategories[index].title, style: Theme.of(context).textTheme.bodySmall,).tr(),
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
-                    ),),
+                      leading: const Icon(
+                        Icons.check_box_outline_blank,
+                        size: 25,
+                        color: Colors.black45,
+                      ),
+                      title: Text(
+                        extractedSkills[0].subCategories[index].title,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
+                    ),
+                  ),
                   const Divider(),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[1]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[1]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[1].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[1].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[2]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[2]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                      title: Text(extractedSkills[2].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[2].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[3]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[3]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[3].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[3].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[4]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[4]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[4].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[4].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[5]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[5]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[5].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[5].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[6]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[6]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[6].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[6].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[7]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[7]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[7].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[7].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[8]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[8]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[8].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[8].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[9]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[9]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[9].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[9].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[10]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[10]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[10].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[10].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[11]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[11]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[11].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[11].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
                   ListTile(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => SubSkillsScreen(skills: extractedSkills[12]),),),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            SubSkillsScreen(skills: extractedSkills[12]),
+                      ),
+                    ),
                     dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text(extractedSkills[12].title, style: Theme.of(context).textTheme.bodyMedium,),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
+                    leading: const Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
+                      color: Colors.black45,
+                    ),
+                    title: Text(
+                      extractedSkills[12].title,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width/ 30,
+                    height: MediaQuery.of(context).size.width / 30,
                   ),
-
                 ],
               ),
             ),
