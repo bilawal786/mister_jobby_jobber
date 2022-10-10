@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/screens/auth_screens/mandatory_steps/indicate_skills/skills_selection_screen.dart';
 import 'package:provider/provider.dart';
 
 import './helper/routes.dart';
@@ -12,10 +13,12 @@ import './screens/account_screen/settings_screen.dart';
 import './screens/auth_screens/register_screen.dart';
 import './screens/auth_screens/login_screen.dart';
 import './screens/auth_screens/mandatory_steps_screen.dart';
-import './screens/auth_screens/mandatory_steps/availabilities_step_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/availabilities_step_screen.dart';
+import './screens/auth_screens/mandatory_steps/payment_progress_services_step/progress_service_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
+import './providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (ctx) => LoginProvider()),
         ChangeNotifierProvider(create: (ctx) => RegisterProvider()),
+        ChangeNotifierProvider(create: (ctx) => IndicateSkillsProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -156,6 +160,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.LOGINSCREENROUTE: (ctx) => const LoginScreen(),
           MyRoutes.MANDATORYSTEPSSCREENROUTE: (ctx) => const MandatoryStepsScreen(),
           MyRoutes.AVAILABILITIESSCREENROUTE: (ctx) => const AvailabilitiesScreen(),
+          MyRoutes.PROGRESSSERVICESROUTE: (ctx) => const ProgressServices(),
+          MyRoutes.INDICATESKILLSROUTE: (ctx) => const SkillsSelectionScreen(),
         },
       ),
     );

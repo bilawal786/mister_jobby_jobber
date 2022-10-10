@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mister_jobby_jobber/helper/routes.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
+import 'package:provider/provider.dart';
 
-class SplashScreen extends StatelessWidget {
+import '../../helper/routes.dart';
+
+import '../../../widgets/const_widgets/custom_button.dart';
+
+import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  var _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if(_isInit){
+      Provider.of<IndicateSkillsProvider>(context).getMainCategories();
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
