@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mister_jobby_jobber/screens/auth_screens/mandatory_steps/indicate_skills/skills_selection_screen.dart';
 import 'package:provider/provider.dart';
 
 import './helper/routes.dart';
@@ -15,6 +14,10 @@ import './screens/auth_screens/login_screen.dart';
 import './screens/auth_screens/mandatory_steps_screen.dart';
 import './screens/auth_screens/mandatory_steps/availabilities_steps/availabilities_step_screen.dart';
 import './screens/auth_screens/mandatory_steps/payment_progress_services_step/progress_service_screen.dart';
+import './screens/auth_screens/mandatory_steps/indicate_skills/skills_selection_screen.dart';
+import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/mister_jobby_insurance.dart';
+import './screens/auth_screens/mandatory_steps/learn_rules/learn_rules_step.dart';
+import './screens/auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -162,6 +165,9 @@ class MyApp extends StatelessWidget {
           MyRoutes.AVAILABILITIESSCREENROUTE: (ctx) => const AvailabilitiesScreen(),
           MyRoutes.PROGRESSSERVICESROUTE: (ctx) => const ProgressServices(),
           MyRoutes.INDICATESKILLSROUTE: (ctx) => const SkillsSelectionScreen(),
+          MyRoutes.INSURANCESCREENROUTE: (ctx) => const MisterJobbyInsuranceScreen(),
+          MyRoutes.LEARNRULESSCREENROUTE: (ctx) => const LearnRulesStepScreen(),
+          MyRoutes.RELIABILITYSCOREROUTE: (ctx) => const ReliabilityScoreScreen(),
         },
       ),
     );

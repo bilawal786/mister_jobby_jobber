@@ -58,15 +58,7 @@ class MandatoryStepsScreen extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
-                    onTap: (){},
-                    dense: true,
-                    leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
-                    title: Text("Indicate your skills", style: Theme.of(context).textTheme.bodySmall,).tr(),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 20,),
-                  ),
-                  const Divider(),
-                  ListTile(
-                    onTap: (){},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.INSURANCESCREENROUTE),
                     dense: true,
                     leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
                     title: Text("Discover the insurance", style: Theme.of(context).textTheme.bodySmall,).tr(),
@@ -74,7 +66,7 @@ class MandatoryStepsScreen extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
-                    onTap: (){},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.LEARNRULESSCREENROUTE),
                     dense: true,
                     leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
                     title: Text("Learn the rules", style: Theme.of(context).textTheme.bodySmall,).tr(),
@@ -82,7 +74,7 @@ class MandatoryStepsScreen extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
-                    onTap: (){},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
                     dense: true,
                     leading: const Icon(Icons.check_box_outline_blank, size: 25, color: Colors.black45,),
                     title: Text("Discover the reliability score", style: Theme.of(context).textTheme.bodySmall,).tr(),
