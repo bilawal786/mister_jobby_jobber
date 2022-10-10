@@ -1,7 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_list_tile.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../../../widgets/const_widgets/custom_button.dart';
+import '../../../../widgets/const_widgets/custom_list_tile.dart';
 
 class ReliabilityScoreScreen extends StatelessWidget {
   const ReliabilityScoreScreen({Key? key}) : super(key: key);
