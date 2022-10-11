@@ -14,6 +14,16 @@ class MyRoutes {
   static const String LEARNRULESSCREENROUTE = "Learn-Rules-Screen";
   static const String RELIABILITYSCOREROUTE = "Reliability-Score-Screen";
   static const String TIMEAVAILABILITYSCREENROUTE = "Time-Reliability-Screen";
+  static const String SERVICESSTEPSCREENROUTE = "Services-Steps-Screen";
+  static const String INSURANCESTEPSCREENROUTE = "Insurance-Steps-Screen";
+  static const String RULESSTEPSCREENROUTE = "Rules-Steps-Screen";
+  static const String PROFILEPICTUREADDSCREENROUTE = "Profile-Picture-add-Screen";
+  static const String VALIDIDENTITYDOCUMENTSCREENROUTE = "Valid-Identity-Document-Screen";
+  static const String EUROPEANCITIZENIDENTIFICATIONROUTE = "EUROPEAN-Citizen-Identification-Screen";
+  static const String EUROPEANIDCARDUPLOADROUTE = "EUROPEAN-Id-Card-upload-Screen";
+  static const String FRENCHDRIVINGLICENSEROUTE = "French-Driving-License-upload-Screen";
+  static const String EUROPEANPASSPORTUPLOADROUTE = "European-Passport-upload-Screen";
+  static const String SOCIALSECURITYCERTIFICATEROUTE = "Social-Security-Certificate-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';

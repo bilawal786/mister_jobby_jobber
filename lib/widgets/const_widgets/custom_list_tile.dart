@@ -21,6 +21,7 @@ class CustomListTile extends StatelessWidget {
     return ListTile(
       onTap: onPress,
       contentPadding: const EdgeInsets.all(0.0),
+      dense: true,
       leading: Icon(
         leadingIcon,
         size: 30,
@@ -34,7 +35,7 @@ class CustomListTile extends StatelessWidget {
         subTitle!,
         style: Theme.of(context).textTheme.labelMedium,
       ).tr(),
-      trailing: Icon(trailingIcon),
+      trailing: Icon(trailingIcon, size: 20,),
     );
   }
 }

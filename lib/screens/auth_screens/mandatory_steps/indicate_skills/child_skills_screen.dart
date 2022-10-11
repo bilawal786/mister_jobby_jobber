@@ -14,9 +14,10 @@ class ChildSkillsScreen extends StatefulWidget {
 }
 
 class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
-  bool value = false;
+
   @override
   Widget build(BuildContext context) {
+    List<bool> isChecked = List.generate(widget.skillSubCategory.childCategories.length, (index) => false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -61,10 +62,10 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                         style: Theme.of(context).textTheme.bodySmall,
                       ).tr(),
                       trailing: Checkbox(
-                        value: value,
-                        onChanged: (v) {
+                        value: isChecked[index],
+                        onChanged: (newValue) {
                           setState(() {
-                            value = v!;
+                            isChecked[index] = newValue!;
                           });
                         },
                       ),

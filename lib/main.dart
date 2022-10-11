@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import './helper/routes.dart';
 
@@ -19,11 +19,22 @@ import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/miste
 import './screens/auth_screens/mandatory_steps/learn_rules/learn_rules_step.dart';
 import './screens/auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
 import './screens/auth_screens/mandatory_steps/availabilities_steps/time_availabilities_screen.dart';
+import './screens/auth_screens/mandatory_steps/payment_progress_services_step/services_steps_screen.dart';
+import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/insurance_step_screen.dart';
+import './screens/auth_screens/mandatory_steps/learn_rules/rules_step_screen.dart';
+import './screens/auth_screens/mandatory_steps/add_profile_pic_step/profile_picture_add.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/valid_identity_documents_screen.dart';
+import './screens/auth_screens/mandatory_steps/social_security_certificate/social_security_certificate_identification.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/european_citizen_identification_screen.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/identity_card_upload_screen.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/french_driving_license_screen.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/european_passport_upload_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
 import './providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 import './providers/const_provider/const_provider.dart';
+import './providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,6 +61,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => RegisterProvider()),
         ChangeNotifierProvider(create: (ctx) => IndicateSkillsProvider()),
         ChangeNotifierProvider(create: (ctx) => ConstProvider()),
+        ChangeNotifierProvider(create: (ctx) => EuropeanIdentificationProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -178,6 +190,26 @@ class MyApp extends StatelessWidget {
               const ReliabilityScoreScreen(),
           MyRoutes.TIMEAVAILABILITYSCREENROUTE: (ctx) =>
               const TimeAvailabilitiesScreen(),
+          MyRoutes.SERVICESSTEPSCREENROUTE: (ctx) =>
+          const ServicesStepsScreen(),
+          MyRoutes.INSURANCESTEPSCREENROUTE: (ctx) =>
+          const InsuranceStepScreen(),
+          MyRoutes.RULESSTEPSCREENROUTE: (ctx) =>
+          const RulesStepScreen(),
+          MyRoutes.PROFILEPICTUREADDSCREENROUTE: (ctx) =>
+          const ProfilePictureAdd(),
+          MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE: (ctx) =>
+          const ValidIdentityDocuments(),
+          MyRoutes.EUROPEANCITIZENIDENTIFICATIONROUTE: (ctx) =>
+          const EuropeanCitizenIdentificationScreen(),
+          MyRoutes.EUROPEANIDCARDUPLOADROUTE: (ctx) =>
+          const IdentityCardUploadScreen(),
+          MyRoutes.FRENCHDRIVINGLICENSEROUTE: (ctx) =>
+          const FrenchDrivingLicenseScreen(),
+          MyRoutes.EUROPEANPASSPORTUPLOADROUTE: (ctx) =>
+          const EuropeanPassportUploadScreen(),
+          MyRoutes.SOCIALSECURITYCERTIFICATEROUTE: (ctx) =>
+          const SocialSecurityCertificate(),
         },
       ),
     );

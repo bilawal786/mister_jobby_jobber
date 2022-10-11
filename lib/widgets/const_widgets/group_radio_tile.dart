@@ -22,7 +22,7 @@ class GroupRadioTile extends StatelessWidget {
       contentPadding: const EdgeInsets.all(0.0),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.bodySmall,
       ).tr(),
       subtitle: Text(
         subTitle!,

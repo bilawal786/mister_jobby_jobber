@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../helper/routes.dart';
 import '../../../../widgets/const_widgets/custom_button.dart';
 
 class MisterJobbyInsuranceScreen extends StatelessWidget {
@@ -118,7 +119,10 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
                   ),
-                  CustomButton(onPress: () {}, buttonName: "Skip to quiz"),
+                  CustomButton(
+                      onPress: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.INSURANCESTEPSCREENROUTE),
+                      buttonName: "Skip to quiz"),
                 ],
               ),
             ),
