@@ -24,6 +24,11 @@ class MyRoutes {
   static const String FRENCHDRIVINGLICENSEROUTE = "French-Driving-License-upload-Screen";
   static const String EUROPEANPASSPORTUPLOADROUTE = "European-Passport-upload-Screen";
   static const String SOCIALSECURITYCERTIFICATEROUTE = "Social-Security-Certificate-Screen";
+  static const String VITALCARDUPLOADEROUTE = "Vital-Card-Upload-Screen";
+  static const String SECURITYCARDUPLOADEROUTE = "Social-Security-Card-Upload-Screen";
+  static const String NONEUROPEANCITIZENROUTE = "Non-European-Citizen-Screen";
+  static const String WORKPERMITSCREENROUTE = "Work-Permit-Upload-Screen";
+  static const String PERSONALINFORMATIONSCREENROUTE = "Personal-Information-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';

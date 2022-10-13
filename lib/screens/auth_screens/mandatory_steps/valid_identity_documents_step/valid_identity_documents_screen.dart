@@ -36,7 +36,7 @@ class ValidIdentityDocuments extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 20,
               ),
               Consumer<ConstProvider>(
-                builder: (_, cleanBoxValue, child) => SizedBox(
+                builder: (_, isEuropean, child) => SizedBox(
                   height: MediaQuery.of(context).size.width / 2.25,
                   child: ListView.builder(
                     itemCount: 2,
@@ -47,12 +47,12 @@ class ValidIdentityDocuments extends StatelessWidget {
                       margin: const EdgeInsets.all(10),
                       child: OutlineSelectedButton(
                         onTap: () =>
-                            cleanBoxValue.europeanCitizenFunction(index),
+                            isEuropean.europeanCitizenFunction(index),
                         textTitle: index == 0 ? "Yes" : "No",
-                        color: cleanBoxValue.europeanCitizen - 1 == index
+                        color: isEuropean.europeanCitizen - 1 == index
                             ? Colors.blue.shade50
                             : Colors.grey.shade300,
-                        border: cleanBoxValue.europeanCitizen - 1 == index
+                        border: isEuropean.europeanCitizen - 1 == index
                             ? true
                             : false,
                       ),
@@ -70,6 +70,7 @@ class ValidIdentityDocuments extends StatelessWidget {
                   Navigator.of(context).pushNamed(MyRoutes.EUROPEANCITIZENIDENTIFICATIONROUTE);
                 }else{
                   print("No");
+                  Navigator.of(context).pushNamed(MyRoutes.NONEUROPEANCITIZENROUTE);
                 }
               }, buttonName: "Continue"),
             ],

@@ -29,12 +29,19 @@ import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/eur
 import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/identity_card_upload_screen.dart';
 import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/french_driving_license_screen.dart';
 import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/european_citizen_identification/european_passport_upload_screen.dart';
+import './screens/auth_screens/mandatory_steps/social_security_certificate/vital_card_upload_screen.dart';
+import './screens/auth_screens/mandatory_steps/social_security_certificate/social_security_certificate_upload.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/non_european_citizen/non_european_citizen_identification.dart';
+import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/non_european_citizen/work_permit_upload.dart';
+import './screens/auth_screens/mandatory_steps/personal_information/personal_information_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
 import './providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 import './providers/const_provider/const_provider.dart';
 import './providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
+import './providers/mandatory_steps_provider/social_security/social_security_provider.dart';
+import './providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +69,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => IndicateSkillsProvider()),
         ChangeNotifierProvider(create: (ctx) => ConstProvider()),
         ChangeNotifierProvider(create: (ctx) => EuropeanIdentificationProvider()),
+        ChangeNotifierProvider(create: (ctx) => SocialSecurityProvider()),
+        ChangeNotifierProvider(create: (ctx) => PersonalInformationProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -210,6 +219,16 @@ class MyApp extends StatelessWidget {
           const EuropeanPassportUploadScreen(),
           MyRoutes.SOCIALSECURITYCERTIFICATEROUTE: (ctx) =>
           const SocialSecurityCertificate(),
+          MyRoutes.VITALCARDUPLOADEROUTE: (ctx) =>
+          const VitalCardUpload(),
+          MyRoutes.SECURITYCARDUPLOADEROUTE: (ctx) =>
+          const SocialSecurityCertificateUpload(),
+          MyRoutes.NONEUROPEANCITIZENROUTE: (ctx) =>
+          const NonEuropeanCitizen(),
+          MyRoutes.WORKPERMITSCREENROUTE: (ctx) =>
+          const WorkPermitUpload(),
+          MyRoutes.PERSONALINFORMATIONSCREENROUTE: (ctx) =>
+          const PersonalInformationScreen(),
         },
       ),
     );

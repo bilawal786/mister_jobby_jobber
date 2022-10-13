@@ -180,7 +180,7 @@ class MandatoryStepsScreen extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
                     dense: true,
                     leading: const Icon(
                       Icons.check_box_outline_blank,
@@ -216,7 +216,7 @@ class MandatoryStepsScreen extends StatelessWidget {
                   ),
                   const Divider(),
                   ListTile(
-                    onTap: () {},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.SOCIALSECURITYCERTIFICATEROUTE),
                     dense: true,
                     leading: const Icon(
                       Icons.check_box_outline_blank,

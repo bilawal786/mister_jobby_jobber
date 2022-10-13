@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helper/routes.dart';
-import '../../../../widgets/const_widgets/custom_list_tile.dart';
+import '../../../../../helper/routes.dart';
+import '../../../../../widgets/const_widgets/custom_list_tile.dart';
 
-class SocialSecurityCertificate extends StatelessWidget {
-  const SocialSecurityCertificate({Key? key}) : super(key: key);
+class NonEuropeanCitizen extends StatelessWidget {
+  const NonEuropeanCitizen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +31,9 @@ class SocialSecurityCertificate extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 20,
               ),
               CustomListTile(
-                onPress: ()=> Navigator.of(context).pushNamed(MyRoutes.VITALCARDUPLOADEROUTE),
-                leadingIcon: Icons.account_box,
-                title: "Vital card",
-                trailingIcon: Icons.arrow_forward_ios,
-              ),
-              const Divider(),
-              CustomListTile(
-                onPress: ()=> Navigator.of(context).pushNamed(MyRoutes.SECURITYCARDUPLOADEROUTE),
-                leadingIcon: Icons.contact_page,
-                title: "Social security certificate",
+                onPress: ()=> Navigator.of(context).pushNamed(MyRoutes.WORKPERMITSCREENROUTE),
+                leadingIcon: Icons.workspace_premium_outlined,
+                title: "work permit or residence permit with work authorization",
                 trailingIcon: Icons.arrow_forward_ios,
               ),
               const Divider(),
