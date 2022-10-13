@@ -14,7 +14,15 @@ class ChildSkillsScreen extends StatefulWidget {
 }
 
 class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
-  bool isChecked = false;
+  List<bool> isChecked = [];
+
+  @override
+  void didChangeDependencies() {
+    var len = widget.skillSubCategory.childCategories.length;
+    isChecked = List<bool>.filled(len, false);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +69,10 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                         style: Theme.of(context).textTheme.bodySmall,
                       ).tr(),
                       trailing: Checkbox(
-                        value: false,
+                        value: isChecked[index] as bool,
                         onChanged: (newValue) {
                           setState(() {
-                            isChecked = newValue as bool;
+                            isChecked[index] = newValue!;
                           });
                         },
                       ),
