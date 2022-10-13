@@ -23,6 +23,8 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
     super.didChangeDependencies();
   }
 
+  List skillsId = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,9 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                         onChanged: (newValue) {
                           setState(() {
                             isChecked[index] = newValue!;
+                            if(isChecked[index] == true){
+                              skillsId.add(widget.skillSubCategory.childCategories[index].id);
+                            }
                           });
                         },
                       ),
@@ -81,7 +86,11 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                   ],
                 ),
               ),
-              CustomButton(onPress: () {}, buttonName: "Continue"),
+              CustomButton(onPress: () {
+                print(skillsId.length);
+                for(int i = 0; i < skillsId.length; i++)
+                  print(skillsId[i]);
+              }, buttonName: "Continue"),
             ],
           ),
         ),
