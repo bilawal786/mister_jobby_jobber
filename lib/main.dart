@@ -42,6 +42,7 @@ import './providers/const_provider/const_provider.dart';
 import './providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
 import './providers/mandatory_steps_provider/social_security/social_security_provider.dart';
 import './providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import './providers/jobs_providers/job_details_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => EuropeanIdentificationProvider()),
         ChangeNotifierProvider(create: (ctx) => SocialSecurityProvider()),
         ChangeNotifierProvider(create: (ctx) => PersonalInformationProvider()),
+        ChangeNotifierProvider(create: (ctx) => JobsDetailProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

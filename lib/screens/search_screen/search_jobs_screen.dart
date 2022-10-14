@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/screens/search_screen/jobs_detail_screen.dart';
 
 class SearchJobScreen extends StatefulWidget {
   const SearchJobScreen({Key? key}) : super(key: key);
@@ -53,50 +54,55 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               itemCount: 10,
               itemBuilder: (ctx, index) => Column(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.brown.shade300,
-                                borderRadius: BorderRadius.circular(10.0),
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>JobDetailScreen()));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.brown.shade300,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                child: Icon(Icons.handyman_rounded, color: Colors.brown.shade700,size: 25,),
                               ),
-                              child: Icon(Icons.handyman_rounded, color: Colors.brown.shade700,size: 25,),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width/40,
-                            ),
-                            Text("TV dressing with lights", style: Theme.of(context).textTheme.bodySmall,),
-                            const Spacer(),
-                            Text("36 €", style: Theme.of(context).textTheme.bodyMedium,),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text("13:00 to 14:00 (1h)", style: Theme.of(context).textTheme.labelMedium,),
-                            const Spacer(),
-                            Container(
-                              padding: const EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                color: Colors.red.shade700,
-                                borderRadius: BorderRadius.circular(20.0),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width/40,
                               ),
-                              child: const Text("Urgent", style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Cerebri Sans Bold',
-                                color: Colors. white,
-                              ),),
-                            ),
-                          ],
-                        ),
-                        Text("Today", style: Theme.of(context).textTheme.labelSmall,),
-                      ],
+                              Text("TV dressing with lights", style: Theme.of(context).textTheme.bodySmall,),
+                              const Spacer(),
+                              Text("36 €", style: Theme.of(context).textTheme.bodyMedium,),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text("13:00 to 14:00 (1h)", style: Theme.of(context).textTheme.labelMedium,),
+                              const Spacer(),
+                              Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.red.shade700,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: const Text("Urgent", style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Cerebri Sans Bold',
+                                  color: Colors. white,
+                                ),),
+                              ),
+                            ],
+                          ),
+                          Text("Today", style: Theme.of(context).textTheme.labelSmall,),
+                        ],
+                      ),
                     ),
                   ),
                   const Divider(),
