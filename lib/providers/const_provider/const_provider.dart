@@ -171,4 +171,18 @@ class ConstProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+
+  String completeAddress = "";
+  double longitude = 0;
+  double latitude = 0;
+
+  void getAddress(address, long, lat) {
+    completeAddress = address;
+    longitude = long;
+    latitude = lat;
+    notifyListeners();
+  }
+
+
 }

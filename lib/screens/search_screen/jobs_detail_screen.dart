@@ -353,12 +353,12 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     children: <Widget>[
                       Text(
                         "Need to dispose of waste.",
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.labelMedium,
                       ),
                       const Spacer(),
                       Text(
                         "Non",
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -398,7 +398,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           "Description"
                           "Description"
                           "Description",
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ),
                     ],

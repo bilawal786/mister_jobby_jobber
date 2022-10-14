@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../helper/routes.dart';
+
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
@@ -47,7 +49,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: (){},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.BADGEPROSCREENROUTE),
                     leading: Icon(Icons.all_inbox, size: 30, color: Theme.of(context).primaryColor,),
                     title: Text("Get_Pro_Badge", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),

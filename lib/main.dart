@@ -34,6 +34,8 @@ import './screens/auth_screens/mandatory_steps/social_security_certificate/socia
 import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/non_european_citizen/non_european_citizen_identification.dart';
 import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/non_european_citizen/work_permit_upload.dart';
 import './screens/auth_screens/mandatory_steps/personal_information/personal_information_screen.dart';
+import './screens/account_screen/get_badges/badge_pro_screen.dart';
+import './screens/account_screen/get_badges/get_badge_pro_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -43,6 +45,8 @@ import './providers/mandatory_steps_provider/european_identity_verification/euro
 import './providers/mandatory_steps_provider/social_security/social_security_provider.dart';
 import './providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import './providers/jobs_providers/job_details_provider.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -231,6 +235,10 @@ class MyApp extends StatelessWidget {
           const WorkPermitUpload(),
           MyRoutes.PERSONALINFORMATIONSCREENROUTE: (ctx) =>
           const PersonalInformationScreen(),
+          MyRoutes.BADGEPROSCREENROUTE: (ctx) =>
+          const BadgeProScreen(),
+          MyRoutes.GETBADGEPROSCREENROUTE: (ctx) =>
+          const GetBadgeProScreen(),
         },
       ),
     );

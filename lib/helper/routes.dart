@@ -29,6 +29,8 @@ class MyRoutes {
   static const String NONEUROPEANCITIZENROUTE = "Non-European-Citizen-Screen";
   static const String WORKPERMITSCREENROUTE = "Work-Permit-Upload-Screen";
   static const String PERSONALINFORMATIONSCREENROUTE = "Personal-Information-Screen";
+  static const String BADGEPROSCREENROUTE = "Badge-PRO-Screen";
+  static const String GETBADGEPROSCREENROUTE = "Get-Badge-PRO-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';
