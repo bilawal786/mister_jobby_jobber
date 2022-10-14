@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import '../../widgets/const_widgets/custom_list_tile.dart';
-
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
@@ -32,34 +30,41 @@ class SettingScreen extends StatelessWidget {
                     "Manage_account",
                     style: Theme.of(context).textTheme.labelLarge,
                   ).tr(),
-                  CustomListTile(
-                    leadingIcon: Icons.person_outline,
-                    title: 'Personal_Information',
-                    onPress: () {},
+                  SizedBox(height: MediaQuery.of(context).size.width /40,),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.person_outline, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Personal_Information", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    leadingIcon:
-                    Icons.account_balance_wallet_outlined,
-                    title: 'Identity_Documents',
-                    onPress: () {},
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.account_balance_wallet_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Identity_Documents", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    leadingIcon: Icons.all_inbox,
-                    title: 'Get_Pro_Badge',
-                    onPress: () {},
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.all_inbox, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Get_Pro_Badge", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                      onPress: () {},
-                      leadingIcon:
-                      Icons.notification_important_outlined,
-                      title: 'Manage_My_Notifications'),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.notification_important_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Manage_My_Notifications", style: Theme.of(context).textTheme.bodyMedium,).tr(),
+                  ),
+                  const Divider(),
                 ],
               ),
             ),
-            const Divider(),
             Container(
               margin: const EdgeInsets.all(5.0),
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,46 +72,56 @@ class SettingScreen extends StatelessWidget {
                     "Others",
                     style: Theme.of(context).textTheme.labelLarge,
                   ).tr(),
-                  CustomListTile(
-                    leadingIcon: Icons.question_answer_outlined,
-                    title: 'FAQ',
-                    onPress: () {},
+                  SizedBox(height: MediaQuery.of(context).size.width /40,),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.question_answer_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("FAQ", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.question_mark_rounded,
-                    title: "Account_Screen_Help_Center",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.question_mark_rounded, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Account_Screen_Help_Center", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.handshake_outlined,
-                    title: "Account_Screen_Insurance",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.handshake_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Account_Screen_Insurance", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.security_outlined,
-                    title: "Account_Screen_Trust_security",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.security_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Account_Screen_Trust_security", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.percent_outlined,
-                    title: "Account_Screen_Tax_Credit",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.percent_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Account_Screen_Tax_Credit", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.fact_check_outlined,
-                    title: "Account_Screen_Terms_conditions",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.fact_check_outlined, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("Account_Screen_Terms_conditions", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.info_outline_rounded,
-                    title: "About",
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: (){},
+                    leading: Icon(Icons.info_outline_rounded, size: 30, color: Theme.of(context).primaryColor,),
+                    title: Text("About", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                   ),
-                  CustomListTile(
-                    onPress: () {},
-                    leadingIcon: Icons.info_outline_rounded,
-                    title: "Test",
-                  ),
+                  const Divider(),
                 ],
               ),
             ),
