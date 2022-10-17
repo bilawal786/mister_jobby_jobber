@@ -32,7 +32,7 @@ class IndexScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).pushNamed(MyRoutes.EVENTCALENDERSCREENROUTE),
                   icon: const Icon(
                     Icons.date_range,
                     color: Colors.amber,

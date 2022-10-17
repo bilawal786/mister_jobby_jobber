@@ -36,6 +36,7 @@ import './screens/auth_screens/mandatory_steps/valid_identity_documents_step/non
 import './screens/auth_screens/mandatory_steps/personal_information/personal_information_screen.dart';
 import './screens/account_screen/get_badges/badge_pro_screen.dart';
 import './screens/account_screen/get_badges/get_badge_pro_screen.dart';
+import './screens/home_screens/calender_event.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -45,7 +46,6 @@ import './providers/mandatory_steps_provider/european_identity_verification/euro
 import './providers/mandatory_steps_provider/social_security/social_security_provider.dart';
 import './providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import './providers/jobs_providers/job_details_provider.dart';
-
 
 
 void main() async {
@@ -239,6 +239,8 @@ class MyApp extends StatelessWidget {
           const BadgeProScreen(),
           MyRoutes.GETBADGEPROSCREENROUTE: (ctx) =>
           const GetBadgeProScreen(),
+          MyRoutes.EVENTCALENDERSCREENROUTE: (ctx) =>
+          const EventCalender(),
         },
       ),
     );
