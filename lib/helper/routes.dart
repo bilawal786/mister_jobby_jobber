@@ -31,6 +31,7 @@ class MyRoutes {
   static const String PERSONALINFORMATIONSCREENROUTE = "Personal-Information-Screen";
   static const String BADGEPROSCREENROUTE = "Badge-PRO-Screen";
   static const String GETBADGEPROSCREENROUTE = "Get-Badge-PRO-Screen";
+  static const String EVENTCALENDERSCREENROUTE = "Event-Calender-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';
