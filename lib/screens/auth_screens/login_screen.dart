@@ -29,14 +29,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void formSubmit() {
-    // final loginData = Provider.of<LoginProvider>(context, listen: false);
-    // var isValid = formKey.currentState!.validate();
-    // if (!isValid) {
-    //   return;
-    // }
-    // formKey.currentState!.save();
-    Navigator.of(context).pushReplacementNamed(MyRoutes.HOMESCREENROUTE);
-
+    final loginData = Provider.of<LoginProvider>(context, listen: false);
+    var isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    formKey.currentState!.save();
+    loginData.login(context, emailController.text, passwordController.text,);
   }
   @override
   Widget build(BuildContext context) {
