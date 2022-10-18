@@ -245,6 +245,7 @@ class AccountScreen extends StatelessWidget {
                       height: mediaQuery.size.width / 40,
                     ),
                     ListTile(
+                      onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
                       contentPadding: const EdgeInsets.all(10.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),

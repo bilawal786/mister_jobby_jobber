@@ -73,30 +73,33 @@ class IndexScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
-                color: Colors.amber.shade700,
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: <Widget>[
-                    const Icon(
-                      Icons.circle_notifications_outlined,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: mediaQuery.size.width / 40,
-                    ),
-                    Text(
-                      "Actions required",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    const Spacer(),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16,
-                      color: Colors.black,
-                    ),
-                  ],
+              GestureDetector(
+                onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+                child: Container(
+                  color: Colors.amber.shade700,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: <Widget>[
+                      const Icon(
+                        Icons.circle_notifications_outlined,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: mediaQuery.size.width / 40,
+                      ),
+                      Text(
+                        "Actions required",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

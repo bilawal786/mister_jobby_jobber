@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
-import '../../helper/routes.dart';
-
-import '../../../widgets/const_widgets/custom_button.dart';
+import '../providers/preferences_provider/preferences_provider.dart';
 
 import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 
@@ -20,12 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void didChangeDependencies() {
-    if(_isInit){
+    if (_isInit) {
+      Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
       Provider.of<IndicateSkillsProvider>(context).getMainCategories();
     }
     _isInit = false;
     super.didChangeDependencies();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -328,9 +328,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 SizedBox(
                   height: mediaQuery.size.width / 2.5,
-                  child: Image.asset("assets/images/appLogo.png", fit: BoxFit.cover,),
+                  child: Image.asset(
+                    "assets/images/appLogo.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                CustomButton(onPress: () => Navigator.of(context).pushReplacementNamed(MyRoutes.REGISTERROUTE), buttonName: "Get Started")
               ],
             ),
           ),

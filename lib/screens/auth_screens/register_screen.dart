@@ -33,14 +33,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void formSubmit() {
-  //   var isValid = formKey.currentState!.validate();
-  //   if (!isValid) {
-  //     print("isNotValid");
-  //   }
-  //   formKey.currentState!.save();
-
-    Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
-
+    final registerData = Provider.of<RegisterProvider>(context, listen: false);
+    var isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      print("isNotValid");
+    }
+    formKey.currentState!.save();
+    registerData.registration(
+      context,
+      firstNameController.text,
+      lastNameController.text,
+      emailController.text,
+      passwordController.text,
+    );
   }
 
   @override
@@ -103,10 +108,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ).tr(),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 TextFormField(
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   controller: firstNameController,
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -124,17 +131,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 Text(
                                   "Last_Name",
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ).tr(),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 TextFormField(
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   controller: lastNameController,
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -152,17 +162,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 Text(
                                   "EmailText",
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ).tr(),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 TextFormField(
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   controller: emailController,
                                   keyboardType: TextInputType.emailAddress,
                                   decoration: InputDecoration(
@@ -175,24 +188,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Please Enter Email Address";
-                                    }else if (!regExp.hasMatch(value)) {
+                                    } else if (!regExp.hasMatch(value)) {
                                       return 'Please Enter Valid Email Address';
                                     }
                                     return null;
                                   },
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 Text(
                                   "PasswordText",
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ).tr(),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.width / 40,
+                                  height:
+                                      MediaQuery.of(context).size.width / 40,
                                 ),
                                 Consumer<RegisterProvider>(
-                                  builder: (_,toggle, child) => TextFormField(
+                                  builder: (_, toggle, child) => TextFormField(
                                     controller: passwordController,
                                     keyboardType: TextInputType.visiblePassword,
                                     obscureText: toggle.checkObscure,
@@ -202,14 +217,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       isDense: true,
                                       suffixIcon: GestureDetector(
                                         onTap: toggle.toggleObscure,
-                                        child: Icon(toggle.checkObscure == false ? Icons.visibility_off: Icons.visibility),),
+                                        child: Icon(toggle.checkObscure == false
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                      ),
                                     ),
-                                    style: Theme.of(context).textTheme.bodySmall,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
                                     enabled: true,
-                                    validator: (value){
-                                      if(value!.isEmpty){
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
                                         return 'Please Enter the password';
-                                      }else if(value.length < 5) {
+                                      } else if (value.length < 5) {
                                         return 'Must be more than 5 characters';
                                       }
                                       return null;
@@ -222,9 +241,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: MediaQuery.of(context).size.width / 40,
                           ),
-
                           CustomButton(
-                              onPress: formSubmit, buttonName: "Register_Screen_Title"),
+                              onPress: formSubmit,
+                              buttonName: "Register_Screen_Title"),
                           SizedBox(
                             height: MediaQuery.of(context).size.width / 25,
                           ),
@@ -233,14 +252,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: [
                               Text(
                                 "Already_Account_Title".tr(),
-                                style:
-                                Theme.of(context).textTheme.labelMedium,
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width / 40,
                               ),
                               InkWell(
-                                onTap: ()=>Navigator.of(context).pushReplacementNamed(MyRoutes.LOGINSCREENROUTE),
+                                onTap: () => Navigator.of(context)
+                                    .pushReplacementNamed(
+                                        MyRoutes.LOGINSCREENROUTE),
                                 child: Text(
                                   "Login_Screen_Title".tr(),
                                   style: TextStyle(
