@@ -1,41 +1,39 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 
-class AvailabilityProvider with ChangeNotifier {
 
-  Future<void> postAvailability (monday, tuesday, wednesday, thursday, friday, saturday, sunday,) async {
+class ServicesProvider with ChangeNotifier {
+
+  Future<void> postProgressServices (answer1,answer2, answer3, answer4,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
-      Uri.parse('${MyRoutes.BASEURL}/jobber/skills/one'),
+      Uri.parse('${MyRoutes.BASEURL}/jobber/progress/service'),
       headers: <String, String>{
         'Accept': "application/json",
         'Content-Type': "application/json",
         'Authorization': "Bearer $userToken",
       },
       body: jsonEncode(<String, String>{
-        'monday' : monday,
-        'tuesday' : tuesday,
-        'wednesday': wednesday,
-        'thersday': thursday,
-        'friday' : friday,
-        'saturday': saturday,
-        'sunday' : sunday,
+        'answer1': answer1.toString(),
+        'answer2': answer2.toString(),
+        'answer3': answer3.toString(),
+        'answer4': answer4.toString(),
       }),
     );
 
     if(response.statusCode == 200) {
       print(response.body);
-      print("time availability api is working");
+      print("services availability api is working");
       notifyListeners();
     }else{
       print(response.body);
-      print("time availability api not working ");
+      print("services availability api not working ");
     }
     notifyListeners();
   }

@@ -51,9 +51,9 @@ class ConstProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  int questionOneValue = 1;
-  int questionTwoValue = 1;
-  int questionThreeValue = 1;
+  int questionOneValue = 0;
+  int questionTwoValue = 0;
+  int questionThreeValue = 0;
 
   void checkQuestionOneGroupValue(int? value) {
     questionOneValue = value!;

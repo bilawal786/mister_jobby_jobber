@@ -54,6 +54,9 @@ import './providers/mandatory_steps_provider/personal_information_provider/perso
 import './providers/jobs_providers/job_details_provider.dart';
 import './providers/preferences_provider/preferences_provider.dart';
 import './providers/mandatory_steps_provider/time_availability_provider/availability_provider.dart';
+import './providers/mandatory_steps_provider/service_provider/services_provider.dart';
+import './providers/mandatory_steps_provider/insurance_provider/insurance_provider.dart';
+import './providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
 
 
 void main() async {
@@ -87,6 +90,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => JobsDetailProvider()),
         ChangeNotifierProvider(create: (ctx) => PreferencesProvider()),
         ChangeNotifierProvider(create: (ctx) => AvailabilityProvider()),
+        ChangeNotifierProvider(create: (ctx) => ServicesProvider()),
+        ChangeNotifierProvider(create: (ctx) => InsuranceProvider()),
+        ChangeNotifierProvider(create: (ctx) => RulesProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

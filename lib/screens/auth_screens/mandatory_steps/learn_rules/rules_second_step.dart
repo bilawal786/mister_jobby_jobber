@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/const_provider/const_provider.dart';
+import '../../../../providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
 
 class RulesSecondStep extends StatelessWidget {
   const RulesSecondStep({Key? key}) : super(key: key);
@@ -18,24 +19,24 @@ class RulesSecondStep extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
-        Consumer<ConstProvider>(
+        Consumer<RulesProvider>(
           builder:(_,summarySecure, child) => CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             dense: true,
-            value: summarySecure.trustMisterJobby,
-            onChanged: summarySecure.checkStatusTrust,
+            value: summarySecure.reservedJobsMisterJobby,
+            onChanged: summarySecure.checkStatusReserved,
             title: Text(
               "I apply only to jobs for which I am available and competent.",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
         ),
-        Consumer<ConstProvider>(
+        Consumer<RulesProvider>(
           builder:(_,summarySecure, child) => CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             dense: false,
-            value: summarySecure.cashNotRequired,
-            onChanged: summarySecure.checkCashRequiredStatus,
+            value: summarySecure.mustPerformServices,
+            onChanged: summarySecure.checkMustPerformServices,
             title: Text(
               "I do my best to get good reviews.",
               style: Theme.of(context).textTheme.bodySmall,

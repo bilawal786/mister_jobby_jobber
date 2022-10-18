@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../providers/const_provider/const_provider.dart';
+import '../../../../providers/mandatory_steps_provider/service_provider/services_provider.dart';
 import '../../../../screens/auth_screens/mandatory_steps/payment_progress_services_step/services_first_step.dart';
 import '../../../../screens/auth_screens/mandatory_steps/payment_progress_services_step/services_second_step.dart';
 
@@ -15,6 +18,9 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
+    final servicesData = Provider.of<ConstProvider>(context, listen: true);
+    final progressServiceApi =
+        Provider.of<ServicesProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,6 +39,18 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
           final isLastStep = currentStep == getSteps().length - 1;
           if (isLastStep) {
             print("Step completed");
+            print("services Q1 value:  ${servicesData.questionOneValue}");
+            print("services Q2 value:  ${servicesData.questionTwoValue}");
+            print("services Q3 value:  ${servicesData.questionThreeValue}");
+            print("services Q4 value:  ${servicesData.trustMisterJobby}");
+            print("services Q5 value:  ${servicesData.cashNotRequired}");
+
+            progressServiceApi.postProgressServices(
+              servicesData.questionOneValue,
+              servicesData.questionTwoValue,
+              servicesData.questionThreeValue,
+              servicesData.trustMisterJobby,
+            );
           } else {
             setState(() => currentStep += 1);
           }
@@ -47,7 +65,10 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
             margin: const EdgeInsets.only(top: 50),
             child: Row(
               children: <Widget>[
-                (currentStep < 1)
+                ((currentStep < 1) &&
+                        (servicesData.questionOneValue != 0) &&
+                        (servicesData.questionTwoValue != 0) &&
+                        (servicesData.questionThreeValue != 0))
                     ? Expanded(
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
@@ -70,7 +91,9 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
                         ),
                       )
                     : const SizedBox(),
-                (currentStep == 1)
+                ((currentStep == 1) &&
+                        (servicesData.trustMisterJobby == true) &&
+                        (servicesData.cashNotRequired == true))
                     ? Expanded(
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
