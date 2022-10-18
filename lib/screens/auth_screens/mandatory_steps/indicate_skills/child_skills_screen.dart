@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import 'package:mister_jobby_jobber/providers/const_provider/const_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../../../widgets/const_widgets/custom_button.dart';
 import '../../../../models/mandatory_steps_model/indicate_skills_model/indicate_skills_model.dart';
 
@@ -23,10 +26,10 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
     super.didChangeDependencies();
   }
 
-  List skillsId = [];
 
   @override
   Widget build(BuildContext context) {
+    var getList  = Provider.of<ConstProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -76,7 +79,12 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                           setState(() {
                             isChecked[index] = newValue!;
                             if(isChecked[index] == true){
-                              skillsId.add(widget.skillSubCategory.childCategories[index].id);
+                              if(getList.skillsId != null){
+                                getList.skillsId?.add(widget.skillSubCategory.childCategories[index].id);
+                              }else{
+                                getList.skillsId = [widget.skillSubCategory.childCategories[index].id];
+                              }
+
                             }
                           });
                         },
@@ -87,9 +95,9 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                 ),
               ),
               CustomButton(onPress: () {
-                print(skillsId.length);
-                for(int i = 0; i < skillsId.length; i++)
-                  print(skillsId[i]);
+                print(getList.skillsId?.length);
+                for(int i = 0; i < getList.skillsId!.length; i++)
+                  print(getList.skillsId?[i]);
               }, buttonName: "Continue"),
             ],
           ),

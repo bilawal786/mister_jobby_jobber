@@ -185,4 +185,12 @@ class ConstProvider with ChangeNotifier {
   }
 
 
+
+  List? skillsId;
+  @override
+  void notifyListeners() {
+    skillsId;
+    super.notifyListeners();
+  }
+
 }
