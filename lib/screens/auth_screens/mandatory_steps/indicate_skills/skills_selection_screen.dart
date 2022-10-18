@@ -39,9 +39,25 @@ class SkillsSelectionScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
                   ),
-                  Text(
-                    extractedSkills![0].title,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.check_box_outline_blank,
+                          size: 25,
+                          color: Colors.black45,
+                        ),
+                        SizedBox(width: MediaQuery.of(context).size.width / 40,),
+                        Padding(
+                          padding: const EdgeInsets.only(left:20.0),
+                          child: Text(
+                            extractedSkills![0].title,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
