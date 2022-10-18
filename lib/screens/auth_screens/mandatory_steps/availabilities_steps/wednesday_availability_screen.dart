@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../../providers/const_provider/const_provider.dart';
 import '../../../../widgets/const_widgets/group_radio_tile.dart';
 
-class MondayTimeAvailabilityScreen extends StatelessWidget {
-  const MondayTimeAvailabilityScreen({Key? key}) : super(key: key);
+class WednesdayTimeAvailabilityScreen extends StatelessWidget {
+  const WednesdayTimeAvailabilityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,53 +38,49 @@ class MondayTimeAvailabilityScreen extends StatelessWidget {
                       title: "All Day",
                       subTitle: "07:00 - 21:00",
                       value: 1,
-                      groupValue: selectedTime.mondayValue,
+                      groupValue: selectedTime.wednesdayValue,
                       onClick: (value) {
-                        selectedTime.checkMondayValue(value, context);
+                        selectedTime.checkWednesdayValue(value, context);
                       },
                     ),
                     GroupRadioTile(
                       title: "Morning only",
                       subTitle: "07:00 - 13:00",
                       value: 2,
-                      groupValue: selectedTime.mondayValue,
+                      groupValue: selectedTime.wednesdayValue,
                       onClick: (value) {
-                        selectedTime.checkMondayValue(value, context);
+                        selectedTime.checkWednesdayValue(value, context);
                       },
                     ),
                     GroupRadioTile(
                       title: "Afternoon only",
                       subTitle: "13:00 - 18:00",
                       value: 3,
-                      groupValue: selectedTime.mondayValue,
+                      groupValue: selectedTime.wednesdayValue,
                       onClick: (value) {
-                        selectedTime.checkMondayValue(value, context);
+                        selectedTime.checkWednesdayValue(value, context);
                       },
                     ),
                     GroupRadioTile(
                       title: "In the evening only",
                       subTitle: "18:00 - 21:00",
                       value: 4,
-                      groupValue: selectedTime.mondayValue,
+                      groupValue: selectedTime.wednesdayValue,
                       onClick: (value) {
-                        selectedTime.checkMondayValue(value, context);
+                        selectedTime.checkWednesdayValue(value, context);
                       },
                     ),
                     GroupRadioTile(
                       title: "I am not available",
                       value: 5,
-                      groupValue: selectedTime.mondayValue,
+                      groupValue: selectedTime.wednesdayValue,
                       onClick: (value) {
-                        selectedTime.checkMondayValue(value, context);
+                        selectedTime.checkWednesdayValue(value, context);
                       },
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 1.8,
-              ),
-              const Divider(),
             ],
           ),
         ),

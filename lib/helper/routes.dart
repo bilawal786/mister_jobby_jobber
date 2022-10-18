@@ -13,7 +13,13 @@ class MyRoutes {
   static const String INSURANCESCREENROUTE = "Mister-Jobby-Insurance-Screen";
   static const String LEARNRULESSCREENROUTE = "Learn-Rules-Screen";
   static const String RELIABILITYSCOREROUTE = "Reliability-Score-Screen";
-  static const String TIMEAVAILABILITYSCREENROUTE = "Time-Reliability-Screen";
+  static const String MONDAYTIMEAVAILABILITY = "Monday-Availability-Screen";
+  static const String TUESDAYTIMEAVAILABILITY = "Tuesday-Availability-Screen";
+  static const String WEDNESDAYTIMEAVAILABILITY = "Wednesday-Availability-Screen";
+  static const String THURSDAYTIMEAVAILABILITY = "Thursday-Availability-Screen";
+  static const String FRIDAYTIMEAVAILABILITY = "Friday-Availability-Screen";
+  static const String SATURDAYTIMEAVAILABILITY = "Saturday-Availability-Screen";
+  static const String SUNDAYTIMEAVAILABILITY = "Sunday-Availability-Screen";
   static const String SERVICESSTEPSCREENROUTE = "Services-Steps-Screen";
   static const String INSURANCESTEPSCREENROUTE = "Insurance-Steps-Screen";
   static const String RULESSTEPSCREENROUTE = "Rules-Steps-Screen";

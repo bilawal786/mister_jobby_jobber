@@ -19,6 +19,12 @@ import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/miste
 import './screens/auth_screens/mandatory_steps/learn_rules/learn_rules_step.dart';
 import './screens/auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
 import './screens/auth_screens/mandatory_steps/availabilities_steps/time_availabilities_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/friday_availability_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/saturday_availability_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/sunday_availability_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/thursday_availability_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/tuesday_availability_screen.dart';
+import './screens/auth_screens/mandatory_steps/availabilities_steps/wednesday_availability_screen.dart';
 import './screens/auth_screens/mandatory_steps/payment_progress_services_step/services_steps_screen.dart';
 import './screens/auth_screens/mandatory_steps/mister_jobby_insurance_step/insurance_step_screen.dart';
 import './screens/auth_screens/mandatory_steps/learn_rules/rules_step_screen.dart';
@@ -47,6 +53,7 @@ import './providers/mandatory_steps_provider/social_security/social_security_pro
 import './providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import './providers/jobs_providers/job_details_provider.dart';
 import './providers/preferences_provider/preferences_provider.dart';
+import './providers/mandatory_steps_provider/time_availability_provider/availability_provider.dart';
 
 
 void main() async {
@@ -79,6 +86,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => PersonalInformationProvider()),
         ChangeNotifierProvider(create: (ctx) => JobsDetailProvider()),
         ChangeNotifierProvider(create: (ctx) => PreferencesProvider()),
+        ChangeNotifierProvider(create: (ctx) => AvailabilityProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -205,8 +213,20 @@ class MyApp extends StatelessWidget {
           MyRoutes.LEARNRULESSCREENROUTE: (ctx) => const LearnRulesStepScreen(),
           MyRoutes.RELIABILITYSCOREROUTE: (ctx) =>
               const ReliabilityScoreScreen(),
-          MyRoutes.TIMEAVAILABILITYSCREENROUTE: (ctx) =>
-              const TimeAvailabilitiesScreen(),
+          MyRoutes.MONDAYTIMEAVAILABILITY: (ctx) =>
+              const MondayTimeAvailabilityScreen(),
+          MyRoutes.TUESDAYTIMEAVAILABILITY: (ctx) =>
+          const TuesdayTimeAvailabilityScreen(),
+          MyRoutes.WEDNESDAYTIMEAVAILABILITY: (ctx) =>
+          const WednesdayTimeAvailabilityScreen(),
+          MyRoutes.THURSDAYTIMEAVAILABILITY: (ctx) =>
+          const ThursdayAvailabilityScreen(),
+          MyRoutes.FRIDAYTIMEAVAILABILITY: (ctx) =>
+          const FridayAvailabilityScreen(),
+          MyRoutes.SATURDAYTIMEAVAILABILITY: (ctx) =>
+          const SaturdayAvailabilityScreen(),
+          MyRoutes.SUNDAYTIMEAVAILABILITY: (ctx) =>
+          const SundayAvailabilityScreen(),
           MyRoutes.SERVICESSTEPSCREENROUTE: (ctx) =>
           const ServicesStepsScreen(),
           MyRoutes.INSURANCESTEPSCREENROUTE: (ctx) =>

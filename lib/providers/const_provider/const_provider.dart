@@ -4,10 +4,50 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ConstProvider with ChangeNotifier {
-  int groupValue = 1;
+  int mondayValue = 0;
+  int tuesdayValue = 0;
+  int wednesdayValue = 0;
+  int thursdayValue = 0;
+  int fridayValue = 0;
+  int saturdayValue = 0;
+  int sundayValue = 0;
 
-  void checkGroupValue(int? value) {
-    groupValue = value!;
+  void checkMondayValue(int? value, BuildContext context) {
+    mondayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+
+  void checkTuesdayValue(int? value, BuildContext context) {
+    tuesdayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+
+  void checkWednesdayValue(int? value, BuildContext context) {
+    wednesdayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+  void checkThursdayValue(int? value, BuildContext context) {
+    thursdayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+
+  void checkFridayValue(int? value, BuildContext context) {
+    fridayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+  void checkSaturdayValue(int? value, BuildContext context) {
+    saturdayValue = value!;
+    Navigator.pop(context);
+    notifyListeners();
+  }
+  void checkSundayValue(int? value, BuildContext context) {
+    sundayValue = value!;
+    Navigator.pop(context);
     notifyListeners();
   }
 
