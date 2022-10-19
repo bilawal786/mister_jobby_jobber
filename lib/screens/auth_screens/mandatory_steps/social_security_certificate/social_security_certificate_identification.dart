@@ -135,6 +135,7 @@ class SocialSecurityCertificate extends StatelessWidget {
                 CustomButton(
                   onPress: () {
                     securityData.postSecurityCertificates(
+                      context,
                       securityData.vitalCardPick,
                       securityData.vitalCardNumber,
                       securityData.socialSecurityCardPick,

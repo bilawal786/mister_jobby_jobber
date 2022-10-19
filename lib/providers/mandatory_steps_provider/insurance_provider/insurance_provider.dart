@@ -8,6 +8,8 @@ import '../../../helper/routes.dart';
 
 class InsuranceProvider with ChangeNotifier {
 
+  bool insuranceCompleted = false;
+
   int insuranceQuestion1 = 0;
   int insuranceQuestion2 = 0;
   int insuranceQuestion3 = 0;
@@ -40,7 +42,7 @@ class InsuranceProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> postInsurance (insurance1, insurance2, insurance3, insurance4,) async {
+  Future<void> postInsurance (context, insurance1, insurance2, insurance3, insurance4,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -61,6 +63,21 @@ class InsuranceProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       print(response.body);
       print("Insurance availability api is working");
+      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Insurance Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      insuranceCompleted = true;
       notifyListeners();
     }else{
       print(response.body);

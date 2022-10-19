@@ -253,7 +253,7 @@ class ProfilePictureAdd extends StatelessWidget {
               ),
               Consumer<ProfileImageProvider>(
                 builder: (_,imageProvider, child)=> CustomButton(onPress: (){
-                  imageProvider.postProfileImage(imageProvider.profilePick);
+                  imageProvider.postProfileImage(context, imageProvider.profilePick);
                 }, buttonName: "Confirm"),
               ),
             ],

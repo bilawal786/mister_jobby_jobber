@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 
 class ProfileImageProvider with ChangeNotifier {
-
+  bool profileImageCompleted = false;
   final picker = ImagePicker();
   String? profilePick;
   CroppedFile? getImage;
@@ -124,7 +124,7 @@ class ProfileImageProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> postProfileImage (imageUrl) async {
+  Future<void> postProfileImage (context,imageUrl) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -144,11 +144,26 @@ class ProfileImageProvider with ChangeNotifier {
     http.Response response = await http.Response.fromStream(await request.send());
 
     if (response.statusCode == 200) {
-      print("Profile Image Posted successfully ");
+      debugPrint("Profile Image Posted successfully ");
+      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Profile Picture Step Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      profileImageCompleted = true;
     } else {
-      print('profile Image upload Failed');
-      print(response.body);
+      debugPrint('profile Image upload Failed');
+      debugPrint(response.body);
     }
-    print(response.request);
+    notifyListeners();
   }
 }

@@ -166,6 +166,7 @@ class EuropeanCitizenIdentificationScreen extends StatelessWidget {
                 CustomButton(
                   onPress: () {
                     euoIdCardData.postEuropeanIdentificationDocuments(
+                      context,
                       euoIdCardData.singleSideIdCardPick,
                       euoIdCardData.backIdCardPick,
                       euoIdCardData.singleSideLicensePick,

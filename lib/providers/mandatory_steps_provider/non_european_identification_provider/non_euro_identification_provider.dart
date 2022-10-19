@@ -249,9 +249,9 @@ class NonEuroIdentificationProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool nonEuroCompleted = false;
 
-
-  Future<void> postEuropeanIdentificationDocuments (workPermitFront, workPermitBack) async {
+  Future<void> postEuropeanIdentificationDocuments (context,workPermitFront, workPermitBack) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -278,9 +278,26 @@ class NonEuroIdentificationProvider with ChangeNotifier {
     } else {
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
+      Navigator.of(context)
+          .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Non-European Identification Step Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      nonEuroCompleted = true;
     }
     if (kDebugMode) {
       print(response.request);
     }
+    notifyListeners();
   }
 }

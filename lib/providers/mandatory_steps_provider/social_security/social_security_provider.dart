@@ -265,7 +265,9 @@ class SocialSecurityProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> postSecurityCertificates (vitalCard, vitalCardNumber, securityCertificate, securityCertificateNumber,) async {
+  bool securityCompleted = false;
+
+  Future<void> postSecurityCertificates (context, vitalCard, vitalCardNumber, securityCertificate, securityCertificateNumber,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -293,6 +295,22 @@ class SocialSecurityProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("Non-European identification documents Posted successfully ");
+      Navigator.of(context)
+          .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Security Identification Step Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      securityCompleted = true;
     } else {
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
@@ -300,6 +318,7 @@ class SocialSecurityProvider with ChangeNotifier {
     if (kDebugMode) {
       print(response.request);
     }
+    notifyListeners();
   }
 
 }

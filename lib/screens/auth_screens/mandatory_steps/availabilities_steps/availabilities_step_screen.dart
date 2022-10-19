@@ -365,6 +365,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       ? CustomButton(
                           onPress: () {
                             timeApi.postAvailability(
+                              context,
                               availabilityData.mondayValue.toString(),
                               availabilityData.tuesdayValue.toString(),
                               availabilityData.wednesdayValue.toString(),

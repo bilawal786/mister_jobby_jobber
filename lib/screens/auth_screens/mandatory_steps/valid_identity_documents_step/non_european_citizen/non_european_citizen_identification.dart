@@ -101,6 +101,7 @@ class NonEuropeanCitizen extends StatelessWidget {
                 CustomButton(
                   onPress: () {
                     workPermitData.postEuropeanIdentificationDocuments(
+                      context,
                       workPermitData.singleSideWorkPermitPick,
                       workPermitData.backWorkPermitPick,
                     );

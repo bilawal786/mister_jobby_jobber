@@ -9,7 +9,9 @@ import '../../../helper/routes.dart';
 
 class ServicesProvider with ChangeNotifier {
 
-  Future<void> postProgressServices (answer1,answer2, answer3, answer4,) async {
+  bool servicesCompleted = false;
+
+  Future<void> postProgressServices (context,answer1,answer2, answer3, answer4,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -30,6 +32,21 @@ class ServicesProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       print(response.body);
       print("services availability api is working");
+      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Services Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      servicesCompleted = true;
       notifyListeners();
     }else{
       print(response.body);

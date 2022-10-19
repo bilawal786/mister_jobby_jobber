@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 
 class RulesProvider with ChangeNotifier{
-
+  bool rulesCompleted = false;
   int rulesQuestion1 = 0;
   int rulesQuestion2 = 0;
   int rulesQuestion3 = 0;
@@ -40,7 +40,7 @@ class RulesProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> postRules (rule1, rule2, rule3, rule4,) async {
+  Future<void> postRules (context, rule1, rule2, rule3, rule4,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -59,12 +59,27 @@ class RulesProvider with ChangeNotifier{
     );
 
     if(response.statusCode == 200) {
-      print(response.body);
-      print("rules availability api is working");
+      debugPrint(response.body);
+      debugPrint("rules availability api is working");
+      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Learn Rules Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      rulesCompleted = true;
       notifyListeners();
     }else{
-      print(response.body);
-      print("rules availability api not working ");
+      debugPrint(response.body);
+      debugPrint("rules availability api not working ");
     }
     notifyListeners();
   }

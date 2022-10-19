@@ -38,6 +38,7 @@ class _RulesStepScreenState extends State<RulesStepScreen> {
           if (isLastStep) {
             print("Step completed");
             rulesData.postRules(
+              context,
               rulesData.rulesQuestion1,
               rulesData.rulesQuestion2,
               rulesData.rulesQuestion3,

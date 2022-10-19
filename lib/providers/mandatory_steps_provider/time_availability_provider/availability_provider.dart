@@ -8,7 +8,9 @@ import '../../../helper/routes.dart';
 
 class AvailabilityProvider with ChangeNotifier {
 
-  Future<void> postAvailability (monday, tuesday, wednesday, thursday, friday, saturday, sunday,) async {
+  bool availabilityCompleted = false;
+
+  Future<void> postAvailability (context,monday, tuesday, wednesday, thursday, friday, saturday, sunday,) async {
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -28,14 +30,41 @@ class AvailabilityProvider with ChangeNotifier {
         'sunday' : sunday,
       }),
     );
-
     if(response.statusCode == 200) {
-      print(response.body);
-      print("time availability api is working");
+      debugPrint(response.body);
+      debugPrint("time availability api is working");
+      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Time Availability Completed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      availabilityCompleted = true;
       notifyListeners();
     }else{
-      print(response.body);
-      print("time availability api not working ");
+      debugPrint(response.body);
+      debugPrint("Time availability api not working ");
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Time Availability Failed',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
     }
     notifyListeners();
   }
