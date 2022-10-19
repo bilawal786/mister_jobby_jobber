@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
 import '../../../../widgets/const_widgets/custom_button.dart';
-import '../../../../providers/const_provider/const_provider.dart';
 
 class ProfilePictureAdd extends StatelessWidget {
   const ProfilePictureAdd({Key? key}) : super(key: key);
