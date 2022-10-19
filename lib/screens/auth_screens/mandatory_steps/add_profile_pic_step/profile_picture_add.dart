@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
 import '../../../../widgets/const_widgets/custom_button.dart';
 import '../../../../providers/const_provider/const_provider.dart';
 
@@ -33,7 +34,7 @@ class ProfilePictureAdd extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
-              Consumer<ConstProvider>(
+              Consumer<ProfileImageProvider>(
                 builder: (_, imageFileData, child) => SizedBox(
                   child: imageFileData.profilePick != null
                       ? Stack(
@@ -251,7 +252,11 @@ class ProfilePictureAdd extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
-              CustomButton(onPress: (){}, buttonName: "Confirm"),
+              Consumer<ProfileImageProvider>(
+                builder: (_,imageProvider, child)=> CustomButton(onPress: (){
+                  imageProvider.postProfileImage(imageProvider.profilePick);
+                }, buttonName: "Confirm"),
+              ),
             ],
           ),
         ),

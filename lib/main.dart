@@ -57,6 +57,8 @@ import './providers/mandatory_steps_provider/time_availability_provider/availabi
 import './providers/mandatory_steps_provider/service_provider/services_provider.dart';
 import './providers/mandatory_steps_provider/insurance_provider/insurance_provider.dart';
 import './providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
+import './providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
+import './providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
 
 
 void main() async {
@@ -93,6 +95,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => ServicesProvider()),
         ChangeNotifierProvider(create: (ctx) => InsuranceProvider()),
         ChangeNotifierProvider(create: (ctx) => RulesProvider()),
+        ChangeNotifierProvider(create: (ctx) => ProfileImageProvider()),
+        ChangeNotifierProvider(create: (ctx) => NonEuroIdentificationProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

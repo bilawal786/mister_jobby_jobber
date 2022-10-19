@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../helper/routes.dart';
+import '../../../../../providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
 import '../../../../../widgets/const_widgets/custom_list_tile.dart';
 
 class NonEuropeanCitizen extends StatelessWidget {
@@ -8,6 +11,7 @@ class NonEuropeanCitizen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final workPermitData = Provider.of<NonEuroIdentificationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,13 +34,47 @@ class NonEuropeanCitizen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
-              CustomListTile(
-                onPress: ()=> Navigator.of(context).pushNamed(MyRoutes.WORKPERMITSCREENROUTE),
-                leadingIcon: Icons.workspace_premium_outlined,
-                title: "work permit or residence permit with work authorization",
-                trailingIcon: Icons.arrow_forward_ios,
-              ),
-              const Divider(),
+              if (workPermitData.workPermitPicked == false) ...[
+                CustomListTile(
+                  onPress: () => Navigator.of(context)
+                      .pushNamed(MyRoutes.WORKPERMITSCREENROUTE),
+                  leadingIcon: Icons.workspace_premium_outlined,
+                  title:
+                      "Work permit or residence permit with work authorization",
+                  trailingIcon: Icons.arrow_forward_ios,
+                ),
+                const Divider(),
+              ],
+              if (workPermitData.workPermitPicked == true) ...[
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 20,
+                ),
+                Text(
+                  "Completed",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 20,
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(
+                    Icons.workspace_premium_outlined,
+                    color: Theme.of(context).primaryColor,
+                    size: 30,
+                  ),
+                  title: Text(
+                    "Work permit or residence permit with work authorization",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  trailing: Icon(
+                    Icons.check_box,
+                    color: Colors.green.shade700,
+                    size: 20,
+                  ),
+                ),
+                const Divider(),
+              ],
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -56,6 +94,20 @@ class NonEuropeanCitizen extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
+              if (workPermitData.workPermitPicked == true) ...[
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 1.2,
+                ),
+                CustomButton(
+                  onPress: () {
+                    workPermitData.postEuropeanIdentificationDocuments(
+                      workPermitData.singleSideWorkPermitPick,
+                      workPermitData.backWorkPermitPick,
+                    );
+                  },
+                  buttonName: "Confirm",
+                ),
+              ],
             ],
           ),
         ),

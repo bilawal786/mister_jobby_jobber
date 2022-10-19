@@ -11,6 +11,7 @@ class FrenchDrivingLicenseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final idVerificationData = Provider.of<EuropeanIdentificationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,68 +43,68 @@ class FrenchDrivingLicenseScreen extends StatelessWidget {
               ),
               Consumer<EuropeanIdentificationProvider>(
                 builder: (_, idCardData, child) => SizedBox(
-                  child: idCardData.singleSideIdCardPick != null
+                  child: idCardData.singleSideLicensePick != null
                       ? Stack(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width / 2,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            File(
-                              idCardData.singleSideIdCardPick ?? "",
-                            ).absolute,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 6,
-                        top: 8,
-                        child: InkWell(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.width / 2,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  File(
+                                    idCardData.singleSideLicensePick ?? "",
+                                  ).absolute,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              right: 6,
+                              top: 8,
+                              child: InkWell(
+                                onTap: () {
+                                  idCardData.removeIdCard(1);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade400,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : InkWell(
                           onTap: () {
-                            idCardData.removeIdCard(1);
+                            idCardData.showPickerFrontLicense(context, 0);
                           },
                           child: Container(
-                            height: 30,
-                            width: 30,
+                            height: MediaQuery.of(context).size.width / 2,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade400,
-                              shape: BoxShape.circle,
+                              color: Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(7),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.clear,
-                              size: 20,
-                              color: Colors.white,
-                            ),
+                            child: const Icon(Icons.camera_alt),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                      : InkWell(
-                    onTap: () {
-                      idCardData.showPickerFrontIdCard(context, 0);
-                    },
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(7),
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                      ),
-                      child: const Icon(Icons.camera_alt),
-                    ),
-                  ),
                 ),
               ),
               SizedBox(
@@ -118,68 +119,68 @@ class FrenchDrivingLicenseScreen extends StatelessWidget {
               ),
               Consumer<EuropeanIdentificationProvider>(
                 builder: (_, idCardData, child) => SizedBox(
-                  child: idCardData.backIdCardPick != null
+                  child: idCardData.backLicensePick != null
                       ? Stack(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width / 2,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            File(
-                              idCardData.backIdCardPick ?? "",
-                            ).absolute,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 6,
-                        top: 8,
-                        child: InkWell(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.width / 2,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  File(
+                                    idCardData.backLicensePick ?? "",
+                                  ).absolute,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              right: 6,
+                              top: 8,
+                              child: InkWell(
+                                onTap: () {
+                                  idCardData.removeBackLicense(1);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade400,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : InkWell(
                           onTap: () {
-                            idCardData.removeBackIdCard(1);
+                            idCardData.showPickerBackLicense(context, 0);
                           },
                           child: Container(
-                            height: 30,
-                            width: 30,
+                            height: MediaQuery.of(context).size.width / 2,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade400,
-                              shape: BoxShape.circle,
+                              color: Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(7),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.clear,
-                              size: 20,
-                              color: Colors.white,
-                            ),
+                            child: const Icon(Icons.camera_alt),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                      : InkWell(
-                    onTap: () {
-                      idCardData.showPickerBackIdCard(context, 0);
-                    },
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(7),
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                      ),
-                      child: const Icon(Icons.camera_alt),
-                    ),
-                  ),
                 ),
               ),
               const Divider(),
@@ -206,7 +207,12 @@ class FrenchDrivingLicenseScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 40,
               ),
               const Divider(),
-              CustomButton(onPress: () {}, buttonName: "Confirm"),
+              if(idVerificationData.singleSideLicensePick != null && idVerificationData.backLicensePick != null)
+              Consumer<EuropeanIdentificationProvider>(
+                  builder: (_, licenseVerification, child) =>
+                      CustomButton(onPress: () {
+                        licenseVerification.confirmLicense(context);
+                      }, buttonName: "Confirm",),),
             ],
           ),
         ),

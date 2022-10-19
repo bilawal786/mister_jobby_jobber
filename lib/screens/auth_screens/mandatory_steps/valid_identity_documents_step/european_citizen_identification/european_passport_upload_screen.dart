@@ -11,6 +11,7 @@ class EuropeanPassportUploadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final idVerificationData = Provider.of<EuropeanIdentificationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,68 +43,68 @@ class EuropeanPassportUploadScreen extends StatelessWidget {
               ),
               Consumer<EuropeanIdentificationProvider>(
                 builder: (_, idCardData, child) => SizedBox(
-                  child: idCardData.singleSideIdCardPick != null
+                  child: idCardData.singleSidePassportPick != null
                       ? Stack(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width / 2,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            File(
-                              idCardData.singleSideIdCardPick ?? "",
-                            ).absolute,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 6,
-                        top: 8,
-                        child: InkWell(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.width / 2,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  File(
+                                    idCardData.singleSidePassportPick ?? "",
+                                  ).absolute,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              right: 6,
+                              top: 8,
+                              child: InkWell(
+                                onTap: () {
+                                  idCardData.removePassport(1);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade400,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : InkWell(
                           onTap: () {
-                            idCardData.removeIdCard(1);
+                            idCardData.showPickerFrontPassport(context, 0);
                           },
                           child: Container(
-                            height: 30,
-                            width: 30,
+                            height: MediaQuery.of(context).size.width / 2,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade400,
-                              shape: BoxShape.circle,
+                              color: Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(7),
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.clear,
-                              size: 20,
-                              color: Colors.white,
-                            ),
+                            child: const Icon(Icons.camera_alt),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                      : InkWell(
-                    onTap: () {
-                      idCardData.showPickerFrontIdCard(context, 0);
-                    },
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(7),
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                      ),
-                      child: const Icon(Icons.camera_alt),
-                    ),
-                  ),
                 ),
               ),
               SizedBox(
@@ -129,7 +130,12 @@ class EuropeanPassportUploadScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 1.8,
               ),
               const Divider(),
-              CustomButton(onPress: () {}, buttonName: "Confirm"),
+              if(idVerificationData.singleSidePassportPick != null)
+              Consumer<EuropeanIdentificationProvider>(
+                  builder: (_, passportVerification, child) =>
+                      CustomButton(onPress: () {
+                        passportVerification.confirmPassport(context);
+                      }, buttonName: "Confirm")),
             ],
           ),
         ),

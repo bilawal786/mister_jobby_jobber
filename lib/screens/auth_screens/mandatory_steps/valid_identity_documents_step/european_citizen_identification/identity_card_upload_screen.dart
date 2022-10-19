@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../widgets/const_widgets/custom_button.dart';
 import '../../../../../providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
 
 class IdentityCardUploadScreen extends StatelessWidget {
@@ -11,6 +11,7 @@ class IdentityCardUploadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final idVerificationData = Provider.of<EuropeanIdentificationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -206,8 +207,13 @@ class IdentityCardUploadScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 40,
               ),
               const Divider(),
-              CustomButton(onPress: (){}, buttonName: "Confirm"),
-
+              if(idVerificationData.singleSideIdCardPick != null && idVerificationData.backIdCardPick != null)
+              Consumer<EuropeanIdentificationProvider>(
+                builder: (_, idVerification, child) => CustomButton(
+                  onPress: () { idVerification.confirm(context); },
+                  buttonName: "Confirm",
+                ),
+              ),
             ],
           ),
         ),
