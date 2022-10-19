@@ -11,6 +11,7 @@ class VitalCardUpload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final securityData = Provider.of<SocialSecurityProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -116,19 +117,26 @@ class VitalCardUpload extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(7.0),
-                ),
-                child: TextField(
-                  decoration:const InputDecoration(
-                    focusedBorder: InputBorder.none,
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.all(10.0),
+              Consumer<SocialSecurityProvider>(
+
+                builder: (_,security,child) => Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(7.0),
                   ),
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  child: TextFormField(
+                    initialValue: security.vitalCardNumber,
+                    onChanged: (value) {
+                      security.vitalCardNumber = value;
+                    },
+                    decoration:const InputDecoration(
+                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.all(10.0),
+                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
               ),
               const Divider(),
@@ -155,7 +163,10 @@ class VitalCardUpload extends StatelessWidget {
                 height: MediaQuery.of(context).size.width / 2.5,
               ),
               const Divider(),
-              CustomButton(onPress: () {}, buttonName: "Confirm"),
+              if(securityData.vitalCardNumber != null)
+              CustomButton(onPress: () {
+                securityData.confirmVitalCard(context);
+              }, buttonName: "Confirm"),
             ],
           ),
         ),

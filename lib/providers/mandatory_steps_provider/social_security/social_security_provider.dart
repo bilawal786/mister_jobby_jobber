@@ -1,7 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart'as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../helper/routes.dart';
 
 class SocialSecurityProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -9,6 +14,22 @@ class SocialSecurityProvider with ChangeNotifier {
   String? socialSecurityCardPick;
   CroppedFile? getVitalCard;
   CroppedFile? getSecurityCard;
+  bool vitalCardPicked = false;
+  bool securityCardPicked = false;
+
+  String? vitalCardNumber;
+  String? securityCardNumber;
+
+  void confirmVitalCard(context){
+    if(vitalCardPick != null && vitalCardNumber != null){
+      vitalCardPicked= true;
+      notifyListeners();
+      debugPrint('vitalCardPicked $vitalCardPicked');
+      debugPrint('VitalCard $vitalCardPick');
+      debugPrint('VitalCard Number $vitalCardNumber');
+      Navigator.of(context).pop();
+    }
+  }
 
   void showPickerVitalCard(context, int index) {
     showModalBottomSheet(
@@ -121,6 +142,18 @@ class SocialSecurityProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+  void confirmSecurityCard(context){
+    if(socialSecurityCardPick != null && securityCardNumber != null){
+      securityCardPicked = true;
+      notifyListeners();
+      debugPrint('securityPicked $vitalCardPicked');
+      debugPrint('securityCard $socialSecurityCardPick');
+      debugPrint('securityCard Number $securityCardNumber');
+      Navigator.of(context).pop();
+    }
+  }
+
   void showPickerSecurityCard(context, int index) {
     showModalBottomSheet(
       context: context,
@@ -230,6 +263,43 @@ class SocialSecurityProvider with ChangeNotifier {
   void removeSecurityCard(index) {
     socialSecurityCardPick = null;
     notifyListeners();
+  }
+
+  Future<void> postSecurityCertificates (vitalCard, vitalCardNumber, securityCertificate, securityCertificateNumber,) async {
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+    String? userToken = sharedPrefs.getString("token");
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization':
+      'Bearer $userToken',
+    };
+    var request = http.MultipartRequest(
+      "POST",
+      Uri.parse('${MyRoutes.BASEURL}/jobber/security/document'),
+    );
+    request.headers.addAll(headers);
+    if (vitalCard != null) {
+      request.files.add(await http.MultipartFile.fromPath('vital_card', vitalCard));
+    }
+    if (securityCertificate != null) {
+      request.files.add(await http.MultipartFile.fromPath('social_security_certificate', securityCertificate));
+    }
+
+    request.fields['vital_card_number']= vitalCardNumber;
+    request.fields['social_security_number']= securityCertificateNumber;
+
+    http.Response response = await http.Response.fromStream(await request.send());
+
+    if (response.statusCode == 200) {
+      debugPrint("Non-European identification documents Posted successfully ");
+    } else {
+      debugPrint('Non-European identification documents upload Failed');
+      debugPrint(response.body);
+    }
+    if (kDebugMode) {
+      print(response.request);
+    }
   }
 
 }
