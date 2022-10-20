@@ -6,6 +6,7 @@ import '../../helper/routes.dart';
 
 import '../../providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
 import '../../providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
+import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
 import '../../providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
 import '../../providers/mandatory_steps_provider/social_security/social_security_provider.dart';
@@ -13,9 +14,25 @@ import '../../providers/mandatory_steps_provider/time_availability_provider/avai
 import '../../providers/mandatory_steps_provider/service_provider/services_provider.dart';
 import '../../providers/mandatory_steps_provider/insurance_provider/insurance_provider.dart';
 
-class MandatoryStepsScreen extends StatelessWidget {
+class MandatoryStepsScreen extends StatefulWidget {
   const MandatoryStepsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<MandatoryStepsScreen> createState() => _MandatoryStepsScreenState();
+}
+
+class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
+  var isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if(isInit) {
+      Provider.of<PersonalInformationProvider>(context, listen: false)
+          .getProfile();
+    }
+    isInit = false;
+  }
   @override
   Widget build(BuildContext context) {
     final availabilityData = Provider.of<AvailabilityProvider>(context);

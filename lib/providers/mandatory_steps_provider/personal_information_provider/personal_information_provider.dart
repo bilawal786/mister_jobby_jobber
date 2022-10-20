@@ -1,23 +1,37 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart'as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../helper/routes.dart';
+
+import '../../../models/mandatory_steps_model/jobber_profile_model/jobber_profile_model.dart';
 
 class PersonalInformationProvider with ChangeNotifier {
   int genderValue = 0;
   String gender = "";
 
-  void checkGenderValue(int index) {
+  String? firstName;
+  String? lastName;
+  String? phoneNumber;
+
+  void genderCheckFunction(int index) {
     genderValue = index + 1;
     if (genderValue == 1) {
-      gender = "Yes".tr();
+      gender = "Male".tr();
     } else {
-      gender = "No".tr();
+      gender = "Female".tr();
     }
+    debugPrint(gender);
+    debugPrint(genderValue.toString());
     notifyListeners();
   }
 
   int status = 1;
-  String statusName = "Entrepreneur";
+  String statusName = "";
 
   void checkStatusValue(BuildContext context ,int? value) {
     status = value!;
@@ -38,8 +52,6 @@ class PersonalInformationProvider with ChangeNotifier {
     notifyListeners();
     Navigator.of(context).pop();
   }
-
-
 
   statusPicker(context) {
     showModalBottomSheet(
@@ -122,5 +134,26 @@ class PersonalInformationProvider with ChangeNotifier {
         );
       },
     );
+  }
+
+  JobberProfileModel? profile;
+
+  Future<void> getProfile() async {
+    final SharedPreferences sharePref = await SharedPreferences.getInstance();
+    String? token = sharePref.getString('token');
+    int? id = sharePref.getInt('jobberId');
+    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/profile/$id'),
+        headers: <String, String>{
+          'Accept': "application/json",
+          'Content-Type': "application/json",
+          'Authorization': 'Bearer $token',
+        });
+    if (response.statusCode == 200) {
+      debugPrint('get profile successfully');
+      profile = JobberProfileModel.fromJson(jsonDecode(response.body));
+      notifyListeners();
+    } else {
+      debugPrint('get profile api not working');
+    }
   }
 }
