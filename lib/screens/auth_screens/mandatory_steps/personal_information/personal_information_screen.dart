@@ -10,47 +10,50 @@ class PersonalInformationScreen extends StatefulWidget {
   const PersonalInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<PersonalInformationScreen> createState() => _PersonalInformationScreenState();
+  State<PersonalInformationScreen> createState() =>
+      _PersonalInformationScreenState();
 }
 
 class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
-
   final formKey = GlobalKey<FormState>();
+  String? firstName;
+  String? lastName;
+  int? getGender;
+  String? phoneNumber;
+  String? getProfession;
 
-  var isInit = true;
-  var profileData;
-  var extractedData;
+
   @override
-  void didChangeDependencies() {
-    if(isInit){
-      profileData = Provider.of<PersonalInformationProvider>(context);
-      extractedData = profileData.profile;
-    }
-    isInit = false;
-    super.didChangeDependencies();
+  void initState() {
+
+    super.initState();
   }
 
-  void formSubmit() {
-    // final updateProfileData = Provider.of<ProfileProvider>(context, listen: false);
+  void formSubmit(fName,lName,gen,number,prof) {
+    final updateProfileData =
+        Provider.of<PersonalInformationProvider>(context, listen: false);
     var isValid = formKey.currentState!.validate();
     if (!isValid) {
       return;
     }
-    debugPrint(" first name ${profileData.firstName}");
-    debugPrint(profileData.lastName);
-    debugPrint(profileData.genderValue.toString());
-    debugPrint(profileData.phoneNumber);
-    debugPrint(profileData.statusName);
     formKey.currentState!.save();
-    // updateProfileData.upDateProfile(context, firstName,lastName, updateProfileData.genderCheckTitle, updateProfileData.selectedDateOfBirth, phoneNumber, updateProfileData.countryDropDownValue, address);
+    updateProfileData.updateProfile(context,
+      fName,
+      lName,
+      gen,
+      number,
+      prof,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-     // profileData.statusName = extractedData?.professional.toString();
-     // profileData.genderValue = extractedData.gender;
-     profileData.firstName = extractedData.firstName;
-     profileData.lastName = extractedData.lastName;
+    final profileData = Provider.of<PersonalInformationProvider>(context);
+    final extractedData = profileData.profile;
+    firstName = extractedData!.firstName;
+    lastName = extractedData.lastName;
+    getGender = extractedData.gender;
+    phoneNumber = extractedData.phone;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -68,8 +71,13 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Personal Information", style: Theme.of(context).textTheme.titleMedium,),
-                SizedBox(height: MediaQuery.of(context).size.width / 20,),
+                Text(
+                  "Personal Information",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 20,
+                ),
                 Text(
                   "First Name",
                   style: Theme.of(context).textTheme.labelMedium,
@@ -78,7 +86,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   height: MediaQuery.of(context).size.width / 40,
                 ),
                 Consumer<PersonalInformationProvider>(
-                  builder:(_,info,child) => Container(
+                  builder: (_, info, child) => Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(7.0),
@@ -87,7 +95,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       initialValue: extractedData.firstName,
                       autovalidateMode: AutovalidateMode.always,
                       onSaved: (value) {
-                        info.firstName = value;
+                        firstName = value;
                       },
                       decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
@@ -110,7 +118,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   height: MediaQuery.of(context).size.width / 40,
                 ),
                 Consumer<PersonalInformationProvider>(
-                  builder: (_,info,child) => Container(
+                  builder: (_, info, child) => Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(7.0),
@@ -118,8 +126,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     child: TextFormField(
                       initialValue: extractedData.lastName,
                       autovalidateMode: AutovalidateMode.always,
-                      onSaved: (value){
-                        info.lastName = value;
+                      onSaved: (value) {
+                        lastName = value;
                       },
                       decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
@@ -151,14 +159,14 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) =>
                           OutlineSelectedButton(
-                            onTap: () => genderData.genderCheckFunction(index),
-                            textTitle: index == 0 ? "Male" : "Female",
-                            color: genderData.genderValue - 1 == index
-                                ? Colors.blue.shade50
-                                : Colors.grey.shade300,
-                            border:
+                        onTap: () => genderData.genderCheckFunction(index, getGender),
+                        textTitle: index == 0 ? "Male" : "Female",
+                        color: genderData.genderValue - 1 == index
+                            ? Colors.blue.shade50
+                            : Colors.grey.shade300,
+                        border:
                             genderData.genderValue - 1 == index ? true : false,
-                          ),
+                      ),
                     ),
                   ),
                 ),
@@ -173,15 +181,15 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   height: MediaQuery.of(context).size.width / 40,
                 ),
                 Consumer<PersonalInformationProvider>(
-                  builder:(_,info,child) => Container(
+                  builder: (_, info, child) => Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(7.0),
                     ),
                     child: TextFormField(
-                      initialValue: info.profile!.phone,
-                      onChanged: (value){
-                        info.phoneNumber = value;
+                      initialValue: extractedData.phone,
+                      onSaved: (value) {
+                        phoneNumber = value;
                       },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -205,8 +213,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   height: MediaQuery.of(context).size.width / 40,
                 ),
                 Consumer<PersonalInformationProvider>(
-                  builder: (_,checkStatus, child) => InkWell(
-                    onTap: (){
+                  builder: (_, checkStatus, child) => InkWell(
+                    onTap: () {
                       checkStatus.statusPicker(context);
                     },
                     child: Container(
@@ -217,9 +225,16 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       ),
                       child: Row(
                         children: <Widget>[
-                          Text(checkStatus.statusName, style: Theme.of(context).textTheme.labelLarge,),
+                          Text(
+                            checkStatus.statusName,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
                           const Spacer(),
-                          const Icon(Icons.arrow_drop_down_rounded, size: 30, color: Colors.black,),
+                          const Icon(
+                            Icons.arrow_drop_down_rounded,
+                            size: 30,
+                            color: Colors.black,
+                          ),
                         ],
                       ),
                     ),
@@ -241,16 +256,20 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   ),
                   subtitle: Text(
                     "Your personal information is necessary to guarantee a good level of security. "
-                        "They are secure and will never be communicated publicly. ",
+                    "They are secure and will never be communicated publicly. ",
                     style: Theme.of(context).textTheme.labelMedium,
                     textAlign: TextAlign.justify,
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.width / 10,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 10,
+                ),
                 const Divider(),
-                CustomButton(onPress: (){
-                  formSubmit();
-                }, buttonName: "Confirm"),
+                CustomButton(
+                    onPress: () {
+                      formSubmit(firstName,lastName, profileData.genderValue, phoneNumber, profileData.statusName);
+                    },
+                    buttonName: "Confirm"),
               ],
             ),
           ),

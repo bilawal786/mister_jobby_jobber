@@ -18,7 +18,8 @@ class PersonalInformationProvider with ChangeNotifier {
   String? lastName;
   String? phoneNumber;
 
-  void genderCheckFunction(int index) {
+  void genderCheckFunction(index, getGender) {
+    genderValue = getGender;
     genderValue = index + 1;
     if (genderValue == 1) {
       gender = "Male".tr();
@@ -33,7 +34,7 @@ class PersonalInformationProvider with ChangeNotifier {
   int status = 1;
   String statusName = "";
 
-  void checkStatusValue(BuildContext context ,int? value) {
+  void checkStatusValue(BuildContext context ,int? value,) {
     status = value!;
     if(status == 1){
       statusName = "Entrepreneur";
@@ -156,4 +157,45 @@ class PersonalInformationProvider with ChangeNotifier {
       debugPrint('get profile api not working');
     }
   }
+
+
+  Future<void>updateProfile(context,fName,lName,gender,number,prof,) async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userToken = prefs.getString('token');
+    var response = await http.post(
+      Uri.parse('${MyRoutes.BASEURL}/profile/update'),
+      headers: <String, String>{
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': 'Bearer $userToken',
+      },
+      body: jsonEncode(<String, String>{
+        'firstName': fName.toString(),
+        'lastName': lName.toString(),
+        'phone':number.toString(),
+        'gender': gender.toString(),
+        'professional': prof.toString(),
+      }),
+    );
+    if(response.statusCode == 200){
+      debugPrint("Profile Updated");
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Profile Updated Successfully',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }else {
+      debugPrint("Profile Not Updated");
+    }
+  }
+
+
 }
