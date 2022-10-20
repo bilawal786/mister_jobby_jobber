@@ -184,7 +184,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.score == false) ...[
+                  if (extractedCompleteData?.score == 0) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
@@ -313,7 +313,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                       (extractedCompleteData?.vitalCardNumber != 'null' ||
                           extractedCompleteData?.socialSecurityNumber !=
                               'null') ||
-                      extractedCompleteData?.score == true) ...[
+                      extractedCompleteData?.score != 0) ...[
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     ),
@@ -416,7 +416,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.score == true) ...[
+                  if (extractedCompleteData?.score != 0) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),

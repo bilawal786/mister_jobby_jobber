@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../widgets/const_widgets/custom_button.dart';
 import '../../../../widgets/const_widgets/custom_list_tile.dart';
+
+import '../../../../providers/reliability_score_provider/reliability_score_provider.dart';
 
 class ReliabilityScoreScreen extends StatelessWidget {
   const ReliabilityScoreScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final reliabilityScoreData = Provider.of<ReliabilityScoreProvider>(context);
+    var score = 1;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,7 +25,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -368,7 +373,9 @@ class ReliabilityScoreScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
                   ),
-                  CustomButton(onPress: () {}, buttonName: "Confirm"),
+                  CustomButton(onPress: () {
+                    reliabilityScoreData.reliabilityScore(score);
+                  }, buttonName: "Confirm"),
                 ],
               ),
             ),

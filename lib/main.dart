@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -62,6 +61,8 @@ import './providers/mandatory_steps_provider/rules_provider/rules_provider.dart'
 import './providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
 import './providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
 import './providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
+import './providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import './providers/reliability_score_provider/reliability_score_provider.dart';
 
 
 
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => NonEuroIdentificationProvider()),
         ChangeNotifierProvider(create: (ctx) => AreaInterventionProvider()),
         ChangeNotifierProvider(create: (ctx) => CheckProfileCompletionProvider()),
+        ChangeNotifierProvider(create: (ctx) => ReliabilityScoreProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
