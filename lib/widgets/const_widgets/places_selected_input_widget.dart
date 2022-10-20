@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
 
-import '../../../../providers/const_provider/const_provider.dart';
+import '../../../../providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
 
 class GooglePlacesApi extends StatefulWidget {
   const GooglePlacesApi({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class GooglePlacesApi extends StatefulWidget {
 
 class _GooglePlacesApiState extends State<GooglePlacesApi> {
   TextEditingController searchController = TextEditingController();
-  var uuid = Uuid();
+  var uuid = const Uuid();
   String _sessionToken = '123456';
   List<dynamic> _placesList = [];
   @override
@@ -31,7 +31,7 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
   }
 
   void onChange() {
-    if (_sessionToken == null) {
+    if (_sessionToken == 'null') {
       setState(() {
         _sessionToken = uuid.v4();
       });
@@ -70,7 +70,7 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
   String address = "";
   @override
   Widget build(BuildContext context) {
-    final searchData = Provider.of<ConstProvider>(context, listen: false);
+    final searchData = Provider.of<AreaInterventionProvider>(context, listen: false);
     return SearchField(
       controller: searchController,
       hint: 'Find_Address'.tr(),
@@ -102,10 +102,10 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
           longitude = location.last.longitude,
           latitude = location.last.latitude,
         );
-        print("\n \n \n \n ");
-        print("full address : $address");
-        print("latitude: $latitude");
-        print("longitude: $longitude");
+        debugPrint("\n \n \n \n ");
+        debugPrint("full address : $address");
+        debugPrint("latitude: $latitude");
+        debugPrint("longitude: $longitude");
       },
     );
   }

@@ -95,20 +95,6 @@ class ConstProvider with ChangeNotifier {
   }
 
 
-
-  String completeAddress = "";
-  double longitude = 0;
-  double latitude = 0;
-
-  void getAddress(address, long, lat) {
-    completeAddress = address;
-    longitude = long;
-    latitude = lat;
-    notifyListeners();
-  }
-
-
-
   List? skillsId;
   @override
   void notifyListeners() {

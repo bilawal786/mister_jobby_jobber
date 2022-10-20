@@ -43,6 +43,7 @@ import './screens/auth_screens/mandatory_steps/personal_information/personal_inf
 import './screens/account_screen/get_badges/badge_pro_screen.dart';
 import './screens/account_screen/get_badges/get_badge_pro_screen.dart';
 import './screens/home_screens/calender_event.dart';
+import './screens/search_screen/area_of_intervention.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -59,6 +60,8 @@ import './providers/mandatory_steps_provider/insurance_provider/insurance_provid
 import './providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
 import './providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
 import './providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
+import './providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
+
 
 
 void main() async {
@@ -97,6 +100,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => RulesProvider()),
         ChangeNotifierProvider(create: (ctx) => ProfileImageProvider()),
         ChangeNotifierProvider(create: (ctx) => NonEuroIdentificationProvider()),
+        ChangeNotifierProvider(create: (ctx) => AreaInterventionProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -273,6 +277,8 @@ class MyApp extends StatelessWidget {
           const GetBadgeProScreen(),
           MyRoutes.EVENTCALENDERSCREENROUTE: (ctx) =>
           const EventCalender(),
+          MyRoutes.RADIUSINTERVENTIONSCREENROUTE: (ctx) =>
+          const AreaOfInterventionScreen(),
         },
       ),
     );
