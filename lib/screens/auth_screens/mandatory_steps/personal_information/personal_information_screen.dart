@@ -226,7 +226,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            checkStatus.statusName,
+                            (extractedData.professional != 'null') ? extractedData.professional : checkStatus.statusName,
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                           const Spacer(),
