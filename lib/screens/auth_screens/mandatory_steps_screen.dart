@@ -4,15 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 
-import '../../providers/mandatory_steps_provider/european_identity_verification/european_identification.dart';
-import '../../providers/mandatory_steps_provider/non_european_identification_provider/non_euro_identification_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
-import '../../providers/mandatory_steps_provider/profile_image_provider/profile_image_provider.dart';
-import '../../providers/mandatory_steps_provider/rules_provider/rules_provider.dart';
-import '../../providers/mandatory_steps_provider/social_security/social_security_provider.dart';
-import '../../providers/mandatory_steps_provider/time_availability_provider/availability_provider.dart';
-import '../../providers/mandatory_steps_provider/service_provider/services_provider.dart';
-import '../../providers/mandatory_steps_provider/insurance_provider/insurance_provider.dart';
+import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class MandatoryStepsScreen extends StatefulWidget {
   const MandatoryStepsScreen({Key? key}) : super(key: key);
@@ -27,22 +20,19 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if(isInit) {
+    if (isInit) {
       Provider.of<PersonalInformationProvider>(context, listen: false)
           .getProfile();
     }
     isInit = false;
   }
+
   @override
   Widget build(BuildContext context) {
-    final availabilityData = Provider.of<AvailabilityProvider>(context);
-    final servicesData = Provider.of<ServicesProvider>(context);
-    final insuranceData = Provider.of<InsuranceProvider>(context);
-    final rulesData = Provider.of<RulesProvider>(context);
-    final profileImageData = Provider.of<ProfileImageProvider>(context);
-    final euroData = Provider.of<EuropeanIdentificationProvider>(context);
-    final nonEuroData = Provider.of<NonEuroIdentificationProvider>(context);
-    final securityData = Provider.of<SocialSecurityProvider>(context);
+    final checkCompleteProfile =
+        Provider.of<CheckProfileCompletionProvider>(context);
+    final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
+    final profileData = Provider.of<PersonalInformationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -82,26 +72,35 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
                   ),
-                  ListTile(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(MyRoutes.INDICATESKILLSROUTE),
-                    dense: true,
-                    leading: const Icon(
-                      Icons.check_box_outline_blank,
-                      size: 25,
-                      color: Colors.black45,
+                  if (extractedCompleteData?.skills1 == 'null' &&
+                      extractedCompleteData?.skills2 == 'null') ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.INDICATESKILLSROUTE),
+                      dense: true,
+                      leading: const Icon(
+                        Icons.check_box_outline_blank,
+                        size: 25,
+                        color: Colors.black45,
+                      ),
+                      title: Text(
+                        "Indicate your skills",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
                     ),
-                    title: Text(
-                      "Indicate your skills",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ).tr(),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                    ),
-                  ),
-                  const Divider(),
-                  if (availabilityData.availabilityCompleted == false) ...[
+                    const Divider(),
+                  ],
+                  if (extractedCompleteData?.monday == 'null' ||
+                      extractedCompleteData?.tuesday == 'null' ||
+                      extractedCompleteData?.wednesday == 'null' ||
+                      extractedCompleteData?.thersday == 'null' ||
+                      extractedCompleteData?.friday == 'null' ||
+                      extractedCompleteData?.saturday == 'null' ||
+                      extractedCompleteData?.sunday == 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.AVAILABILITIESSCREENROUTE),
@@ -122,7 +121,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (servicesData.servicesCompleted == false) ...[
+                  if (extractedCompleteData?.answer1 == 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PROGRESSSERVICESROUTE),
@@ -143,7 +142,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (insuranceData.insuranceCompleted == false) ...[
+                  if (extractedCompleteData?.insurance1 == 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INSURANCESCREENROUTE),
@@ -164,7 +163,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (rulesData.rulesCompleted == false) ...[
+                  if (extractedCompleteData?.rules1 == 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.LEARNRULESSCREENROUTE),
@@ -185,26 +184,28 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  ListTile(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
-                    dense: true,
-                    leading: const Icon(
-                      Icons.check_box_outline_blank,
-                      size: 25,
-                      color: Colors.black45,
+                  if (extractedCompleteData?.score == false) ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
+                      dense: true,
+                      leading: const Icon(
+                        Icons.check_box_outline_blank,
+                        size: 25,
+                        color: Colors.black45,
+                      ),
+                      title: Text(
+                        "Discover the reliability score",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
                     ),
-                    title: Text(
-                      "Discover the reliability score",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ).tr(),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                    ),
-                  ),
-                  const Divider(),
-                  if (profileImageData.profileImageCompleted == false) ...[
+                    const Divider(),
+                  ],
+                  if (profileData.profile?.image == 'main/avatar.png') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PROFILEPICTUREADDSCREENROUTE),
@@ -225,27 +226,30 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  ListTile(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
-                    dense: true,
-                    leading: const Icon(
-                      Icons.check_box_outline_blank,
-                      size: 25,
-                      color: Colors.black45,
+                  if (profileData.profile?.phone == 'null') ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
+                      dense: true,
+                      leading: const Icon(
+                        Icons.check_box_outline_blank,
+                        size: 25,
+                        color: Colors.black45,
+                      ),
+                      title: Text(
+                        "Complete your personal information",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
                     ),
-                    title: Text(
-                      "Complete your personal information",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ).tr(),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                    ),
-                  ),
-                  const Divider(),
-                  if (euroData.euroCompleted == false &&
-                      nonEuroData.nonEuroCompleted == false) ...[
+                    const Divider(),
+                  ],
+                  if (extractedCompleteData?.euIdCardFront == 'null' &&
+                      extractedCompleteData?.euIdResidencePermitFront ==
+                          'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),
@@ -266,7 +270,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (securityData.securityCompleted == false) ...[
+                  if (extractedCompleteData?.vitalCardNumber == 'null' &&
+                      extractedCompleteData?.socialSecurityNumber ==
+                          'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.SOCIALSECURITYCERTIFICATEROUTE),
@@ -287,14 +293,27 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (availabilityData.availabilityCompleted == true ||
-                      servicesData.servicesCompleted == true ||
-                      insuranceData.insuranceCompleted == true ||
-                      rulesData.rulesCompleted == true ||
-                      profileImageData.profileImageCompleted == true ||
-                      (euroData.euroCompleted == true ||
-                          nonEuroData.nonEuroCompleted == true) ||
-                      securityData.securityCompleted == true) ...[
+                  if ((extractedCompleteData?.skills1 != 'null' &&
+                          extractedCompleteData?.skills2 != 'null') ||
+                      (extractedCompleteData?.monday != 'null' ||
+                          extractedCompleteData?.tuesday != 'null' ||
+                          extractedCompleteData?.wednesday != 'null' ||
+                          extractedCompleteData?.thersday != 'null' ||
+                          extractedCompleteData?.friday != 'null' ||
+                          extractedCompleteData?.saturday != 'null' ||
+                          extractedCompleteData?.sunday != 'null') ||
+                      extractedCompleteData?.answer1 != 'null' ||
+                      extractedCompleteData?.insurance1 != 'null' ||
+                      extractedCompleteData?.rules1 != 'null' ||
+                      profileData.profile?.image != 'main/avatar.png' ||
+                      profileData.profile?.phone != 'null' ||
+                      (extractedCompleteData?.euIdCardFront != 'null' ||
+                          extractedCompleteData?.euIdResidencePermitFront !=
+                              'null') ||
+                      (extractedCompleteData?.vitalCardNumber != 'null' ||
+                          extractedCompleteData?.socialSecurityNumber !=
+                              'null') ||
+                      extractedCompleteData?.score == true) ...[
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     ),
@@ -306,7 +325,35 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                       height: MediaQuery.of(context).size.width / 20,
                     ),
                   ],
-                  if (availabilityData.availabilityCompleted == true) ...[
+                  if (extractedCompleteData?.skills1 != 'null' &&
+                      extractedCompleteData?.skills2 != 'null') ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.INDICATESKILLSROUTE),
+                      dense: true,
+                      leading: Icon(
+                        Icons.check_box,
+                        size: 25,
+                        color: Colors.green.shade700,
+                      ),
+                      title: Text(
+                        "Indicate your skills",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                  if (extractedCompleteData?.monday != 'null' ||
+                      extractedCompleteData?.tuesday != 'null' ||
+                      extractedCompleteData?.wednesday != 'null' ||
+                      extractedCompleteData?.thersday != 'null' ||
+                      extractedCompleteData?.friday != 'null' ||
+                      extractedCompleteData?.saturday != 'null' ||
+                      extractedCompleteData?.sunday != 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.AVAILABILITIESSCREENROUTE),
@@ -327,7 +374,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (servicesData.servicesCompleted == true) ...[
+                  if (extractedCompleteData?.answer1 != 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PROGRESSSERVICESROUTE),
@@ -348,7 +395,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (insuranceData.insuranceCompleted == true) ...[
+                  if (extractedCompleteData?.insurance1 != 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INSURANCESCREENROUTE),
@@ -369,7 +416,28 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (rulesData.rulesCompleted == true) ...[
+                  if (extractedCompleteData?.score == true) ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
+                      dense: true,
+                      leading: Icon(
+                        Icons.check_box,
+                        size: 25,
+                        color: Colors.green.shade700,
+                      ),
+                      title: Text(
+                        "Discover the reliability score",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                  if (extractedCompleteData?.rules1 != 'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.LEARNRULESSCREENROUTE),
@@ -390,7 +458,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (profileImageData.profileImageCompleted == true) ...[
+                  if (profileData.profile?.image != 'main/avatar.png') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PROFILEPICTUREADDSCREENROUTE),
@@ -411,8 +479,30 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (euroData.euroCompleted == true ||
-                      nonEuroData.nonEuroCompleted == true) ...[
+                  if (profileData.profile?.phone != 'null') ...[
+                    ListTile(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
+                      dense: true,
+                      leading: Icon(
+                        Icons.check_box,
+                        size: 25,
+                        color: Colors.green.shade700,
+                      ),
+                      title: Text(
+                        "Complete your personal information",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 20,
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                  if (extractedCompleteData?.euIdCardFront != 'null' ||
+                      extractedCompleteData?.euIdResidencePermitFront !=
+                          'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),
@@ -433,7 +523,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (securityData.securityCompleted == true) ...[
+                  if (extractedCompleteData?.vitalCardNumber != 'null' ||
+                      extractedCompleteData?.socialSecurityNumber !=
+                          'null') ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.SOCIALSECURITYCERTIFICATEROUTE),

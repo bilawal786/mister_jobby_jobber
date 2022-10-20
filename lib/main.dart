@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -101,6 +102,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => ProfileImageProvider()),
         ChangeNotifierProvider(create: (ctx) => NonEuroIdentificationProvider()),
         ChangeNotifierProvider(create: (ctx) => AreaInterventionProvider()),
+        ChangeNotifierProvider(create: (ctx) => CheckProfileCompletionProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

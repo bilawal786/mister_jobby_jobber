@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/preferences_provider/preferences_provider.dart';
@@ -21,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
     if (_isInit) {
       Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
       Provider.of<IndicateSkillsProvider>(context).getMainCategories();
+      Provider.of<CheckProfileCompletionProvider>(context).getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context).getProfile();
     }
     _isInit = false;
     super.didChangeDependencies();

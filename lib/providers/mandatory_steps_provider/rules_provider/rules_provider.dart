@@ -61,7 +61,7 @@ class RulesProvider with ChangeNotifier{
     if(response.statusCode == 200) {
       debugPrint(response.body);
       debugPrint("rules availability api is working");
-      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

@@ -139,7 +139,7 @@ class ProfileImageProvider with ChangeNotifier {
     );
     request.headers.addAll(headers);
     if (imageUrl != null) {
-      request.files.add(await http.MultipartFile.fromPath('image1', imageUrl));
+      request.files.add(await http.MultipartFile.fromPath('image', imageUrl));
     }
     http.Response response = await http.Response.fromStream(await request.send());
 
@@ -164,6 +164,7 @@ class ProfileImageProvider with ChangeNotifier {
       debugPrint('profile Image upload Failed');
       debugPrint(response.body);
     }
+    debugPrint(response.body);
     notifyListeners();
   }
 }
