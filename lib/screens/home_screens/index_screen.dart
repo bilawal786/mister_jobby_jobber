@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
+import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 
 class IndexScreen extends StatelessWidget {
@@ -9,6 +12,10 @@ class IndexScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final checkCompleteProfile =
+    Provider.of<CheckProfileCompletionProvider>(context);
+    final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
+    final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: NestedScrollView(
@@ -73,6 +80,27 @@ class IndexScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              if ((extractedCompleteData?.skills1 == 'null' &&
+                  extractedCompleteData?.skills2 == 'null') ||
+                  (extractedCompleteData?.monday == 'null' ||
+                      extractedCompleteData?.tuesday == 'null' ||
+                      extractedCompleteData?.wednesday == 'null' ||
+                      extractedCompleteData?.thersday == 'null' ||
+                      extractedCompleteData?.friday == 'null' ||
+                      extractedCompleteData?.saturday == 'null' ||
+                      extractedCompleteData?.sunday == 'null') ||
+                  extractedCompleteData?.answer1 == 'null' ||
+                  extractedCompleteData?.insurance1 == 'null' ||
+                  extractedCompleteData?.rules1 == 'null' ||
+                  profileData.profile?.image == 'main/avatar.png' ||
+                  profileData.profile?.phone == 'null' ||
+                  (extractedCompleteData?.euIdCardFront == 'null' ||
+                      extractedCompleteData?.euIdResidencePermitFront ==
+                          'null') ||
+                  (extractedCompleteData?.vitalCardNumber == 'null' ||
+                      extractedCompleteData?.socialSecurityNumber ==
+                          'null') ||
+                  extractedCompleteData?.score == 0) ... [
               GestureDetector(
                 onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
                 child: Container(
@@ -105,6 +133,7 @@ class IndexScreen extends StatelessWidget {
               SizedBox(
                 height: mediaQuery.size.width / 40,
               ),
+              ],
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(

@@ -43,7 +43,7 @@ class SettingScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
                     leading: Icon(
                       Icons.person_outline,
                       size: 30,
@@ -57,7 +57,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),
                     leading: Icon(
                       Icons.account_balance_wallet_outlined,
                       size: 30,

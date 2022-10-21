@@ -14,7 +14,7 @@ class PreferencesProvider with ChangeNotifier {
     id = userId?.toInt();
 
     token == 'null' ? Navigator.of(context)
-        .pushReplacementNamed(MyRoutes.REGISTERROUTE) : Navigator.of(context)
+        .pushReplacementNamed(MyRoutes.LOGINSCREENROUTE) : Navigator.of(context)
         .pushReplacementNamed(MyRoutes.HOMESCREENROUTE);
     notifyListeners();
   }
