@@ -86,7 +86,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE),
                     leading: Icon(
                       Icons.notification_important_outlined,
                       size: 30,
@@ -116,7 +117,8 @@ class SettingScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.FAQSCREENROUTE),
                     leading: Icon(
                       Icons.question_answer_outlined,
                       size: 30,
@@ -130,7 +132,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.HELPCENTERSCREENROUTE),
                     leading: Icon(
                       Icons.question_mark_rounded,
                       size: 30,
@@ -144,7 +147,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.INSURANCESETTINGSCREENROUTE),
                     leading: Icon(
                       Icons.handshake_outlined,
                       size: 30,
@@ -158,7 +162,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.TRUSTANDSECURITYSCREENROUTE),
                     leading: Icon(
                       Icons.security_outlined,
                       size: 30,
@@ -172,7 +177,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.TAXCREDITSCREENROUTE),
                     leading: Icon(
                       Icons.percent_outlined,
                       size: 30,
@@ -186,7 +192,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.TERMSANDCONDITIONSSCREENROUTE),
                     leading: Icon(
                       Icons.fact_check_outlined,
                       size: 30,
@@ -200,7 +207,8 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () {},
+                    onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.ABOUTUSSCREENROUTE),
                     leading: Icon(
                       Icons.info_outline_rounded,
                       size: 30,

@@ -44,6 +44,14 @@ import './screens/account_screen/get_badges/badge_pro_screen.dart';
 import './screens/account_screen/get_badges/get_badge_pro_screen.dart';
 import './screens/home_screens/calender_event.dart';
 import './screens/search_screen/area_of_intervention.dart';
+import './screens/account_screen/settings/others_settings/about_us.dart';
+import './screens/account_screen/settings/others_settings/help_center.dart';
+import './screens/account_screen/settings/others_settings/insurance.dart';
+import './screens/account_screen/settings/others_settings/notifications.dart';
+import './screens/account_screen/settings/others_settings/tax_credit.dart';
+import './screens/account_screen/settings/others_settings/term_and_conditions.dart';
+import './screens/account_screen/settings/others_settings/trust_and_security.dart';
+import './screens/account_screen/settings/others_settings/faq_screen.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -63,6 +71,7 @@ import './providers/mandatory_steps_provider/profile_image_provider/profile_imag
 import './providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
 import './providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import './providers/reliability_score_provider/reliability_score_provider.dart';
+import './providers/faq_provider.dart';
 
 
 
@@ -105,6 +114,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => AreaInterventionProvider()),
         ChangeNotifierProvider(create: (ctx) => CheckProfileCompletionProvider()),
         ChangeNotifierProvider(create: (ctx) => ReliabilityScoreProvider()),
+        ChangeNotifierProvider(create: (ctx) => FAQProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -283,6 +293,22 @@ class MyApp extends StatelessWidget {
           const EventCalender(),
           MyRoutes.RADIUSINTERVENTIONSCREENROUTE: (ctx) =>
           const AreaOfInterventionScreen(),
+          MyRoutes.ABOUTUSSCREENROUTE: (ctx) =>
+          const AboutUsScreen(),
+          MyRoutes.HELPCENTERSCREENROUTE: (ctx) =>
+          const HelpCenter(),
+          MyRoutes.INSURANCESCREENROUTE: (ctx) =>
+          const Insurance(),
+          MyRoutes.NOTIFICATIONSCREENROUTE: (ctx) =>
+          const ManageNotifications(),
+          MyRoutes.TAXCREDITSCREENROUTE: (ctx) =>
+          const TaxCredit(),
+          MyRoutes.TERMSANDCONDITIONSSCREENROUTE: (ctx) =>
+          const TermsAndCondition(),
+          MyRoutes.TRUSTANDSECURITYSCREENROUTE: (ctx) =>
+          const TrustAndSecurity(),
+          MyRoutes.FAQSCREENROUTE: (ctx) =>
+          const FAQScreen(),
         },
       ),
     );
