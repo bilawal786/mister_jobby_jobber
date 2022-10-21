@@ -191,7 +191,7 @@ class IndexScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.green.shade700,
+                        color: Colors.grey.shade50,
                       ),
                       child: Row(
                         children: <Widget>[
