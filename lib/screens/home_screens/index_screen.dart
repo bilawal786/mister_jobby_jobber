@@ -191,7 +191,7 @@ class IndexScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.grey.shade50,
+                        color: Colors.green.shade700,
                       ),
                       child: Row(
                         children: <Widget>[
@@ -215,10 +215,14 @@ class IndexScreen extends StatelessWidget {
                                   SizedBox(
                                     width: mediaQuery.size.width / 80,
                                   ),
-                                  Text(
-                                    "Commented jobs",
-                                    style:
-                                        Theme.of(context).textTheme.labelMedium,
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width / 5,
+                                    child: Text(
+                                      "Commented jobs",
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          Theme.of(context).textTheme.labelMedium,
+                                    ),
                                   ),
                                 ],
                               ),
