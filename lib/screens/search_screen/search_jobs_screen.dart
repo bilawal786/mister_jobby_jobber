@@ -20,7 +20,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final interventionAreaData = Provider.of<AreaInterventionProvider>(context, listen: true);
+    final interventionAreaData = Provider.of<AreaInterventionProvider>(context,listen: false);
     LatLng currentLocation = LatLng(interventionAreaData.latitude, interventionAreaData.longitude);
     return Scaffold(
       appBar: AppBar(
@@ -40,9 +40,11 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Intervention zone", style: Theme.of(context).textTheme.labelMedium,),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.7,
-                    child: Text(interventionAreaData.completeAddress, style: Theme.of(context).textTheme.bodyMedium,overflow: TextOverflow.ellipsis,)),
+                Consumer<AreaInterventionProvider>(
+                  builder:(_,interventionAreaAddress,child) => SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.7,
+                      child: Text(interventionAreaAddress.completeAddress, style: Theme.of(context).textTheme.bodyMedium,overflow: TextOverflow.ellipsis,)),
+                ),
 
               ],
             ),
