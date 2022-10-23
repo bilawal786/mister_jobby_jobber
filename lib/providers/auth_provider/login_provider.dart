@@ -34,7 +34,7 @@ class LoginProvider with ChangeNotifier {
         await prefs.setString('token', login.success.token);
         await prefs.setInt('jobberId', login.success.id);
         Navigator.of(context).pushNamedAndRemoveUntil(
-          MyRoutes.HOMESCREENROUTE,
+          MyRoutes.SPLASHSCREENROUTE,
               (route) => false,
         );
         ScaffoldMessenger.of(context).hideCurrentSnackBar();

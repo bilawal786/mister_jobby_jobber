@@ -226,7 +226,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       child: Row(
                         children: <Widget>[
                           Text(
-                            (extractedData.professional != 'null') ? extractedData.professional : checkStatus.statusName,
+                            checkStatus.statusName,
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                           const Spacer(),
@@ -267,6 +267,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 const Divider(),
                 CustomButton(
                     onPress: () {
+                      debugPrint(extractedData.phone);
                       formSubmit(firstName,lastName, profileData.genderValue, phoneNumber, profileData.statusName);
                     },
                     buttonName: "Confirm"),
