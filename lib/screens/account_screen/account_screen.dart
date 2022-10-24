@@ -45,7 +45,7 @@ class AccountScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(200),
                             child: Image.network(
-                              "https://burst.shopify.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page/download",
+                              "${MyRoutes.IMAGEURL}${profileData.profile!.image}",
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -88,7 +88,7 @@ class AccountScreen extends StatelessWidget {
                 height: mediaQuery.size.width / 40,
               ),
               Text(
-                "User Name",
+                "${profileData.profile!.firstName} ${profileData.profile!.lastName}",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(
@@ -103,7 +103,9 @@ class AccountScreen extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    for (int i = 0; i < 5; i++)
+                    if(profileData.profile!.rating == 0)
+                      const Icon(Icons.star, size: 14,),
+                    for (int i = 0; i < profileData.profile!.rating; i++)
                       const Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -113,8 +115,15 @@ class AccountScreen extends StatelessWidget {
                       width: mediaQuery.size.width / 40,
                     ),
                     Text(
-                      "5",
+                     "${profileData.profile!.rating}",
                       style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    SizedBox(
+                      width: mediaQuery.size.width / 80,
+                    ),
+                    Text(
+                      "/5",
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ],
                 ),
@@ -123,7 +132,7 @@ class AccountScreen extends StatelessWidget {
                 height: mediaQuery.size.width / 40,
               ),
               Text(
-                "0 notice",
+                "${profileData.profile!.reviews.length} views",
                 style: Theme.of(context).textTheme.labelSmall,
               ),
               SizedBox(
