@@ -126,7 +126,7 @@ class AreaOfInterventionScreen extends StatelessWidget {
               ),
               const Divider(),
               SizedBox(
-                height: MediaQuery.of(context).size.width / 1.5,
+                height: MediaQuery.of(context).size.width / 2.5,
               ),
               const Divider(),
               CustomButton(

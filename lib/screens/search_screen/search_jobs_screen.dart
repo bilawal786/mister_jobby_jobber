@@ -42,7 +42,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 Text("Intervention zone", style: Theme.of(context).textTheme.labelMedium,),
                 Consumer<AreaInterventionProvider>(
                   builder:(_,interventionAreaAddress,child) => SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.7,
+                    width: MediaQuery.of(context).size.width / 1.8,
                       child: Text(interventionAreaAddress.completeAddress, style: Theme.of(context).textTheme.bodyMedium,overflow: TextOverflow.ellipsis,)),
                 ),
 

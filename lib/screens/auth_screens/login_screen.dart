@@ -40,174 +40,148 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFebf9fe),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.width / 5,
+                height: MediaQuery.of(context).size.width/1.4,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset('assets/images/login.png',
+                  fit: BoxFit.cover,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 10, top: 15, bottom: 15),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(7),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: const Offset(
-                                  1, 2), // changes position of shadow
-                            ),
-                          ],
-                          border: Border.all(
-                              color: Theme.of(context).primaryColor, width: .3),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Text(
-                                "Login_Screen_Title",
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ).tr(),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 30,
-                            ),
-                            const Divider(),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 30,
-                            ),
-                            Form(
-                              key: formKey,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "EmailText",
-                                    style: Theme.of(context).textTheme.titleSmall,
-                                  ).tr(),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.width / 40,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Form(
+                            key: formKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "EmailText",
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ).tr(),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width / 40,
+                                ),
+                                TextFormField(
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    border: const OutlineInputBorder(),
+                                    labelText: "EmailText".tr(),
+                                    isDense: true,
                                   ),
-                                  TextFormField(
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    controller: emailController,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                  enabled: true,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please Enter Email Address";
+                                    }else if (!regExp.hasMatch(value)) {
+                                      return 'Please Enter Valid Email Address';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width / 40,
+                                ),
+                                Text(
+                                  "PasswordText",
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ).tr(),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width / 40,
+                                ),
+                                Consumer<LoginProvider>(
+                                  builder: (_,toggle, child) => TextFormField(
+                                    enableSuggestions: false,
+                                    controller: passwordController,
+                                    obscureText: toggle.checkObscure,
                                     decoration: InputDecoration(
                                       border: const OutlineInputBorder(),
-                                      labelText: "EmailText".tr(),
+                                      labelText: "PasswordText".tr(),
                                       isDense: true,
+                                      suffixIcon: GestureDetector(
+                                        onTap: toggle.toggleObscure,
+                                          child: Icon(toggle.checkObscure == false ? Icons.visibility_off: Icons.visibility),),
                                     ),
                                     style: Theme.of(context).textTheme.bodySmall,
                                     enabled: true,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Please Enter Email Address";
-                                      }else if (!regExp.hasMatch(value)) {
-                                        return 'Please Enter Valid Email Address';
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return 'Please Enter the password';
+                                      }else if(value.length < 5) {
+                                        return 'Must be more than 5 characters';
                                       }
                                       return null;
                                     },
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.width / 40,
-                                  ),
-                                  Text(
-                                    "PasswordText",
-                                    style: Theme.of(context).textTheme.titleSmall,
-                                  ).tr(),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.width / 40,
-                                  ),
-                                  Consumer<LoginProvider>(
-                                    builder: (_,toggle, child) => TextFormField(
-                                      controller: passwordController,
-                                      obscureText: toggle.checkObscure,
-                                      decoration: InputDecoration(
-                                        border: const OutlineInputBorder(),
-                                        labelText: "PasswordText".tr(),
-                                        isDense: true,
-                                        suffixIcon: GestureDetector(
-                                          onTap: toggle.toggleObscure,
-                                            child: Icon(toggle.checkObscure == false ? Icons.visibility_off: Icons.visibility),),
-                                      ),
-                                      style: Theme.of(context).textTheme.bodySmall,
-                                      enabled: true,
-                                      validator: (value){
-                                        if(value!.isEmpty){
-                                          return 'Please Enter the password';
-                                        }else if(value.length < 5) {
-                                          return 'Must be more than 5 characters';
-                                        }
-                                        return null;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 25,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                "Forgot_Button_Text".tr(),
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 12,
-                                  fontFamily: 'Cerebri Sans Bold',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 25,
-                            ),
-                            CustomButton(
-                                onPress: formSubmit, buttonName: "Login_Screen_Title"),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 25,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Don't_Have_Account_Title".tr(),
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 40,
-                                ),
-                                InkWell(
-                                  onTap: () => Navigator.of(context).pushReplacementNamed(MyRoutes.REGISTERROUTE),
-                                  child: Text(
-                                    "Register_Screen_Title".tr(),
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 12,
-                                      fontFamily: 'Cerebri Sans Bold',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 25,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width / 25,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              "Forgot_Button_Text".tr(),
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 12,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width / 25,
+                          ),
+                          CustomButton(
+                              onPress: formSubmit, buttonName: "Login_Screen_Title"),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width / 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't_Have_Account_Title".tr(),
+                                style:
+                                    Theme.of(context).textTheme.labelMedium,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 40,
+                              ),
+                              InkWell(
+                                onTap: () => Navigator.of(context).pushReplacementNamed(MyRoutes.REGISTERROUTE),
+                                child: Text(
+                                  "Register_Screen_Title".tr(),
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 12,
+                                    fontFamily: 'Cerebri Sans Bold',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width / 25,
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -96,6 +96,7 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
         );
       }).toList(),
       onSuggestionTap: (p0) async {
+        FocusScope.of(context).unfocus();
         List<Location> location = await locationFromAddress(p0.item.toString());
         searchData.getAddress(
           address = searchController.text,
