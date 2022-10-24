@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class EuropeanIdentificationProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -559,8 +560,17 @@ class EuropeanIdentificationProvider with ChangeNotifier {
 
   bool euroCompleted = false;
 
-  Future<void> postEuropeanIdentificationDocuments(context, idCardFront,
-      idCardBack, licenseFront, licenseBack, passport) async {
+  Future<void> postEuropeanIdentificationDocuments(
+    context,
+    idCardFront,
+    idCardBack,
+    licenseFront,
+    licenseBack,
+    passport,
+  ) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -598,6 +608,7 @@ class EuropeanIdentificationProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("European identification documents Posted successfully ");
+      Navigator.pop(context);
       Navigator.of(context)
           .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -615,6 +626,7 @@ class EuropeanIdentificationProvider with ChangeNotifier {
       );
       euroCompleted = true;
     } else {
+      Navigator.pop(context);
       debugPrint('European identification documents upload Failed');
       debugPrint(response.body);
     }

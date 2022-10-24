@@ -22,7 +22,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(20.0),
-        height: MediaQuery.of(context).size.width / 2.4,
+        height: MediaQuery.of(context).size.width / 2.3,
         decoration: const BoxDecoration(
           border: Border(
             top: BorderSide(
