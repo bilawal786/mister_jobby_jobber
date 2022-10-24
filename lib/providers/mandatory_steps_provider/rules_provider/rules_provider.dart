@@ -5,6 +5,7 @@ import 'package:http/http.dart'as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class RulesProvider with ChangeNotifier{
   bool rulesCompleted = false;
@@ -41,6 +42,9 @@ class RulesProvider with ChangeNotifier{
   }
 
   Future<void> postRules (context, rule1, rule2, rule3, rule4,) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -61,6 +65,7 @@ class RulesProvider with ChangeNotifier{
     if(response.statusCode == 200) {
       debugPrint(response.body);
       debugPrint("rules availability api is working");
+      Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class ProfileImageProvider with ChangeNotifier {
   bool profileImageCompleted = false;
@@ -125,6 +126,9 @@ class ProfileImageProvider with ChangeNotifier {
   }
 
   Future<void> postProfileImage (context,imageUrl) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -145,6 +149,7 @@ class ProfileImageProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("Profile Image Posted successfully ");
+      Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -161,6 +166,7 @@ class ProfileImageProvider with ChangeNotifier {
       );
       profileImageCompleted = true;
     } else {
+      Navigator.pop(context);
       debugPrint('profile Image upload Failed');
       debugPrint(response.body);
     }

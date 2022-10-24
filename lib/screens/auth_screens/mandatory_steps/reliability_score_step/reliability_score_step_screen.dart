@@ -374,7 +374,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.width / 40,
                   ),
                   CustomButton(onPress: () {
-                    reliabilityScoreData.reliabilityScore(score);
+                    reliabilityScoreData.reliabilityScore(context, score);
                   }, buttonName: "Confirm"),
                 ],
               ),

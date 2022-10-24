@@ -7,6 +7,7 @@ import 'package:http/http.dart'as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class SocialSecurityProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -268,6 +269,9 @@ class SocialSecurityProvider with ChangeNotifier {
   bool securityCompleted = false;
 
   Future<void> postSecurityCertificates (context, vitalCard, vitalCardNumber, securityCertificate, securityCertificateNumber,) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -295,6 +299,7 @@ class SocialSecurityProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("Non-European identification documents Posted successfully ");
+      Navigator.pop(context);
       Navigator.of(context)
           .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -312,6 +317,7 @@ class SocialSecurityProvider with ChangeNotifier {
       );
       securityCompleted = true;
     } else {
+      Navigator.pop(context);
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
     }

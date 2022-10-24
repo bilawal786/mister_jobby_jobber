@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 
 import '../../../models/mandatory_steps_model/jobber_profile_model/jobber_profile_model.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class PersonalInformationProvider with ChangeNotifier {
   int genderValue = 0;
@@ -150,6 +151,7 @@ class PersonalInformationProvider with ChangeNotifier {
   JobberProfileModel? profile;
 
   Future<void> getProfile() async {
+
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     int? id = sharePref.getInt('jobberId');
@@ -178,6 +180,9 @@ class PersonalInformationProvider with ChangeNotifier {
     number,
     prof,
   ) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userToken = prefs.getString('token');
     var response = await http.post(
@@ -196,6 +201,7 @@ class PersonalInformationProvider with ChangeNotifier {
       }),
     );
     if (response.statusCode == 200) {
+      Navigator.pop(context);
       debugPrint("Profile Updated");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -211,6 +217,7 @@ class PersonalInformationProvider with ChangeNotifier {
         ),
       );
     } else {
+      Navigator.pop(context);
       debugPrint("Profile Not Updated");
     }
   }

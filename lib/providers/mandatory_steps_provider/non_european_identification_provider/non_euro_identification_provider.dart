@@ -252,6 +252,7 @@ class NonEuroIdentificationProvider with ChangeNotifier {
   bool nonEuroCompleted = false;
 
   Future<void> postEuropeanIdentificationDocuments (context,workPermitFront, workPermitBack) async {
+
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     Map<String, String> headers = {
@@ -275,9 +276,7 @@ class NonEuroIdentificationProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("Non-European identification documents Posted successfully ");
-    } else {
-      debugPrint('Non-European identification documents upload Failed');
-      debugPrint(response.body);
+      Navigator.pop(context);
       Navigator.of(context)
           .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -294,6 +293,10 @@ class NonEuroIdentificationProvider with ChangeNotifier {
         ),
       );
       nonEuroCompleted = true;
+    } else {
+      debugPrint('Non-European identification documents upload Failed');
+      debugPrint(response.body);
+      Navigator.pop(context);
     }
     if (kDebugMode) {
       print(response.request);

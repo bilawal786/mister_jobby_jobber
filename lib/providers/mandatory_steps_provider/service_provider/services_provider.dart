@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 
 class ServicesProvider with ChangeNotifier {
@@ -12,6 +13,12 @@ class ServicesProvider with ChangeNotifier {
   bool servicesCompleted = false;
 
   Future<void> postProgressServices (context,answer1,answer2, answer3, answer4,) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -32,6 +39,7 @@ class ServicesProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       print(response.body);
       print("services availability api is working");
+      Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,6 +57,7 @@ class ServicesProvider with ChangeNotifier {
       servicesCompleted = true;
       notifyListeners();
     }else{
+      Navigator.pop(context);
       print(response.body);
       print("services availability api not working ");
     }

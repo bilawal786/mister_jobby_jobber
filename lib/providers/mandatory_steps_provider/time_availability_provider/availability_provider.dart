@@ -5,12 +5,16 @@ import 'package:http/http.dart'as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class AvailabilityProvider with ChangeNotifier {
 
   bool availabilityCompleted = false;
 
   Future<void> postAvailability (context,monday, tuesday, wednesday, thursday, friday, saturday, sunday,) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -33,6 +37,7 @@ class AvailabilityProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       debugPrint(response.body);
       debugPrint("time availability api is working");
+      Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -50,6 +55,7 @@ class AvailabilityProvider with ChangeNotifier {
       availabilityCompleted = true;
       notifyListeners();
     }else{
+      Navigator.pop(context);
       debugPrint(response.body);
       debugPrint("Time availability api not working ");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();

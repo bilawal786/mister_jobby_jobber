@@ -8,6 +8,7 @@ class IndicateSkillsProvider with ChangeNotifier {
   List<IndicateSkillsModel>? skills;
 
   Future<void> getMainCategories() async {
+
     var response = await http.get(
       Uri.parse('${MyRoutes.BASEURL}/categories'),
       headers: <String, String>{

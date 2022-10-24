@@ -5,6 +5,7 @@ import 'package:http/http.dart'as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class InsuranceProvider with ChangeNotifier {
 
@@ -43,6 +44,9 @@ class InsuranceProvider with ChangeNotifier {
   }
 
   Future<void> postInsurance (context, insurance1, insurance2, insurance3, insurance4,) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(
@@ -63,6 +67,7 @@ class InsuranceProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       print(response.body);
       print("Insurance availability api is working");
+      Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -80,6 +85,7 @@ class InsuranceProvider with ChangeNotifier {
       insuranceCompleted = true;
       notifyListeners();
     }else{
+      Navigator.pop(context);
       print(response.body);
       print("Insurance availability api not working ");
     }
