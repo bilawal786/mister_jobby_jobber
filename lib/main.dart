@@ -47,11 +47,11 @@ import './screens/search_screen/area_of_intervention.dart';
 import './screens/account_screen/settings/others_settings/about_us.dart';
 import './screens/account_screen/settings/others_settings/help_center.dart';
 import './screens/account_screen/settings/others_settings/insurance.dart';
-import './screens/account_screen/settings/others_settings/notifications.dart';
 import './screens/account_screen/settings/others_settings/tax_credit.dart';
 import './screens/account_screen/settings/others_settings/term_and_conditions.dart';
 import './screens/account_screen/settings/others_settings/trust_and_security.dart';
 import './screens/account_screen/settings/others_settings/faq_screen.dart';
+import './screens/account_screen/settings/others_settings/manage_notifications.dart';
 
 import './providers/auth_provider/login_provider.dart';
 import './providers/auth_provider/register_provider.dart';
@@ -297,9 +297,9 @@ class MyApp extends StatelessWidget {
           const AboutUsScreen(),
           MyRoutes.HELPCENTERSCREENROUTE: (ctx) =>
           const HelpCenter(),
-          MyRoutes.INSURANCESCREENROUTE: (ctx) =>
+          MyRoutes.INSURANCESETTINGSCREENROUTE: (ctx) =>
           const Insurance(),
-          MyRoutes.NOTIFICATIONSCREENROUTE: (ctx) =>
+          MyRoutes.MANAGENOTIFICATIONSSCREENROUTE: (ctx) =>
           const ManageNotifications(),
           MyRoutes.TAXCREDITSCREENROUTE: (ctx) =>
           const TaxCredit(),

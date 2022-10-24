@@ -307,7 +307,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                       extractedCompleteData?.rules1 != null ||
                       profileData.profile?.image != 'main/avatar.png' ||
                       (profileData.profile?.phone != '') ||
-                      (extractedCompleteData?.euIdCardFront != null ||
+                      (extractedCompleteData?.euIdCardFront != null || extractedCompleteData?.euIdCardFront != "" ||
                           extractedCompleteData?.euIdResidencePermitFront !=
                               null) ||
                       (extractedCompleteData?.vitalCardNumber != null ||
@@ -500,9 +500,10 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.euIdCardFront != null ||
-                      extractedCompleteData?.euIdResidencePermitFront !=
-                          null) ...[
+                  if ((extractedCompleteData?.euIdCardFront != null || extractedCompleteData?.euIdCardFront != "") ||
+                      (extractedCompleteData?.euIdResidencePermitFront !=
+                          null || extractedCompleteData?.euIdResidencePermitFront !=
+                      "")) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),

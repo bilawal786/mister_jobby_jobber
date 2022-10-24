@@ -42,7 +42,7 @@ class MyRoutes {
   static const String ABOUTUSSCREENROUTE = "About-us-Screen";
   static const String HELPCENTERSCREENROUTE = "Help-center-Screen";
   static const String INSURANCESETTINGSCREENROUTE = "Insurance-settings-Screen";
-  static const String NOTIFICATIONSSCREENROUTE = "Notifications-Screen";
+  static const String MANAGENOTIFICATIONSSCREENROUTE = "Manage-Notifications-Screen";
   static const String TAXCREDITSCREENROUTE = "Tax-credit-Screen";
   static const String TERMSANDCONDITIONSSCREENROUTE = "Terms-and-conditions-Screen";
   static const String TRUSTANDSECURITYSCREENROUTE = "Trust-and-security-Screen";

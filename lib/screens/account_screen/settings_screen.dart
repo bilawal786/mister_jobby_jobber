@@ -87,7 +87,7 @@ class SettingScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () =>Navigator.of(context)
-                        .pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE),
+                        .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
                     leading: Icon(
                       Icons.notification_important_outlined,
                       size: 30,
