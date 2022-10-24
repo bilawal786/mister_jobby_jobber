@@ -13,7 +13,7 @@ class IndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final checkCompleteProfile =
-    Provider.of<CheckProfileCompletionProvider>(context);
+        Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
@@ -39,7 +39,8 @@ class IndexScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: IconButton(
-                  onPressed: () => Navigator.of(context).pushNamed(MyRoutes.EVENTCALENDERSCREENROUTE),
+                  onPressed: () => Navigator.of(context)
+                      .pushNamed(MyRoutes.EVENTCALENDERSCREENROUTE),
                   icon: const Icon(
                     Icons.date_range,
                     color: Colors.amber,
@@ -51,7 +52,8 @@ class IndexScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     IconButton(
-                      onPressed: ()=> Navigator.of(context).pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE),
+                      onPressed: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE),
                       icon: const Icon(
                         Icons.notifications_none_outlined,
                         color: Colors.amber,
@@ -80,59 +82,59 @@ class IndexScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              if ((extractedCompleteData?.skills1 == 'null' &&
-                  extractedCompleteData?.skills2 == 'null') ||
-                  (extractedCompleteData?.monday == 'null' ||
-                      extractedCompleteData?.tuesday == 'null' ||
-                      extractedCompleteData?.wednesday == 'null' ||
-                      extractedCompleteData?.thersday == 'null' ||
-                      extractedCompleteData?.friday == 'null' ||
-                      extractedCompleteData?.saturday == 'null' ||
-                      extractedCompleteData?.sunday == 'null') ||
-                  extractedCompleteData?.answer1 == 'null' ||
-                  extractedCompleteData?.insurance1 == 'null' ||
-                  extractedCompleteData?.rules1 == 'null' ||
+              if ((extractedCompleteData?.skills1 == null &&
+                      extractedCompleteData?.skills2 == null) ||
+                  (extractedCompleteData?.monday == null ||
+                      extractedCompleteData?.tuesday == null ||
+                      extractedCompleteData?.wednesday == null ||
+                      extractedCompleteData?.thersday == null ||
+                      extractedCompleteData?.friday == null ||
+                      extractedCompleteData?.saturday == null ||
+                      extractedCompleteData?.sunday == null) ||
+                  extractedCompleteData?.answer1 == null ||
+                  extractedCompleteData?.insurance1 == null ||
+                  extractedCompleteData?.rules1 == null ||
                   profileData.profile?.image == 'main/avatar.png' ||
-                  profileData.profile?.phone == 'null' ||
-                  (extractedCompleteData?.euIdCardFront == 'null' ||
+                  (profileData.profile?.phone == '') ||
+                  (extractedCompleteData?.euIdCardFront == null ||
                       extractedCompleteData?.euIdResidencePermitFront ==
-                          'null') ||
-                  (extractedCompleteData?.vitalCardNumber == 'null' ||
-                      extractedCompleteData?.socialSecurityNumber ==
-                          'null') ||
-                  extractedCompleteData?.score == 0) ... [
-              GestureDetector(
-                onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
-                child: Container(
-                  color: Colors.amber.shade700,
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: <Widget>[
-                      const Icon(
-                        Icons.circle_notifications_outlined,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: mediaQuery.size.width / 40,
-                      ),
-                      Text(
-                        "Actions required",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 16,
-                        color: Colors.black,
-                      ),
-                    ],
+                          null) ||
+                  (extractedCompleteData?.vitalCardNumber == null ||
+                      extractedCompleteData?.socialSecurityNumber == null) ||
+                  extractedCompleteData?.score == null) ...[
+                GestureDetector(
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+                  child: Container(
+                    color: Colors.amber.shade700,
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.circle_notifications_outlined,
+                          size: 20,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: mediaQuery.size.width / 40,
+                        ),
+                        Text(
+                          "Actions required",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const Spacer(),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: mediaQuery.size.width / 40,
-              ),
+                SizedBox(
+                  height: mediaQuery.size.width / 40,
+                ),
               ],
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -216,12 +218,14 @@ class IndexScreen extends StatelessWidget {
                                     width: mediaQuery.size.width / 80,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width / 5,
+                                    width:
+                                        MediaQuery.of(context).size.width / 5,
                                     child: Text(
                                       "Commented jobs",
                                       overflow: TextOverflow.ellipsis,
-                                      style:
-                                          Theme.of(context).textTheme.labelMedium,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
                                     ),
                                   ),
                                 ],
@@ -271,7 +275,7 @@ class IndexScreen extends StatelessWidget {
                     SizedBox(
                       height: mediaQuery.size.width / 20,
                     ),
-                    CustomButton(onPress: (){}, buttonName: "Find_Job"),
+                    CustomButton(onPress: () {}, buttonName: "Find_Job"),
                   ],
                 ),
               ),

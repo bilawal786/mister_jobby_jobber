@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
@@ -34,20 +34,20 @@ class PersonalInformationProvider with ChangeNotifier {
   int status = 1;
   String statusName = "";
 
-  void checkStatusValue(BuildContext context ,int? value,) {
+  void checkStatusValue(
+    BuildContext context,
+    int? value,
+  ) {
     status = value!;
-    if(status == 1){
+    if (status == 1) {
       statusName = "Entrepreneur";
-    } else if (status == 2){
+    } else if (status == 2) {
       statusName = "Student";
-    }
-    else if (status == 3){
+    } else if (status == 3) {
       statusName = "Retirement";
-    }
-    else if (status == 4){
+    } else if (status == 4) {
       statusName = "Employee";
-    }
-    else if (status == 5){
+    } else if (status == 5) {
       statusName = "Un Employed";
     }
     notifyListeners();
@@ -63,7 +63,7 @@ class PersonalInformationProvider with ChangeNotifier {
             height: MediaQuery.of(context).size.height,
             margin: const EdgeInsets.all(10),
             child: Consumer<PersonalInformationProvider>(
-              builder: (_,statusCheck, child) => Column(
+              builder: (_, statusCheck, child) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -77,7 +77,9 @@ class PersonalInformationProvider with ChangeNotifier {
                     dense: true,
                     value: 1,
                     groupValue: statusCheck.status,
-                    onChanged: (v) {statusCheck.checkStatusValue(context, v);},
+                    onChanged: (v) {
+                      statusCheck.checkStatusValue(context, v);
+                    },
                     title: Text(
                       "Entrepreneur",
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -88,7 +90,9 @@ class PersonalInformationProvider with ChangeNotifier {
                     dense: true,
                     value: 2,
                     groupValue: statusCheck.status,
-                    onChanged: (v) {statusCheck.checkStatusValue(context, v);},
+                    onChanged: (v) {
+                      statusCheck.checkStatusValue(context, v);
+                    },
                     title: Text(
                       "Students",
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -99,7 +103,9 @@ class PersonalInformationProvider with ChangeNotifier {
                     dense: true,
                     value: 3,
                     groupValue: statusCheck.status,
-                    onChanged: (v) {statusCheck.checkStatusValue(context, v);},
+                    onChanged: (v) {
+                      statusCheck.checkStatusValue(context, v);
+                    },
                     title: Text(
                       "Retirement",
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -110,7 +116,9 @@ class PersonalInformationProvider with ChangeNotifier {
                     dense: true,
                     value: 4,
                     groupValue: statusCheck.status,
-                    onChanged:(v) {statusCheck.checkStatusValue(context, v);},
+                    onChanged: (v) {
+                      statusCheck.checkStatusValue(context, v);
+                    },
                     title: Text(
                       "Employee",
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -121,7 +129,9 @@ class PersonalInformationProvider with ChangeNotifier {
                     dense: true,
                     value: 5,
                     groupValue: statusCheck.status,
-                    onChanged: (v) {statusCheck.checkStatusValue(context, v);},
+                    onChanged: (v) {
+                      statusCheck.checkStatusValue(context, v);
+                    },
                     title: Text(
                       "Un Employed",
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -143,7 +153,9 @@ class PersonalInformationProvider with ChangeNotifier {
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     int? id = sharePref.getInt('jobberId');
-    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/profile/$id'),
+    debugPrint(id.toString());
+    var response = await http.get(
+        Uri.parse('${MyRoutes.BASEURL}/jobber/profile/$id'),
         headers: <String, String>{
           'Accept': "application/json",
           'Content-Type': "application/json",
@@ -158,8 +170,14 @@ class PersonalInformationProvider with ChangeNotifier {
     }
   }
 
-
-  Future<void>updateProfile(context,fName,lName,gender,number,prof,) async{
+  Future<void> updateProfile(
+    context,
+    fName,
+    lName,
+    gender,
+    number,
+    prof,
+  ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userToken = prefs.getString('token');
     var response = await http.post(
@@ -172,12 +190,12 @@ class PersonalInformationProvider with ChangeNotifier {
       body: jsonEncode(<String, String>{
         'firstName': fName.toString(),
         'lastName': lName.toString(),
-        'phone':number.toString(),
+        'phone': number.toString(),
         'gender': gender.toString(),
         'professional': prof.toString(),
       }),
     );
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       debugPrint("Profile Updated");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -192,10 +210,8 @@ class PersonalInformationProvider with ChangeNotifier {
           ),
         ),
       );
-    }else {
+    } else {
       debugPrint("Profile Not Updated");
     }
   }
-
-
 }

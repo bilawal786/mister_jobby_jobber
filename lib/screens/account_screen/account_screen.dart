@@ -11,7 +11,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final checkCompleteProfile =
-    Provider.of<CheckProfileCompletionProvider>(context);
+        Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
@@ -61,7 +61,8 @@ class AccountScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         InkWell(
-                          onTap: () => Navigator.of(context).pushNamed(MyRoutes.SETTINGSCREENROUTE),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(MyRoutes.SETTINGSCREENROUTE),
                           child: Container(
                             width: MediaQuery.of(context).size.width / 8.5,
                             height: MediaQuery.of(context).size.width / 8.5,
@@ -223,85 +224,86 @@ class AccountScreen extends StatelessWidget {
               SizedBox(
                 height: mediaQuery.size.width / 20,
               ),
-              if ((extractedCompleteData?.skills1 == 'null' &&
-                  extractedCompleteData?.skills2 == 'null') ||
-                  (extractedCompleteData?.monday == 'null' ||
-                      extractedCompleteData?.tuesday == 'null' ||
-                      extractedCompleteData?.wednesday == 'null' ||
-                      extractedCompleteData?.thersday == 'null' ||
-                      extractedCompleteData?.friday == 'null' ||
-                      extractedCompleteData?.saturday == 'null' ||
-                      extractedCompleteData?.sunday == 'null') ||
-                  extractedCompleteData?.answer1 == 'null' ||
-                  extractedCompleteData?.insurance1 == 'null' ||
-                  extractedCompleteData?.rules1 == 'null' ||
+              if ((extractedCompleteData?.skills1 == null &&
+                      extractedCompleteData?.skills2 == null) ||
+                  (extractedCompleteData?.monday == null ||
+                      extractedCompleteData?.tuesday == null ||
+                      extractedCompleteData?.wednesday == null ||
+                      extractedCompleteData?.thersday == null ||
+                      extractedCompleteData?.friday == null ||
+                      extractedCompleteData?.saturday == null ||
+                      extractedCompleteData?.sunday == null) ||
+                  extractedCompleteData?.answer1 == null ||
+                  extractedCompleteData?.insurance1 == null ||
+                  extractedCompleteData?.rules1 == null ||
                   profileData.profile?.image == 'main/avatar.png' ||
-                  profileData.profile?.phone == 'null' ||
-                  (extractedCompleteData?.euIdCardFront == 'null' ||
+                  (profileData.profile?.phone == '') ||
+                  (extractedCompleteData?.euIdCardFront == null ||
                       extractedCompleteData?.euIdResidencePermitFront ==
-                          'null') ||
-                  (extractedCompleteData?.vitalCardNumber == 'null' ||
-                      extractedCompleteData?.socialSecurityNumber ==
-                          'null') ||
-                  extractedCompleteData?.score == 0) ...[
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Action Required (1)",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.amber.shade100,
+                          null) ||
+                  (extractedCompleteData?.vitalCardNumber == null ||
+                      extractedCompleteData?.socialSecurityNumber == null) ||
+                  extractedCompleteData?.score == null) ...[
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            "Action Required (1)",
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
-                          child: const Icon(
-                            Icons.circle_notifications,
-                            color: Colors.amber,
-                            size: 20,
+                          const Spacer(),
+                          Container(
+                            padding: const EdgeInsets.all(5.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.amber.shade100,
+                            ),
+                            child: const Icon(
+                              Icons.circle_notifications,
+                              color: Colors.amber,
+                              size: 20,
+                            ),
                           ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: mediaQuery.size.width / 40,
+                      ),
+                      ListTile(
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+                        contentPadding: const EdgeInsets.all(10.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: mediaQuery.size.width / 40,
-                    ),
-                    ListTile(
-                      onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
-                      contentPadding: const EdgeInsets.all(10.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        dense: true,
+                        tileColor: Colors.amber.shade100,
+                        leading: const Icon(
+                          Icons.circle_notifications,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          "Incomplete profile",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        subtitle: Text(
+                          "Please complete your profile to start offering your services.",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                          size: 20,
+                        ),
                       ),
-                      dense: true,
-                      tileColor: Colors.amber.shade100,
-                      leading: const Icon(
-                        Icons.circle_notifications,
-                        color: Colors.black,
-                      ),
-                      title: Text(
-                        "Incomplete profile",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      subtitle: Text(
-                        "Please complete your profile to start offering your services.",
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-    ],
+              ],
+              Text('${profileData.profile?.phone}')
             ],
           ),
         ),
