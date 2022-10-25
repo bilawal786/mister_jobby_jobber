@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class AreaInterventionProvider with ChangeNotifier {
 
@@ -32,6 +33,9 @@ class AreaInterventionProvider with ChangeNotifier {
 
 
   Future<void> setAreaIntervention (context, lati, longi, radius, address) async {
+    showDialog(context: context, builder: (BuildContext context){
+      return const LoginProgressIndicator();
+    });
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userToken = prefs.getString('token');
     var response = await http.post(
@@ -50,6 +54,8 @@ class AreaInterventionProvider with ChangeNotifier {
     );
     if(response.statusCode == 200){
       debugPrint("Area of Intervention api working");
+      Navigator.pop(context);
+      Navigator.pop(context);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -66,6 +72,7 @@ class AreaInterventionProvider with ChangeNotifier {
       Provider.of<PersonalInformationProvider>(context,listen:false).getProfile();
       notifyListeners();
     }else {
+      Navigator.pop(context);
       debugPrint("Area Intervention api not working");
     }
   }
