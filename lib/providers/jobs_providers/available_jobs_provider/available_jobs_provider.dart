@@ -9,7 +9,13 @@ import '../../../models/job_models/available_jobs_model.dart';
 class AvailableJobsProvider with ChangeNotifier {
   List<AvailableJobsModel>? availableJobs;
 
+  bool? checkApi;
+
   Future<void> getAvailableJobs() async {
+    print('start');
+    checkApi = false;
+    notifyListeners();
+    print(checkApi);
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     var response = await http.get(
@@ -22,9 +28,13 @@ class AvailableJobsProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       debugPrint('get available jobs successfully');
       availableJobs = availableJobsModelFromJson(response.body);
+      checkApi = true;
+      print(checkApi);
       notifyListeners();
     } else {
       debugPrint('get available jobs api not working');
+      checkApi = true;
+      notifyListeners();
     }
   }
 }

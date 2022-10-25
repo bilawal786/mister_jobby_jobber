@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mister_jobby_jobber/providers/jobs_providers/job_details_provider.dart';
-import 'package:mister_jobby_jobber/screens/search_screen/comment_screen.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../screens/search_screen/comment_screen.dart';
+
+import '../../../widgets/const_widgets/custom_button.dart';
+import '../../../providers/jobs_providers/job_details_provider.dart';
 
 class JobDetailScreen extends StatefulWidget {
   const JobDetailScreen({Key? key}) : super(key: key);
@@ -81,7 +83,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
             Stack(
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height / 2.4,
+                  height: MediaQuery.of(context).size.height / 3.0,
                   decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: Colors.black38),
@@ -294,7 +296,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   const Divider(),
                   InkWell(
                     onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctxt) => CommentScreen())),
+                        MaterialPageRoute(builder: (ctx) => const CommentScreen())),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(

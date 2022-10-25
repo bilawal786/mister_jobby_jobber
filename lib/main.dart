@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mister_jobby_jobber/screens/search_screen/jobs_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -311,6 +312,8 @@ class MyApp extends StatelessWidget {
           const TrustAndSecurity(),
           MyRoutes.FAQSCREENROUTE: (ctx) =>
           const FAQScreen(),
+          MyRoutes.JOBDETAILSCREENROUTE: (ctx) =>
+          const JobDetailScreen(),
         },
       ),
     );
