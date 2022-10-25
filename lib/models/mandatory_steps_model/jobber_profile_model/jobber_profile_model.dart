@@ -41,6 +41,9 @@ class JobberProfileModel {
     required this.totalReview,
     required this.rating,
     required this.reviews,
+    required this.latitude,
+    required this.longitude,
+    required this.radius,
   });
 
   int jobberId;
@@ -74,6 +77,9 @@ class JobberProfileModel {
   int totalReview;
   int rating;
   List<dynamic> reviews;
+  String latitude;
+  String longitude;
+  String radius;
 
   factory JobberProfileModel.fromJson(Map<String, dynamic> json) => JobberProfileModel(
     jobberId: json["jobber_id"],
@@ -106,6 +112,9 @@ class JobberProfileModel {
     personalDescription: json["personal_description"],
     totalReview: json["total_review"],
     rating: json["rating"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    radius: json["radius"],
     reviews: List<dynamic>.from(json["reviews"].map((x) => x)),
   );
 

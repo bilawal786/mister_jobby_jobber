@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
-import '../../providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
 import '../../screens/search_screen/jobs_detail_screen.dart';
 
 class SearchJobScreen extends StatefulWidget {
@@ -13,15 +13,16 @@ class SearchJobScreen extends StatefulWidget {
   State<SearchJobScreen> createState() => _SearchJobScreenState();
 }
 
-
 class _SearchJobScreenState extends State<SearchJobScreen> {
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
 
   @override
   Widget build(BuildContext context) {
-    final interventionAreaData = Provider.of<AreaInterventionProvider>(context,listen: false);
-    LatLng currentLocation = LatLng(interventionAreaData.latitude, interventionAreaData.longitude);
+    final profileData =
+        Provider.of<PersonalInformationProvider>(context, listen: true);
+    LatLng currentLocation = LatLng(double.parse(profileData.profile!.latitude),
+        double.parse(profileData.profile!.longitude));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,26 +34,40 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(Icons.location_on, size: 25, color: Theme.of(context).primaryColor,),
-            SizedBox(width: MediaQuery.of(context).size.width / 40,),
+            Icon(
+              Icons.location_on,
+              size: 25,
+              color: Theme.of(context).primaryColor,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 40,
+            ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Intervention zone", style: Theme.of(context).textTheme.labelMedium,),
-                Consumer<AreaInterventionProvider>(
-                  builder:(_,interventionAreaAddress,child) => SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.8,
-                      child: Text(interventionAreaAddress.completeAddress, style: Theme.of(context).textTheme.bodyMedium,overflow: TextOverflow.ellipsis,)),
+                Text(
+                  "Intervention zone",
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
-
+                Consumer<PersonalInformationProvider>(
+                  builder: (_, profileData, child) => SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.8,
+                    child: Text(
+                      profileData.profile!.address,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pushNamed(MyRoutes.RADIUSINTERVENTIONSCREENROUTE),
+            onPressed: () => Navigator.of(context)
+                .pushNamed(MyRoutes.RADIUSINTERVENTIONSCREENROUTE),
             child: Text(
               "Modifier",
               style: TextStyle(
@@ -76,7 +91,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               ),
               child: GoogleMap(
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(interventionAreaData.latitude, interventionAreaData.longitude),
+                  target: LatLng(double.parse(profileData.profile!.latitude),
+                      double.parse(profileData.profile!.longitude)),
                   zoom: 15,
                 ),
                 onMapCreated: (controller) {
@@ -145,7 +161,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                               children: <Widget>[
                                 Text(
                                   "13:00 to 14:00 (1h)",
-                                  style: Theme.of(context).textTheme.labelMedium,
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium,
                                 ),
                                 const Spacer(),
                                 Container(
