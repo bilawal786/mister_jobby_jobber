@@ -5,6 +5,7 @@ import 'package:mister_jobby_jobber/providers/faq_provider.dart';
 import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../providers/preferences_provider/preferences_provider.dart';
 
 import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
@@ -23,9 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     if (_isInit) {
       Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
-      Provider.of<IndicateSkillsProvider>(context).getMainCategories();
-      Provider.of<CheckProfileCompletionProvider>(context).getProfileCompletionData();
-      Provider.of<PersonalInformationProvider>(context).getProfile();
+      Provider.of<IndicateSkillsProvider>(context,).getMainCategories();
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context, listen: false).getProfile();
+      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
       Provider.of<FAQProvider>(context).getFAQ();
     }
     _isInit = false;

@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
 import '../../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../available_jobs_provider/available_jobs_provider.dart';
 
 class AreaInterventionProvider with ChangeNotifier {
 
@@ -70,7 +71,7 @@ class AreaInterventionProvider with ChangeNotifier {
         ),
       );
       Provider.of<PersonalInformationProvider>(context,listen:false).getProfile();
-
+      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
       notifyListeners();
     }else {
       Navigator.pop(context);

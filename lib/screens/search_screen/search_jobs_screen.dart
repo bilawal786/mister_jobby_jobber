@@ -1,10 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
+import '../../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../../screens/search_screen/jobs_detail_screen.dart';
+import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
 class SearchJobScreen extends StatefulWidget {
   const SearchJobScreen({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
   @override
   Widget build(BuildContext context) {
     final profileData =
-        Provider.of<PersonalInformationProvider>(context, listen: true);
+        Provider.of<PersonalInformationProvider>(context, listen: false);
     LatLng currentLocation = LatLng(double.parse(profileData.profile!.latitude),
         double.parse(profileData.profile!.longitude));
     return Scaffold(
@@ -105,95 +107,163 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(20),
-              child: const Center(
-                child: Text("20 Jobs are available"),
-              ),
-            ),
-            const Divider(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 2.6,
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: 10,
-                itemBuilder: (ctx, index) => Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => const JobDetailScreen()));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.brown.shade300,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Icon(
-                                    Icons.handyman_rounded,
-                                    color: Colors.brown.shade700,
-                                    size: 25,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 40,
-                                ),
-                                Text(
-                                  "TV dressing with lights",
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                                const Spacer(),
-                                Text(
-                                  "36 €",
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  "13:00 to 14:00 (1h)",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
-                                ),
-                                const Spacer(),
-                                Container(
-                                  padding: const EdgeInsets.all(5.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red.shade700,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: const Text(
-                                    "Urgent",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Cerebri Sans Bold',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "Today",
-                              style: Theme.of(context).textTheme.labelSmall,
-                            ),
-                          ],
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      Provider.of<AvailableJobsProvider>(context,listen: false).getAvailableJobs();
+                    },
+                    icon: const Icon(
+                      Icons.refresh,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 40,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: Center(
+                      child: Consumer<AvailableJobsProvider>(
+                        builder: (_, availableJobs, child) => Text(
+                          "${availableJobs.availableJobs?.length} Jobs are available",
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
                     ),
-                    const Divider(),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            Consumer<AvailableJobsProvider>(
+              builder: (_, extractedAvailableJobs, child) => SizedBox(
+                height: MediaQuery.of(context).size.height / 2.6,
+                child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
+                    ? ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: extractedAvailableJobs.availableJobs?.length,
+                        itemBuilder: (ctx, index) => Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) => const JobDetailScreen()));
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.brown.shade300,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Icon(
+                                            Icons.handyman_rounded,
+                                            color: Colors.brown.shade700,
+                                            size: 25,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              40,
+                                        ),
+                                        Text(
+                                          extractedAvailableJobs
+                                              .availableJobs![index].title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall,
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          "${extractedAvailableJobs.availableJobs![index].estimateBudget} €",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "( ${extractedAvailableJobs.availableJobs![index].startTime} ${extractedAvailableJobs.availableJobs![index].endTime} ${extractedAvailableJobs.availableJobs![index].hours} h)",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium,
+                                        ),
+                                        const Spacer(),
+                                        if (extractedAvailableJobs
+                                                .availableJobs![index].urgent ==
+                                            1)
+                                          Container(
+                                            padding: const EdgeInsets.all(5.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.red.shade700,
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                            ),
+                                            child: const Text(
+                                              "Urgent",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Cerebri Sans Bold',
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                    Text(
+                                      extractedAvailableJobs
+                                          .availableJobs![index].createdAt,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const Divider(),
+                          ],
+                        ),
+                      )
+                    : ListView(
+                        children: [
+                          Column(
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 100,
+                              ),
+                              Icon(
+                                Icons.maps_home_work,
+                                size: 150,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              Text(
+                                "No Job Found",
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ).tr(),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 40,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
               ),
             ),
           ],
