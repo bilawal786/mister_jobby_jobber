@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
-import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
+import '../../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
 class AreaInterventionProvider with ChangeNotifier {
 
@@ -70,6 +70,7 @@ class AreaInterventionProvider with ChangeNotifier {
         ),
       );
       Provider.of<PersonalInformationProvider>(context,listen:false).getProfile();
+
       notifyListeners();
     }else {
       Navigator.pop(context);
