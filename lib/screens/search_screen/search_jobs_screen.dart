@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/screens/search_screen/jobs_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
@@ -160,7 +161,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).pushNamed(MyRoutes.JOBDETAILSCREENROUTE);
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => JobDetailScreen(jobsDetail: extractedAvailableJobs.availableJobs![index])));
                                 },
                                 child: Container(
                                   color: const Color(0xFFebf9fe),
@@ -212,7 +213,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                       Row(
                                         children: <Widget>[
                                           Text(
-                                            "${extractedAvailableJobs.availableJobs![index].startTime} - ${extractedAvailableJobs.availableJobs![index].endTime} (${extractedAvailableJobs.availableJobs![index].hours} h)",
+                                            "${extractedAvailableJobs.availableJobs![index].startTime} - ${extractedAvailableJobs.availableJobs![index].endTime} (${extractedAvailableJobs.availableJobs![index].duration} h)",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall,

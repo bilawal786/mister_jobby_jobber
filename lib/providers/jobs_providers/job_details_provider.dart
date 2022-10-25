@@ -4,7 +4,7 @@ import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 class JobsDetailProvider with ChangeNotifier {
-  int hourlyRate = 13;
+  int hourlyRate = 9;
   int hours = 2;
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/helper/routes.dart';
+import 'package:mister_jobby_jobber/models/job_models/available_jobs_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../screens/search_screen/comment_screen.dart';
@@ -8,7 +10,8 @@ import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
 
 class JobDetailScreen extends StatefulWidget {
-  const JobDetailScreen({Key? key}) : super(key: key);
+  final AvailableJobsModel jobsDetail;
+  const JobDetailScreen({Key? key, required this.jobsDetail}) : super(key: key);
 
   @override
   State<JobDetailScreen> createState() => _JobDetailScreenState();
@@ -126,12 +129,12 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   Row(
                     children: <Widget>[
                       Text(
-                        "TV dressing with lights",
+                      widget.jobsDetail.title,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const Spacer(),
                       Text(
-                        "36 €",
+                        "${widget.jobsDetail.estimateBudget} €",
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -141,24 +144,28 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                   Row(
                     children: <Widget>[
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 12,
                         foregroundImage: NetworkImage(
-                          "https://img.freepik.com/premium-vector/person-avatar-design_24877-38137.jpg?w=2000",
+                          "${MyRoutes.IMAGEURL}/${widget.jobsDetail.demander.image}",
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.4,
+                        child: Text(
+                          "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
+                          style: Theme.of(context).textTheme.bodySmall,
+                          textAlign: TextAlign.left,
                         ),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "Posted by Guillaume,",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "- Today",
+                        "- ${widget.jobsDetail.createdAt}",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -184,7 +191,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "Saturday October 22",
+                        widget.jobsDetail.serviceDate,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -210,7 +217,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "3:00 p.m. to 4:00 p.m. (1h30)",
+                        "${widget.jobsDetail.startTime} to ${widget.jobsDetail.endTime} ( ${widget.jobsDetail.duration} h )",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -236,7 +243,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "18€ / hours",
+                        "${widget.jobsDetail.hours} € / hours",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -262,7 +269,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "90000 Belfort",
+                        widget.jobsDetail.address,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -288,7 +295,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         width: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "1 Jobber ask",
+                        "${widget.jobsDetail.jobbers} Jobber ask",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ],
@@ -354,7 +361,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   Row(
                     children: <Widget>[
                       Text(
-                        "Need to dispose of waste.",
+                        "${widget.jobsDetail.count}",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                       const Spacer(),
@@ -391,15 +398,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 1.2,
                         child: Text(
-                          "Need to dispose of waste. Description"
-                          "Description"
-                          "Description"
-                          "Description"
-                          "Description"
-                          "Description"
-                          "Description"
-                          "Description"
-                          "Description",
+                          widget.jobsDetail.detailDescription,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ),

@@ -314,8 +314,6 @@ class MyApp extends StatelessWidget {
           const TrustAndSecurity(),
           MyRoutes.FAQSCREENROUTE: (ctx) =>
           const FAQScreen(),
-          MyRoutes.JOBDETAILSCREENROUTE: (ctx) =>
-          const JobDetailScreen(),
         },
       ),
     );

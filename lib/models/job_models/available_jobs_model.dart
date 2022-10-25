@@ -1,7 +1,6 @@
 // To parse this JSON data, do
 //
 //     final availableJobsModel = availableJobsModelFromJson(jsonString);
-
 import 'dart:convert';
 
 List<AvailableJobsModel> availableJobsModelFromJson(String str) => List<AvailableJobsModel>.from(json.decode(str).map((x) => AvailableJobsModel.fromJson(x)));
@@ -33,6 +32,7 @@ class AvailableJobsModel {
     required this.country,
     required this.startTime,
     required this.endTime,
+    required this.jobbers,
     required this.hours,
     required this.status,
     required this.address,
@@ -69,7 +69,7 @@ class AvailableJobsModel {
   String distance;
   String estimateBudget;
   int timeDifference;
-  int duration;
+  String duration;
   String serviceDate;
   int views;
   bool isApplied;
@@ -80,6 +80,7 @@ class AvailableJobsModel {
   String country;
   String startTime;
   String endTime;
+  int jobbers;
   String hours;
   int status;
   String address;
@@ -127,6 +128,7 @@ class AvailableJobsModel {
     country: json["country"],
     startTime: json["start_time"],
     endTime: json["end_time"],
+    jobbers: json["jobbers"],
     hours: json["hours"],
     status: json["status"],
     address: json["address"],
@@ -175,6 +177,7 @@ class AvailableJobsModel {
     "country": country,
     "start_time": startTime,
     "end_time": endTime,
+    "jobbers": jobbers,
     "hours": hours,
     "status": status,
     "address": address,
