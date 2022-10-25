@@ -73,7 +73,8 @@ import './providers/jobs_providers/area_of_intervention_provider/area_interventi
 import './providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import './providers/reliability_score_provider/reliability_score_provider.dart';
 import './providers/faq_provider.dart';
-import './providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
+import 'providers/accounts_providers/about_provider/about_provider.dart';
+import 'providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 
 
 
@@ -117,7 +118,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => CheckProfileCompletionProvider()),
         ChangeNotifierProvider(create: (ctx) => ReliabilityScoreProvider()),
         ChangeNotifierProvider(create: (ctx) => FAQProvider()),
-        ChangeNotifierProvider(create: (ctx) => AvailableJobsProvider()),
+        ChangeNotifierProvider(create: (ctx) => AboutProvider()),
+        ChangeNotifierProvider(create: (ctx) => TermsAndConditonProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

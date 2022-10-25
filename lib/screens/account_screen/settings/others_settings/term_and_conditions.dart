@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 
 class TermsAndCondition extends StatefulWidget {
   const TermsAndCondition({Key? key}) : super(key: key);
@@ -10,6 +12,8 @@ class TermsAndCondition extends StatefulWidget {
 class _TermsAndConditionState extends State<TermsAndCondition> {
   @override
   Widget build(BuildContext context) {
+    final termsAndConditionsData = Provider.of<TermsAndConditonProvider>(context);
+    final extractTermsAndConditionData = termsAndConditionsData.termsAndCondition;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -29,7 +33,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design.",
+                    extractTermsAndConditionData!.terms,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
@@ -42,7 +46,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                   children: [
                     Image.asset("assets/images/appLogo.png", scale: 4),
                     Text(
-                      "Tous les droits sont réservés.",
+                      extractTermsAndConditionData.privacy,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(

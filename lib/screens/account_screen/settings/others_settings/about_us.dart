@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/providers/accounts_providers/about_provider/about_provider.dart';
+import 'package:provider/provider.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -10,6 +12,8 @@ class AboutUsScreen extends StatefulWidget {
 class _AboutUsScreenState extends State<AboutUsScreen> {
   @override
   Widget build(BuildContext context) {
+    final aboutData = Provider.of<AboutProvider>(context, listen: false);
+    final extractedAbout = aboutData.about;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -29,7 +33,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design. Nous sommes Ikae Digital, une équipe créative et professionnelle avec plus de 7 ans d'expérience chez Conception UI/UX et développement front-end. Nous apportons de la beauté au design.",
+                    extractedAbout!.description,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
@@ -42,7 +46,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                   children: [
                     Image.asset("assets/images/appLogo.png", scale: 4),
                     Text(
-                      "Tous les droits sont réservés.",
+                      extractedAbout.copyright,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(
@@ -51,7 +55,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         child: Text(
-                          "Mister Jobby est une application de services mobiles polyvalents. Professionnellement construit avec un UX élevé pour donner à votre page\n                le grand regard.",
+                          extractedAbout.condition,
                           style: Theme.of(context).textTheme.bodySmall,
                         )),
                     SizedBox(
