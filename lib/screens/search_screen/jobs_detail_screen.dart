@@ -380,7 +380,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ),
               if (widget.jobsDetail.childcategoryId != null &&
                   (widget.jobsDetail.childcategoryId == 1 ||
-                      widget.jobsDetail.childcategoryId == 2))
+                      widget.jobsDetail.childcategoryId == 2)) ...[
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -489,13 +489,318 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     ],
                   ),
                 ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-              const Divider(
-                height: 2,
-                thickness: 10,
-              ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 3) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many rods should be installed?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 4) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many Shelves should be fixed?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 5) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many TVs do you need to hang?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 6) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many Shower screens should be installed?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 7) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many paintings should be hung?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  widget.jobsDetail.childcategoryId == 8) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "How many mirrors should be hung?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.childcategoryId != null &&
+                  (widget.jobsDetail.childcategoryId == 9 ||
+                      widget.jobsDetail.childcategoryId == 10 ||
+                      widget.jobsDetail.childcategoryId == 11 ||
+                      widget.jobsDetail.childcategoryId == 12 ||
+                      widget.jobsDetail.childcategoryId == 13) &&
+                  widget.jobsDetail.description.isNotEmpty) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (widget.jobsDetail.description.isNotEmpty) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          "What is your need?",
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ).tr(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          widget.jobsDetail.description,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
               if (widget.jobsDetail.detailDescription.isNotEmpty ||
                   widget.jobsDetail.image1 != "" ||
                   widget.jobsDetail.image2 != "" ||
