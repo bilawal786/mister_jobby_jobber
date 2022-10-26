@@ -12,10 +12,7 @@ class AvailableJobsProvider with ChangeNotifier {
   bool? checkApi;
 
   Future<void> getAvailableJobs() async {
-    print('start');
     checkApi = false;
-    notifyListeners();
-    print(checkApi);
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     var response = await http.get(
