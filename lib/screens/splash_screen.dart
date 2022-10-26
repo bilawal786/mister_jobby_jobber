@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mister_jobby_jobber/providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
-import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
-import 'package:mister_jobby_jobber/providers/faq_provider.dart';
-import 'package:mister_jobby_jobber/providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
-import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
 import '../providers/preferences_provider/preferences_provider.dart';
-
-import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
+import '../providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
+import '../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../providers/faq_provider.dart';
+import '../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
+import '../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,9 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
+      Provider.of<PreferencesProvider>(context, listen: false)
+          .checkToken(context);
       Provider.of<IndicateSkillsProvider>(context).getMainCategories();
-      Provider.of<CheckProfileCompletionProvider>(context).getProfileCompletionData();
+      Provider.of<CheckProfileCompletionProvider>(context)
+          .getProfileCompletionData();
       Provider.of<PersonalInformationProvider>(context).getProfile();
       Provider.of<AvailableJobsProvider>(context).getAvailableJobs();
       Provider.of<FAQProvider>(context).getFAQ();
@@ -37,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
     _isInit = false;
     super.didChangeDependencies();
   }
-
 
   @override
   Widget build(BuildContext context) {

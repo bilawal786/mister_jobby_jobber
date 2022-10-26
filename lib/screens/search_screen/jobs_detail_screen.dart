@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mister_jobby_jobber/helper/routes.dart';
-import 'package:mister_jobby_jobber/models/job_models/available_jobs_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../helper/routes.dart';
 import '../../screens/search_screen/comment_screen.dart';
 
+import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
 
@@ -63,412 +63,444 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
             Row(
               children: <Widget>[
                 Text(
-                  "36 €",
+                  "${widget.jobsDetail.estimateBudget} €",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
-                Expanded(
-                    child: Consumer<JobsDetailProvider>(
-                        builder: (_, bottomSheet, child) => CustomButton(
-                            onPress: () {
-                              bottomSheet.showBottomSheet(context);
-                            },
-                            buttonName: "To apply"),),),
+                (widget.jobsDetail.isApplied == false)
+                    ? Expanded(
+                        child: Consumer<JobsDetailProvider>(
+                          builder: (_, bottomSheet, child) => CustomButton(
+                              onPress: () {
+                                bottomSheet.postId = widget.jobsDetail.id;
+                                bottomSheet.fixedRate =
+                                    int.parse(widget.jobsDetail.hours);
+                                bottomSheet.hourlyRate =
+                                    int.parse(widget.jobsDetail.hours);
+                                bottomSheet.hours =
+                                    double.parse(widget.jobsDetail.duration);
+                                bottomSheet.showBottomSheet(
+                                  context,
+                                );
+                              },
+                              buttonName: "To apply"),
+                        ),
+                      )
+                    : Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          border: Border.all(
+                            color: Colors.green.shade700,
+                          ),
+                        ),
+                        child: Text(
+                          "Already Applied",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.green.shade700,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Cerebri Sans Bold'),
+                        ),
+                      ),
               ],
             )
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height / 3.0,
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.black38),
-                    ),
-                  ),
-                  child: GoogleMap(
-                    initialCameraPosition: const CameraPosition(
-                      target: currentLocation,
-                      zoom: 15,
-                    ),
-                    onMapCreated: (controller) {
-                      mapController = controller;
-                      addMarker("test", currentLocation);
-                    },
-                    markers: _markers.values.toSet(),
-                    zoomControlsEnabled: false,
-                    myLocationButtonEnabled: false,
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  left: 20,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 25,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Stack(
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                      widget.jobsDetail.title,
-                        style: Theme.of(context).textTheme.titleMedium,
+                  Container(
+                    height: MediaQuery.of(context).size.height / 3.0,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black38),
                       ),
-                      const Spacer(),
-                      Text(
-                        "${widget.jobsDetail.estimateBudget} €",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    child: GoogleMap(
+                      initialCameraPosition: const CameraPosition(
+                        target: currentLocation,
+                        zoom: 15,
                       ),
-                    ],
+                      onMapCreated: (controller) {
+                        mapController = controller;
+                        addMarker("test", currentLocation);
+                      },
+                      markers: _markers.values.toSet(),
+                      zoomControlsEnabled: false,
+                      myLocationButtonEnabled: false,
+                    ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
+                  Positioned(
+                    top: 40,
+                    left: 20,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        size: 25,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 12,
-                        foregroundImage: NetworkImage(
-                          "${MyRoutes.IMAGEURL}/${widget.jobsDetail.demander.image}",
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          widget.jobsDetail.title,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 2.4,
-                        child: Text(
-                          "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
+                        const Spacer(),
+                        Text(
+                          "${widget.jobsDetail.estimateBudget} €",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 12,
+                          foregroundImage: NetworkImage(
+                            "${MyRoutes.IMAGEURL}/${widget.jobsDetail.demander.image}",
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 2.4,
+                          child: Text(
+                            "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
+                            style: Theme.of(context).textTheme.bodySmall,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          "- ${widget.jobsDetail.createdAt}",
                           style: Theme.of(context).textTheme.bodySmall,
-                          textAlign: TextAlign.left,
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "- ${widget.jobsDetail.createdAt}",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.calendar_month,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        widget.jobsDetail.serviceDate,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.watch_later,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "${widget.jobsDetail.startTime} to ${widget.jobsDetail.endTime} ( ${widget.jobsDetail.duration} h )",
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.wallet,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "${widget.jobsDetail.hours} € / hours",
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        widget.jobsDetail.address,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade300,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "${widget.jobsDetail.jobbers} Jobber ask",
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                    ],
-                  ),
-                  const Divider(),
-                  InkWell(
-                    onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => const CommentScreen())),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.chat_outlined,
-                            size: 20,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 40,
-                          ),
-                          Text(
-                            "See Comments",
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontFamily: "Cerebri Sans Bold",
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 40,
-                          ),
-                          Text(
-                            "(0)",
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 16,
-                              fontFamily: "Cerebri Sans Bold",
-                            ),
-                          ),
-                        ],
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              height: 2,
-              thickness: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Information",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        "${widget.jobsDetail.count}",
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const Spacer(),
-                      Text(
-                        "Non",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.width / 40,
-            ),
-            const Divider(
-              height: 2,
-              thickness: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Description",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        child: Text(
-                          widget.jobsDetail.detailDescription,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade300,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.calendar_month,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          widget.jobsDetail.serviceDate,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.width / 40,
-            ),
-            const Divider(
-              height: 2,
-              thickness: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Tools",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.calendar_month,
-                        size: 25,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Provisional agenda",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade300,
+                            shape: BoxShape.circle,
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.width / 40,
+                          child: const Icon(
+                            Icons.watch_later,
+                            color: Colors.white,
+                            size: 14,
                           ),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width / 1.4,
-                              child: Text(
-                                "You don't have a job on Saturday October 22, 2022",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              )),
-                        ],
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          "${widget.jobsDetail.startTime} to ${widget.jobsDetail.endTime} ( ${widget.jobsDetail.duration} h )",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade300,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.wallet,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          "${widget.jobsDetail.hours} € / hours",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade300,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.location_on,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          widget.jobsDetail.address,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade300,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          "${widget.jobsDetail.jobbers} Jobber ask",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    InkWell(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const CommentScreen())),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.chat_outlined,
+                              size: 20,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 40,
+                            ),
+                            Text(
+                              "See Comments",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontFamily: "Cerebri Sans Bold",
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 40,
+                            ),
+                            Text(
+                              "(0)",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16,
+                                fontFamily: "Cerebri Sans Bold",
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      const Spacer(),
-                      Text(
-                        "See",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.width / 40,
-            ),
-            const Divider(),
-          ],
+              const Divider(
+                height: 2,
+                thickness: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Information",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          "${widget.jobsDetail.count}",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                        const Spacer(),
+                        Text(
+                          "Non",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 40,
+              ),
+              const Divider(
+                height: 2,
+                thickness: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Description",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: Text(
+                            widget.jobsDetail.detailDescription,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 40,
+              ),
+              const Divider(
+                height: 2,
+                thickness: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Tools",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.calendar_month,
+                          size: 25,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Provisional agenda",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.width / 40,
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width / 1.4,
+                                child: Text(
+                                  "You don't have a job on Saturday October 22, 2022",
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium,
+                                )),
+                          ],
+                        ),
+                        const Spacer(),
+                        Text(
+                          "See",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 40,
+              ),
+              const Divider(),
+            ],
+          ),
         ),
       ),
     );

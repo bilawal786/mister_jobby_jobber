@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,15 +11,12 @@ import '../../../providers/mandatory_steps_provider/personal_information_provide
 import '../available_jobs_provider/available_jobs_provider.dart';
 
 class AreaInterventionProvider with ChangeNotifier {
-
   double interventionArea = 1;
 
   radiusOfIntervention(double newValue) {
     interventionArea = newValue;
     notifyListeners();
   }
-
-
 
   String completeAddress = "";
   double longitude = 0;
@@ -32,11 +29,13 @@ class AreaInterventionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-  Future<void> setAreaIntervention (context, lati, longi, radius, address) async {
-    showDialog(context: context, builder: (BuildContext context){
-      return const LoginProgressIndicator();
-    });
+  Future<void> setAreaIntervention(
+      context, lati, longi, radius, address) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const LoginProgressIndicator();
+        });
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userToken = prefs.getString('token');
     var response = await http.post(
@@ -53,7 +52,7 @@ class AreaInterventionProvider with ChangeNotifier {
         'address': address.toString(),
       }),
     );
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       debugPrint("Area of Intervention api working");
       Navigator.pop(context);
       Navigator.pop(context);
@@ -70,13 +69,14 @@ class AreaInterventionProvider with ChangeNotifier {
           ),
         ),
       );
-      Provider.of<PersonalInformationProvider>(context,listen:false).getProfile();
-      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
+      Provider.of<PersonalInformationProvider>(context, listen: false)
+          .getProfile();
+      Provider.of<AvailableJobsProvider>(context, listen: false)
+          .getAvailableJobs();
       notifyListeners();
-    }else {
+    } else {
       Navigator.pop(context);
       debugPrint("Area Intervention api not working");
     }
   }
-
 }

@@ -1,12 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mister_jobby_jobber/screens/search_screen/jobs_detail_screen.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../../screens/search_screen/jobs_detail_screen.dart';
 
 class SearchJobScreen extends StatefulWidget {
   const SearchJobScreen({Key? key}) : super(key: key);
@@ -111,23 +112,30 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               child: Row(
                 children: <Widget>[
                   Consumer<AvailableJobsProvider>(
-                    builder: (_,jobsData,child)=> InkWell(
+                    builder: (_, jobsData, child) => InkWell(
                       onTap: () {
                         jobsData.checkApi = false;
-                        Provider.of<AvailableJobsProvider>(context,listen: false).getAvailableJobs();
+                        Provider.of<AvailableJobsProvider>(context,
+                                listen: false)
+                            .getAvailableJobs();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: (jobsData.checkApi == false) ? const SizedBox(width: 25, height: 25, child: CircularProgressIndicator()): const Icon(
-                              Icons.refresh,
-                              size: 25,
-                              color: Colors.black,
-                          ),
+                        child: (jobsData.checkApi == false)
+                            ? const SizedBox(
+                                width: 25,
+                                height: 25,
+                                child: CircularProgressIndicator())
+                            : const Icon(
+                                Icons.refresh,
+                                size: 25,
+                                color: Colors.black,
+                              ),
                       ),
                     ),
                   ),
-            // : Container( padding: const EdgeInsets.all(10.0), child: const Center(child: CircularProgressIndicator())),
-            //       ),
+                  // : Container( padding: const EdgeInsets.all(10.0), child: const Center(child: CircularProgressIndicator())),
+                  //       ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
@@ -148,20 +156,26 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
             // const Divider(),
             Consumer<AvailableJobsProvider>(
               builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
-                onRefresh: (){
-                  return Provider.of<AvailableJobsProvider>(context,listen: false).getAvailableJobs();
+                onRefresh: () {
+                  return Provider.of<AvailableJobsProvider>(context,
+                          listen: false)
+                      .getAvailableJobs();
                 },
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height / 2.4,
                   child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
                       ? ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: extractedAvailableJobs.availableJobs?.length,
+                          itemCount:
+                              extractedAvailableJobs.availableJobs?.length,
                           itemBuilder: (ctx, index) => Column(
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => JobDetailScreen(jobsDetail: extractedAvailableJobs.availableJobs![index])));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) => JobDetailScreen(
+                                          jobsDetail: extractedAvailableJobs
+                                              .availableJobs![index])));
                                 },
                                 child: Container(
                                   color: const Color(0xFFebf9fe),
@@ -169,7 +183,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 5.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Row(
                                         children: <Widget>[
@@ -208,7 +223,9 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: MediaQuery.of(context).size.width / 80,
+                                        height:
+                                            MediaQuery.of(context).size.width /
+                                                80,
                                       ),
                                       Row(
                                         children: <Widget>[
@@ -220,10 +237,12 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                           ),
                                           const Spacer(),
                                           if (extractedAvailableJobs
-                                                  .availableJobs![index].urgent ==
+                                                  .availableJobs![index]
+                                                  .urgent ==
                                               1)
                                             Container(
-                                              padding: const EdgeInsets.all(5.0),
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
                                               decoration: BoxDecoration(
                                                 color: Colors.red.shade900,
                                                 borderRadius:
@@ -235,7 +254,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                                   style: TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
-                                                    fontFamily: 'Cerebri Sans Bold',
+                                                    fontFamily:
+                                                        'Cerebri Sans Bold',
                                                     color: Colors.white,
                                                   ),
                                                 ),
@@ -275,7 +295,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ).tr(),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height / 40,
+                                  height:
+                                      MediaQuery.of(context).size.height / 40,
                                 ),
                               ],
                             ),
