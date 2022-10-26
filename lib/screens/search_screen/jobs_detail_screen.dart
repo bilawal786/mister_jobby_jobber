@@ -434,6 +434,73 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    if (widget.jobsDetail.image1 != "" ||
+                        widget.jobsDetail.image2 != "" ||
+                        widget.jobsDetail.image3 != "")
+                      Text(
+                        "Images",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        (widget.jobsDetail.image1 != "") ?
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image1}",
+                              fit: BoxFit.cover,
+                            ),),
+                        ): const SizedBox(),
+                        SizedBox(width: MediaQuery.of(context).size.width / 20,),
+                        (widget.jobsDetail.image2 != "") ?
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image2}",
+                              fit: BoxFit.cover,
+                            ),),
+                        ): const SizedBox(),
+                        SizedBox(width: MediaQuery.of(context).size.width / 20,),
+                        (widget.jobsDetail.image3 != "") ?
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image3}",
+                              fit: BoxFit.cover,
+                            ),),
+                        ): const SizedBox(),
+                      ],
+                    ),
                   ],
                 ),
               ),
