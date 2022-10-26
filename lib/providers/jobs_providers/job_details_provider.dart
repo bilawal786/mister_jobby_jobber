@@ -305,6 +305,7 @@ class JobsDetailProvider with ChangeNotifier {
     );
     if (response.statusCode == 200) {
       debugPrint("submit Proposal api working");
+      debugPrint("${postId}");
       Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import '../../screens/search_screen/comment_screen.dart';
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
+import '../image_preview_screen.dart';
 
 class JobDetailScreen extends StatefulWidget {
   final AvailableJobsModel jobsDetail;
@@ -388,15 +390,16 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
                     ),
+
                     Row(
                       children: <Widget>[
                         Text(
-                          "${widget.jobsDetail.count}",
+                          "Small Size Furniture",
                           style: Theme.of(context).textTheme.labelMedium,
-                        ),
+                        ).tr(),
                         const Spacer(),
                         Text(
-                          "Non",
+                          widget.jobsDetail.small,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -411,106 +414,154 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                 height: 2,
                 thickness: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Description",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.2,
-                          child: Text(
-                            widget.jobsDetail.detailDescription,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    if (widget.jobsDetail.image1 != "" ||
-                        widget.jobsDetail.image2 != "" ||
-                        widget.jobsDetail.image3 != "")
+              if (widget.jobsDetail.detailDescription.isNotEmpty ||
+                  widget.jobsDetail.image1 != "" ||
+                  widget.jobsDetail.image2 != "" ||
+                  widget.jobsDetail.image3 != "") ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
                       Text(
-                        "Images",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        "Description",
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        (widget.jobsDetail.image1 != "") ?
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(color: Colors.black),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            child: Text(
+                              widget.jobsDetail.detailDescription,
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.network(
-                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image1}",
-                              fit: BoxFit.cover,
-                            ),),
-                        ): const SizedBox(),
-                        SizedBox(width: MediaQuery.of(context).size.width / 20,),
-                        (widget.jobsDetail.image2 != "") ?
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(color: Colors.black),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (widget.jobsDetail.image1 != "" ||
+                          widget.jobsDetail.image2 != "" ||
+                          widget.jobsDetail.image3 != "")
+                        Text(
+                          "Images",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          (widget.jobsDetail.image1 != "")
+                              ? Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    border: Border.all(color: Colors.black),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (ctx) => ImagePreview(
+                                                imageUrl:
+                                                    "${MyRoutes.IMAGEURL}${widget.jobsDetail.image1}"),
+                                          ),
+                                        );
+                                      },
+                                      child: Image.network(
+                                        "${MyRoutes.IMAGEURL}${widget.jobsDetail.image1}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 20,
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.network(
-                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image2}",
-                              fit: BoxFit.cover,
-                            ),),
-                        ): const SizedBox(),
-                        SizedBox(width: MediaQuery.of(context).size.width / 20,),
-                        (widget.jobsDetail.image3 != "") ?
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(color: Colors.black),
+                          (widget.jobsDetail.image2 != "")
+                              ? Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    border: Border.all(color: Colors.black),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (ctx) => ImagePreview(
+                                                imageUrl:
+                                                    "${MyRoutes.IMAGEURL}${widget.jobsDetail.image2}"),
+                                          ),
+                                        );
+                                      },
+                                      child: Image.network(
+                                        "${MyRoutes.IMAGEURL}${widget.jobsDetail.image2}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 20,
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.network(
-                              "${MyRoutes.IMAGEURL}${widget.jobsDetail.image3}",
-                              fit: BoxFit.cover,
-                            ),),
-                        ): const SizedBox(),
-                      ],
-                    ),
-                  ],
+                          (widget.jobsDetail.image3 != "")
+                              ? Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    border: Border.all(color: Colors.black),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (ctx) => ImagePreview(
+                                                imageUrl:
+                                                    "${MyRoutes.IMAGEURL}${widget.jobsDetail.image3}"),
+                                          ),
+                                        );
+                                      },
+                                      child: Image.network(
+                                        "${MyRoutes.IMAGEURL}${widget.jobsDetail.image3}",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-              const Divider(
-                height: 2,
-                thickness: 10,
-              ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
