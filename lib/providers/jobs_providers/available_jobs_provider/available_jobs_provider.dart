@@ -8,11 +8,14 @@ import '../../../models/job_models/available_jobs_model.dart';
 class AvailableJobsProvider with ChangeNotifier {
   List<AvailableJobsModel>? availableJobs;
 
-  bool? checkApi;
+  bool? checkApi = false;
 
-  Future<void> getAvailableJobs() async {
+  setCheckApi(){
     checkApi = false;
     notifyListeners();
+  }
+
+  Future<void> getAvailableJobs() async {
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/jobs'),

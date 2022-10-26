@@ -378,35 +378,117 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                 height: 2,
                 thickness: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Information",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Small Size Furniture",
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ).tr(),
-                        const Spacer(),
-                        Text(
-                          widget.jobsDetail.small,
-                          style: Theme.of(context).textTheme.bodyMedium,
+              if (widget.jobsDetail.childcategoryId != null &&
+                  (widget.jobsDetail.childcategoryId == 1 ||
+                      widget.jobsDetail.childcategoryId == 2))
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      if (int.parse(widget.jobsDetail.small) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Small Size Furniture",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.small,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                  ],
+                      if (int.parse(widget.jobsDetail.medium) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Medium Size Furniture",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.medium,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                      if (int.parse(widget.jobsDetail.large) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Large Size Furniture",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.large,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                      if (int.parse(widget.jobsDetail.verylarge) > 0) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Very Large Size Furniture",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.verylarge,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                      if (widget.jobsDetail.question.isNotEmpty) ...[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.8,
+                              child: Text(
+                                "Do you want the service provider to clear the boxes ?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                            const Spacer(),
+                            Text(
+                              widget.jobsDetail.question,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
                 ),
-              ),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),

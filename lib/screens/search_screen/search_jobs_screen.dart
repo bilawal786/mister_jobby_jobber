@@ -114,7 +114,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                   Consumer<AvailableJobsProvider>(
                     builder: (_, jobsData, child) => InkWell(
                       onTap: () {
-                        jobsData.checkApi = false;
+                        jobsData.setCheckApi();
                         Provider.of<AvailableJobsProvider>(context,
                                 listen: false)
                             .getAvailableJobs();
