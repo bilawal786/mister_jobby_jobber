@@ -118,7 +118,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: (jobsData.checkApi == false) ? SizedBox(width: 25, height: 25, child: const CircularProgressIndicator()): const Icon(
+                        child: (jobsData.checkApi == false) ? const SizedBox(width: 25, height: 25, child: CircularProgressIndicator()): const Icon(
                               Icons.refresh,
                               size: 25,
                               color: Colors.black,
