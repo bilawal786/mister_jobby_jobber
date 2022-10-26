@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mister_jobby_jobber/screens/search_screen/jobs_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -73,9 +72,9 @@ import './providers/jobs_providers/area_of_intervention_provider/area_interventi
 import './providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import './providers/reliability_score_provider/reliability_score_provider.dart';
 import './providers/faq_provider.dart';
-import 'providers/accounts_providers/about_provider/about_provider.dart';
-import 'providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
-
+import './providers/accounts_providers/about_provider/about_provider.dart';
+import './providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
+import './providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 
 
 void main() async {
@@ -120,6 +119,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => FAQProvider()),
         ChangeNotifierProvider(create: (ctx) => AboutProvider()),
         ChangeNotifierProvider(create: (ctx) => TermsAndConditonProvider()),
+        ChangeNotifierProvider(create: (ctx) => AvailableJobsProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

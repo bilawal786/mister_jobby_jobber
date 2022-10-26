@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import 'package:mister_jobby_jobber/providers/faq_provider.dart';
+import 'package:mister_jobby_jobber/providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<IndicateSkillsProvider>(context).getMainCategories();
       Provider.of<CheckProfileCompletionProvider>(context).getProfileCompletionData();
       Provider.of<PersonalInformationProvider>(context).getProfile();
+      Provider.of<AvailableJobsProvider>(context).getAvailableJobs();
       Provider.of<FAQProvider>(context).getFAQ();
       Provider.of<AboutProvider>(context).getAbout();
       Provider.of<TermsAndConditonProvider>(context).getTermsAndConditions();
