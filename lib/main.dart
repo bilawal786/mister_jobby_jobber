@@ -75,6 +75,7 @@ import './providers/faq_provider.dart';
 import './providers/accounts_providers/about_provider/about_provider.dart';
 import './providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 import './providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
+import 'providers/notifications_provider/notifications_provider.dart';
 
 
 void main() async {
@@ -120,6 +121,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => AboutProvider()),
         ChangeNotifierProvider(create: (ctx) => TermsAndConditonProvider()),
         ChangeNotifierProvider(create: (ctx) => AvailableJobsProvider()),
+        ChangeNotifierProvider(create: (ctx) => NotificationsProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
