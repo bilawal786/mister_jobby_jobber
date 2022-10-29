@@ -1871,9 +1871,15 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       ),
                       Row(
                         children: <Widget>[
-                          Text("Housing area to move", style: Theme.of(context).textTheme.labelLarge,),
+                          Text(
+                            "Housing area to move",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
                           const Spacer(),
-                          Text(widget.jobsDetail.surface, style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            widget.jobsDetail.surface,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                       Row(
@@ -1907,7 +1913,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   thickness: 10,
                 ),
               ],
-              if (widget.jobsDetail.subcategoryId == 15 || widget.jobsDetail.subcategoryId == 16) ...[
+              if (widget.jobsDetail.subcategoryId == 15 ||
+                  widget.jobsDetail.subcategoryId == 16) ...[
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -1956,9 +1963,15 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       ),
                       Row(
                         children: <Widget>[
-                          Text("Number of pieces of furniture", style: Theme.of(context).textTheme.labelLarge,),
+                          Text(
+                            "Number of pieces of furniture",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
                           const Spacer(),
-                          Text(widget.jobsDetail.question, style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                       Row(
@@ -1992,7 +2005,18 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   thickness: 10,
                 ),
               ],
-              if (widget.jobsDetail.subcategoryId == 17) ...[
+              if (widget.jobsDetail.subcategoryId == 17 ||
+                  widget.jobsDetail.subcategoryId == 18 ||
+                  widget.jobsDetail.subcategoryId == 28 ||
+                  widget.jobsDetail.subcategoryId == 37 ||
+                  widget.jobsDetail.subcategoryId == 38 ||
+                  widget.jobsDetail.subcategoryId == 39 ||
+                  widget.jobsDetail.subcategoryId == 40 ||
+                  widget.jobsDetail.subcategoryId == 41 ||
+                  widget.jobsDetail.subcategoryId == 42 ||
+                  widget.jobsDetail.subcategoryId == 43 ||
+                  widget.jobsDetail.subcategoryId == 44 ||
+                  widget.jobsDetail.subcategoryId == 45) ...[
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -2024,10 +2048,111 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       ),
                       Row(
                         children: <Widget>[
+                          if (widget.jobsDetail.subcategoryId == 17 ||
+                              widget.jobsDetail.subcategoryId == 18)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Does the service provider have to come with his own truck?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 28 ||
+                              widget.jobsDetail.subcategoryId == 37 ||
+                              widget.jobsDetail.subcategoryId == 38 ||
+                              widget.jobsDetail.subcategoryId == 39 ||
+                              widget.jobsDetail.subcategoryId == 40 ||
+                              widget.jobsDetail.subcategoryId == 41 ||
+                              widget.jobsDetail.subcategoryId == 42 ||
+                              widget.jobsDetail.subcategoryId == 43 ||
+                              widget.jobsDetail.subcategoryId == 44 ||
+                              widget.jobsDetail.subcategoryId == 45)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Request Frequencies",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+
+              if (widget.jobsDetail.subcategoryId == 19 ||
+                  widget.jobsDetail.subcategoryId == 20 ||
+                  widget.jobsDetail.subcategoryId == 21 ||
+                  widget.jobsDetail.subcategoryId == 22) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Text(
+                        "Pick-up address",
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.8,
+                        child: Text(
+                          widget.jobsDetail.pickupAddress,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Text(
+                        "Destination address",
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.8,
+                        child: Text(
+                          widget.jobsDetail.destinationAddress,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 2,
                             child: Text(
-                              "Does the service provider have to come with his own truck?",
+                              "Do I have to assemble the furniture",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                           ),
@@ -2039,6 +2164,1645 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               color: Colors.black,
                               fontFamily: 'Cerebri Sans Bold',
                             ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Number of floor on arrival",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.small,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 23) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Surface to be cleaned",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.surface,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Window cleaning",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Appliance cleaning",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question1,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Ironing",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question2,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Demand Frequencies",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question3,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 24 ||
+                  widget.jobsDetail.subcategoryId == 25 ||
+                  widget.jobsDetail.subcategoryId == 27) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.subcategoryId == 24)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Select the number of clothes",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 25)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Vehicle type",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 27)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Number of windows",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Demand Frequencies",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question1,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 26) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Select surface",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.surface,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "How often do you want this job to be done ?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 30 ||
+                  widget.jobsDetail.subcategoryId == 31 ||
+                  widget.jobsDetail.subcategoryId == 32 ||
+                  widget.jobsDetail.subcategoryId == 34) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.subcategoryId == 30 ||
+                              widget.jobsDetail.subcategoryId == 31 ||
+                              widget.jobsDetail.subcategoryId == 32)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Type of gaurd",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 34)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Course duration",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 33) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Free from I escape disk",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Detection and eradication of viruses and spyware",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Complete checkup",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          const Text(
+                            "True",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Installing Update",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question1,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Data backup",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            widget.jobsDetail.question2,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 35) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Local via USB cable",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Network (Wifi or bluetooth)",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          const Text(
+                            "True",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                              fontFamily: 'Cerebri Sans Bold',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 36 ||
+                  widget.jobsDetail.subcategoryId == 66 ||
+                  widget.jobsDetail.subcategoryId == 68 ||
+                  widget.jobsDetail.subcategoryId == 69
+              ) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          "What you need",
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ).tr(),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          widget.jobsDetail.description,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ).tr(),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+
+              if (widget.jobsDetail.subcategoryId == 46 ||
+                  widget.jobsDetail.subcategoryId == 47 ||
+                  widget.jobsDetail.subcategoryId == 48 ||
+                  widget.jobsDetail.subcategoryId == 49 ||
+                  widget.jobsDetail.subcategoryId == 50 ||
+                  widget.jobsDetail.subcategoryId == 51 ||
+                  widget.jobsDetail.subcategoryId == 52 ||
+                  widget.jobsDetail.subcategoryId == 53 ||
+                  widget.jobsDetail.subcategoryId == 54 ||
+                  widget.jobsDetail.subcategoryId == 55 ||
+                  widget.jobsDetail.subcategoryId == 56 ||
+                  widget.jobsDetail.subcategoryId == 57 ||
+                  widget.jobsDetail.subcategoryId == 58 ||
+                  widget.jobsDetail.subcategoryId == 59 ||
+                  widget.jobsDetail.subcategoryId == 60) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Educational level requested",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Desired course format",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question1,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Request Frequency",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question2,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 61 ||
+                  widget.jobsDetail.subcategoryId == 65) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.subcategoryId == 61)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Photo editing?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 65)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Does the jobber have to provider the mixing board?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.subcategoryId == 61)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Discount on USB key?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.subcategoryId == 65)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "The jobber must provide the sound system?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question1,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 62) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Number of restorations",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.small,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Sit-down meal",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "cocktail buffet",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Meal tray",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Does the jobber have to provide the dishes?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question1,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "The jobber must provide the utensils?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question2,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Should the jobber empty the bins?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question3,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 63) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Number of prompts",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.small,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Does the jobber have to provide the dishes?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "The jobber must provide the utensils?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question1,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Should the jobber empty the bins?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question2,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 64) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Number of restorations",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.small,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Sit-down meal",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "cocktail buffet",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Meal tray",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Should  the jobber empty the bins?",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.question1,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 67) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "Number of flyers",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: Text(
+                              widget.jobsDetail.surface,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Street marketing",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Letter box",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Windshield",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 70) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          "Type of repair",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ).tr(),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Drain",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Tires",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Braking",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "4")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Windscreen wipers",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "5")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Candles",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "6")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Battery",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "7")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Air conditioner",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 71) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          "Type of repair",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ).tr(),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Engine part",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Mechanical piece",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "3")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Body",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "4")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Mirror",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "5")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Chest",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "6")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Door",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "7")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Window",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "8")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Lighting",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "9")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Accessories",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if (widget.jobsDetail.subcategoryId == 72) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          "Item types",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ).tr(),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Home appliance",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Vehicle",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Text(
+                          "Material type of repair",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ).tr(),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          if (widget.jobsDetail.question1 == "1")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Mechanical",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          if (widget.jobsDetail.question1 == "2")
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                "Electric",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
+                            ),
+                          const Spacer(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "true",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cerebri Sans Bold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.right,
+                            ).tr(),
                           ),
                         ],
                       ),

@@ -134,8 +134,6 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                       ),
                     ),
                   ),
-                  // : Container( padding: const EdgeInsets.all(10.0), child: const Center(child: CircularProgressIndicator())),
-                  //       ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
@@ -206,12 +204,15 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                                     .width /
                                                 40,
                                           ),
-                                          Text(
-                                            extractedAvailableJobs
-                                                .availableJobs![index].title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium,
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width / 1.5,
+                                            child: Text(
+                                              extractedAvailableJobs
+                                                  .availableJobs![index].title,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium,
+                                            ),
                                           ),
                                           const Spacer(),
                                           Text(
