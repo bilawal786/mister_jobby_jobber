@@ -18,17 +18,17 @@ class _CommentScreenState extends State<CommentScreen> {
   String? jobId;
 
   @override
-  // void didChangeDependencies() {
-  //   final routeArgs =
-  //       ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-  //   jobId = routeArgs['jobId'];
-  //   if (isInit) {
-  //     Provider.of<SingleJobCommentsProvider>(context)
-  //         .getSingleJobComments(jobId);
-  //   }
-  //   isInit = false;
-  //   super.didChangeDependencies();
-  // }
+  void didChangeDependencies() {
+    final routeArgs =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    jobId = routeArgs['jobId'];
+    if (isInit) {
+      Provider.of<SingleJobCommentsProvider>(context)
+          .getSingleJobComments(jobId);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

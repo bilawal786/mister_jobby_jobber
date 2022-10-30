@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
+import 'package:mister_jobby_jobber/screens/search_screen/comment_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -122,6 +124,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => TermsAndConditonProvider()),
         ChangeNotifierProvider(create: (ctx) => AvailableJobsProvider()),
         ChangeNotifierProvider(create: (ctx) => NotificationsProvider()),
+        ChangeNotifierProvider(create: (ctx) => SingleJobCommentsProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -316,6 +319,8 @@ class MyApp extends StatelessWidget {
           const TrustAndSecurity(),
           MyRoutes.FAQSCREENROUTE: (ctx) =>
           const FAQScreen(),
+          MyRoutes.COMMENTSCREENROUTE: (ctx) =>
+          const CommentScreen(),
         },
       ),
     );

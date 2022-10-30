@@ -338,8 +338,9 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     ),
                     const Divider(),
                     InkWell(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const CommentScreen())),
+                      onTap: () => Navigator.of(context).pushNamed(MyRoutes.COMMENTSCREENROUTE, arguments: {
+                        'jobId': widget.jobsDetail.id.toString(),
+                      }),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
