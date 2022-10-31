@@ -364,7 +364,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               width: MediaQuery.of(context).size.width / 40,
                             ),
                             Text(
-                              "(0)",
+                              "(${widget.jobsDetail.count})",
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 16,
@@ -4000,7 +4000,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               height: MediaQuery.of(context).size.width / 40,
                             ),
                             SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.4,
+                                width: MediaQuery.of(context).size.width / 1.8,
                                 child: Text(
                                   "You don't have a job on Saturday October 22, 2022",
                                   style:

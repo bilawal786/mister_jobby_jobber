@@ -307,7 +307,7 @@ class JobsDetailProvider with ChangeNotifier {
       debugPrint("submit Proposal api working");
       debugPrint("${postId}");
       Navigator.pop(context);
-      Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.SPLASHSCREENROUTE, (route) => false,);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
