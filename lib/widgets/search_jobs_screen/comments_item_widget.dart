@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
+import '../../models/job_models/single_job_comments.dart';
 
 
 class CommentsItemWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class CommentsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final comments = Provider.of<SingleJobCommentsModel>(context);
+    final comments = Provider.of<SingleJobCommentsModel>(context);
     return Column(
       children: <Widget>[
         Padding(
@@ -26,7 +27,7 @@ class CommentsItemWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.network(
-                    "https://media.gettyimages.com/photos/shah-faisal-masjid-islamabad-pakistan-picture-id912853916?s=612x612",
+                    "${MyRoutes.IMAGEURL}${comments.image}",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -41,16 +42,16 @@ class CommentsItemWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("comments.name", style: Theme.of(context).textTheme.bodyMedium,),
+                        Text(comments.name, style: Theme.of(context).textTheme.bodyMedium,),
                         const Spacer(),
-                        Text("comments.date", style: Theme.of(context).textTheme.labelMedium,),
+                        Text(comments.date, style: Theme.of(context).textTheme.labelMedium,),
                       ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
                     ),
                     Text(
-                      "comments.message",
+                      comments.message,
                       style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.justify,
                     ),

@@ -36,7 +36,7 @@ class SingleJobCommentsProvider with ChangeNotifier {
   }
 
   void postSingleComment(BuildContext context, SingleJobCommentsModel sComments, int jobId) async {
-    final profileData = Provider.of<PersonalInformationProvider>(context).profile;
+    final profileData = Provider.of<PersonalInformationProvider>(context, listen: false).profile;
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     String? userToken = sharedPrefs.getString("token");
     var response = await http.post(

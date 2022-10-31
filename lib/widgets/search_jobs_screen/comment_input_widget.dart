@@ -6,9 +6,9 @@ import '../../models/job_models/single_job_comments.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 
 class CommentInputWidget extends StatefulWidget {
-  // final int jobId;
+  final int jobId;
   const CommentInputWidget({Key? key,
-    // required this.jobId
+    required this.jobId
   }) : super(key: key);
 
   @override
@@ -72,7 +72,7 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
                 if (!isValid!) {
                   return;
                 }
-                // Provider.of<SingleJobCommentsProvider>(context, listen: false).postSingleComment(context, _singleComment, widget.jobId);
+                Provider.of<SingleJobCommentsProvider>(context, listen: false).postSingleComment(context, _singleComment, widget.jobId);
                 commentController.text = "";
               },
               icon: Icon(
