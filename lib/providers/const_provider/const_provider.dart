@@ -2,6 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ConstProvider with ChangeNotifier {
+  List<String> temp = [];
+
+  void isAdded(value){
+    if(temp.contains(value)){
+      temp.remove(value);
+    }else {
+      temp.add(value);
+    }
+    notifyListeners();
+  }
+
+
   int mondayValue = 0;
   int tuesdayValue = 0;
   int wednesdayValue = 0;

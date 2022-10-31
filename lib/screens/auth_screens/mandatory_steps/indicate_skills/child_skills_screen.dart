@@ -17,14 +17,6 @@ class ChildSkillsScreen extends StatefulWidget {
 }
 
 class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
-  List<bool> isChecked = [];
-
-  @override
-  void didChangeDependencies() {
-    var len = widget.skillSubCategory.childCategories.length;
-    isChecked = List<bool>.filled(len, false);
-    super.didChangeDependencies();
-  }
 
 
   @override
@@ -67,37 +59,24 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
+                      onTap: (){
+                        getList.isAdded(widget.skillSubCategory.childCategories[index].title);
+
+                        debugPrint(getList.temp.toString());
+                      },
                       contentPadding: EdgeInsets.zero,
                       dense: true,
                       title: Text(
                         widget.skillSubCategory.childCategories[index].title,
                         style: Theme.of(context).textTheme.bodySmall,
                       ).tr(),
-                      trailing: Checkbox(
-                        value: isChecked[index] as bool,
-                        onChanged: (newValue) {
-                          setState(() {
-                            isChecked[index] = newValue!;
-                            if(isChecked[index] == true){
-                              if(getList.skillsId != null){
-                                getList.skillsId?.add(widget.skillSubCategory.childCategories[index].id);
-                              }else{
-                                getList.skillsId = [widget.skillSubCategory.childCategories[index].id];
-                              }
-
-                            }
-                          });
-                        },
-                      ),
+                      trailing: Text(getList.temp.contains(widget.skillSubCategory.childCategories[index].title) ? "Remove" :"Add"),
                     ),
                     const Divider(),
                   ],
                 ),
               ),
               CustomButton(onPress: () {
-                print(getList.skillsId?.length);
-                for(int i = 0; i < getList.skillsId!.length; i++)
-                  print(getList.skillsId?[i]);
               }, buttonName: "Continue"),
             ],
           ),
