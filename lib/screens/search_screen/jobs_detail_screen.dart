@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
-import '../../screens/search_screen/comment_screen.dart';
 
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
