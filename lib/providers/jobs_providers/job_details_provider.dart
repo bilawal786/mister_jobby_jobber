@@ -264,10 +264,10 @@ class JobsDetailProvider with ChangeNotifier {
                           postProposal(
                               context,
                               postId,
-                              "${modalSheet.hourlyRate! * modalSheet.hours}€",
+                              "${modalSheet.hourlyRate! * modalSheet.hours}",
                               hourlyRate,
                               hours,
-                              "${(modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100}€");
+                              "${(modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100}");
                         },
                         buttonName: "To post"),
                   ),
