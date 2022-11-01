@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class ConstProvider with ChangeNotifier {
   List<String> temp = [];
 
-  void isAdded(value){
+
+
+  void isAdded(String value){
     if(temp.contains(value)){
       temp.remove(value);
     }else {

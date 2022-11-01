@@ -60,9 +60,9 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                   children: [
                     ListTile(
                       onTap: (){
-                        getList.isAdded(widget.skillSubCategory.childCategories[index].title);
+                        getList.isAdded(widget.skillSubCategory.childCategories[index].id.toString());
 
-                        debugPrint(getList.temp.toString());
+                        debugPrint(getList.temp.join(","));
                       },
                       contentPadding: EdgeInsets.zero,
                       dense: true,
@@ -70,7 +70,7 @@ class _ChildSkillsScreenState extends State<ChildSkillsScreen> {
                         widget.skillSubCategory.childCategories[index].title,
                         style: Theme.of(context).textTheme.bodySmall,
                       ).tr(),
-                      trailing: Text(getList.temp.contains(widget.skillSubCategory.childCategories[index].title) ? "Remove" :"Add"),
+                      trailing: Text(getList.temp.contains(widget.skillSubCategory.childCategories[index].id.toString()) ? "Remove" :"Add"),
                     ),
                     const Divider(),
                   ],
