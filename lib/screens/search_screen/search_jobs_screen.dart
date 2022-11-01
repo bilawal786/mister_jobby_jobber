@@ -55,7 +55,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 ),
                 Consumer<PersonalInformationProvider>(
                   builder: (_, profileData, child) => SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.8,
+                    width: MediaQuery.of(context).size.width / 2.5,
                     child: Text(
                       profileData.profile!.address,
                       style: Theme.of(context).textTheme.bodyMedium,

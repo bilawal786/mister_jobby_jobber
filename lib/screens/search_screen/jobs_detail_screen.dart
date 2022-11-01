@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../../helper/routes.dart';
 
 import '../../../models/job_models/available_jobs_model.dart';
@@ -21,6 +22,59 @@ class JobDetailScreen extends StatefulWidget {
 const LatLng currentLocation = LatLng(31.561920, 74.348080);
 
 class _JobDetailScreenState extends State<JobDetailScreen> {
+  void ignoreJobOpenSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).size.width / 6,
+            margin: const EdgeInsets.all(10),
+            // padding: const EdgeInsets.all(10,),
+            child: InkWell(
+              onTap: () {
+                Provider.of<AvailableJobsProvider>(context, listen: false).ignoreThisJob(context, widget.jobsDetail.id.toString());
+              },
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.blue),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 60,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.blueGrey.shade100,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Icon(
+                        FontAwesomeIcons.personCircleXmark,
+                        color: Colors.red.shade400,
+                        size: 25,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: Center(
+                        child: Text(
+                          "Ignor_Job",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ).tr(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
   @override
@@ -148,6 +202,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         Icons.arrow_back,
                         size: 25,
                         color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: InkWell(
+                      onTap: (){ignoreJobOpenSheet();},
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(shape: BoxShape.circle,
+                        color: Colors.white,
+                        ),
+                        child: const Icon(Icons.more_vert_rounded, color: Colors.black,size: 25,),
                       ),
                     ),
                   ),
@@ -3891,7 +3960,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 )
                               : const SizedBox(),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width / 20,
+                            width: MediaQuery.of(context).size.width / 40,
                           ),
                           (widget.jobsDetail.image2 != "")
                               ? Container(
@@ -3923,7 +3992,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 )
                               : const SizedBox(),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width / 20,
+                            width: MediaQuery.of(context).size.width / 40,
                           ),
                           (widget.jobsDetail.image3 != "")
                               ? Container(
