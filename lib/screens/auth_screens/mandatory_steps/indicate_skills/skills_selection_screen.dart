@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/screens/auth_screens/mandatory_steps/indicate_skills/sub_skills_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../screens/auth_screens/mandatory_steps/indicate_skills/child_skills_screen.dart';
 import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
+import 'skills_selection_steps/layout_selection_step.dart';
 
 class SkillsSelectionScreen extends StatelessWidget {
   const SkillsSelectionScreen({Key? key}) : super(key: key);
@@ -40,7 +40,8 @@ class SkillsSelectionScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.width / 30,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                     child: Row(
                       children: [
                         const Icon(
@@ -48,9 +49,11 @@ class SkillsSelectionScreen extends StatelessWidget {
                           size: 25,
                           color: Colors.black45,
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width / 40,),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
                         Padding(
-                          padding: const EdgeInsets.only(left:20.0),
+                          padding: const EdgeInsets.only(left: 20.0),
                           child: Text(
                             extractedSkills![0].title,
                             style: Theme.of(context).textTheme.bodyLarge,
@@ -69,11 +72,11 @@ class SkillsSelectionScreen extends StatelessWidget {
                     itemBuilder: (ctx, index) => ListTile(
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (ctx) => ChildSkillsScreen(
-                            skillSubCategory:
-                                extractedSkills[0].subCategories[index],
-                          ),
-                        ),
+                            builder: (ctx) => LayoutSkillSelectionStepScreen(
+                              mainCategoryId: extractedSkills[0].id.toString(),
+                                  subCategory:
+                                      extractedSkills[0].subCategories[index],
+                                )),
                       ),
                       dense: true,
                       leading: const Icon(
