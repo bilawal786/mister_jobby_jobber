@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_provider.dart';
 import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
 import 'package:mister_jobby_jobber/screens/search_screen/comment_screen.dart';
 import 'package:provider/provider.dart';
@@ -125,6 +126,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => AvailableJobsProvider()),
         ChangeNotifierProvider(create: (ctx) => NotificationsProvider()),
         ChangeNotifierProvider(create: (ctx) => SingleJobCommentsProvider()),
+        ChangeNotifierProvider(create: (ctx) => ForgetPasswordProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
