@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../providers/auth_provider/forget_password_provider.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import 'confirm_password_screen.dart';
 
@@ -36,6 +38,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = Provider.of<ForgetPasswordProvider>(context, listen: false);
+    final extractProfile = profileData;
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color(0xFFebf9fe),elevation: 0,foregroundColor: Colors.black),
       backgroundColor: const Color(0xFFebf9fe),
@@ -61,7 +65,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   children: <Widget>[
                     Text(
                       'Please enter your email',
-                      // "EmailText",
                       style: Theme.of(context).textTheme.titleSmall,
                     ).tr(),
                     SizedBox(

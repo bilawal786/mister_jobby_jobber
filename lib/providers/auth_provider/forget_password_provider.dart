@@ -9,6 +9,7 @@ import '../../models/auth_models/forget_password_model.dart';
 import '../../widgets/const_widgets/login_progress_indicator.dart';
 
 class ForgetPasswordProvider with ChangeNotifier{
+
   bool checkObscure = true;
   void toggleObscure() {
     checkObscure = !checkObscure;
