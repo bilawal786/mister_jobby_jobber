@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../helper/routes.dart';
 import '../../providers/auth_provider/login_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
+import 'forget_password_screens/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -134,7 +135,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: MediaQuery.of(context).size.width / 25,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ForgetPassword(),
+                              ));
+                            },
                             child: Text(
                               "Forgot_Button_Text".tr(),
                               style: TextStyle(
