@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 
+import '../../providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 
@@ -23,6 +24,8 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
     if (isInit) {
       Provider.of<PersonalInformationProvider>(context, listen: false)
           .getProfile();
+      Provider.of<JobberCheckSkillsProvider>(context, listen: false)
+          .getCheckSkills();
     }
     isInit = false;
   }

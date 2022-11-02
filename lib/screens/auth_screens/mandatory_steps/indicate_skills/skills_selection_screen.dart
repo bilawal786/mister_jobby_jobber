@@ -4,6 +4,7 @@ import 'package:mister_jobby_jobber/screens/auth_screens/mandatory_steps/indicat
 import 'package:provider/provider.dart';
 
 import '../../../../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
+import '../../../../providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
 import 'skills_selection_steps/layout_selection_step.dart';
 
 class SkillsSelectionScreen extends StatelessWidget {
@@ -14,6 +15,8 @@ class SkillsSelectionScreen extends StatelessWidget {
     final getSkillsData =
         Provider.of<IndicateSkillsProvider>(context, listen: false);
     final extractedSkills = getSkillsData.skills;
+    final checkSkillsData = Provider.of<JobberCheckSkillsProvider>(context,listen: false);
+    final extractedCheckSkills = checkSkillsData.jobberCheckSkills;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
