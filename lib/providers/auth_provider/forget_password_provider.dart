@@ -53,10 +53,11 @@ class ForgetPasswordProvider with ChangeNotifier{
           ),
         ),
       );
-      debugPrint('Forget Password Api is working');
+      debugPrint('Change Password Api is working');
       notifyListeners();
     }else{
-    debugPrint('Forget Password Api is not working');
+    debugPrint('Change Password Api is not working');
+    Navigator.pop(context);
     }
   }
 }

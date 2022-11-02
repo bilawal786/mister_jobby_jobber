@@ -6,8 +6,8 @@ import '../../../providers/auth_provider/forget_password_provider.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 
 class ConfirmPassword extends StatefulWidget {
-  final String email ;
-  const ConfirmPassword({Key? key,required this.email}) : super(key: key);
+  final email ;
+  const ConfirmPassword({Key? key, this.email}) : super(key: key);
 
   @override
   State<ConfirmPassword> createState() => _ConfirmPasswordState();
@@ -36,7 +36,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
     forgetPasswordData.forgetPassword(
       context,
       widget.email,
-      passwordController.text,
+      confirmPasswordController.text,
     );
   }
 
