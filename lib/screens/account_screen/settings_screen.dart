@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
+import '../auth_screens/forget_password_screens/confirm_password_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -95,6 +96,21 @@ class SettingScreen extends StatelessWidget {
                     ),
                     title: Text(
                       "Manage_My_Notifications",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ).tr(),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () =>Navigator.of(context)
+                        .push(MaterialPageRoute(builder:(context) => ConfirmPassword(),)),
+                    leading: Icon(
+                      Icons.key,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      "Change Password",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ).tr(),
                   ),
