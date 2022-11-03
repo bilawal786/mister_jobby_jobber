@@ -1,49 +1,61 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
+
 import '../../../providers/auth_provider/forget_password_provider.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 
-class ConfirmPassword extends StatefulWidget {
-  final email;
-  const ConfirmPassword({Key? key, required this.email,}) : super(key: key);
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({
+    Key? key,
+  }) : super(key: key);
+
   @override
-  State<ConfirmPassword> createState() => _ConfirmPasswordState();
+  State<ChangePassword> createState() => _ChangePasswordState();
 }
-class _ConfirmPasswordState extends State<ConfirmPassword> {
+
+class _ChangePasswordState extends State<ChangePassword> {
+  String getEmail = '';
   final formKey = GlobalKey<FormState>();
-  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  RegExp regExp = RegExp(
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
-      multiLine: false);
   @override
   void dispose() {
-    newPasswordController.dispose();
+    confirmPasswordController.dispose();
     passwordController.dispose();
     super.dispose();
   }
+
   void formSubmit() {
-    final forgetPasswordData = Provider.of<ForgetPasswordProvider>(context, listen: false);
+    final forgetPasswordData =
+    Provider.of<ForgetPasswordProvider>(context, listen: false);
     var isValid = formKey.currentState!.validate();
+
     if (!isValid) {
       return;
     }
     formKey.currentState!.save();
+
     forgetPasswordData.forgetPassword(
       context,
-      widget.email,
-      newPasswordController.text,
+      getEmail,
+      confirmPasswordController.text,
     );
   }
+
   @override
   Widget build(BuildContext context) {
+    final profileData =
+    Provider.of<PersonalInformationProvider>(context, listen: false);
+    final extractProfile = profileData.profile;
+    getEmail = extractProfile!.email;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          foregroundColor: Colors.black),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -52,9 +64,6 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
-                ),
                 Text(
                   "New Password",
                   style: Theme.of(context).textTheme.titleSmall,
@@ -103,7 +112,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                 Consumer<ForgetPasswordProvider>(
                   builder: (_, toggle, child) => TextFormField(
                     enableSuggestions: false,
-                    controller: newPasswordController,
+                    controller: confirmPasswordController,
                     obscureText: toggle.checkObscure,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -123,9 +132,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                         return 'Please Enter the password';
                       } else if (value.length < 5) {
                         return 'Must be more than 5 characters';
-                      }else if(value != passwordController.text){
-                        print(passwordController.text);
-                        print(newPasswordController.text);
+                      } else if (value != passwordController.text) {
                         return 'Password not matched';
                       }
                       return null;

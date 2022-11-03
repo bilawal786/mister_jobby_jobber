@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
+import '../auth_screens/forget_password_screens/change_password.dart';
 import '../auth_screens/forget_password_screens/confirm_password_screen.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -103,7 +104,7 @@ class SettingScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () =>Navigator.of(context)
-                        .push(MaterialPageRoute(builder:(context) => ConfirmPassword(),)),
+                        .push(MaterialPageRoute(builder:(context) => const ChangePassword(),)),
                     leading: Icon(
                       Icons.key,
                       size: 30,
