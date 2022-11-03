@@ -26,6 +26,7 @@ class CheckProfileCompletion {
     required this.socialSecurityNumber,
     required this.answer1,
     required this.score,
+    required this.phone,
   });
 
   String skills;
@@ -44,6 +45,7 @@ class CheckProfileCompletion {
   String socialSecurityNumber;
   String answer1;
   String score;
+  String phone;
 
   factory CheckProfileCompletion.fromJson(Map<String, dynamic> json) => CheckProfileCompletion(
     skills: json["skills"],
@@ -62,6 +64,7 @@ class CheckProfileCompletion {
     socialSecurityNumber: json["social_security_number"],
     answer1: json["answer1"],
     score: json["score"],
+    phone: json["phone"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -81,5 +84,6 @@ class CheckProfileCompletion {
     "social_security_number": socialSecurityNumber,
     "answer1": answer1,
     "score": score,
+    "phone": phone,
   };
 }

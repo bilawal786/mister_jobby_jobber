@@ -75,7 +75,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
                   ),
-                  if (extractedCompleteData?.skills == "null") ...[
+                  if (extractedCompleteData?.skills == "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INDICATESKILLSROUTE),
@@ -96,13 +96,13 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.monday == "null" ||
-                      extractedCompleteData?.tuesday == "null" ||
-                      extractedCompleteData?.wednesday == "null" ||
-                      extractedCompleteData?.thersday == "null" ||
-                      extractedCompleteData?.friday == "null" ||
-                      extractedCompleteData?.saturday == "null" ||
-                      extractedCompleteData?.sunday == "null" ) ...[
+                  if (extractedCompleteData?.monday == "" ||
+                      extractedCompleteData?.tuesday == "" ||
+                      extractedCompleteData?.wednesday == "" ||
+                      extractedCompleteData?.thersday == "" ||
+                      extractedCompleteData?.friday == "" ||
+                      extractedCompleteData?.saturday == "" ||
+                      extractedCompleteData?.sunday == "" ) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.AVAILABILITIESSCREENROUTE),
@@ -123,7 +123,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.answer1 == "null"||
+                  if (extractedCompleteData?.answer1 == ""||
                       extractedCompleteData?.answer1 == "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
@@ -145,7 +145,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.insurance1 == "null" || extractedCompleteData?.insurance1 == "") ...[
+                  if (extractedCompleteData?.insurance1 == "" || extractedCompleteData?.insurance1 == "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INSURANCESCREENROUTE),
@@ -166,7 +166,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.rules1 == "null" || extractedCompleteData?.rules1== "") ...[
+                  if (extractedCompleteData?.rules1 == "" || extractedCompleteData?.rules1== "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.LEARNRULESSCREENROUTE),
@@ -187,7 +187,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.score == "null" || extractedCompleteData?.score == "") ...[
+                  if (extractedCompleteData?.score == "" || extractedCompleteData?.score == "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
@@ -229,8 +229,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (profileData.profile!.phone == "null" ||
-                      profileData.profile!.phone == "") ...[
+                  if (extractedCompleteData?.phone == "") ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
@@ -251,9 +250,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.euIdCardFront == "null" || extractedCompleteData?.euIdCardFront == "")&&
+                  if ((extractedCompleteData?.euIdCardFront == "" )&&
                       extractedCompleteData?.euIdResidencePermitFront ==
-                          "null" || extractedCompleteData?.euIdResidencePermitFront == "") ...[
+                          "" ) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),
@@ -274,8 +273,8 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.vitalCardNumber == "null" || extractedCompleteData?.vitalCardNumber == "") &&
-                      extractedCompleteData?.socialSecurityNumber == "null" ||extractedCompleteData?.socialSecurityNumber == "") ...[
+                  if ((extractedCompleteData?.vitalCardNumber == "" ) &&
+                      extractedCompleteData?.socialSecurityNumber == "" ) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.SOCIALSECURITYCERTIFICATEROUTE),
@@ -296,26 +295,26 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.skills != "null" || extractedCompleteData!.skills != "")  &&
-                      (extractedCompleteData?.monday != "null" || extractedCompleteData!.monday != "" ||
-                          extractedCompleteData.tuesday != "null" || extractedCompleteData.tuesday != ""||
-                          extractedCompleteData.wednesday != "null" || extractedCompleteData.wednesday != "" ||
-                          extractedCompleteData.thersday != "null" || extractedCompleteData.thersday != "" ||
-                          extractedCompleteData.friday != "null" || extractedCompleteData.friday != "" ||
-                          extractedCompleteData.saturday != "null" || extractedCompleteData.saturday != "" ||
-                          extractedCompleteData.sunday != "null" || extractedCompleteData.sunday != "" ) ||
-                      extractedCompleteData.answer1 != "null" || extractedCompleteData.answer1 != "" ||
-                      extractedCompleteData.insurance1 != "null" || extractedCompleteData.insurance1 != "" ||
-                      extractedCompleteData.rules1 != "null" || extractedCompleteData.rules1 != "" ||
+                  if ((extractedCompleteData?.skills != "" )  &&
+                      (extractedCompleteData?.monday != "" ||
+                          extractedCompleteData!.tuesday != "" ||
+                          extractedCompleteData.wednesday != "" ||
+                          extractedCompleteData.thersday != "" ||
+                          extractedCompleteData.friday != "" ||
+                          extractedCompleteData.saturday != "" ||
+                          extractedCompleteData.sunday != "" ) ||
+                      extractedCompleteData?.answer1 != "" ||
+                      extractedCompleteData?.insurance1 != "" ||
+                      extractedCompleteData?.rules1 != "" ||
                       profileData.profile!.image != 'main/avatar.png' ||
-                      (profileData.profile!.phone != "null" || profileData.profile!.phone != ""  )||
-                      (extractedCompleteData.euIdCardFront != "null" || extractedCompleteData.euIdCardFront != "" ||
-                          extractedCompleteData.euIdResidencePermitFront !=
-                              "null") || extractedCompleteData.euIdResidencePermitFront != "" ||
-                      (extractedCompleteData.vitalCardNumber != "null" || extractedCompleteData.vitalCardNumber != "" ||
-                          extractedCompleteData.socialSecurityNumber !=
-                              "null") || extractedCompleteData.socialSecurityNumber != "" ||
-                      extractedCompleteData.score != "") ...[
+                      (extractedCompleteData?.phone != "" )||
+                      (extractedCompleteData?.euIdCardFront != "" ||
+                          extractedCompleteData?.euIdResidencePermitFront !=
+                              "") ||
+                      (extractedCompleteData?.vitalCardNumber != "" ||
+                          extractedCompleteData?.socialSecurityNumber !=
+                              "") ||
+                      extractedCompleteData?.score != "") ...[
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     ),
@@ -327,7 +326,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                       height: MediaQuery.of(context).size.width / 20,
                     ),
                   ],
-                  if (extractedCompleteData?.skills != "null" || extractedCompleteData!.skills.isNotEmpty) ...[
+                  if (extractedCompleteData?.skills != "" || extractedCompleteData!.skills.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INDICATESKILLSROUTE),
@@ -348,13 +347,13 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.monday != "null" || extractedCompleteData!.monday.isNotEmpty||
-                      extractedCompleteData.tuesday != "null" ||extractedCompleteData.tuesday.isNotEmpty ||
-                      extractedCompleteData.wednesday != "null" ||extractedCompleteData.wednesday.isNotEmpty ||
-                      extractedCompleteData.thersday != "null" || extractedCompleteData.thersday.isNotEmpty ||
-                      extractedCompleteData.friday != "null"  || extractedCompleteData.friday.isNotEmpty ||
-                      extractedCompleteData.saturday != "null" || extractedCompleteData.saturday.isNotEmpty ||
-                      extractedCompleteData.sunday != "null" || extractedCompleteData.sunday.isNotEmpty) ...[
+                  if (extractedCompleteData?.monday != "" || extractedCompleteData!.monday.isNotEmpty||
+                      extractedCompleteData.tuesday != "" ||extractedCompleteData.tuesday.isNotEmpty ||
+                      extractedCompleteData.wednesday != "" ||extractedCompleteData.wednesday.isNotEmpty ||
+                      extractedCompleteData.thersday != "" || extractedCompleteData.thersday.isNotEmpty ||
+                      extractedCompleteData.friday != ""  || extractedCompleteData.friday.isNotEmpty ||
+                      extractedCompleteData.saturday != "" || extractedCompleteData.saturday.isNotEmpty ||
+                      extractedCompleteData.sunday != "" || extractedCompleteData.sunday.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.AVAILABILITIESSCREENROUTE),
@@ -375,7 +374,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.answer1 != "null" || extractedCompleteData!.answer1.isNotEmpty) ...[
+                  if (extractedCompleteData?.answer1 != "" || extractedCompleteData!.answer1.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.PROGRESSSERVICESROUTE),
@@ -396,7 +395,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.insurance1 != "null" || extractedCompleteData!.insurance1.isNotEmpty) ...[
+                  if (extractedCompleteData?.insurance1 != "" || extractedCompleteData!.insurance1.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.INSURANCESCREENROUTE),
@@ -417,7 +416,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.score != "null" || extractedCompleteData!.score.isNotEmpty) ...[
+                  if (extractedCompleteData?.score != "" || extractedCompleteData!.score.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.RELIABILITYSCOREROUTE),
@@ -438,7 +437,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.rules1 != "null" || extractedCompleteData!.rules1.isNotEmpty) ...[
+                  if (extractedCompleteData?.rules1 != "" || extractedCompleteData!.rules1.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.LEARNRULESSCREENROUTE),
@@ -501,10 +500,10 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.euIdCardFront != "null" || extractedCompleteData!.euIdCardFront.isNotEmpty ||
+                  if ((extractedCompleteData?.euIdCardFront != "" || extractedCompleteData!.euIdCardFront.isNotEmpty ||
                           extractedCompleteData.euIdCardFront != "") ||
                       (extractedCompleteData.euIdResidencePermitFront !=
-                              "null" || extractedCompleteData.euIdResidencePermitFront.isNotEmpty ||
+                              "" || extractedCompleteData.euIdResidencePermitFront.isNotEmpty ||
                           extractedCompleteData.euIdResidencePermitFront !=
                               "")) ...[
                     ListTile(
@@ -527,8 +526,8 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if (extractedCompleteData?.vitalCardNumber != "null" || extractedCompleteData!.vitalCardNumber.isNotEmpty ||
-                      extractedCompleteData.socialSecurityNumber != "null" || extractedCompleteData.socialSecurityNumber.isNotEmpty) ...[
+                  if (extractedCompleteData?.vitalCardNumber != "" || extractedCompleteData!.vitalCardNumber.isNotEmpty ||
+                      extractedCompleteData.socialSecurityNumber != "" || extractedCompleteData.socialSecurityNumber.isNotEmpty) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.SOCIALSECURITYCERTIFICATEROUTE),
