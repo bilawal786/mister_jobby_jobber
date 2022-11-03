@@ -10,6 +10,16 @@ import '../../widgets/const_widgets/login_progress_indicator.dart';
 
 class ConstProvider with ChangeNotifier {
   List<String> temp = [];
+  List<String> tempSubCategory = [];
+
+  void isAddedSubCategories(String value) {
+    if (tempSubCategory.contains(value)) {
+      tempSubCategory.remove(value);
+    } else {
+      tempSubCategory.add(value);
+    }
+    notifyListeners();
+  }
 
   void isAdded(String value) {
     if (temp.contains(value)) {
@@ -32,6 +42,53 @@ class ConstProvider with ChangeNotifier {
     "Screwdriver set".tr(),
     "Level".tr(),
   ];
+
+  List<String> jardinageEquipmentList = [
+    "Arm mower".tr(),
+    "Ride-on mower".tr(),
+    "Chopped".tr(),
+    "Saw".tr(),
+    "Small gardening equipment (secateurs, hoe, etc.)".tr(),
+    "Large gardening equipment (shovel, rake, etc.)".tr(),
+    "Wheelbarrow".tr(),
+  ];
+
+  List<String> livraisonEquipmentList = [
+    "Pick-up (2 to 3 m²)".tr(),
+    "Van (3 to 6 m²)".tr(),
+    "Small van (7 to 9 m²)".tr(),
+    "Big van (10 to 12 m²)".tr(),
+    "Small truck (20 to 22 m²)".tr(),
+    "Big truck (+30 m²)".tr(),
+    "Straps".tr(),
+    "Blankets".tr(),
+    "Boxes".tr(),
+    "Vacuum".tr(),
+    "Household products".tr(),
+    "Karcher".tr(),
+    "Steam plant".tr(),
+    "Iron".tr(),
+  ];
+
+  List<String> animalEquipmentList = [
+    "Kennel".tr(),
+    "Garden".tr(),
+    "Cage".tr(),
+    "Aviary".tr(),
+    "Outdoor enclosure".tr(),
+    "Indoor enclosure".tr(),
+    "Cat tree".tr(),
+    "Litter".tr(),
+    "Transport container".tr(),
+  ];
+
+  List<String> computerEquipmentList = [
+    "diagnostic tool".tr(),
+    "Mac computer".tr(),
+    "Window computer".tr(),
+    "linux computer".tr(),
+  ];
+
 
   List<String> tempEquipment = [];
 
@@ -111,6 +168,7 @@ class ConstProvider with ChangeNotifier {
 
   clearData(){
     temp.clear();
+    tempSubCategory.clear();
     tempEngagement.clear();
     tempEquipment.clear();
     diploma = 0;

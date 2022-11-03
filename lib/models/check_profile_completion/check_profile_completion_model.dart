@@ -10,8 +10,7 @@ String checkProfileCompletionToJson(CheckProfileCompletion data) => json.encode(
 
 class CheckProfileCompletion {
   CheckProfileCompletion({
-    required this.skills1,
-    required this.skills2,
+    required this.skills,
     required this.monday,
     required this.tuesday,
     required this.wednesday,
@@ -20,17 +19,16 @@ class CheckProfileCompletion {
     required this.saturday,
     required this.sunday,
     required this.insurance1,
-    this.rules1,
+    required this.rules1,
     required this.euIdCardFront,
     required this.euIdResidencePermitFront,
     required this.vitalCardNumber,
     required this.socialSecurityNumber,
     required this.answer1,
-    this.score,
+    required this.score,
   });
 
-  String skills1;
-  String skills2;
+  String skills;
   String monday;
   String tuesday;
   String wednesday;
@@ -39,17 +37,16 @@ class CheckProfileCompletion {
   String saturday;
   String sunday;
   String insurance1;
-  dynamic rules1;
+  String rules1;
   String euIdCardFront;
   String euIdResidencePermitFront;
   String vitalCardNumber;
   String socialSecurityNumber;
   String answer1;
-  dynamic score;
+  String score;
 
   factory CheckProfileCompletion.fromJson(Map<String, dynamic> json) => CheckProfileCompletion(
-    skills1: json["skills1"],
-    skills2: json["skills2"],
+    skills: json["skills"],
     monday: json["monday"],
     tuesday: json["tuesday"],
     wednesday: json["wednesday"],
@@ -68,8 +65,7 @@ class CheckProfileCompletion {
   );
 
   Map<String, dynamic> toJson() => {
-    "skills1": skills1,
-    "skills2": skills2,
+    "skills": skills,
     "monday": monday,
     "tuesday": tuesday,
     "wednesday": wednesday,

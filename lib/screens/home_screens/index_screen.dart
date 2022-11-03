@@ -82,26 +82,25 @@ class IndexScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              if ((extractedCompleteData?.skills1 == null &&
-                      extractedCompleteData?.skills2 == null) ||
-                  (extractedCompleteData?.monday == null ||
-                      extractedCompleteData?.tuesday == null ||
-                      extractedCompleteData?.wednesday == null ||
-                      extractedCompleteData?.thersday == null ||
-                      extractedCompleteData?.friday == null ||
-                      extractedCompleteData?.saturday == null ||
-                      extractedCompleteData?.sunday == null) ||
-                  extractedCompleteData?.answer1 == null ||
-                  extractedCompleteData?.insurance1 == null ||
-                  extractedCompleteData?.rules1 == null ||
+              if ((extractedCompleteData?.skills == "") ||
+                  (extractedCompleteData?.monday == "" ||
+                      extractedCompleteData?.tuesday == "" ||
+                      extractedCompleteData?.wednesday == "" ||
+                      extractedCompleteData?.thersday == "" ||
+                      extractedCompleteData?.friday == "" ||
+                      extractedCompleteData?.saturday == "" ||
+                      extractedCompleteData?.sunday == "") ||
+                  extractedCompleteData?.answer1 == "" ||
+                  extractedCompleteData?.insurance1 == "" ||
+                  extractedCompleteData?.rules1 == "" ||
                   profileData.profile?.image == 'main/avatar.png' ||
                   (profileData.profile?.phone == '') ||
-                  (extractedCompleteData?.euIdCardFront == null ||
+                  (extractedCompleteData?.euIdCardFront == "" ||
                       extractedCompleteData?.euIdResidencePermitFront ==
-                          null) ||
-                  (extractedCompleteData?.vitalCardNumber == null ||
-                      extractedCompleteData?.socialSecurityNumber == null) ||
-                  extractedCompleteData?.score == null) ...[
+                          "") ||
+                  (extractedCompleteData?.vitalCardNumber == "" ||
+                      extractedCompleteData?.socialSecurityNumber == "") ||
+                  extractedCompleteData?.score == "") ...[
                 GestureDetector(
                   onTap: () => Navigator.of(context)
                       .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
