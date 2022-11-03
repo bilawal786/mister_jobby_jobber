@@ -187,7 +187,29 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       borderRadius: BorderRadius.circular(7.0),
                     ),
                     child: TextFormField(
-                      initialValue: extractedData.phone,
+                      initialValue: extractedData.lastName,
+                      autovalidateMode: AutovalidateMode.always,
+                      onSaved: (value) {
+                        lastName = value;
+                      },
+                      decoration: const InputDecoration(
+                        focusedBorder: InputBorder.none,
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.all(10.0),
+                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ),
+                Consumer<PersonalInformationProvider>(
+                  builder: (_, info, child) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(7.0),
+                    ),
+                    child: TextFormField(
+                      initialValue: "0321215215",
                       onSaved: (value) {
                         phoneNumber = value;
                       },
@@ -267,8 +289,12 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 const Divider(),
                 CustomButton(
                     onPress: () {
-                      debugPrint(extractedData.phone);
-                      formSubmit(firstName,lastName, profileData.genderValue, phoneNumber, profileData.statusName);
+                      // formSubmit(firstName,lastName, profileData.genderValue, phoneNumber, profileData.statusName);
+                      debugPrint(phoneNumber);
+                      debugPrint(firstName);
+                      debugPrint(lastName);
+                      print(profileData.genderValue);
+                      print(profileData.statusName);
                     },
                     buttonName: "Confirm"),
               ],
