@@ -9,13 +9,11 @@ import '../../screens/auth_screens/forget_password_screens/otp_verifiey_screen.d
 import '../../widgets/const_widgets/login_progress_indicator.dart';
 
 class ForgetPasswordProvider with ChangeNotifier {
-
   bool checkObscure = true;
   void toggleObscure() {
     checkObscure = !checkObscure;
     notifyListeners();
   }
-
   Future<void> verifyOtp(BuildContext context, email, otp) async {
     showDialog(
         context: context,
@@ -123,7 +121,7 @@ class ForgetPasswordProvider with ChangeNotifier {
         body: jsonEncode(<String, String>{
           'email': email.toString(),
           'password': password.toString(),
-          'role': 2.toString()
+          'role': 1.toString()
         }));
     if (response.statusCode == 200) {
       final forgetPassword =
