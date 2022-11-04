@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
+import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
@@ -55,14 +57,15 @@ class RulesProvider with ChangeNotifier{
         'Authorization': "Bearer $userToken",
       },
       body: jsonEncode(<String, String>{
-        'rule1': rule1.toString(),
-        'rule2': rule2.toString(),
-        'rule3': rule3.toString(),
-        'rule4': rule4.toString(),
+        'rules1': rule1.toString(),
+        'rules2': rule2.toString(),
+        'rules3': rule3.toString(),
+        'rules4': rule4.toString(),
       }),
     );
 
     if(response.statusCode == 200) {
+      Provider.of<CheckProfileCompletionProvider>(context,listen: false).getProfileCompletionData();
       debugPrint(response.body);
       debugPrint("rules availability api is working");
       Navigator.pop(context);
