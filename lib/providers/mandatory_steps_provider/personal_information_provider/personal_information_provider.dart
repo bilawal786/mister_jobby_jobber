@@ -19,6 +19,13 @@ class PersonalInformationProvider with ChangeNotifier {
   String? lastName;
   String? phoneNumber;
 
+
+  getData(value){
+    firstName = value;
+    notifyListeners();
+  }
+
+
   void genderCheckFunction(index, getGender) {
     genderValue = getGender;
     genderValue = index + 1;
@@ -31,7 +38,6 @@ class PersonalInformationProvider with ChangeNotifier {
     debugPrint(genderValue.toString());
     notifyListeners();
   }
-
   int status = 1;
   String statusName = "";
 
