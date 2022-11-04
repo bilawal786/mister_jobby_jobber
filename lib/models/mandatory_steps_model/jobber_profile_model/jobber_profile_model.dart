@@ -70,7 +70,7 @@ class JobberProfileModel {
   String qualification;
   String professional;
   bool availableStatus;
-  bool pro;
+  int pro;
   bool verified;
   String equipements;
   String engagments;
