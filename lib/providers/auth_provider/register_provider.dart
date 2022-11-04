@@ -38,6 +38,7 @@ class RegisterProvider with ChangeNotifier {
       final register = AuthModel.fromJson(jsonDecode(response.body));
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', register.success.token);
+      await prefs.setInt('jobberId', register.success.id);
       Navigator.pop(context);
       Navigator.of(context)
           .pushNamedAndRemoveUntil(MyRoutes.SPLASHSCREENROUTE, (route) => false);
