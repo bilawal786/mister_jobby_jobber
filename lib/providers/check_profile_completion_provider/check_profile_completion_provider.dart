@@ -22,9 +22,10 @@ class CheckProfileCompletionProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       debugPrint("checkProfileCompletion api is working");
       checkProfileComplete = checkProfileCompletionFromJson(response.body);
+      notifyListeners();
     }else{
       debugPrint("checkProfileCompletion api is not working");
     }
-
+    notifyListeners();
   }
 }
