@@ -20,7 +20,10 @@ class _FAQScreenState extends State<FAQScreen> {
         backgroundColor: Colors.white,
         title: Text("FAQ".tr(),style: Theme.of(context).textTheme.titleSmall,),
         centerTitle: true,
-        iconTheme: Theme.of(context).iconTheme,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 25,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

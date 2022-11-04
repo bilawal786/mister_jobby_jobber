@@ -15,11 +15,9 @@ class ForgetPasswordProvider with ChangeNotifier {
     notifyListeners();
   }
   Future<void> verifyOtp(BuildContext context, email, otp) async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const LoginProgressIndicator();
-        });
+    showDialog(context: context, builder: (BuildContext context) {
+      return const LoginProgressIndicator();
+    });
     var response = await http.post(
       Uri.parse('${MyRoutes.BASEURL}/otp/verify'),
       headers: <String, String>{

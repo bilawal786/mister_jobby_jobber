@@ -14,7 +14,7 @@ class BadgeProScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         iconTheme: const IconThemeData(
-          color: Colors.black45,
+          color: Colors.black,
           size: 25,
         ),
         title: Text(
