@@ -313,22 +313,40 @@ class ConstProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String answerOne = "";
+  String answerTwo = "";
+  String answerThree = "";
   int questionOneValue = 0;
   int questionTwoValue = 0;
   int questionThreeValue = 0;
 
   void checkQuestionOneGroupValue(int? value) {
     questionOneValue = value!;
+    if(questionOneValue == 1) {
+      answerOne = "He pays the entire mission in advance and online on mister jobby.".tr();
+    }else if(questionOneValue == 2) {
+      answerOne = "We don't know, we'll see.".tr();
+    }
     notifyListeners();
   }
 
   void checkQuestionTwoGroupValue(int? value) {
     questionTwoValue = value!;
+    if(questionTwoValue == 1) {
+      answerTwo = "Too bad for you.".tr();
+    }else if(questionTwoValue == 2) {
+      answerTwo = "The customer can add overtime on mister jobby.".tr();
+    }
     notifyListeners();
   }
 
   void checkQuestionThreeGroupValue(int? value) {
     questionThreeValue = value!;
+    if(questionThreeValue == 1) {
+      answerThree = "There is no consequence.".tr();
+    }else if(questionThreeValue == 2) {
+      answerThree = "You risk not being paid and being suspended.".tr();
+    }
     notifyListeners();
   }
 

@@ -39,17 +39,17 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
           final isLastStep = currentStep == getSteps().length - 1;
           if (isLastStep) {
             print("Step completed");
-            print("services Q1 value:  ${servicesData.questionOneValue}");
-            print("services Q2 value:  ${servicesData.questionTwoValue}");
-            print("services Q3 value:  ${servicesData.questionThreeValue}");
+            print("services Q1 value:  ${servicesData.answerOne}");
+            print("services Q2 value:  ${servicesData.answerTwo}");
+            print("services Q3 value:  ${servicesData.answerThree}");
             print("services Q4 value:  ${servicesData.trustMisterJobby}");
             print("services Q5 value:  ${servicesData.cashNotRequired}");
 
             progressServiceApi.postProgressServices(
               context,
-              servicesData.questionOneValue,
-              servicesData.questionTwoValue,
-              servicesData.questionThreeValue,
+              servicesData.answerOne,
+              servicesData.answerTwo,
+              servicesData.answerThree,
               servicesData.trustMisterJobby,
             );
           } else {
@@ -74,8 +74,7 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50.0),
-                            primary: Theme.of(context).primaryColor,
+                            minimumSize: const Size.fromHeight(50.0), backgroundColor: Theme.of(context).primaryColor,
                             elevation: 5,
                           ),
                           child: Text(
@@ -99,8 +98,7 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50.0),
-                            primary: Theme.of(context).primaryColor,
+                            minimumSize: const Size.fromHeight(50.0), backgroundColor: Theme.of(context).primaryColor,
                             elevation: 5,
                           ),
                           child: Text(
@@ -124,8 +122,7 @@ class _ServicesStepsScreenState extends State<ServicesStepsScreen> {
                   child: ElevatedButton(
                     onPressed: details.onStepCancel,
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50.0),
-                      primary: Colors.black12,
+                      minimumSize: const Size.fromHeight(50.0), backgroundColor: Colors.black12,
                       elevation: 0,
                     ),
                     child: const Text(
