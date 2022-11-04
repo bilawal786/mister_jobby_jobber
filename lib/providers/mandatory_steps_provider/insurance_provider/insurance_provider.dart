@@ -11,22 +11,41 @@ class InsuranceProvider with ChangeNotifier {
 
   bool insuranceCompleted = false;
 
+  String insuranceAnswer1 = "";
+  String insuranceAnswer2 = "";
+  String insuranceAnswer3 = "";
+
   int insuranceQuestion1 = 0;
   int insuranceQuestion2 = 0;
   int insuranceQuestion3 = 0;
 
   void checkInsurance1Answer(int? value) {
     insuranceQuestion1 = value!;
+    if(insuranceQuestion1 == 1) {
+      insuranceAnswer1 = "You must reimburse what you have broken.";
+    }else if(insuranceQuestion1 == 2) {
+      insuranceAnswer1 = "Mister Jobby reimburses for you what you have broken.";
+    }
     notifyListeners();
   }
 
   void checkInsurance2Answer(int? value) {
     insuranceQuestion2 = value!;
+    if(insuranceQuestion2 == 1) {
+      insuranceAnswer2 = "Yes, I am still insured.";
+    }else if(insuranceQuestion2 == 2) {
+      insuranceAnswer2 = "No, I can no longer benefit from the insurance.";
+    }
     notifyListeners();
   }
 
   void checkInsurance3Answer(int? value) {
     insuranceQuestion3 = value!;
+    if(insuranceQuestion3 == 1) {
+      insuranceAnswer3 = "No, since it has not been officially booked on Mister Jobby.";
+    }else if(insuranceQuestion3 == 2) {
+      insuranceAnswer3 = "Yes, the insurance covers everything, all the time.";
+    }
     notifyListeners();
   }
 
