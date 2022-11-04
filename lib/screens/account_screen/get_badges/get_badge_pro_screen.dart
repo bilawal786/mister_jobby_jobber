@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_badges_provider.dart';
 import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
@@ -50,7 +51,7 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
         title: Text(
           "Get Badge PRO",
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -63,7 +64,7 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                 Text(
                   "Company Name",
                   style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -81,7 +82,7 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                 Text(
                   "Number SIRET",
                   style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -101,7 +102,7 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                 Text(
                   "Billing address",
                   style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -119,7 +120,7 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                 Text(
                   "VAT regime",
                   style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -134,11 +135,11 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                     title: Text(
                       "Micro-enterprise scheme",
                       style: Theme.of(context).textTheme.bodySmall,
-                    ),
+                    ).tr(),
                     subtitle: Text(
                       "Without VAT",
                       style: Theme.of(context).textTheme.labelMedium,
-                    ),
+                    ).tr(),
                   ),
                   const Divider(),
                   RadioListTile(
@@ -151,11 +152,11 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                     title: Text(
                       "Sole proprietorship scheme",
                       style: Theme.of(context).textTheme.bodySmall,
-                    ),
+                    ).tr(),
                     subtitle: Text(
                       "subject to VAT",
                       style: Theme.of(context).textTheme.labelMedium,
-                    ),
+                    ).tr(),
                   ),
                 ],),),
                 const Divider(),

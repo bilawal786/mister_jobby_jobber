@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +60,7 @@ class _OtpVerifyState extends State<OtpVerify> {
                 'Verify OTP',
                 // "EmailText",
                 style: Theme.of(context).textTheme.titleSmall,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -67,7 +68,7 @@ class _OtpVerifyState extends State<OtpVerify> {
                 'We heve sent verification code to',
                 // "EmailText",
                 style: Theme.of(context).textTheme.bodySmall,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),

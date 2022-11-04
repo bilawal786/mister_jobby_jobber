@@ -62,7 +62,11 @@ class _EventCalenderState extends State<EventCalender> {
           style: Theme.of(context).textTheme.titleSmall,
         ),
         centerTitle: true,
-        iconTheme: Theme.of(context).iconTheme,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 25,
+        ),
+
       ),
       body: SingleChildScrollView(
         child: Column(

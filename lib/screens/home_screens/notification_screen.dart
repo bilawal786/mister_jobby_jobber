@@ -21,7 +21,10 @@ class _NotificationDisplayState extends State<NotificationDisplay> {
         backgroundColor: Colors.white,
         title: Text("Notifications".tr(),style: Theme.of(context).textTheme.titleSmall,),
         centerTitle: true,
-        iconTheme: Theme.of(context).iconTheme,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 25,
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: ()async{
