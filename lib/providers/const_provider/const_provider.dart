@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helper/routes.dart';
 import '../../widgets/const_widgets/login_progress_indicator.dart';
+import '../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class ConstProvider with ChangeNotifier {
   List<String> temp = [];
@@ -428,6 +430,8 @@ class ConstProvider with ChangeNotifier {
       debugPrint(response.body);
       clearData();
       debugPrint("Skill add api is working");
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
       Navigator.pop(context);
       Navigator.of(context)
           .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);

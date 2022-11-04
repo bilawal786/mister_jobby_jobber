@@ -2,6 +2,7 @@
 //
 //     final checkProfileCompletion = checkProfileCompletionFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 CheckProfileCompletion checkProfileCompletionFromJson(String str) => CheckProfileCompletion.fromJson(json.decode(str));

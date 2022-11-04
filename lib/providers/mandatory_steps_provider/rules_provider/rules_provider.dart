@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 import 'package:mister_jobby_jobber/providers/check_profile_completion_provider/check_profile_completion_provider.dart';
@@ -11,22 +12,42 @@ import '../../../widgets/const_widgets/progress_indicator.dart';
 
 class RulesProvider with ChangeNotifier{
   bool rulesCompleted = false;
+
+  String rulesAnswer1 = "";
+  String rulesAnswer2 = "";
+  String rulesAnswer3 = "";
+
   int rulesQuestion1 = 0;
   int rulesQuestion2 = 0;
   int rulesQuestion3 = 0;
 
   void checkRules1Answer(int? value) {
     rulesQuestion1 = value!;
+    if(rulesQuestion1 == 1){
+      rulesAnswer1 = "I check that i am available on the date and at the time requested by the client.".tr();
+    }else if(rulesQuestion1 == 2){
+      rulesAnswer1 = "I apply regardless of my schedule. At worst I will be late or I will postpone the job.".tr();
+    }
     notifyListeners();
   }
 
   void checkRules2Answer(int? value) {
     rulesQuestion2 = value!;
+    if(rulesQuestion2 == 1){
+      rulesAnswer2 = "I apply for the lowest hourly rate but I will ask for a supplement on the spot.".tr();
+    }else if(rulesQuestion2 == 2){
+      rulesAnswer2 = "I apply an hourly rate that corresponds to my skills and my equipment.".tr();
+    }
     notifyListeners();
   }
 
   void checkRules3Answer(int? value) {
     rulesQuestion3 = value!;
+    if(rulesQuestion3 == 1){
+      rulesAnswer3 = "I ask my client to shift the job according to my schedule.".tr();
+    }else if(rulesQuestion3 == 2){
+      rulesAnswer3 = "I apply only to jobs for which I am available and competent.".tr();
+    }
     notifyListeners();
   }
 

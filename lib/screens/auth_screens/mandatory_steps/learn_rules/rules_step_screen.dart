@@ -39,9 +39,9 @@ class _RulesStepScreenState extends State<RulesStepScreen> {
             print("Step completed");
             rulesData.postRules(
               context,
-              rulesData.rulesQuestion1,
-              rulesData.rulesQuestion2,
-              rulesData.rulesQuestion3,
+              rulesData.rulesAnswer1,
+              rulesData.rulesAnswer2,
+              rulesData.rulesAnswer3,
               rulesData.reservedJobsMisterJobby,
             );
           } else {

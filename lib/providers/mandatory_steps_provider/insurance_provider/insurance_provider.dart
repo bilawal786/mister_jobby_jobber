@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
+import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class InsuranceProvider with ChangeNotifier {
 
@@ -22,9 +25,9 @@ class InsuranceProvider with ChangeNotifier {
   void checkInsurance1Answer(int? value) {
     insuranceQuestion1 = value!;
     if(insuranceQuestion1 == 1) {
-      insuranceAnswer1 = "You must reimburse what you have broken.";
+      insuranceAnswer1 = "You must reimburse what you have broken.".tr();
     }else if(insuranceQuestion1 == 2) {
-      insuranceAnswer1 = "Mister Jobby reimburses for you what you have broken.";
+      insuranceAnswer1 = "Mister Jobby reimburses for you what you have broken.".tr();
     }
     notifyListeners();
   }
@@ -32,9 +35,9 @@ class InsuranceProvider with ChangeNotifier {
   void checkInsurance2Answer(int? value) {
     insuranceQuestion2 = value!;
     if(insuranceQuestion2 == 1) {
-      insuranceAnswer2 = "Yes, I am still insured.";
+      insuranceAnswer2 = "Yes, I am still insured.".tr();
     }else if(insuranceQuestion2 == 2) {
-      insuranceAnswer2 = "No, I can no longer benefit from the insurance.";
+      insuranceAnswer2 = "No, I can no longer benefit from the insurance.".tr();
     }
     notifyListeners();
   }
@@ -42,9 +45,9 @@ class InsuranceProvider with ChangeNotifier {
   void checkInsurance3Answer(int? value) {
     insuranceQuestion3 = value!;
     if(insuranceQuestion3 == 1) {
-      insuranceAnswer3 = "No, since it has not been officially booked on Mister Jobby.";
+      insuranceAnswer3 = "No, since it has not been officially booked on Mister Jobby.".tr();
     }else if(insuranceQuestion3 == 2) {
-      insuranceAnswer3 = "Yes, the insurance covers everything, all the time.";
+      insuranceAnswer3 = "Yes, the insurance covers everything, all the time.".tr();
     }
     notifyListeners();
   }
@@ -85,6 +88,8 @@ class InsuranceProvider with ChangeNotifier {
 
     if(response.statusCode == 200) {
       print(response.body);
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
       print("Insurance availability api is working");
       Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);

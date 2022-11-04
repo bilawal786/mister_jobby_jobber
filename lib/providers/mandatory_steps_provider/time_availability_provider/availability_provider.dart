@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
+import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class AvailabilityProvider with ChangeNotifier {
 
@@ -36,6 +38,8 @@ class AvailabilityProvider with ChangeNotifier {
     );
     if(response.statusCode == 200) {
       debugPrint(response.body);
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
       debugPrint("time availability api is working");
       Navigator.pop(context);
       Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
