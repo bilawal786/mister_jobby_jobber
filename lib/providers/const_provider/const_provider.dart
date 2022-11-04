@@ -178,6 +178,14 @@ class ConstProvider with ChangeNotifier {
     skillsDetail = "";
   }
 
+  String availableTimeMonday = '';
+  String availableTimeTuesday = '';
+  String availableTimeWednesday = '';
+  String availableTimeThursday = '';
+  String availableTimeFriday = '';
+  String availableTimeSaturday = '';
+  String availableTimeSunday = '';
+
   int mondayValue = 0;
   int tuesdayValue = 0;
   int wednesdayValue = 0;
@@ -188,42 +196,119 @@ class ConstProvider with ChangeNotifier {
 
   void checkMondayValue(int? value, BuildContext context) {
     mondayValue = value!;
+    if(mondayValue == 1) {
+      availableTimeMonday = "07:00 - 21:00";
+    }else if(mondayValue == 2){
+      availableTimeMonday = "07:00 - 13:00";
+    }else if(mondayValue == 3){
+      availableTimeMonday = "13:00 - 18:00";
+    }else if(mondayValue == 4){
+      availableTimeMonday = "18:00 - 21:00";
+    }else if(mondayValue == 5){
+      availableTimeMonday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkTuesdayValue(int? value, BuildContext context) {
     tuesdayValue = value!;
+    if(tuesdayValue == 1) {
+      availableTimeTuesday = "07:00 - 21:00";
+    }else if(tuesdayValue == 2){
+      availableTimeTuesday = "07:00 - 13:00";
+    }else if(tuesdayValue == 3){
+      availableTimeTuesday = "13:00 - 18:00";
+    }else if(tuesdayValue == 4){
+      availableTimeTuesday = "18:00 - 21:00";
+    }else if(tuesdayValue == 5){
+      availableTimeTuesday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkWednesdayValue(int? value, BuildContext context) {
     wednesdayValue = value!;
+    if(wednesdayValue == 1) {
+      availableTimeWednesday = "07:00 - 21:00";
+    }else if(wednesdayValue == 2){
+      availableTimeWednesday = "07:00 - 13:00";
+    }else if(wednesdayValue == 3){
+      availableTimeWednesday = "13:00 - 18:00";
+    }else if(wednesdayValue == 4){
+      availableTimeWednesday = "18:00 - 21:00";
+    }else if(wednesdayValue == 5){
+      availableTimeWednesday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkThursdayValue(int? value, BuildContext context) {
     thursdayValue = value!;
+    if(thursdayValue == 1) {
+      availableTimeThursday = "07:00 - 21:00";
+    }else if(thursdayValue == 2){
+      availableTimeThursday = "07:00 - 13:00";
+    }else if(thursdayValue == 3){
+      availableTimeThursday = "13:00 - 18:00";
+    }else if(thursdayValue == 4){
+      availableTimeThursday = "18:00 - 21:00";
+    }else if(thursdayValue == 5){
+      availableTimeThursday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkFridayValue(int? value, BuildContext context) {
     fridayValue = value!;
+    if(fridayValue == 1) {
+      availableTimeFriday = "07:00 - 21:00";
+    }else if(fridayValue == 2){
+      availableTimeFriday = "07:00 - 13:00";
+    }else if(fridayValue == 3){
+      availableTimeFriday = "13:00 - 18:00";
+    }else if(fridayValue == 4){
+      availableTimeFriday = "18:00 - 21:00";
+    }else if(fridayValue == 5){
+      availableTimeFriday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkSaturdayValue(int? value, BuildContext context) {
     saturdayValue = value!;
+    if(saturdayValue == 1) {
+      availableTimeSaturday = "07:00 - 21:00";
+    }else if(saturdayValue == 2){
+      availableTimeSaturday = "07:00 - 13:00";
+    }else if(saturdayValue == 3){
+      availableTimeSaturday = "13:00 - 18:00";
+    }else if(saturdayValue == 4){
+      availableTimeSaturday = "18:00 - 21:00";
+    }else if(saturdayValue == 5){
+      availableTimeSaturday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }
 
   void checkSundayValue(int? value, BuildContext context) {
     sundayValue = value!;
+    if(sundayValue == 1) {
+      availableTimeSunday = "07:00 - 21:00";
+    }else if(sundayValue == 2){
+      availableTimeSunday = "07:00 - 13:00";
+    }else if(sundayValue == 3){
+      availableTimeSunday = "13:00 - 18:00";
+    }else if(sundayValue == 4){
+      availableTimeSunday = "18:00 - 21:00";
+    }else if(sundayValue == 5){
+      availableTimeSunday = "I am Not Available";
+    }
     Navigator.pop(context);
     notifyListeners();
   }

@@ -366,13 +366,13 @@ class AvailabilitiesScreen extends StatelessWidget {
                           onPress: () {
                             timeApi.postAvailability(
                               context,
-                              availabilityData.mondayValue.toString(),
-                              availabilityData.tuesdayValue.toString(),
-                              availabilityData.wednesdayValue.toString(),
-                              availabilityData.thursdayValue.toString(),
-                              availabilityData.fridayValue.toString(),
-                              availabilityData.saturdayValue.toString(),
-                              availabilityData.sundayValue.toString(),
+                              availabilityData.availableTimeMonday.toString(),
+                              availabilityData.availableTimeTuesday.toString(),
+                              availabilityData.availableTimeWednesday.toString(),
+                              availabilityData.availableTimeThursday.toString(),
+                              availabilityData.availableTimeFriday.toString(),
+                              availabilityData.availableTimeSaturday.toString(),
+                              availabilityData.availableTimeSunday.toString(),
                             );
                           },
                           buttonName: "Confirm")
