@@ -428,13 +428,13 @@ class ConstProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint(response.body);
-      clearData();
       debugPrint("Skill add api is working");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      clearData();
       Navigator.pop(context);
       Navigator.of(context)
-          .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

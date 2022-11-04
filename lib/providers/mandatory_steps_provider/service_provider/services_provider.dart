@@ -44,7 +44,8 @@ class ServicesProvider with ChangeNotifier {
           .getProfileCompletionData();
       print("services availability api is working");
       Navigator.pop(context);
-      Navigator.of(context).pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      Navigator.of(context)
+          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

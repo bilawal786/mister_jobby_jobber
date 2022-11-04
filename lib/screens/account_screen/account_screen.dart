@@ -5,13 +5,28 @@ import '../../helper/routes.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
   @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  var isInit= true;
+  @override
+  void didChangeDependencies() {
+    if(isInit) {
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
     final checkCompleteProfile =
-        Provider.of<CheckProfileCompletionProvider>(context);
+        Provider.of<CheckProfileCompletionProvider>(context, listen:  false);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
@@ -246,7 +261,7 @@ class AccountScreen extends StatelessWidget {
                   extractedCompleteData?.rules1 == "" ||
                   profileData.profile?.image == 'main/avatar.png' ||
                   (profileData.profile?.phone == '') ||
-                  (extractedCompleteData?.euIdCardFront == "" ||
+                  (extractedCompleteData?.euIdCardFront == "" &&
                       extractedCompleteData?.euIdResidencePermitFront ==
                           "") ||
                   (extractedCompleteData?.vitalCardNumber == "" ||
@@ -280,6 +295,26 @@ class AccountScreen extends StatelessWidget {
                       SizedBox(
                         height: mediaQuery.size.width / 40,
                       ),
+                      if ((extractedCompleteData?.skills == "" )  &&
+                          (extractedCompleteData?.monday == "" ||
+                              extractedCompleteData!.tuesday == "" ||
+                              extractedCompleteData.wednesday == "" ||
+                              extractedCompleteData.thersday == "" ||
+                              extractedCompleteData.friday == "" ||
+                              extractedCompleteData.saturday == "" ||
+                              extractedCompleteData.sunday == "" ) ||
+                          extractedCompleteData?.answer1 == "" ||
+                          extractedCompleteData?.insurance1 == "" ||
+                          extractedCompleteData?.rules1 == "" ||
+                          profileData.profile!.image == 'main/avatar.png' ||
+                          (extractedCompleteData?.phone == "" )||
+                          (extractedCompleteData?.euIdCardFront == "" ||
+                              extractedCompleteData?.euIdResidencePermitFront ==
+                                  "") ||
+                          (extractedCompleteData?.vitalCardNumber == "" ||
+                              extractedCompleteData?.socialSecurityNumber ==
+                                  "") ||
+                          extractedCompleteData?.score == "") ... [
                       ListTile(
                         onTap: () => Navigator.of(context)
                             .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
@@ -306,12 +341,11 @@ class AccountScreen extends StatelessWidget {
                           color: Colors.black,
                           size: 20,
                         ),
-                      ),
+                      ),],
                     ],
                   ),
                 ),
               ],
-              Text('${profileData.profile?.phone}')
             ],
           ),
         ),

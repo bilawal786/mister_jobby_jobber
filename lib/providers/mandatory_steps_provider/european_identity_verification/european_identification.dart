@@ -3,10 +3,12 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
+import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class EuropeanIdentificationProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -608,9 +610,11 @@ class EuropeanIdentificationProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("European identification documents Posted successfully ");
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
       Navigator.pop(context);
       Navigator.of(context)
-          .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

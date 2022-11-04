@@ -29,9 +29,9 @@ class ReliabilityScoreProvider  with ChangeNotifier{
       }),
     );
     if(response.statusCode == 200){
-      Navigator.pop(context);
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      Navigator.pop(context);
       Navigator.of(context).popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       debugPrint("reliability score api is working");
     }else{

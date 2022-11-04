@@ -4,9 +4,11 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart'as http;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class NonEuroIdentificationProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -296,7 +298,11 @@ class NonEuroIdentificationProvider with ChangeNotifier {
     } else {
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData();
       Navigator.pop(context);
+      Navigator.of(context)
+          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
     }
     if (kDebugMode) {
       print(response.request);

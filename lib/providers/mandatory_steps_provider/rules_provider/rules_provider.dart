@@ -90,7 +90,8 @@ class RulesProvider with ChangeNotifier{
       debugPrint(response.body);
       debugPrint("rules availability api is working");
       Navigator.pop(context);
-      Navigator.of(context).pushReplacementNamed(MyRoutes.SPLASHSCREENROUTE);
+      Navigator.of(context)
+          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
