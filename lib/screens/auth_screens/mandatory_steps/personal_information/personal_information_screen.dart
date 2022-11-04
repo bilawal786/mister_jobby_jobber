@@ -17,15 +17,7 @@ class PersonalInformationScreen extends StatefulWidget {
 class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   final formKey = GlobalKey<FormState>();
 
-
-
-  @override
-  void initState() {
-
-    super.initState();
-  }
-
-  void formSubmit(fName,lName,gen,number,prof) {
+  void formSubmit(fName, lName, gen, number, prof) {
     final updateProfileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
     var isValid = formKey.currentState!.validate();
@@ -33,7 +25,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
       return;
     }
     formKey.currentState!.save();
-    updateProfileData.updateProfile(context,
+    updateProfileData.updateProfile(
+      context,
       fName,
       lName,
       gen,
@@ -46,6 +39,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   Widget build(BuildContext context) {
     var profileData = Provider.of<PersonalInformationProvider>(context);
     final extractedData = profileData.profile;
+    profileData.firstName = extractedData!.firstName;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -84,10 +78,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       borderRadius: BorderRadius.circular(7.0),
                     ),
                     child: TextFormField(
-                      initialValue: extractedData!.firstName,
+                      initialValue: extractedData.firstName,
                       autovalidateMode: AutovalidateMode.always,
-                      onSaved: (value) {
-                        profileData.getData(value);
+                      onChanged: (value) {
+                        info.getFirstName(value);
                       },
                       decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
@@ -116,10 +110,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       borderRadius: BorderRadius.circular(7.0),
                     ),
                     child: TextFormField(
-                      initialValue: extractedData!.lastName,
+                      initialValue: extractedData.lastName,
                       autovalidateMode: AutovalidateMode.always,
-                      onSaved: (value) {
-                        profileData.lastName = value;
+                      onChanged: (value) {
+                        info.getLastName(value);
                       },
                       decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
@@ -151,7 +145,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) =>
                           OutlineSelectedButton(
-                        onTap: () => genderData.genderCheckFunction(index, profileData.genderValue),
+                        onTap: () => genderData.genderCheckFunction(
+                            index, profileData.genderValue),
                         textTitle: index == 0 ? "Male" : "Female",
                         color: genderData.genderValue - 1 == index
                             ? Colors.blue.shade50
@@ -179,10 +174,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       borderRadius: BorderRadius.circular(7.0),
                     ),
                     child: TextFormField(
-                      initialValue: extractedData?.phone,
+                      initialValue: extractedData.phone,
                       autovalidateMode: AutovalidateMode.always,
-                      onSaved: (value) {
-                        profileData.phoneNumber = value;
+                      onChanged: (value) {
+                        info.getPhoneNumber(value);
                       },
                       decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
@@ -194,29 +189,6 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     ),
                   ),
                 ),
-                //
-                // Consumer<PersonalInformationProvider>(
-                //   builder: (_, info, child) => Container(
-                //     decoration: BoxDecoration(
-                //       color: Colors.grey.shade300,
-                //       borderRadius: BorderRadius.circular(7.0),
-                //     ),
-                //     child: TextFormField(
-                //       initialValue: extractedData.phone,
-                //       onSaved: (value) {
-                //         phoneNumber = value;
-                //       },
-                //       keyboardType: TextInputType.number,
-                //       decoration: const InputDecoration(
-                //         focusedBorder: InputBorder.none,
-                //         border: InputBorder.none,
-                //         enabledBorder: InputBorder.none,
-                //         contentPadding: EdgeInsets.all(10.0),
-                //       ),
-                //       style: Theme.of(context).textTheme.bodyMedium,
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 20,
                 ),
@@ -282,8 +254,19 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 const Divider(),
                 CustomButton(
                     onPress: () {
-                      debugPrint("provider firstName data ${profileData.firstName}");
-                      // formSubmit(firstName,lastName, profileData.genderValue, phoneNumber, profileData.statusName);
+                      formSubmit(
+                        (profileData.changeFName == null)
+                            ? extractedData.firstName
+                            : profileData.changeFName,
+                        (profileData.changeLName == null)
+                            ? extractedData.lastName
+                            : profileData.changeLName,
+                        profileData.genderValue,
+                        (profileData.changePhoneNumber == null)
+                            ? extractedData.phone
+                            : profileData.changePhoneNumber,
+                        profileData.statusName,
+                      );
                     },
                     buttonName: "Confirm"),
               ],

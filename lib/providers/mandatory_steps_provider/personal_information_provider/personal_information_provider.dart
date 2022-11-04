@@ -18,10 +18,22 @@ class PersonalInformationProvider with ChangeNotifier {
   String? firstName;
   String? lastName;
   String? phoneNumber;
+  String? changeFName;
+  String? changeLName;
+  String? changePhoneNumber;
 
 
-  getData(value){
-    firstName = value;
+
+  getFirstName(value){
+    changeFName = value;
+    notifyListeners();
+  }
+  getLastName(value){
+    changeLName = value;
+    notifyListeners();
+  }
+  getPhoneNumber(value){
+    changePhoneNumber = value;
     notifyListeners();
   }
 
@@ -208,6 +220,7 @@ class PersonalInformationProvider with ChangeNotifier {
     );
     if (response.statusCode == 200) {
       Navigator.pop(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       debugPrint("Profile Updated");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
