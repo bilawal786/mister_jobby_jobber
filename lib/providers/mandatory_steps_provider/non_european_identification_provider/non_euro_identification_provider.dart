@@ -278,9 +278,9 @@ class NonEuroIdentificationProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       debugPrint("Non-European identification documents Posted successfully ");
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
       Navigator.pop(context);
-      Navigator.of(context)
-          .pushReplacementNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE);
+      Navigator.of(context).popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

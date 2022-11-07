@@ -306,9 +306,9 @@ class _AccountScreenState extends State<AccountScreen> {
                           extractedCompleteData?.answer1 == "" ||
                           extractedCompleteData?.insurance1 == "" ||
                           extractedCompleteData?.rules1 == "" ||
-                          profileData.profile!.image == 'main/avatar.png' ||
+                          profileData.profile?.image == 'main/avatar.png' ||
                           (extractedCompleteData?.phone == "" )||
-                          (extractedCompleteData?.euIdCardFront == "" ||
+                          (extractedCompleteData?.euIdCardFront == "" &&
                               extractedCompleteData?.euIdResidencePermitFront ==
                                   "") ||
                           (extractedCompleteData?.vitalCardNumber == "" ||

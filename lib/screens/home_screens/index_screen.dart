@@ -82,24 +82,28 @@ class IndexScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              if ((extractedCompleteData?.skills == "") ||
+              SizedBox(
+                height: mediaQuery.size.width / 40,
+              ),
+              if ((extractedCompleteData?.skills == "" )  &&
                   (extractedCompleteData?.monday == "" ||
-                      extractedCompleteData?.tuesday == "" ||
-                      extractedCompleteData?.wednesday == "" ||
-                      extractedCompleteData?.thersday == "" ||
-                      extractedCompleteData?.friday == "" ||
-                      extractedCompleteData?.saturday == "" ||
-                      extractedCompleteData?.sunday == "") ||
+                      extractedCompleteData!.tuesday == "" ||
+                      extractedCompleteData.wednesday == "" ||
+                      extractedCompleteData.thersday == "" ||
+                      extractedCompleteData.friday == "" ||
+                      extractedCompleteData.saturday == "" ||
+                      extractedCompleteData.sunday == "" ) ||
                   extractedCompleteData?.answer1 == "" ||
                   extractedCompleteData?.insurance1 == "" ||
                   extractedCompleteData?.rules1 == "" ||
                   profileData.profile?.image == 'main/avatar.png' ||
-                  (profileData.profile?.phone == '') ||
-                  (extractedCompleteData?.euIdCardFront == "" ||
+                  (extractedCompleteData?.phone == "" )||
+                  (extractedCompleteData?.euIdCardFront == "" &&
                       extractedCompleteData?.euIdResidencePermitFront ==
                           "") ||
                   (extractedCompleteData?.vitalCardNumber == "" ||
-                      extractedCompleteData?.socialSecurityNumber == "") ||
+                      extractedCompleteData?.socialSecurityNumber ==
+                          "") ||
                   extractedCompleteData?.score == "") ...[
                 GestureDetector(
                   onTap: () => Navigator.of(context)
