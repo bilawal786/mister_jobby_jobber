@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/screens/account_screen/subscription/subscription_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
@@ -89,6 +90,21 @@ class SettingScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () =>Navigator.of(context)
+                        .push(MaterialPageRoute(builder:(context) => const Subscription(),)),
+                    leading: Icon(
+                      Icons.subscriptions,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      "Subscription",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ).tr(),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
                     leading: Icon(
                       Icons.notification_important_outlined,
@@ -116,6 +132,7 @@ class SettingScreen extends StatelessWidget {
                     ).tr(),
                   ),
                   const Divider(),
+
                 ],
               ),
             ),
