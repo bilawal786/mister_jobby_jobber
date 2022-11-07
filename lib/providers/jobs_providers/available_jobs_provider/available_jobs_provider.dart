@@ -23,13 +23,13 @@ class AvailableJobsProvider with ChangeNotifier {
     });
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     String? token = sharedPref.getString('token');
-    var responce = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/job/ignore/$jobId'),
+    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/job/ignore/$jobId'),
     headers: <String, String> {
       'Accept':'application/json',
           'Content-Type':'application/json',
           'Authorization':'Bearer $token'
         });
-    if(responce.statusCode == 200){
+    if(response.statusCode == 200){
       debugPrint('Ignore job Api is working');
       Navigator.pop(context);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
