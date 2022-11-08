@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_badges_provider.dart';
 import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_provider.dart';
 import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
@@ -86,6 +87,7 @@ import 'providers/notifications_provider/notifications_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = 'pk_test_51LRubcLtkEa5U40QDdRaKQr5SIt815sibBnPLIGbQMzr1mSRgF8EUesAVr5UNRt7mcEGwicNuTSwIdN3UEypjZLO00WV9Hc6ME';
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(

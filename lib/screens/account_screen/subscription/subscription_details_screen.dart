@@ -1,28 +1,37 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../widgets/const_widgets/custom_button.dart';
 
-class SubscriptionDetails extends StatelessWidget {
-  final name;
-  final price;
-  final details;
-  final fee;
-  final createDate;
-  final updateDate;
-  final duration;
+class SubscriptionDetails extends StatefulWidget {
+  final String name;
+  final String price;
+  final String details;
+  final String duration;
 
   const SubscriptionDetails({
     Key? key,
-    this.name,
-    this.price,
-    this.details, this.fee, this.createDate, this.updateDate, this.duration,
+    required this.name,
+    required this.price,
+    required this.details,
+    required this.duration,
   }) : super(key: key);
 
   @override
+  State<SubscriptionDetails> createState() => _SubscriptionDetailsState();
+}
+
+class _SubscriptionDetailsState extends State<SubscriptionDetails> {
+
+  Map<String, dynamic>? paymentIntentData;
+
+  @override
   Widget build(BuildContext context) {
-    final subData = Provider.of<SubscriptionProvider>(context).subscriptionModel;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,13 +42,12 @@ class SubscriptionDetails extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Card(
-            elevation: 5,
-            child: Padding(
+          child:
+           Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Center(
                     child: RichText(
                       text: TextSpan(
@@ -65,14 +73,14 @@ class SubscriptionDetails extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: price,
+                            text: widget.price.toString(),
                           ),
                           WidgetSpan(
                             child: Transform.translate(
                               offset: const Offset(-8.0, 5),
                               child: Text(
-                                duration,
-                                style:const TextStyle(
+                                widget.duration,
+                                style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w700,
@@ -89,7 +97,7 @@ class SubscriptionDetails extends StatelessWidget {
                     height: MediaQuery.of(context).size.width / 10,
                   ),
                   Text(
-                    name,
+                    widget.name,
                     style: const TextStyle(
                       fontSize: 22,
                       color: Colors.black,
@@ -101,7 +109,7 @@ class SubscriptionDetails extends StatelessWidget {
                     height: MediaQuery.of(context).size.width / 40,
                   ),
                   Text(
-                    details,
+                    widget.details,
                     overflow: TextOverflow.visible,
                     style: const TextStyle(
                       fontSize: 18,
@@ -110,83 +118,90 @@ class SubscriptionDetails extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  // Text(
-                  //   "Fee ${fee}",
-                  //   overflow: TextOverflow.visible,
-                  //   style: const TextStyle(
-                  //     fontSize: 18,
-                  //     color: Colors.black,
-                  //     fontFamily: 'Cerebri Sans Bold',
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.width / 10,
-                  // ),
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     Text(
-                  //       "Create Date",
-                  //       overflow: TextOverflow.visible,
-                  //       style: const TextStyle(
-                  //         fontSize: 18,
-                  //         color: Colors.black,
-                  //         fontFamily: 'Cerebri Sans Bold',
-                  //       ),
-                  //     ),
-                  //     Text(
-                  //       createDate,
-                  //       overflow: TextOverflow.visible,
-                  //       style: const TextStyle(
-                  //         fontSize: 18,
-                  //         color: Colors.black,
-                  //         fontFamily: 'Cerebri Sans Bold',
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.width / 10,
-                  // ),
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     const Text(
-                  //       "Update Date",
-                  //       overflow: TextOverflow.visible,
-                  //       style: TextStyle(
-                  //         fontSize: 18,
-                  //         color: Colors.black,
-                  //         fontFamily: 'Cerebri Sans Bold',
-                  //       ),
-                  //     ),
-                  //     Text(
-                  //       updateDate,
-                  //       overflow: TextOverflow.visible,
-                  //       style: const TextStyle(
-                  //         fontSize: 18,
-                  //         color: Colors.black,
-                  //         fontFamily: 'Cerebri Sans Bold',
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.width / 10,
-                  // ),
-                  //
-                  SizedBox(
                     height: MediaQuery.of(context).size.width / 1.2,
                   ),
-                  CustomButton(onPress: () {}, buttonName: 'Buy Now'),
+                  CustomButton(onPress: () async{
+                    (double.parse(widget.price) < 1) ?
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully"))):await makePayment();}, buttonName: 'Buy Now'),
                 ],
               ),
             ),
-          ),
         ),
       ),
     );
+  }
+
+  Future<void> makePayment() async {
+  var amount = double.parse(widget.price);
+    try {
+      paymentIntentData =
+      await createPaymentIntent(amount, 'eur');
+      await Stripe.instance.initPaymentSheet(
+          paymentSheetParameters: SetupPaymentSheetParameters(
+              paymentIntentClientSecret: paymentIntentData!['client_secret'],
+              merchantDisplayName: 'Jobber')).then((value){
+      });
+
+    displayPaymentSheet();
+    } catch (e, s) {
+      print('exception:$e$s');
+    }
+  }
+
+  displayPaymentSheet() async {
+
+    try {
+      await Stripe.instance.presentPaymentSheet(
+          parameters: PresentPaymentSheetParameters(
+            clientSecret: paymentIntentData!['client_secret'],
+            confirmPayment: true,
+          )).then((newValue){
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully")));
+
+        paymentIntentData = null;
+
+      }).onError((error, stackTrace){
+        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+      });
+
+    } on StripeException catch (e) {
+      print('Exception/DISPLAYPAYMENTSHEET==> $e');
+      // showDialog(
+      //     context: context,
+      //     builder: (_) => AlertDialog(
+      //       content: Text("Cancelled "),
+      //     ));
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  createPaymentIntent(double amount, String currency) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': calculateAmount(amount),
+        'currency': currency,
+        'payment_method_types[]': 'card'
+      };
+      print(body);
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization':
+            'Bearer sk_test_51LRubcLtkEa5U40QApwIt13tNTcs9x2v95PKmJjoZ57xvfMf1PaPH0hYB556mGLJyhFDniqtEBRQbbDAY4wtmFE500xuKSA0Qb',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      print('Create Intent reponse ===> ${response.body.toString()}');
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
+    }
+  }
+
+  calculateAmount(double amount) {
+    final a = (amount * 100).toInt() ;
+    return a.toString();
   }
 }

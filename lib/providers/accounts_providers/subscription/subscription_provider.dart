@@ -25,7 +25,7 @@ class SubscriptionProvider with ChangeNotifier{
     if (subscriptionModel![index].id == 1) {
       planName = subscriptionModel![index].name.tr();
       planDetails = "Offers you can get:${subscriptionModel![index].offers}".tr();
-      plan = subscriptionModel![index].price.tr();
+      plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();
       fee = subscriptionModel![index].fee;
@@ -33,7 +33,7 @@ class SubscriptionProvider with ChangeNotifier{
     } else if (subscriptionModel![index].id == 2)  {
       planName = subscriptionModel![index].name.tr();
       planDetails = "You can get ${subscriptionModel![index].offers} offers".tr();
-      plan = subscriptionModel![index].price.tr();
+      plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();
       fee = subscriptionModel![index].fee;
@@ -41,16 +41,16 @@ class SubscriptionProvider with ChangeNotifier{
     }else{
       planName = subscriptionModel![index].name.tr();
       planDetails = "You can get ${subscriptionModel![index].offers} offers".tr();
-      plan = subscriptionModel![index].price.tr();
+      plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();
       fee = subscriptionModel![index].fee;
       duration = 'yr';
     }
-    debugPrint(plan);
+    debugPrint(plan.toString());
     debugPrint(planValue.toString());
     Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-        SubscriptionDetails(details: planDetails, name: planName, price: plan,createDate: createDate, updateDate: updateDate,fee: fee, duration: duration),));
+        SubscriptionDetails(details: planDetails, name: planName, price: plan, duration: duration),));
     notifyListeners();
   }
   
