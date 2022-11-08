@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../widgets/const_widgets/custom_button.dart';
 
@@ -6,15 +8,22 @@ class SubscriptionDetails extends StatelessWidget {
   final name;
   final price;
   final details;
+  final fee;
+  final createDate;
+  final updateDate;
+  final duration;
+
   const SubscriptionDetails({
     Key? key,
     this.name,
     this.price,
-    this.details,
+    this.details, this.fee, this.createDate, this.updateDate, this.duration,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final subData = Provider.of<SubscriptionProvider>(context).subscriptionModel;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -61,9 +70,9 @@ class SubscriptionDetails extends StatelessWidget {
                           WidgetSpan(
                             child: Transform.translate(
                               offset: const Offset(-8.0, 5),
-                              child: const Text(
-                                'mo',
-                                style: TextStyle(
+                              child: Text(
+                                duration,
+                                style:const TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w700,
@@ -103,32 +112,73 @@ class SubscriptionDetails extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
                   ),
-
+                  // Text(
+                  //   "Fee ${fee}",
+                  //   overflow: TextOverflow.visible,
+                  //   style: const TextStyle(
+                  //     fontSize: 18,
+                  //     color: Colors.black,
+                  //     fontFamily: 'Cerebri Sans Bold',
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.width / 10,
+                  // ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Text(
+                  //       "Create Date",
+                  //       overflow: TextOverflow.visible,
+                  //       style: const TextStyle(
+                  //         fontSize: 18,
+                  //         color: Colors.black,
+                  //         fontFamily: 'Cerebri Sans Bold',
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       createDate,
+                  //       overflow: TextOverflow.visible,
+                  //       style: const TextStyle(
+                  //         fontSize: 18,
+                  //         color: Colors.black,
+                  //         fontFamily: 'Cerebri Sans Bold',
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.width / 10,
+                  // ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     const Text(
+                  //       "Update Date",
+                  //       overflow: TextOverflow.visible,
+                  //       style: TextStyle(
+                  //         fontSize: 18,
+                  //         color: Colors.black,
+                  //         fontFamily: 'Cerebri Sans Bold',
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       updateDate,
+                  //       overflow: TextOverflow.visible,
+                  //       style: const TextStyle(
+                  //         fontSize: 18,
+                  //         color: Colors.black,
+                  //         fontFamily: 'Cerebri Sans Bold',
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.width / 10,
+                  // ),
+                  //
                   SizedBox(
-                    height: MediaQuery.of(context).size.width / 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    Icon(Icons.check, color: Colors.black,),
-                    SizedBox(width: MediaQuery.of(context).size.width / 40),
-                    Text('Unlimited Jobs', style: Theme.of(context).textTheme.bodyMedium,),
-                  ],),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    Icon(Icons.check, color: Colors.black,),
-                    SizedBox(width: MediaQuery.of(context).size.width / 40),
-                    Text('Groth Oriented', style: Theme.of(context).textTheme.bodyMedium,),
-                  ],),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,children: [
-                    Icon(Icons.check, color: Colors.black,),
-                    SizedBox(width: MediaQuery.of(context).size.width / 40),
-                    Text('Email Support', style: Theme.of(context).textTheme.bodyMedium,),
-                  ],),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.width / 1.2,
                   ),
                   CustomButton(onPress: () {}, buttonName: 'Buy Now'),
                 ],

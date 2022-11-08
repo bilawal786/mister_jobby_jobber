@@ -3,6 +3,7 @@ import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/su
 import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/subscription/subscription_model.dart';
 import 'subscription_details_screen.dart';
 
 class Subscription extends StatelessWidget {
@@ -10,6 +11,9 @@ class Subscription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final subscriptionData = Provider.of<SubscriptionProvider>(context);
+    final extractSubscriptionData = subscriptionData.subscriptionModel;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -63,11 +67,11 @@ class Subscription extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:  <Widget>[
                                 Text(
-                                    (index == 0) ?
-                                    "Unlimited"
-                                        : (index == 1) ?
-                                    "Yearly" :
-                                    "Monthly"
+                                    (extractSubscriptionData?[index].id == 1) ?
+                                    extractSubscriptionData![index].name
+                                        : (extractSubscriptionData?[index].id == 2) ?
+                                    extractSubscriptionData![index].name :
+                                    extractSubscriptionData![index].name
                                     ,
                                   style: const TextStyle(
                                     fontSize: 22,
@@ -77,17 +81,18 @@ class Subscription extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  (index == 0) ?
-                                  "You can pay in installment"
-                                      : (index == 1) ?
-                                  "You can pay in installment" :
-                                  "You can pay in installment"
+                                  (extractSubscriptionData[index].id == 1) ?
+                                  "Offers you can get: ${extractSubscriptionData[index].offers}"
+                                      : (extractSubscriptionData[index].id == 2) ?
+                                  "You can get ${extractSubscriptionData[index].offers} offers" :
+                                  "You can get ${extractSubscriptionData[index].offers} offers"
                                   ,
                                   overflow: TextOverflow.visible,
                                   style: const TextStyle(
                                     fontSize: 18,
+                                    fontWeight: FontWeight.normal,
                                     color: Colors.white,
-                                    fontFamily: 'Cerebri Sans Bold',
+                                    fontFamily: 'Cerebri Sans reqular',
                                   ),
                                 ),
                               ],
@@ -121,17 +126,21 @@ class Subscription extends StatelessWidget {
                                       ),
                                     ),
                                      TextSpan(
-                                      text: (index == 0) ?
-                                            "15.99"
-                                            : (index == 1) ?
-                                          "10.99" :
-                                          "5.99"
+                                      text: (extractSubscriptionData[index].id == 1) ?
+                                      extractSubscriptionData[index].price
+                                            : (extractSubscriptionData[index].id == 2) ?
+                                      extractSubscriptionData[index].price :
+                                      extractSubscriptionData[index].price
                                             ,),
                                     WidgetSpan(
                                       child: Transform.translate(
                                         offset: const Offset(-8.0, 5),
-                                        child: const Text(
-                                          'mo',
+                                        child: Text(
+                                          (extractSubscriptionData[index].id == 3) ?
+                                              'yr' :
+                                          (extractSubscriptionData[index].id == 2) ? 'mo' :
+                                           "",
+
                                           style: TextStyle(
                                             fontSize: 12,
                                             color: Colors.white,

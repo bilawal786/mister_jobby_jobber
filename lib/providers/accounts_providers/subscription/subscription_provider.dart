@@ -1,34 +1,74 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/helper/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
+import '../../../models/subscription/subscription_model.dart';
 import '../../../screens/account_screen/subscription/subscription_details_screen.dart';
 
 class SubscriptionProvider with ChangeNotifier{
+
+   List<SubscriptionModel>? subscriptionModel;
+
   int planValue = 1;
   String plan = "";
   String planDetails = "";
   String planName = "";
+  String fee = '';
+  String createDate = '';
+  String updateDate = '';
+  String duration = '';
 
   void getPlanFunction(index, BuildContext context) {
     planValue = index +1;
-    if (planValue == 1) {
-      planName = "Unlimited".tr();
-      planDetails = "You can pay in installment".tr();
-      plan = "15.99".tr();
-    } else if (planValue == 2)  {
-      planName = "Yearly".tr();
-      planDetails = "You can pay in installment".tr();
-      plan = "10.99".tr();
+    if (subscriptionModel![index].id == 1) {
+      planName = subscriptionModel![index].name.tr();
+      planDetails = "Offers you can get:${subscriptionModel![index].offers}".tr();
+      plan = subscriptionModel![index].price.tr();
+      createDate = subscriptionModel![index].createdAt.toString();
+      updateDate = subscriptionModel![index].updatedAt.toString();
+      fee = subscriptionModel![index].fee;
+      duration = '';
+    } else if (subscriptionModel![index].id == 2)  {
+      planName = subscriptionModel![index].name.tr();
+      planDetails = "You can get ${subscriptionModel![index].offers} offers".tr();
+      plan = subscriptionModel![index].price.tr();
+      createDate = subscriptionModel![index].createdAt.toString();
+      updateDate = subscriptionModel![index].updatedAt.toString();
+      fee = subscriptionModel![index].fee;
+      duration = 'mo';
     }else{
-      planName = "Monthly".tr();
-      planDetails = "You can pay in installment".tr();
-      plan = "5.99".tr();
+      planName = subscriptionModel![index].name.tr();
+      planDetails = "You can get ${subscriptionModel![index].offers} offers".tr();
+      plan = subscriptionModel![index].price.tr();
+      createDate = subscriptionModel![index].createdAt.toString();
+      updateDate = subscriptionModel![index].updatedAt.toString();
+      fee = subscriptionModel![index].fee;
+      duration = 'yr';
     }
     debugPrint(plan);
     debugPrint(planValue.toString());
     Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-        SubscriptionDetails(details: planDetails, name: planName, price: plan),));
+        SubscriptionDetails(details: planDetails, name: planName, price: plan,createDate: createDate, updateDate: updateDate,fee: fee, duration: duration),));
     notifyListeners();
+  }
+  
+  Future<void> getSubscriptionPlan () async {
+    SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    String? userToken = sharedPref.getString('token');
+    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/subscriptions'),
+    headers: <String, String>{
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+      'Authorization':'Bearer $userToken'
+    });
+    if(response.statusCode == 200){
+      debugPrint('Subscription Api is working');
+      subscriptionModel = subscriptionModelFromJson(response.body);
+      notifyListeners();
+    }else{
+      debugPrint('Subscription Api is not working');}
   }
 
 

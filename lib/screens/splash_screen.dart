@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
+import '../providers/accounts_providers/subscription/subscription_provider.dart';
 import '../providers/notifications_provider/notifications_provider.dart';
 import '../providers/preferences_provider/preferences_provider.dart';
 import '../providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
@@ -36,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<AboutProvider>(context, listen: false).getAbout();
       Provider.of<TermsAndConditonProvider>(context, listen: false).getTermsAndConditions();
       Provider.of<NotificationsProvider>(context, listen: false).getNotification();
+      Provider.of<SubscriptionProvider>(context, listen: false).getSubscriptionPlan();
     }
     _isInit = false;
     super.didChangeDependencies();
