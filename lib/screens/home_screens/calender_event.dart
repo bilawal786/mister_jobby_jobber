@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/models/job_models/available_jobs_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class EventCalender extends StatefulWidget {
@@ -13,14 +14,16 @@ class _EventCalenderState extends State<EventCalender> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDate;
+  AvailableJobsModel? availableJobs;
 
   Map<String, List> mySelectedEvents = {};
   @override
   void initState() {
     super.initState();
     _selectedDate = _focusedDay;
-
     loadPreviousEvents();
+    print(loadPreviousEvents());
+    print(_listOfDayEvents(_selectedDate!));
   }
 
   loadPreviousEvents() {
@@ -30,16 +33,19 @@ class _EventCalenderState extends State<EventCalender> {
           "eventDescp": "Small sized furniture assemble with clean boxes",
           "eventTitle": "Furniture Assemble"
         },
-        {"eventDescp": "22", "eventTitle": "22"},
-        {"eventDescp": "11", "eventTitle": "111"},
-        {"eventDescp": "22", "eventTitle": "22"}
       ],
-      "2022-11-25": [
-        {"eventDescp": "22", "eventTitle": "22"}
+      "2022-11-17": [
+        {
+          "eventDescp": "Small sized furniture assemble with clean boxes",
+          "eventTitle": "Furniture Assemble 333333"
+        },
       ],
-      "2022-11-18": [
-        {"eventTitle": "ss", "eventDesc": "ss"}
-      ]
+      "2022-11-17": [
+        {
+          "eventDescp": "Small sized furniture assemble with clean boxes",
+          "eventTitle": "Furniture Assemble 4444"
+        },
+      ],
     };
   }
 

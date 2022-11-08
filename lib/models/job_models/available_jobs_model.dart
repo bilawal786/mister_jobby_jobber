@@ -23,6 +23,7 @@ class AvailableJobsModel {
     required this.timeDifference,
     required this.duration,
     required this.serviceDate,
+    required this.date,
     required this.views,
     required this.isApplied,
     required this.urgent,
@@ -71,6 +72,7 @@ class AvailableJobsModel {
   int timeDifference;
   String duration;
   String serviceDate;
+  DateTime date;
   int views;
   bool isApplied;
   int urgent;
@@ -119,6 +121,7 @@ class AvailableJobsModel {
     timeDifference: json["time_difference"],
     duration: json["duration"],
     serviceDate: json["service_date"],
+    date: DateTime.parse(json["date"]),
     views: json["views"],
     isApplied: json["is_applied"],
     urgent: json["urgent"],
@@ -168,6 +171,7 @@ class AvailableJobsModel {
     "time_difference": timeDifference,
     "duration": duration,
     "service_date": serviceDate,
+    "date": date,
     "views": views,
     "is_applied": isApplied,
     "urgent": urgent,
