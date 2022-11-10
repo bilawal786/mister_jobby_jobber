@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../helper/routes.dart';
-import '../../models/schedule_jobs_model.dart';
 
 class EventCalender extends StatefulWidget {
   const EventCalender({Key? key}) : super(key: key);
@@ -23,8 +22,6 @@ class _EventCalenderState extends State<EventCalender> {
   DateTime? _selectedDate;
   AvailableJobsModel? availableJobs;
 
-  ScheduleJobs? mySelectedJobs;
-
   Map<String, List> mySelectedEvents = {};
   @override
   void initState() {
@@ -33,6 +30,8 @@ class _EventCalenderState extends State<EventCalender> {
     getScheduleJobs();
     loadPreviousEvents();
   }
+
+  var checkApi = false;
 
   Future<void> getScheduleJobs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -49,10 +48,14 @@ class _EventCalenderState extends State<EventCalender> {
       debugPrint('Schedule Jobs Api is working');
       setState(() {
         mySelectedEvents = Map<String,List>.from(json.decode(response.body));
+        checkApi = true;
       });
       // print(mySelectedEvents);
     } else {
       debugPrint('Schedule Jobs Api is not working');
+      setState((){
+        checkApi = true;
+      });
     }
   }
 
@@ -85,10 +88,11 @@ class _EventCalenderState extends State<EventCalender> {
           size: 25,
         ),
       ),
-      body: SingleChildScrollView(
+      body: (checkApi == false)? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
         child: Column(
           children: <Widget>[
             TableCalendar(
+              locale: 'fr_FR',
               calendarStyle: const CalendarStyle(
                 canMarkersOverflow: false,
                 todayTextStyle: TextStyle(
@@ -134,7 +138,7 @@ class _EventCalenderState extends State<EventCalender> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      DateFormat.yMMMMEEEEd().format(_selectedDate!),
+                      "${events['service_date']}",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     SizedBox(
