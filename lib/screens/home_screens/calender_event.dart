@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/models/job_models/available_jobs_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../helper/routes.dart';
+import '../../models/schedule_jobs_model.dart';
 
 class EventCalender extends StatefulWidget {
   const EventCalender({Key? key}) : super(key: key);
@@ -16,37 +23,42 @@ class _EventCalenderState extends State<EventCalender> {
   DateTime? _selectedDate;
   AvailableJobsModel? availableJobs;
 
+  ScheduleJobs? mySelectedJobs;
+
   Map<String, List> mySelectedEvents = {};
   @override
   void initState() {
     super.initState();
     _selectedDate = _focusedDay;
+    getScheduleJobs();
     loadPreviousEvents();
-    print(loadPreviousEvents());
-    print(_listOfDayEvents(_selectedDate!));
+  }
+
+  Future<void> getScheduleJobs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userToken = prefs.getString('token');
+    var response = await http.get(
+      Uri.parse('${MyRoutes.BASEURL}/jobber/schedule/jobs'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $userToken'
+      },
+    );
+    if (response.statusCode == 200) {
+      debugPrint('Schedule Jobs Api is working');
+      setState(() {
+        mySelectedEvents = Map<String,List>.from(json.decode(response.body));
+      });
+      // print(mySelectedEvents);
+    } else {
+      debugPrint('Schedule Jobs Api is not working');
+    }
   }
 
   loadPreviousEvents() {
-    mySelectedEvents = {
-      "2022-11-17": [
-        {
-          "eventDescp": "Small sized furniture assemble with clean boxes",
-          "eventTitle": "Furniture Assemble"
-        },
-      ],
-      "2022-11-17": [
-        {
-          "eventDescp": "Small sized furniture assemble with clean boxes",
-          "eventTitle": "Furniture Assemble 333333"
-        },
-      ],
-      "2022-11-17": [
-        {
-          "eventDescp": "Small sized furniture assemble with clean boxes",
-          "eventTitle": "Furniture Assemble 4444"
-        },
-      ],
-    };
+
+        mySelectedEvents;
   }
 
   List _listOfDayEvents(DateTime dateTime) {
@@ -72,7 +84,6 @@ class _EventCalenderState extends State<EventCalender> {
           color: Colors.black,
           size: 25,
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -143,7 +154,7 @@ class _EventCalenderState extends State<EventCalender> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "${events['eventTitle']}",
+                                "${events['title']}",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'Cerebri Sans Bold',
@@ -153,7 +164,7 @@ class _EventCalenderState extends State<EventCalender> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width / 1.5,
                                 child: Text(
-                                  "${events['eventDescp']}",
+                                  "${events['detail_description']}",
                                   style:
                                       Theme.of(context).textTheme.labelMedium,
                                 ),
