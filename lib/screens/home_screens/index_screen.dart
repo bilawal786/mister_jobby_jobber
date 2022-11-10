@@ -21,7 +21,7 @@ class IndexScreen extends StatefulWidget {
 
 class _IndexScreenState extends State<IndexScreen> {
 
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDate;
 
@@ -314,7 +314,8 @@ class _IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               const Divider(),
-              if(mySelectedEvents == null) ...[
+              if(checkApi == false) ...[ const Center(child: CircularProgressIndicator(),), ] else ...[
+              if(mySelectedEvents.isEmpty) ... [
                 SizedBox(
                   height: mediaQuery.size.width / 10,
                 ),
@@ -350,112 +351,114 @@ class _IndexScreenState extends State<IndexScreen> {
                   ),
                 ),
               ],
-              checkApi == false ? const Center(child: CircularProgressIndicator(),) :
-              Column(
-                children: <Widget>[
-                  TableCalendar(
-                    locale: 'fr_FR',
-                    calendarStyle: const CalendarStyle(
-                      canMarkersOverflow: false,
-                      todayTextStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Colors.white),
+              if(mySelectedEvents.isNotEmpty) ...[
+                Column(
+                  children: <Widget>[
+                    TableCalendar(
+                      locale: 'fr_FR',
+                      calendarStyle: const CalendarStyle(
+                        canMarkersOverflow: false,
+                        todayTextStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Colors.white),
+                      ),
+                      firstDay: DateTime.now(),
+                      lastDay: DateTime(2023),
+                      focusedDay: _focusedDay,
+                      calendarFormat: _calendarFormat,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        if (!isSameDay(_selectedDate, selectedDay)) {
+                          // Call `setState()` when updating the selected day
+                          setState(() {
+                            _selectedDate = selectedDay;
+                            _focusedDay = focusedDay;
+                          });
+                        }
+                      },
+                      selectedDayPredicate: (day) {
+                        return isSameDay(_selectedDate, day);
+                      },
+                      onFormatChanged: (format) {
+                        if (_calendarFormat != format) {
+                          // Call `setState()` when updating calendar format
+                          setState(() {
+                            _calendarFormat = format;
+                          });
+                        }
+                      },
+                      onPageChanged: (focusedDay) {
+                        // No need to call `setState()` here
+                        _focusedDay = focusedDay;
+                      },
+                      eventLoader: _listOfDayEvents,
                     ),
-                    firstDay: DateTime.now(),
-                    lastDay: DateTime(2023),
-                    focusedDay: _focusedDay,
-                    calendarFormat: _calendarFormat,
-                    onDaySelected: (selectedDay, focusedDay) {
-                      if (!isSameDay(_selectedDate, selectedDay)) {
-                        // Call `setState()` when updating the selected day
-                        setState(() {
-                          _selectedDate = selectedDay;
-                          _focusedDay = focusedDay;
-                        });
-                      }
-                    },
-                    selectedDayPredicate: (day) {
-                      return isSameDay(_selectedDate, day);
-                    },
-                    onFormatChanged: (format) {
-                      if (_calendarFormat != format) {
-                        // Call `setState()` when updating calendar format
-                        setState(() {
-                          _calendarFormat = format;
-                        });
-                      }
-                    },
-                    onPageChanged: (focusedDay) {
-                      // No need to call `setState()` here
-                      _focusedDay = focusedDay;
-                    },
-                    eventLoader: _listOfDayEvents,
-                  ),
-                  const Divider(),
-                  ..._listOfDayEvents(_selectedDate!).map(
-                        (events) => Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "${events['service_date']}",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.width / 40,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.black12,
+                    const Divider(),
+                    ..._listOfDayEvents(_selectedDate!).map(
+                          (events) => Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "${events['service_date']}",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.width / 40,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black12,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "${events['title']}",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontFamily: 'Cerebri Sans Bold',
-                                        color: Colors.blue[700],
+                              child: Row(
+                                children: <Widget>[
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "${events['title']}",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Cerebri Sans Bold',
+                                          color: Colors.blue[700],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width / 1.5,
-                                      child: Text(
-                                        "${events['detail_description']}",
-                                        style:
-                                        Theme.of(context).textTheme.labelMedium,
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width / 1.5,
+                                        child: Text(
+                                          "${events['detail_description']}",
+                                          style:
+                                          Theme.of(context).textTheme.labelMedium,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 20,
-                                    color: Colors.black,
+                                    ],
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ],
+                ],
           ),
         ),
       ),
