@@ -138,7 +138,7 @@ class _EventCalenderState extends State<EventCalender> {
                     onTap: () {
                       // Navigator.of(context).push(MaterialPageRoute(
                       //     builder: (ctx) => JobDetailScreen(
-                      //         jobsDetail: events['id'])));
+                      //         jobsDetail:  )));
                     },
                     child: Container(
                       color: const Color(0xFFebf9fe),
