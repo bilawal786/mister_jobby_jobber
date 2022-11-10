@@ -1,14 +1,80 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart'as http;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 
-class IndexScreen extends StatelessWidget {
+class IndexScreen extends StatefulWidget {
   const IndexScreen({Key? key}) : super(key: key);
+
+  @override
+  State<IndexScreen> createState() => _IndexScreenState();
+}
+
+class _IndexScreenState extends State<IndexScreen> {
+
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDate;
+
+  Map<String, List> mySelectedEvents = {};
+  @override
+  void initState() {
+    super.initState();
+    _selectedDate = _focusedDay;
+    getScheduleJobs();
+    loadPreviousEvents();
+  }
+
+  var checkApi = false;
+
+  Future<void> getScheduleJobs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userToken = prefs.getString('token');
+    var response = await http.get(
+      Uri.parse('${MyRoutes.BASEURL}/jobber/schedule/jobs'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $userToken'
+      },
+    );
+    if (response.statusCode == 200) {
+      debugPrint('Schedule Jobs Api is working');
+      setState(() {
+        mySelectedEvents = Map<String,List>.from(json.decode(response.body));
+        checkApi = true;
+      });
+      // print(mySelectedEvents);
+    } else {
+      debugPrint('Schedule Jobs Api is not working');
+      setState((){
+        checkApi = true;
+      });
+    }
+  }
+
+  loadPreviousEvents() {
+
+    mySelectedEvents;
+  }
+
+  List _listOfDayEvents(DateTime dateTime) {
+    if (mySelectedEvents[DateFormat('yyyy-MM-dd').format(dateTime)] != null) {
+      return mySelectedEvents[DateFormat('yyyy-MM-dd').format(dateTime)]!;
+    } else {
+      return [];
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -248,39 +314,146 @@ class IndexScreen extends StatelessWidget {
                 ),
               ),
               const Divider(),
-              SizedBox(
-                height: mediaQuery.size.width / 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      Icons.date_range,
-                      color: Theme.of(context).primaryColor,
-                      size: 150,
-                    ),
-                    SizedBox(
-                      height: mediaQuery.size.width / 30,
-                    ),
-                    Text(
-                      "No job planned soon",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(
-                      height: mediaQuery.size.width / 40,
-                    ),
-                    Text(
-                      "Go to your job list to find your next job.",
-                      style: Theme.of(context).textTheme.labelMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: mediaQuery.size.width / 20,
-                    ),
-                    CustomButton(onPress: () {}, buttonName: "Find_Job"),
-                  ],
+              if(mySelectedEvents == null) ...[
+                SizedBox(
+                  height: mediaQuery.size.width / 10,
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.date_range,
+                        color: Theme.of(context).primaryColor,
+                        size: 150,
+                      ),
+                      SizedBox(
+                        height: mediaQuery.size.width / 30,
+                      ),
+                      Text(
+                        "No job planned soon",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: mediaQuery.size.width / 40,
+                      ),
+                      Text(
+                        "Go to your job list to find your next job.",
+                        style: Theme.of(context).textTheme.labelMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: mediaQuery.size.width / 20,
+                      ),
+                      CustomButton(onPress: () {}, buttonName: "Find_Job"),
+                    ],
+                  ),
+                ),
+              ],
+              checkApi == false ? const Center(child: CircularProgressIndicator(),) :
+              Column(
+                children: <Widget>[
+                  TableCalendar(
+                    locale: 'fr_FR',
+                    calendarStyle: const CalendarStyle(
+                      canMarkersOverflow: false,
+                      todayTextStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                          color: Colors.white),
+                    ),
+                    firstDay: DateTime.now(),
+                    lastDay: DateTime(2023),
+                    focusedDay: _focusedDay,
+                    calendarFormat: _calendarFormat,
+                    onDaySelected: (selectedDay, focusedDay) {
+                      if (!isSameDay(_selectedDate, selectedDay)) {
+                        // Call `setState()` when updating the selected day
+                        setState(() {
+                          _selectedDate = selectedDay;
+                          _focusedDay = focusedDay;
+                        });
+                      }
+                    },
+                    selectedDayPredicate: (day) {
+                      return isSameDay(_selectedDate, day);
+                    },
+                    onFormatChanged: (format) {
+                      if (_calendarFormat != format) {
+                        // Call `setState()` when updating calendar format
+                        setState(() {
+                          _calendarFormat = format;
+                        });
+                      }
+                    },
+                    onPageChanged: (focusedDay) {
+                      // No need to call `setState()` here
+                      _focusedDay = focusedDay;
+                    },
+                    eventLoader: _listOfDayEvents,
+                  ),
+                  const Divider(),
+                  ..._listOfDayEvents(_selectedDate!).map(
+                        (events) => Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "${events['service_date']}",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width / 40,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black12,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "${events['title']}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: 'Cerebri Sans Bold',
+                                        color: Colors.blue[700],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width / 1.5,
+                                      child: Text(
+                                        "${events['detail_description']}",
+                                        style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
