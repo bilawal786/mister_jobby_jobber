@@ -132,63 +132,112 @@ class _EventCalenderState extends State<EventCalender> {
             ),
             const Divider(),
             ..._listOfDayEvents(_selectedDate!).map(
-              (events) => Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "${events['service_date']}",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black12,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Row(
+              (events) => Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (ctx) => JobDetailScreen(
+                      //         jobsDetail: events['id'])));
+                    },
+                    child: Container(
+                      color: const Color(0xFFebf9fe),
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 5.0),
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
                         children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: <Widget>[
-                              Text(
-                                "${events['title']}",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Cerebri Sans Bold',
-                                  color: Colors.blue[700],
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.brown.shade300,
+                                  borderRadius:
+                                  BorderRadius.circular(10.0),
                                 ),
+                                child: Icon(
+                                  Icons.handyman_rounded,
+                                  color: Colors.brown.shade700,
+                                  size: 30,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width /
+                                    40,
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width / 1.5,
                                 child: Text(
-                                  "${events['detail_description']}",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  events['title'],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium,
                                 ),
+                              ),
+                              const Spacer(),
+                              Text(
+                                "${events['estimate_budget']} €",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium,
                               ),
                             ],
                           ),
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 20,
-                              color: Colors.black,
-                            ),
+                          SizedBox(
+                            height:
+                            MediaQuery.of(context).size.width /
+                                80,
                           ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "${events['start_time']} - ${events['end_time']} (${events['duration']} h)",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall,
+                              ),
+                              const Spacer(),
+                              if (events['urgent'] ==
+                                  1)
+                                Container(
+                                  padding:
+                                  const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.red.shade900,
+                                    borderRadius:
+                                    BorderRadius.circular(20.0),
+                                  ),
+                                  child: const FittedBox(
+                                    child: Text(
+                                      "Urgent",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily:
+                                        'Cerebri Sans Bold',
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                          Text(
+                            events['service_date'],
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium,
+                          ),
+                          const Divider(),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
