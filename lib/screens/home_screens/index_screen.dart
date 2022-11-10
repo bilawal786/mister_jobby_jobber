@@ -11,6 +11,7 @@ import '../../helper/routes.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
+import '../offers_screen/current_offers.dart';
 
 class IndexScreen extends StatefulWidget {
   const IndexScreen({Key? key}) : super(key: key);
@@ -205,104 +206,112 @@ class _IndexScreenState extends State<IndexScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: mediaQuery.size.width / 2.2,
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.grey.shade50,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.save,
-                                    size: 14,
-                                    color: Colors.black38,
-                                  ),
-                                  SizedBox(
-                                    width: mediaQuery.size.width / 80,
-                                  ),
-                                  Text(
-                                    "Current Offers",
-                                    style:
-                                        Theme.of(context).textTheme.labelMedium,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Colors.black,
-                          )
-                        ],
+                    GestureDetector(
+                      onTap:(){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CurrentOffers(),));
+                      },
+                      child: Container(
+                        width: mediaQuery.size.width / 2.2,
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.grey.shade50,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "0",
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    const Icon(
+                                      Icons.save,
+                                      size: 14,
+                                      color: Colors.black38,
+                                    ),
+                                    SizedBox(
+                                      width: mediaQuery.size.width / 80,
+                                    ),
+                                    Text(
+                                      "Current Offers",
+                                      style:
+                                          Theme.of(context).textTheme.labelMedium,
+                                    ).tr(),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      width: mediaQuery.size.width / 2.2,
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.grey.shade50,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  const Icon(
-                                    Icons.save,
-                                    size: 14,
-                                    color: Colors.black38,
-                                  ),
-                                  SizedBox(
-                                    width: mediaQuery.size.width / 80,
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 5,
-                                    child: Text(
-                                      "Commented jobs",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium,
+                    GestureDetector(
+                      onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(context) => CurrentOffers(),));},
+                      child: Container(
+                        width: mediaQuery.size.width / 2.2,
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.grey.shade50,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "0",
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    const Icon(
+                                      Icons.save,
+                                      size: 14,
+                                      color: Colors.black38,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Colors.black,
-                          )
-                        ],
+                                    SizedBox(
+                                      width: mediaQuery.size.width / 80,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 5,
+                                      child: Text(
+                                        "Commented jobs",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium,
+                                      ).tr(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

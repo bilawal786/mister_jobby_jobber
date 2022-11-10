@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
+import 'reliabiltity_score_screen.dart';
+import 'wallet_screens.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -158,88 +161,98 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: mediaQuery.size.width / 2.2,
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.grey.shade50,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Icon(
-                                Icons.account_balance_wallet_outlined,
-                                size: 20,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Text(
-                                "Wallet",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Colors.black,
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WalletScreen(),));
+                      },
+                      child: Container(
+                        width: mediaQuery.size.width / 2.2,
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.grey.shade50,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.account_balance_wallet_outlined,
+                                  size: 20,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Text(
+                                  "0",
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Text(
+                                  "Wallet",
+                                  style: Theme.of(context).textTheme.labelMedium,
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      width: mediaQuery.size.width / 2.2,
-                      padding: const EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.amber.shade50,
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const Icon(
-                                Icons.thumb_up_alt,
-                                size: 20,
-                                color: Colors.amber,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SizedBox(
-                                height: mediaQuery.size.width / 80,
-                              ),
-                              Text(
-                                "Reliability score",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                            color: Colors.black,
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ScoreScreen(),));
+                      },
+                      child: Container(
+                        width: mediaQuery.size.width / 2.2,
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.amber.shade50,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const Icon(
+                                  Icons.thumb_up_alt,
+                                  size: 20,
+                                  color: Colors.amber,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Text(
+                                  "0",
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.size.width / 80,
+                                ),
+                                Text(
+                                  "Reliability score",
+                                  style: Theme.of(context).textTheme.labelMedium,
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
