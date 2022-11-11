@@ -9,6 +9,7 @@ import '../../helper/routes.dart';
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
+import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../image_preview_screen.dart';
 
 class JobDetailScreen extends StatefulWidget {
@@ -79,6 +80,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
   Map<String, Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
+    final jobberProfileData = Provider.of<PersonalInformationProvider>(context, listen: false);
+    final extractedProfile = jobberProfileData.profile;
     return Scaffold(
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(20.0),
@@ -122,6 +125,25 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
+                (extractedProfile!.verified == false) ?
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(
+                      color: Theme.of(context).errorColor,
+                    ),
+                  ),
+                  child: Text(
+                    "Please Complete your Profile",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).errorColor,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Cerebri Sans Bold'),
+                  ),
+                )
+                :
                 (widget.jobsDetail.isApplied == false)
                     ? Expanded(
                         child: Consumer<JobsDetailProvider>(
