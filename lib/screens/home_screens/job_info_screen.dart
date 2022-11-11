@@ -1,13 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mister_jobby_jobber/providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
-import '../../../widgets/const_widgets/custom_button.dart';
-import '../../../providers/jobs_providers/job_details_provider.dart';
 import '../../providers/single_job_provider/single_job_provider.dart';
 import '../image_preview_screen.dart';
 
@@ -22,58 +18,6 @@ class JobInfoScreen extends StatefulWidget {
 const LatLng currentLocation = LatLng(31.561920, 74.348080);
 class _JobInfoScreenState extends State<JobInfoScreen> {
   var jobsDetail;
-  void ignoreJobOpenSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Container(
-            height: MediaQuery.of(context).size.width / 6,
-            margin: const EdgeInsets.all(10),
-            // padding: const EdgeInsets.all(10,),
-            child: InkWell(
-              onTap: () {
-                Provider.of<AvailableJobsProvider>(context, listen: false).ignoreThisJob(context, jobsDetail.id.toString());
-              },
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(width: 1, color: Colors.blue),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 60,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey.shade100,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Icon(
-                        FontAwesomeIcons.personCircleXmark,
-                        color: Colors.red.shade400,
-                        size: 25,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
-                      child: Center(
-                        child: Text(
-                          "Ignor_Job",
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ).tr(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
@@ -94,89 +38,6 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
     final singleJobData = Provider.of<SingleJobProvider>(context, listen: true);
     jobsDetail = singleJobData.jobDetail;
     return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),) : Scaffold(
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(20.0),
-        height: MediaQuery.of(context).size.width / 2.3,
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.black12,
-            ),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add_alert,
-                  size: 30,
-                  color: Colors.grey.shade500,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 40,
-                ),
-                Text(
-                  "Already 1 jobber has applied",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ],
-            ),
-            const Divider(),
-            Text(
-              "Client proposal",
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            Row(
-              children: <Widget>[
-                Text(
-                  "${jobsDetail.estimateBudget} €",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const Spacer(),
-                (jobsDetail.isApplied == false)
-                    ? Expanded(
-                  child: Consumer<JobsDetailProvider>(
-                    builder: (_, bottomSheet, child) => CustomButton(
-                        onPress: () {
-                          bottomSheet.postId = jobsDetail.id;
-                          bottomSheet.fixedRate =
-                              int.parse(jobsDetail.hours);
-                          bottomSheet.hourlyRate =
-                              int.parse(jobsDetail.hours);
-                          bottomSheet.hours =
-                              double.parse(jobsDetail.duration);
-                          bottomSheet.showBottomSheet(
-                            context,
-                          );
-                        },
-                        buttonName: "To apply"),
-                  ),
-                )
-                    : Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    border: Border.all(
-                      color: Colors.green.shade700,
-                    ),
-                  ),
-                  child: Text(
-                    "Already Applied",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.green.shade700,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cerebri Sans Bold'),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -216,21 +77,6 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                         Icons.arrow_back,
                         size: 25,
                         color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: InkWell(
-                      onTap: (){ignoreJobOpenSheet();},
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(Icons.more_vert_rounded, color: Colors.black,size: 25,),
                       ),
                     ),
                   ),
@@ -4050,57 +3896,6 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                   thickness: 10,
                 ),
               ],
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Tools",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.calendar_month,
-                          size: 25,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Provisional agenda",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 40,
-                            ),
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.8,
-                                child: Text(
-                                  "You don't have a job on Saturday October 22, 2022",
-                                  style:
-                                  Theme.of(context).textTheme.labelMedium,
-                                )),
-                          ],
-                        ),
-                        const Spacer(),
-                        Text(
-                          "See",
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
