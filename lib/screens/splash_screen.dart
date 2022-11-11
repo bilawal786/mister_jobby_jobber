@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
 import '../providers/accounts_providers/subscription/subscription_provider.dart';
+import '../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import '../providers/notifications_provider/notifications_provider.dart';
 import '../providers/preferences_provider/preferences_provider.dart';
@@ -39,6 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<TermsAndConditonProvider>(context, listen: false).getTermsAndConditions();
       Provider.of<NotificationsProvider>(context, listen: false).getNotification();
       Provider.of<SubscriptionProvider>(context, listen: false).getSubscriptionPlan();
+      Provider.of<CurrentJobsOffersProvider>(context).commentedJobsModel;
+      Provider.of<CommentedJobsProvider>(context).commentedJobsModel;
     }
     _isInit = false;
     super.didChangeDependencies();

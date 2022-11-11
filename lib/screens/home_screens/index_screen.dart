@@ -9,6 +9,8 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
+import '../../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 import '../offers_screen/current_offers.dart';
@@ -35,6 +37,16 @@ class _IndexScreenState extends State<IndexScreen> {
     loadPreviousEvents();
   }
 
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<CurrentJobsOffersProvider>(context, listen: false).getCommentedJobs();
+      Provider.of<CommentedJobsProvider>(context).getCommentedJobs();
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   var checkApi = false;
 
   Future<void> getScheduleJobs() async {
@@ -77,13 +89,19 @@ class _IndexScreenState extends State<IndexScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentOfferData = Provider.of<CurrentJobsOffersProvider>(context);
+    final extractCurrentOfferData = currentOfferData.commentedJobsModel;
+    final commentedJobsData = Provider.of<CommentedJobsProvider>(context);
+    final extractCommentJobsData = commentedJobsData.commentedJobsModel;
     final checkCompleteProfile =
         Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
-      body: NestedScrollView(
+      body:
+      (commentedJobsData.checkApi == false && currentOfferData.checkApi == false) ? Center(child: CircularProgressIndicator(),) :
+      NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
@@ -224,7 +242,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "0",
+                                  "${extractCurrentOfferData!.length}",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(
@@ -241,7 +259,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                       width: mediaQuery.size.width / 80,
                                     ),
                                     Text(
-                                      "Current Offers",
+                                      "Offers",
                                       style:
                                           Theme.of(context).textTheme.labelMedium,
                                     ).tr(),
@@ -274,7 +292,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "0",
+                                  "${extractCommentJobsData?.length}",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(

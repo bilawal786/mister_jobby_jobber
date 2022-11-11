@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../widgets/commented_jobs_widgets/commented_jobs_widget.dart';
 import '../../widgets/commented_jobs_widgets/current_jobs_widget.dart';
 import '../../widgets/const_widgets/custom_button.dart';
@@ -10,10 +11,12 @@ import '../search_screen/jobs_detail_screen.dart';
 import 'current_offer_jobs_details_screen.dart';
 
 class CurrentOffers extends StatelessWidget {
-  const CurrentOffers({Key? key}) : super(key: key);
+  const CurrentOffers({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int currentOffer = Provider.of<CurrentJobsOffersProvider>(context).commentedJobsModel!.length;
+    int commentedJobs = Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
 
     return DefaultTabController(
       length: 2,
@@ -64,8 +67,8 @@ class CurrentOffers extends StatelessWidget {
                           color: Colors.grey.shade100,
                           borderRadius: BorderRadius.circular(15)),
                       child: Center(
-                        child: const Text(
-                          "Current Offers (0)",
+                        child: Text(
+                          "Offers ($currentOffer)",
                         ).tr(),
                       ),
                     ),
@@ -79,8 +82,8 @@ class CurrentOffers extends StatelessWidget {
                           color: Colors.grey.shade100,
                           borderRadius: BorderRadius.circular(15)),
                       child: Center(
-                        child: const Text(
-                          "Commented jobs (0)",
+                        child: Text(
+                          "Commented jobs ($commentedJobs)",
                         ).tr(),
                       ),
                     ),

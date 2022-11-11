@@ -6,7 +6,8 @@ import '../../models/commented_jobs_model/commented_jobs_model.dart';
 
 class CommentedJobsProvider with ChangeNotifier {
   List<CommentedJobsModel>? commentedJobsModel;
-  
+
+  var checkApi = false;
   Future<void> getCommentedJobs() async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     String? userToken = sharedPref.getString('token');
@@ -19,9 +20,13 @@ class CommentedJobsProvider with ChangeNotifier {
     if(response.statusCode == 200){
       debugPrint('Commented jobs Api is working');
       commentedJobsModel = commentedJobsModelFromJson(response.body);
+      checkApi = true;
       notifyListeners();
     }else{
-      debugPrint('Commented jobs Api is working');}
+      debugPrint('Commented jobs Api is working');
+    checkApi= true;
+    notifyListeners();
+    }
 
 
   }

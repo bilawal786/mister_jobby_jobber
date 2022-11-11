@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
+import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/single_job_provider/single_job_provider.dart';
 import '../image_preview_screen.dart';
 
@@ -35,6 +36,7 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int commentedJobs = Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
     final singleJobData = Provider.of<SingleJobProvider>(context, listen: true);
     jobsDetail = singleJobData.jobDetail;
     return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),) : Scaffold(
@@ -293,7 +295,7 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                               width: MediaQuery.of(context).size.width / 40,
                             ),
                             Text(
-                              "(${jobsDetail.count})",
+                              "(${commentedJobs})",
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 16,
