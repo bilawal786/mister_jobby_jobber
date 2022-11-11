@@ -8,8 +8,8 @@ import '../../helper/routes.dart';
 
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
-import '../../models/commented_jobs_model/commented_jobs_model.dart';
-import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
+import '../../models/commented_jobs_model/current_jobs_offers_model.dart';
+import '../../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import '../image_preview_screen.dart';
 
 class SingleJobDetailScreen extends StatefulWidget {

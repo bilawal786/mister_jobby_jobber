@@ -54,6 +54,7 @@ class SingleJobCommentsProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       final newComment = SingleJobCommentsModel(
           id: 0,
+          jobId: 1,
           userId: profileData!.jobberId,
           name: "${profileData.firstName} ${profileData.lastName}",
           image: profileData.image,

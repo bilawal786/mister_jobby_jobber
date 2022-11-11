@@ -19,7 +19,7 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController commentController = TextEditingController();
   var _singleComment = SingleJobCommentsModel(
-      id: 0, userId: 0, name: "", image: "", message: "", date: "");
+      id: 0,jobId: 1, userId: 0, name: "", image: "", message: "", date: "");
 
   @override
   void dispose() {
@@ -56,6 +56,7 @@ class _CommentInputWidgetState extends State<CommentInputWidget> {
                 onSaved: (value) {
                   _singleComment = SingleJobCommentsModel(
                     id: _singleComment.id,
+                    jobId: 1,
                     userId: _singleComment.userId,
                     name: _singleComment.name,
                     image: _singleComment.image,

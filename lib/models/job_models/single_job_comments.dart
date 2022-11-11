@@ -4,15 +4,16 @@
 
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 List<SingleJobCommentsModel> singleJobCommentsModelFromJson(String str) => List<SingleJobCommentsModel>.from(json.decode(str).map((x) => SingleJobCommentsModel.fromJson(x)));
 
 String singleJobCommentsModelToJson(List<SingleJobCommentsModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class SingleJobCommentsModel with ChangeNotifier {
+class SingleJobCommentsModel with ChangeNotifier{
   SingleJobCommentsModel({
     required this.id,
+    required this.jobId,
     required this.userId,
     required this.name,
     required this.image,
@@ -21,6 +22,7 @@ class SingleJobCommentsModel with ChangeNotifier {
   });
 
   int id;
+  int jobId;
   int userId;
   String name;
   String image;
@@ -29,6 +31,7 @@ class SingleJobCommentsModel with ChangeNotifier {
 
   factory SingleJobCommentsModel.fromJson(Map<String, dynamic> json) => SingleJobCommentsModel(
     id: json["id"],
+    jobId: json["job_id"],
     userId: json["user_id"],
     name: json["name"],
     image: json["image"],
@@ -38,6 +41,7 @@ class SingleJobCommentsModel with ChangeNotifier {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    "job_id": jobId,
     "user_id": userId,
     "name": name,
     "image": image,

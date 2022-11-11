@@ -5,23 +5,25 @@ import 'package:http/http.dart' as http;
 import '../../models/commented_jobs_model/commented_jobs_model.dart';
 
 class CommentedJobsProvider with ChangeNotifier {
-  List <CommentedJobsModel>? commentedJobsModel;
+  List<CommentedJobsModel>? commentedJobsModel;
   
-  Future<void> getCommentedJobs()async {
+  Future<void> getCommentedJobs() async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    String? userToken =  sharedPref.getString('token');
-    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/my/offers'),
+    String? userToken = sharedPref.getString('token');
+    var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/my/comments'),
     headers: <String, String>{
-      'Accept': 'application/json',
-      'Content-Type':'allication/json',
-      'Authorization':'Bearer ${userToken}'
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+      'Authorization':'Bearer $userToken'
     });
     if(response.statusCode == 200){
       debugPrint('Commented jobs Api is working');
       commentedJobsModel = commentedJobsModelFromJson(response.body);
       notifyListeners();
     }else{
-      debugPrint('Commented jobs Api is not working');}
+      debugPrint('Commented jobs Api is working');}
+
+
   }
   
 }
