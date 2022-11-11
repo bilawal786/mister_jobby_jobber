@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../widgets/commented_jobs_widgets/commented_jobs_widget.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 import '../search_screen/jobs_detail_screen.dart';
+import 'current_offer_jobs_details_screen.dart';
 
 class CurrentOffers extends StatelessWidget {
   const CurrentOffers({Key? key}) : super(key: key);
@@ -98,9 +99,10 @@ class CurrentOffers extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (ctx) => JobDetailScreen(
-                            //         jobsDetail: extractCommentedJobsData[index].job)));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => SingleJobDetailScreen(
+                                    jobsDetail:
+                                    extractCommentedJobsData[index].job)));
                           },
                           child: Container(
                             color: const Color(0xFFebf9fe),

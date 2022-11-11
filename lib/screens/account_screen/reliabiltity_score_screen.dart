@@ -96,7 +96,7 @@ class ScoreScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: Container(
                           width: 60,
                           height: 8,
