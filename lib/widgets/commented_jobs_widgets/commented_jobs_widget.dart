@@ -6,10 +6,18 @@ class CommentedJobsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (context, index) => Column(children: <Widget>[
-      Text(''),
-      Text(''),
-      Text(''),
-    ],),);
+    return SingleChildScrollView(child: ListView.builder(
+      shrinkWrap: true,
+      controller: ScrollController(),
+      primary: false,
+      itemCount: 7,
+      itemBuilder: (context, index) => ListTile(
+        title: Text('IBFT BNP',
+          style: Theme.of(context).textTheme.titleSmall,),
+        subtitle: Text('25-10-2022',
+          style: Theme.of(context).textTheme.bodySmall,),
+        trailing: Text('€ 300',
+          style: Theme.of(context).textTheme.titleSmall,),
+      ),),);
   }
 }
