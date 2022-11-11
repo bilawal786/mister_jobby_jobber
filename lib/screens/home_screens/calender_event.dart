@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../helper/routes.dart';
+import 'job_info_screen.dart';
 
 class EventCalender extends StatefulWidget {
   const EventCalender({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class EventCalender extends StatefulWidget {
 }
 
 class _EventCalenderState extends State<EventCalender> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDate;
   AvailableJobsModel? availableJobs;
@@ -100,8 +101,8 @@ class _EventCalenderState extends State<EventCalender> {
                     fontSize: 18.0,
                     color: Colors.white),
               ),
-              firstDay: DateTime.now(),
-              lastDay: DateTime(2023),
+              firstDay: DateTime(2022),
+              lastDay: DateTime(2030),
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
               onDaySelected: (selectedDay, focusedDay) {
@@ -136,12 +137,12 @@ class _EventCalenderState extends State<EventCalender> {
                 children: [
                   InkWell(
                     onTap: () {
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (ctx) => JobDetailScreen(
-                      //         jobsDetail:  )));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => JobInfoScreen(
+                              id: events['id'].toString())));
                     },
                     child: Container(
-                      color: const Color(0xFFebf9fe),
+                      color: events['status'] == 2? Colors.green.shade100: const Color(0xFFebf9fe),
                       width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10.0, vertical: 5.0),
