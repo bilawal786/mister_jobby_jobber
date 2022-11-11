@@ -84,6 +84,7 @@ import './providers/jobs_providers/available_jobs_provider/available_jobs_provid
 import 'providers/accounts_providers/subscription/subscription_provider.dart';
 import 'providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
 import 'providers/notifications_provider/notifications_provider.dart';
+import 'providers/single_job_provider/single_job_provider.dart';
 
 
 void main() async {
@@ -137,6 +138,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => GetBadgesProvider()),
         ChangeNotifierProvider(create: (ctx) => SubscriptionProvider()),
         ChangeNotifierProvider(create: (ctx) => CommentedJobsProvider()),
+        ChangeNotifierProvider(create: (ctx) => SingleJobProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

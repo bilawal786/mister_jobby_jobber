@@ -54,6 +54,10 @@ class AreaInterventionProvider with ChangeNotifier {
     );
     if (response.statusCode == 200) {
       debugPrint("Area of Intervention api working");
+      Provider.of<PersonalInformationProvider>(context, listen: false)
+          .getProfile();
+      Provider.of<AvailableJobsProvider>(context, listen: false)
+          .getAvailableJobs();
       Navigator.pop(context);
       Navigator.pop(context);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -69,10 +73,7 @@ class AreaInterventionProvider with ChangeNotifier {
           ),
         ),
       );
-      Provider.of<PersonalInformationProvider>(context, listen: false)
-          .getProfile();
-      Provider.of<AvailableJobsProvider>(context, listen: false)
-          .getAvailableJobs();
+
       notifyListeners();
     } else {
       Navigator.pop(context);

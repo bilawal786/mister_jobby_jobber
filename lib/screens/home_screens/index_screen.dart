@@ -12,6 +12,7 @@ import '../../providers/check_profile_completion_provider/check_profile_completi
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 import '../offers_screen/current_offers.dart';
+import 'job_info_screen.dart';
 
 class IndexScreen extends StatefulWidget {
   const IndexScreen({Key? key}) : super(key: key);
@@ -259,7 +260,7 @@ class _IndexScreenState extends State<IndexScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(context) => CurrentOffers(),));},
+                      onTap: (){Navigator.of(context).push(MaterialPageRoute(builder:(context) => const CurrentOffers(),));},
                       child: Container(
                         width: mediaQuery.size.width / 2.2,
                         padding: const EdgeInsets.all(15.0),
@@ -323,7 +324,7 @@ class _IndexScreenState extends State<IndexScreen> {
                   child: CircularProgressIndicator(),
                 ),
               ] else ...[
-                if (mySelectedEvents.isEmpty) ...[
+                if (mySelectedEvents == {}) ...[
                   SizedBox(
                     height: mediaQuery.size.width / 10,
                   ),
@@ -371,8 +372,8 @@ class _IndexScreenState extends State<IndexScreen> {
                               fontSize: 18.0,
                               color: Colors.white),
                         ),
-                        firstDay: DateTime.now(),
-                        lastDay: DateTime(2023),
+                        firstDay: DateTime(2022),
+                        lastDay: DateTime(2030),
                         focusedDay: _focusedDay,
                         calendarFormat: _calendarFormat,
                         onDaySelected: (selectedDay, focusedDay) {
@@ -407,12 +408,12 @@ class _IndexScreenState extends State<IndexScreen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (ctx) => JobDetailScreen(
-                                //         jobsDetail: events['id'])));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) => JobInfoScreen(
+                                        id: events['id'].toString())));
                               },
                               child: Container(
-                                color: const Color(0xFFebf9fe),
+                                color: events['status'] == 2? Colors.green.shade100: const Color(0xFFebf9fe),
                                 width: MediaQuery.of(context).size.width,
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0, vertical: 5.0),
@@ -451,7 +452,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          "${events['estimated_budget']} €",
+                                          "${events['estimate_budget']} €",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
@@ -497,11 +498,18 @@ class _IndexScreenState extends State<IndexScreen> {
                                           ),
                                       ],
                                     ),
-                                    Text(
-                                      events['service_date'],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium,
+                                    SizedBox(height: MediaQuery.of(context).size.width / 40,),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          events['service_date'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium,
+                                        ),
+                                        const Spacer(),
+                                        Text(events['status'] == 2 ? "Complete" : "In process", style: Theme.of(context).textTheme.bodyLarge,).tr(),
+                                      ],
                                     ),
                                     const Divider(),
                                   ],
