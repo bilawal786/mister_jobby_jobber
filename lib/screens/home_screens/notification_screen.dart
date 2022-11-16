@@ -3,14 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/notifications_provider/notifications_provider.dart';
 import 'package:provider/provider.dart';
 
-class NotificationDisplay extends StatefulWidget {
+class NotificationDisplay extends StatelessWidget {
   const NotificationDisplay({Key? key}) : super(key: key);
 
-  @override
-  State<NotificationDisplay> createState() => _NotificationDisplayState();
-}
-
-class _NotificationDisplayState extends State<NotificationDisplay> {
   @override
   Widget build(BuildContext context) {
     final notificationsData = Provider.of<NotificationsProvider>(context, listen: false);
@@ -26,16 +21,16 @@ class _NotificationDisplayState extends State<NotificationDisplay> {
           size: 25,
         ),
       ),
-      body: RefreshIndicator(
-        onRefresh: ()async{
-          Provider.of<NotificationsProvider>(context).getNotification();
-        },
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: RefreshIndicator(
+            onRefresh: ()async{
+              await Provider.of<NotificationsProvider>(context, listen: false).getNotification();
+            },
             child: ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               itemCount: extractNotification!.length,
               itemBuilder: (ctx, index) => Column(
                 children:<Widget> [

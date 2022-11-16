@@ -10,6 +10,7 @@ import '../../../helper/routes.dart';
 
 import '../../../models/mandatory_steps_model/jobber_profile_model/jobber_profile_model.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
+import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
 
 class PersonalInformationProvider with ChangeNotifier {
   int genderValue = 0;
@@ -221,6 +222,7 @@ class PersonalInformationProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       Navigator.pop(context);
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
       debugPrint("Profile Updated");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(

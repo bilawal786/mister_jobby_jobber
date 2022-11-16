@@ -237,7 +237,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       child: Container(
                         height: 30,
                         width: 30,
-                        decoration: BoxDecoration(shape: BoxShape.circle,
+                        decoration: const BoxDecoration(shape: BoxShape.circle,
                         color: Colors.white,
                         ),
                         child: const Icon(Icons.more_vert_rounded, color: Colors.black,size: 25,),
@@ -282,19 +282,20 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           width: MediaQuery.of(context).size.width / 40,
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 2.4,
+                          width: MediaQuery.of(context).size.width / 2.2,
                           child: Text(
                             "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
                             style: Theme.of(context).textTheme.bodySmall,
                             textAlign: TextAlign.left,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        const Spacer(),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        Text(
-                          "- ${widget.jobsDetail.createdAt}",
-                          style: Theme.of(context).textTheme.bodySmall,
+                          child: Text(
+                            "- ${widget.jobsDetail.createdAt}",
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
                         ),
                       ],
                     ),

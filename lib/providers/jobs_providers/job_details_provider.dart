@@ -35,7 +35,7 @@ class JobsDetailProvider with ChangeNotifier {
       isScrollControlled: true,
       builder: (context) {
         return FractionallySizedBox(
-          heightFactor: .6,
+          heightFactor: .65,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
@@ -45,14 +45,13 @@ class JobsDetailProvider with ChangeNotifier {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.13,
-                        child: Center(
-                          child: Text(
-                            "Adjust your hourly rate",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ).tr(),
-                        ),
+                      Container(
+                        padding: const EdgeInsets.all(5),
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        child: Text(
+                          "Adjust your hourly rate",
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ).tr(),
                       ),
                       const Spacer(),
                       GestureDetector(

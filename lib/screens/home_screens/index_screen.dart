@@ -242,7 +242,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "${extractCurrentOfferData!.length}",
+                                  "${extractCurrentOfferData?.length}",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(
@@ -381,6 +381,36 @@ class _IndexScreenState extends State<IndexScreen> {
                 if (mySelectedEvents.isNotEmpty) ...[
                   Column(
                     children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Row(
+                          children: <Widget>[
+                            Text('Schedule ', style: Theme.of(context).textTheme.titleSmall,
+                            textAlign: TextAlign.center,
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: (){
+                                getScheduleJobs();
+                                setState(() {
+                                  checkApi = false;
+                                });
+                              },
+                              child: (checkApi == false)
+                                  ? const SizedBox(
+                                  width: 25,
+                                  height: 25,
+                                  child: CircularProgressIndicator())
+                                  : const Icon(
+                                Icons.refresh,
+                                size: 25,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(),
                       TableCalendar(
                         locale: 'fr_FR',
                         calendarStyle: const CalendarStyle(
