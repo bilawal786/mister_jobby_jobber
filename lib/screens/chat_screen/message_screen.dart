@@ -34,40 +34,24 @@ class MessagesScreen extends StatelessWidget {
                 indicator: BoxDecoration(
                   border: Border.all(color: Colors.black26, width: 0.8),
                   borderRadius: BorderRadius.circular(15), // Creates border
-                  color: Colors.grey.shade100,
+                  color: Colors.blue.shade50,
                 ),
                 unselectedLabelColor: Colors.grey,
                 labelColor: Colors.black,
                 labelStyle: Theme.of(context).textTheme.bodySmall,
                 tabs: [
                   Tab(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 3),
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: const Text(
-                          "Chats_TapBar_Title1",
-                        ).tr(),
-                      ),
+                    child: Center(
+                      child: const Text(
+                        "Chats_TapBar_Title1",
+                      ).tr(),
                     ),
                   ),
                   Tab(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 3),
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: const Text(
-                          "Chats_TapBar_Title2",
-                        ).tr(),
-                      ),
+                    child: Center(
+                      child: const Text(
+                        "Chats_TapBar_Title2",
+                      ).tr(),
                     ),
                   ),
                 ],

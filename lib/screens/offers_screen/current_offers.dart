@@ -36,6 +36,7 @@ class CurrentOffers extends StatelessWidget {
                   child: Text(
                     "jobs tracked",
                     style: Theme.of(context).textTheme.titleMedium,
+                    textAlign: TextAlign.left,
                   ).tr()),
               foregroundColor: Colors.black,
               leading: GestureDetector(
@@ -44,48 +45,31 @@ class CurrentOffers extends StatelessWidget {
               actions: const [Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.more_vert_rounded, color: Colors.black,),
-              )],
-              centerTitle: true,
+              ),],
               backgroundColor: Colors.white,
               bottom: TabBar(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 indicator: BoxDecoration(
                   border: Border.all(color: Colors.black26, width: 0.8),
-                  borderRadius: BorderRadius.circular(15), // Creates border
-                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(5), // Creates border
+                  color: Colors.blue.shade50,
                 ),
                 unselectedLabelColor: Colors.grey,
                 labelColor: Colors.black,
                 labelStyle: Theme.of(context).textTheme.bodySmall,
                 tabs: [
                   Tab(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 3),
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: Text(
-                          "Offers ($currentOffer)",
-                        ).tr(),
-                      ),
+                    child: Center(
+                      child: Text(
+                        "Offers ($currentOffer)",
+                      ).tr(),
                     ),
                   ),
                   Tab(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 3),
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: Text(
-                          "Commented jobs ($commentedJobs)",
-                        ).tr(),
-                      ),
+                    child: Center(
+                      child: Text(
+                        "Commented jobs ($commentedJobs)",
+                      ).tr(),
                     ),
                   ),
                 ],

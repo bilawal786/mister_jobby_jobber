@@ -14,6 +14,7 @@ import '../../providers/commented_jobs_provider/current_jobs_offers_provider.dar
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../widgets/const_widgets/custom_button.dart';
 import '../offers_screen/current_offers.dart';
+import 'home_tab_screen.dart';
 import 'job_info_screen.dart';
 
 class IndexScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _IndexScreenState extends State<IndexScreen> {
         checkApi = true;
       });
     }
-    print(response.body);
+    // print(response.body);
   }
 
   loadPreviousEvents() {
@@ -366,9 +367,6 @@ class _IndexScreenState extends State<IndexScreen> {
                       ),
                     ] else ...[
                       if (mySelectedEvents == {} || mySelectedEvents.isEmpty) ...[
-                        SizedBox(
-                          height: mediaQuery.size.width / 10,
-                        ),
                         Padding(
                           padding: const EdgeInsets.all(50.0),
                           child: Column(
@@ -397,7 +395,9 @@ class _IndexScreenState extends State<IndexScreen> {
                                 height: mediaQuery.size.width / 20,
                               ),
                               CustomButton(
-                                  onPress: () {}, buttonName: "Find_Job"),
+                                  onPress: () {
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeTabScreen(pageIndex: 1),));
+                                  }, buttonName: "Find_Job"),
                             ],
                           ),
                         ),

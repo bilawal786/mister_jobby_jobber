@@ -352,54 +352,57 @@ class AvailabilitiesScreen extends StatelessWidget {
                     ),
                     const Divider(),
                   ],
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 5,
-                  ),
-                  (availabilityData.mondayValue != 0 &&
-                          availabilityData.thursdayValue != 0 &&
-                          availabilityData.tuesdayValue != 0 &&
-                          availabilityData.wednesdayValue != 0 &&
-                          availabilityData.fridayValue != 0 &&
-                          availabilityData.sundayValue != 0 &&
-                          availabilityData.saturdayValue != 0)
-                      ? CustomButton(
-                          onPress: () {
-                            timeApi.postAvailability(
-                              context,
-                              availabilityData.availableTimeMonday.toString(),
-                              availabilityData.availableTimeTuesday.toString(),
-                              availabilityData.availableTimeWednesday.toString(),
-                              availabilityData.availableTimeThursday.toString(),
-                              availabilityData.availableTimeFriday.toString(),
-                              availabilityData.availableTimeSaturday.toString(),
-                              availabilityData.availableTimeSunday.toString(),
-                            );
-                          },
-                          buttonName: "Confirm")
-                      : ListTile(
-                          contentPadding: const EdgeInsets.all(10.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          dense: true,
-                          tileColor: Colors.amber.shade100,
-                          leading: const Icon(
-                            Icons.circle_notifications,
-                            color: Colors.black,
-                          ),
-                          title: Text(
-                            "Incomplete profile",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          subtitle: Text(
-                            "These are your basic schedules, you can modify them later.",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                        ),
                 ],
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 20,
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: (availabilityData.mondayValue != 0 &&
+                  availabilityData.thursdayValue != 0 &&
+                  availabilityData.tuesdayValue != 0 &&
+                  availabilityData.wednesdayValue != 0 &&
+                  availabilityData.fridayValue != 0 &&
+                  availabilityData.sundayValue != 0 &&
+                  availabilityData.saturdayValue != 0)
+              ? CustomButton(
+                  onPress: () {
+                    timeApi.postAvailability(
+                      context,
+                      availabilityData.availableTimeMonday.toString(),
+                      availabilityData.availableTimeTuesday.toString(),
+                      availabilityData.availableTimeWednesday.toString(),
+                      availabilityData.availableTimeThursday.toString(),
+                      availabilityData.availableTimeFriday.toString(),
+                      availabilityData.availableTimeSaturday.toString(),
+                      availabilityData.availableTimeSunday.toString(),
+                    );
+                  },
+                  buttonName: "Confirm")
+              : ListTile(
+                  contentPadding: const EdgeInsets.all(10.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
+                  ),
+                  dense: true,
+                  tileColor: Colors.amber.shade100,
+                  leading: const Icon(
+                    Icons.circle_notifications,
+                    color: Colors.black,
+                  ),
+                  title: Text(
+                    "Incomplete profile",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  subtitle: Text(
+                    "These are your basic schedules, you can modify them later.",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ),
         ),
       ),
     );
