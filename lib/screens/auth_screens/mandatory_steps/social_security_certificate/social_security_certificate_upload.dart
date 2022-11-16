@@ -158,18 +158,17 @@ class SocialSecurityCertificateUpload extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 2.5,
-              ),
-              const Divider(),
-              if(securityData.socialSecurityCardPick != null && securityData.securityCardNumber != null)
-              CustomButton(onPress: () {
-                securityData.confirmSecurityCard(context);
-              }, buttonName: "Confirm"),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: (securityData.socialSecurityCardPick != null && securityData.securityCardNumber != null) ?BottomAppBar(elevation: 20,
+      child: Padding(padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+      child: CustomButton(onPress: () {
+        securityData.confirmSecurityCard(context);
+      }, buttonName: "Confirm"),
+      ),
+      ) : const SizedBox(),
     );
   }
 }

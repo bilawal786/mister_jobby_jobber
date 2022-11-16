@@ -248,7 +248,8 @@ class ProfilePictureAdd extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child:
+      Padding(padding: const EdgeInsets.only(left: 20,right: 20, top: 5, bottom: 5),
           child: Consumer<ProfileImageProvider>(
             builder: (_,imageProvider, child)=> CustomButton(onPress: (){
               imageProvider.postProfileImage(context, imageProvider.profilePick);

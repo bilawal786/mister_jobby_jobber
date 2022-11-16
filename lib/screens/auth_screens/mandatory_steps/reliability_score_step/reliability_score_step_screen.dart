@@ -376,7 +376,8 @@ class ReliabilityScoreScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child:
+      Padding(padding: const EdgeInsets.only(left: 10,right: 10, top: 5, bottom: 5),
           child: CustomButton(onPress: () {
             reliabilityScoreData.reliabilityScore(context, "1");
           }, buttonName: "Confirm"),),),

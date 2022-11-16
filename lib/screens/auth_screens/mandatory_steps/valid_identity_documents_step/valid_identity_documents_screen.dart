@@ -64,7 +64,8 @@ class ValidIdentityDocuments extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child:
+      Padding(padding: const EdgeInsets.only(left: 30,right: 30, top: 10, bottom: 10),
           child: CustomButton(onPress: (){
             if(citizenData.europeanCitizen == 1) {
               print("yes");

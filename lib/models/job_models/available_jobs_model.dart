@@ -26,6 +26,7 @@ class AvailableJobsModel {
     required this.date,
     required this.views,
     required this.isApplied,
+    required this.totalOffers,
     required this.urgent,
     required this.latitude,
     required this.longitude,
@@ -75,6 +76,7 @@ class AvailableJobsModel {
   DateTime date;
   int views;
   bool isApplied;
+  int totalOffers;
   int urgent;
   String latitude;
   String longitude;
@@ -124,6 +126,7 @@ class AvailableJobsModel {
     date: DateTime.parse(json["date"]),
     views: json["views"],
     isApplied: json["is_applied"],
+    totalOffers: json["total_offers"],
     urgent: json["urgent"],
     latitude: json["latitude"],
     longitude: json["longitude"],
@@ -174,6 +177,7 @@ class AvailableJobsModel {
     "date": date,
     "views": views,
     "is_applied": isApplied,
+    "total_offers": totalOffers,
     "urgent": urgent,
     "latitude": latitude,
     "longitude": longitude,

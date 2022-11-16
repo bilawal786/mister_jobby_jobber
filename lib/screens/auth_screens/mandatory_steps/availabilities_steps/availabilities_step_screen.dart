@@ -361,7 +361,7 @@ class AvailabilitiesScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         elevation: 20,
         child: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.only(left: 10,right: 10, top: 5, bottom: 5),
           child: (availabilityData.mondayValue != 0 &&
                   availabilityData.thursdayValue != 0 &&
                   availabilityData.tuesdayValue != 0 &&

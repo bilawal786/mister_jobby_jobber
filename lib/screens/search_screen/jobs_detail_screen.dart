@@ -110,7 +110,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   width: MediaQuery.of(context).size.width / 40,
                 ),
                 Text(
-                  "Already 1 jobber has applied",
+                  // widget.jobsDetail.views.toString() ,
+                  "Already ${widget.jobsDetail.totalOffers} jobber has applied",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],

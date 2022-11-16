@@ -253,7 +253,8 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child:
+      Padding(padding: const EdgeInsets.only(left: 20,right: 20, top: 5, bottom: 5),
           child: CustomButton(
               onPress: () {
                 formSubmit(

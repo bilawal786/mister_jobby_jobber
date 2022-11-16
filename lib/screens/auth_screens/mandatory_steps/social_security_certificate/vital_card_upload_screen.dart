@@ -159,18 +159,16 @@ class VitalCardUpload extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 2.5,
-              ),
-              const Divider(),
-              if(securityData.vitalCardNumber != null)
-              CustomButton(onPress: () {
-                securityData.confirmVitalCard(context);
-              }, buttonName: "Confirm"),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: (securityData.vitalCardNumber != null) ? BottomAppBar(elevation: 20,
+      child: Padding(padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+        child: CustomButton(onPress: () {
+          securityData.confirmVitalCard(context);
+        }, buttonName: "Confirm"),),
+      ) : const SizedBox(),
     );
   }
 }

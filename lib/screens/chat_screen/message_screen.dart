@@ -33,7 +33,7 @@ class MessagesScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 indicator: BoxDecoration(
                   border: Border.all(color: Colors.black26, width: 0.8),
-                  borderRadius: BorderRadius.circular(15), // Creates border
+                  borderRadius: BorderRadius.circular(5), // Creates border
                   color: Colors.blue.shade50,
                 ),
                 unselectedLabelColor: Colors.grey,
