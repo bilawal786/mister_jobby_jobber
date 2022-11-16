@@ -32,7 +32,9 @@ class SkillsSelectionScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child:
+        getSkillsData.skills == null ? CircularProgressIndicator() :
+        Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +46,7 @@ class SkillsSelectionScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 30,
               ),
-              if (extractedCheckSkills!.bricolage != true) ...[
+            if (extractedCheckSkills!.bricolage != true) ...[
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 15),

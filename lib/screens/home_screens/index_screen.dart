@@ -176,13 +176,13 @@ class _IndexScreenState extends State<IndexScreen> {
                       height: mediaQuery.size.width / 40,
                     ),
                     if ((extractedCompleteData?.skills == "") &&
-                            (extractedCompleteData?.monday == "" ||
-                                extractedCompleteData!.tuesday == "" ||
-                                extractedCompleteData.wednesday == "" ||
-                                extractedCompleteData.thersday == "" ||
-                                extractedCompleteData.friday == "" ||
-                                extractedCompleteData.saturday == "" ||
-                                extractedCompleteData.sunday == "") ||
+                        (extractedCompleteData?.monday == "" ||
+                            extractedCompleteData!.tuesday == "" ||
+                            extractedCompleteData.wednesday == "" ||
+                            extractedCompleteData.thersday == "" ||
+                            extractedCompleteData.friday == "" ||
+                            extractedCompleteData.saturday == "" ||
+                            extractedCompleteData.sunday == "") ||
                         extractedCompleteData?.answer1 == "" ||
                         extractedCompleteData?.insurance1 == "" ||
                         extractedCompleteData?.rules1 == "" ||

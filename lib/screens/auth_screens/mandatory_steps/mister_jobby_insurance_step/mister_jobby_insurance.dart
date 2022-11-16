@@ -108,9 +108,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
+
                   const Divider(),
                 ],
               ),

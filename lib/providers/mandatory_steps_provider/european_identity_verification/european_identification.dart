@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
 import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../personal_information_provider/personal_information_provider.dart';
 
 class EuropeanIdentificationProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -615,6 +616,7 @@ class EuropeanIdentificationProvider with ChangeNotifier {
       Navigator.pop(context);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

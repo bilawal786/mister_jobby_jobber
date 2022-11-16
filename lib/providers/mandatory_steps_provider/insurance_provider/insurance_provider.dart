@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
 import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../personal_information_provider/personal_information_provider.dart';
 
 class InsuranceProvider with ChangeNotifier {
 
@@ -90,6 +91,7 @@ class InsuranceProvider with ChangeNotifier {
       print(response.body);
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       print("Insurance availability api is working");
       Navigator.pop(context);
       Navigator.of(context)

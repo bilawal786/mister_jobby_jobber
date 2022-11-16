@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
 import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../personal_information_provider/personal_information_provider.dart';
 
 class NonEuroIdentificationProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -279,6 +280,7 @@ class NonEuroIdentificationProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       debugPrint("Non-European identification documents Posted successfully ");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       Navigator.pop(context);
       Navigator.of(context).popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();

@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
+import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../screens/search_screen/jobs_detail_screen.dart';
@@ -24,6 +25,9 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
   Widget build(BuildContext context) {
     final profileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
+    final checkCompleteProfile =
+    Provider.of<CheckProfileCompletionProvider>(context);
+    final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     LatLng currentLocation = LatLng(double.parse(profileData.profile!.latitude),
         double.parse(profileData.profile!.longitude));
     return Scaffold(
@@ -107,6 +111,60 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 myLocationButtonEnabled: false,
               ),
             ),
+            if ((extractedCompleteData?.skills == "") &&
+                (extractedCompleteData?.monday == "" ||
+                    extractedCompleteData!.tuesday == "" ||
+                    extractedCompleteData.wednesday == "" ||
+                    extractedCompleteData.thersday == "" ||
+                    extractedCompleteData.friday == "" ||
+                    extractedCompleteData.saturday == "" ||
+                    extractedCompleteData.sunday == "") ||
+                extractedCompleteData?.answer1 == "" ||
+                extractedCompleteData?.insurance1 == "" ||
+                extractedCompleteData?.rules1 == "" ||
+                profileData.profile?.image == 'main/avatar.png' ||
+                (extractedCompleteData?.phone == "") ||
+                (extractedCompleteData?.euIdCardFront == "" &&
+                    extractedCompleteData?.euIdResidencePermitFront ==
+                        "") ||
+                (extractedCompleteData?.vitalCardNumber == "" ||
+                    extractedCompleteData?.socialSecurityNumber ==
+                        "") ||
+                extractedCompleteData?.score == "") ...[
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+                child: Container(
+                  color: Colors.amber.shade700,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: <Widget>[
+                      const Icon(
+                        Icons.circle_notifications_outlined,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Text(
+                        "Actions required",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 40,
+              ),
+            ],
             Container(
               padding: const EdgeInsets.all(5.0),
               child: Row(
@@ -283,9 +341,6 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                           children: [
                             Column(
                               children: <Widget>[
-                                const SizedBox(
-                                  height: 100,
-                                ),
                                 Icon(
                                   Icons.maps_home_work,
                                   size: 150,

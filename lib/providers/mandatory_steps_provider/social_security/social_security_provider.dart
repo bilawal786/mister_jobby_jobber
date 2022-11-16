@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/routes.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
 import '../../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../personal_information_provider/personal_information_provider.dart';
 
 class SocialSecurityProvider with ChangeNotifier {
   final picker = ImagePicker();
@@ -303,6 +304,7 @@ class SocialSecurityProvider with ChangeNotifier {
       debugPrint("Non-European identification documents Posted successfully ");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       Navigator.pop(context);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
