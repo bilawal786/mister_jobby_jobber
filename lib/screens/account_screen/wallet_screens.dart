@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../widgets/chart_widget.dart';
 import '../../widgets/commented_jobs_widgets/commented_jobs_widget.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -137,18 +138,9 @@ class _WalletScreenState extends State<WalletScreen>
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 1.7,
-                ),
-                const Text(
-                  '----------------------------------',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Cerebri Sans Regular',
-                  ),
-                ),
+                SizedBox(height: MediaQuery.of(context).size.width/40,),
+                const LineChartWidget(),
+                SizedBox(height: MediaQuery.of(context).size.width/40,),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   decoration: BoxDecoration(

@@ -51,6 +51,7 @@ dependencies:
   photo_view: ^0.14.0
   font_awesome_flutter: ^10.2.1
   flutter_stripe: ^6.0.0
+  fl_chart: ^0.55.2
 
 dev_dependencies:
   flutter_test:
