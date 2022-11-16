@@ -4061,61 +4061,6 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   thickness: 10,
                 ),
               ],
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Tools",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.calendar_month,
-                          size: 25,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Provisional agenda",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 40,
-                            ),
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.8,
-                                child: Text(
-                                  "You don't have a job on Saturday October 22, 2022",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
-                                )),
-                          ],
-                        ),
-                        const Spacer(),
-                        Text(
-                          "See",
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-              const Divider(),
             ],
           ),
         ),
