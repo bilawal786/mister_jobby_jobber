@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../helper/routes.dart';
 import '../../widgets/const_widgets/login_progress_indicator.dart';
 import '../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
 class ConstProvider with ChangeNotifier {
   List<String> temp = [];
@@ -431,6 +432,7 @@ class ConstProvider with ChangeNotifier {
       debugPrint("Skill add api is working");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       clearData();
       Navigator.pop(context);
       Navigator.of(context)
