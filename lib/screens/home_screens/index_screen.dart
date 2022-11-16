@@ -65,6 +65,9 @@ class _IndexScreenState extends State<IndexScreen> {
     );
     if (response.statusCode == 200) {
       debugPrint('Schedule Jobs Api is working');
+      if (!mounted) {
+        return;
+      }
       setState(() {
         mySelectedEvents = Map<String, List>.from(json.decode(response.body));
         checkApi = true;
