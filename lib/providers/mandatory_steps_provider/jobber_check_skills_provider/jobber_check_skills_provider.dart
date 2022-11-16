@@ -8,6 +8,8 @@ import '../../../models/mandatory_steps_model/indicate_skills_model/jobber_check
 class JobberCheckSkillsProvider with ChangeNotifier {
   JobberCheckSkillModel? jobberCheckSkills;
 
+  var checkApi = false;
+
   Future<void> getCheckSkills() async{
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     String? userToken = sharedPref.getString('token');
@@ -22,8 +24,12 @@ class JobberCheckSkillsProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       debugPrint("check Skills api is working");
       jobberCheckSkills = jobberCheckSkillModelFromJson(response.body);
+      checkApi = true;
+      notifyListeners();
     }else{
       debugPrint("check Skills api is not working");
+      checkApi = true;
+      notifyListeners();
     }
   }
 }

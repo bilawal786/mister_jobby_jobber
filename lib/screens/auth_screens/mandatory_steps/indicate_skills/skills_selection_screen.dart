@@ -20,7 +20,7 @@ class SkillsSelectionScreen extends StatelessWidget {
         Provider.of<IndicateSkillsProvider>(context, listen: false);
     final extractedSkills = getSkillsData.skills;
     final checkSkillsData =
-        Provider.of<JobberCheckSkillsProvider>(context, listen: false);
+        Provider.of<JobberCheckSkillsProvider>(context, listen: true);
     final extractedCheckSkills = checkSkillsData.jobberCheckSkills;
     return Scaffold(
       appBar: AppBar(
@@ -32,8 +32,7 @@ class SkillsSelectionScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child:
-        getSkillsData.skills == null ? CircularProgressIndicator() :
+        child: extractedCheckSkills == null ? const Center(child: CircularProgressIndicator()):
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -46,7 +45,7 @@ class SkillsSelectionScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 30,
               ),
-            if (extractedCheckSkills!.bricolage != true) ...[
+            if (extractedCheckSkills.bricolage != true) ...[
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
