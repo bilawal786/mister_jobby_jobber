@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/screens/home_screens/home_tab_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -306,7 +307,13 @@ class JobsDetailProvider with ChangeNotifier {
       debugPrint("submit Proposal api working");
       debugPrint("$postId");
       Navigator.pop(context);
-      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.SPLASHSCREENROUTE, (route) => false,);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (ctx) => HomeTabScreen(
+              pageIndex: 1,
+            ),
+          ),
+          (route) => false);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

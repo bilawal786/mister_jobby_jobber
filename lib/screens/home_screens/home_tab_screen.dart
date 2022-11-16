@@ -8,22 +8,28 @@ import '../../screens/search_screen/search_jobs_screen.dart';
 import '../../screens/account_screen/account_screen.dart';
 
 class HomeTabScreen extends StatefulWidget {
-  const HomeTabScreen({Key? key}) : super(key: key);
+  int pageIndex;
+  HomeTabScreen({Key? key, this.pageIndex = 0}) : super(key: key);
 
   @override
   State<HomeTabScreen> createState() => _HomeTabScreenState();
 }
 
 class _HomeTabScreenState extends State<HomeTabScreen> {
-  int pageIndex = 0;
   final PageStorageBucket bucket = PageStorageBucket();
+  List<Widget> screenWidgets = [
+    IndexScreen(),
+    SearchJobScreen(),
+    MessagesScreen(),
+    AccountScreen(),
+  ];
   Widget currentScreen = const IndexScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageStorage(
         bucket: bucket,
-        child: currentScreen,
+        child: screenWidgets.elementAt(widget.pageIndex),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -37,9 +43,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               bottomTabBarItem(
                     () {
                   setState(() {
-                    currentScreen =
-                    const IndexScreen(); // if user taps on this dashboard tab will be active
-                    pageIndex = 0;
+                    widget.pageIndex = 0;
                   });
                 },
                 Icons.home_rounded,
@@ -49,8 +53,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               bottomTabBarItem(
                     () {
                   setState(() {
-                      currentScreen = const SearchJobScreen(); // if user taps on this dashboard tab will be active
-                    pageIndex = 1;
+                      widget.pageIndex = 1;
                   });
                 },
                 Icons.work_history_outlined,
@@ -60,9 +63,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               bottomTabBarItem(
                     () {
                   setState(() {
-                    currentScreen =
-                    const MessagesScreen(); // if user taps on this dashboard tab will be active
-                    pageIndex = 2;
+                    widget.pageIndex = 2;
                   });
                 },
                 Icons.mark_as_unread_outlined,
@@ -72,9 +73,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               bottomTabBarItem(
                     () {
                   setState(() {
-                    currentScreen =
-                    const AccountScreen(); // if user taps on this dashboard tab will be active
-                    pageIndex = 3;
+                    widget.pageIndex = 3;
                   });
                 },
                 Icons.person_outline,
@@ -102,7 +101,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
             Icon(
               iconData,
               size: 25,
-              color: pageIndex == index
+              color: widget.pageIndex == index
                   ? Colors.black
                   : Theme.of(context).iconTheme.color,
             ),
@@ -113,7 +112,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                 fontWeight: FontWeight.w700,
                 overflow: TextOverflow.ellipsis,
                 fontFamily: 'Cerebri Sans Regular',
-                color: pageIndex == index
+                color: widget.pageIndex == index
                     ? Colors.black
                     : Theme.of(context).iconTheme.color,
               ),

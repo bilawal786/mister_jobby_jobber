@@ -250,7 +250,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           MyRoutes.SPLASHSCREENROUTE: (ctx) => const SplashScreen(),
-          MyRoutes.HOMESCREENROUTE: (ctx) => const HomeTabScreen(),
+          MyRoutes.HOMESCREENROUTE: (ctx) => HomeTabScreen(),
           MyRoutes.NOTIFICATIONSCREENROUTE: (ctx) =>
               const NotificationDisplay(),
           MyRoutes.SETTINGSCREENROUTE: (ctx) => const SettingScreen(),
