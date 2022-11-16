@@ -127,28 +127,24 @@ class SocialSecurityCertificate extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-              if (securityData.vitalCardPicked == true &&
-                  securityData.securityCardPicked == true) ...[
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 1.5,
-                ),
-                CustomButton(
-                  onPress: () {
-                    securityData.postSecurityCertificates(
-                      context,
-                      securityData.vitalCardPick,
-                      securityData.vitalCardNumber,
-                      securityData.socialSecurityCardPick,
-                      securityData.securityCardNumber,
-                    );
-                  },
-                  buttonName: "Confirm",
-                ),
-              ],
             ],
           ),
         ),
       ),
+      bottomNavigationBar: (securityData.vitalCardPicked == true &&
+    securityData.securityCardPicked == true) ? BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: CustomButton(
+            onPress: () {
+              securityData.postSecurityCertificates(
+                context,
+                securityData.vitalCardPick,
+                securityData.vitalCardNumber,
+                securityData.socialSecurityCardPick,
+                securityData.securityCardNumber,
+              );
+            },
+            buttonName: "Confirm",
+          ),),): const SizedBox(),
     );
   }
 }

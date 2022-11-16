@@ -370,18 +370,16 @@ class ReliabilityScoreScreen extends StatelessWidget {
                       subTitle:
                           "Relationships are essential! Have exemplary behavior, be polite, available and attentive. If you have an unforeseen event, call your client to arrange it with him."),
                   const Divider(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  CustomButton(onPress: () {
-                    reliabilityScoreData.reliabilityScore(context, "1");
-                  }, buttonName: "Confirm"),
                 ],
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: CustomButton(onPress: () {
+            reliabilityScoreData.reliabilityScore(context, "1");
+          }, buttonName: "Confirm"),),),
     );
   }
 }

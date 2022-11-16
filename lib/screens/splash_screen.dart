@@ -31,8 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<PreferencesProvider>(context, listen: false)
           .checkToken(context);
       Provider.of<IndicateSkillsProvider>(context, listen: false).getMainCategories();
-      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
       Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
       Provider.of<FAQProvider>(context, listen: false).getFAQ();

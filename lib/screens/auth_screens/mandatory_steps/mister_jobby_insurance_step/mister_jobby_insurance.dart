@@ -112,23 +112,17 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.width / 40,
                   ),
                   const Divider(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 1.5,
-                  ),
-                  const Divider(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 40,
-                  ),
-                  CustomButton(
-                      onPress: () => Navigator.of(context)
-                          .pushNamed(MyRoutes.INSURANCESTEPSCREENROUTE),
-                      buttonName: "Skip to quiz"),
                 ],
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: CustomButton(
+              onPress: () => Navigator.of(context)
+                  .pushNamed(MyRoutes.INSURANCESTEPSCREENROUTE),
+              buttonName: "Skip to quiz"),),),
     );
   }
 }

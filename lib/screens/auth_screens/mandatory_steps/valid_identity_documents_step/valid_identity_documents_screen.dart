@@ -60,23 +60,20 @@ class ValidIdentityDocuments extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 1.1,
-              ),
-              const Divider(),
-              CustomButton(onPress: (){
-                if(citizenData.europeanCitizen == 1) {
-                  print("yes");
-                  Navigator.of(context).pushNamed(MyRoutes.EUROPEANCITIZENIDENTIFICATIONROUTE);
-                }else{
-                  print("No");
-                  Navigator.of(context).pushNamed(MyRoutes.NONEUROPEANCITIZENROUTE);
-                }
-              }, buttonName: "Continue"),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: CustomButton(onPress: (){
+            if(citizenData.europeanCitizen == 1) {
+              print("yes");
+              Navigator.of(context).pushNamed(MyRoutes.EUROPEANCITIZENIDENTIFICATIONROUTE);
+            }else{
+              print("No");
+              Navigator.of(context).pushNamed(MyRoutes.NONEUROPEANCITIZENROUTE);
+            }
+          }, buttonName: "Continue"),),),
     );
   }
 }

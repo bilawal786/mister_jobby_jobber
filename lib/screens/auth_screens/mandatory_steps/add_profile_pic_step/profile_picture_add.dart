@@ -244,22 +244,16 @@ class ProfilePictureAdd extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-              const Divider(),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-              Consumer<ProfileImageProvider>(
-                builder: (_,imageProvider, child)=> CustomButton(onPress: (){
-                  imageProvider.postProfileImage(context, imageProvider.profilePick);
-                }, buttonName: "Confirm"),
-              ),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: Consumer<ProfileImageProvider>(
+            builder: (_,imageProvider, child)=> CustomButton(onPress: (){
+              imageProvider.postProfileImage(context, imageProvider.profilePick);
+            }, buttonName: "Confirm"),
+          ),),),
     );
   }
 }

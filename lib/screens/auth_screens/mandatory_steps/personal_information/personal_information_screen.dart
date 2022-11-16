@@ -248,32 +248,29 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     textAlign: TextAlign.justify,
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 10,
-                ),
-                const Divider(),
-                CustomButton(
-                    onPress: () {
-                      formSubmit(
-                        (profileData.changeFName == null)
-                            ? extractedData.firstName
-                            : profileData.changeFName,
-                        (profileData.changeLName == null)
-                            ? extractedData.lastName
-                            : profileData.changeLName,
-                        profileData.genderValue,
-                        (profileData.changePhoneNumber == null)
-                            ? extractedData.phone
-                            : profileData.changePhoneNumber,
-                        profileData.statusName,
-                      );
-                    },
-                    buttonName: "Confirm"),
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(elevation: 20, child: Padding(padding: const EdgeInsets.all(5),
+          child: CustomButton(
+              onPress: () {
+                formSubmit(
+                  (profileData.changeFName == null)
+                      ? extractedData.firstName
+                      : profileData.changeFName,
+                  (profileData.changeLName == null)
+                      ? extractedData.lastName
+                      : profileData.changeLName,
+                  profileData.genderValue,
+                  (profileData.changePhoneNumber == null)
+                      ? extractedData.phone
+                      : profileData.changePhoneNumber,
+                  profileData.statusName,
+                );
+              },
+              buttonName: "Confirm"),),),
     );
   }
 }
