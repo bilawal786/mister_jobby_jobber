@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 import '../../models/coordinates_model.dart';
+import 'login_progress_indicator.dart';
 
 class GooglePlacesApi extends StatefulWidget {
   const GooglePlacesApi({Key? key}) : super(key: key);
@@ -63,6 +64,11 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
   CoordinatesModel? getCoordinates;
 
   Future<void> getLatLngGeoCodingApi(String address) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const LoginProgressIndicator();
+        });
     String geoCodingApiKey = "AIzaSyAeKxMwTMJzHH2AR1xt7OLWIWFMIzm-JLM&libraries";
     String geoCodingBaseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
     String requestUrl = "$geoCodingBaseUrl?address=$address&key=$geoCodingApiKey";
@@ -71,7 +77,10 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
       setState(() {
         getCoordinates = CoordinatesModel.fromJson(jsonDecode(response.body));
       });
+      Navigator.of(context).pop();
       // print("response : ${response.body}");
+    }else {
+      debugPrint("geo coding get coordinates api did not working");
     }
   }
   @override
