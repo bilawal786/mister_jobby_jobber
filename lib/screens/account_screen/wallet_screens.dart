@@ -187,22 +187,26 @@ class _WalletScreenState extends State<WalletScreen>
                   child: [
                     ListView.builder(
                       shrinkWrap: true,
-                      controller: ScrollController(),
-                      primary: false,
-                      itemCount: 7,
-                      itemBuilder: (context, index) => ListTile(
-                        title: Text(
-                          'IBFT BNP',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        subtitle: Text(
-                          '25-10-2022',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        trailing: Text(
-                          '€ 300',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 2,
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              'Commercial Bank France',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            subtitle: Text(
+                              '25-10-2022',
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                            trailing: Text(
+                              '€300',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ),
+                          const Divider(),
+                        ],
                       ),
                     ),
                     ListView.builder(
@@ -210,19 +214,24 @@ class _WalletScreenState extends State<WalletScreen>
                       controller: ScrollController(),
                       primary: false,
                       itemCount: 3,
-                      itemBuilder: (context, index) => ListTile(
-                        title: Text(
-                          'IBFT BNP',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        subtitle: Text(
-                          'November',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        trailing: Text(
-                          '€ 300',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              'IBFT BNP',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            subtitle: Text(
+                              'November',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                            trailing: Text(
+                              '€ 300',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ),
+                          const Divider(),
+                        ],
                       ),
                     ),
                     ListView.builder(
@@ -230,19 +239,24 @@ class _WalletScreenState extends State<WalletScreen>
                       controller: ScrollController(),
                       primary: false,
                       itemCount: 5,
-                      itemBuilder: (context, index) => ListTile(
-                        title: Text(
-                          'IBFT BNP',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        subtitle: Text(
-                          '2022',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        trailing: Text(
-                          '€ 300',
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              'IBFT BNP',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            subtitle: Text(
+                              '2022',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                            trailing: Text(
+                              '€ 300',
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ),
+                          const Divider(),
+                        ],
                       ),
                     ),
                   ][_tabController!.index],
