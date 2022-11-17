@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
-import 'package:geocoding/geocoding.dart';
 
-import '../../../../providers/jobs_providers/area_of_intervention_provider/area_intervention_provider.dart';
+import '../../models/coordinates_model.dart';
 
 class GooglePlacesApi extends StatefulWidget {
   const GooglePlacesApi({Key? key}) : super(key: key);
@@ -41,11 +41,11 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
   }
 
   void getSuggestion(String input) async {
-    String kPLACES_API_KEY = "AIzaSyAeKxMwTMJzHH2AR1xt7OLWIWFMIzm-JLM&libraries";
+    String kPLACESAPIKEY = "AIzaSyAeKxMwTMJzHH2AR1xt7OLWIWFMIzm-JLM&libraries";
     String gBASEURL =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json';
     String requestUrl =
-        '$gBASEURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$_sessionToken&components=country:mq|country:gp|country:gf|country:re|country:fr';
+        '$gBASEURL?input=$input&key=$kPLACESAPIKEY&sessiontoken=$_sessionToken';
 
     var response = await http.get(Uri.parse(requestUrl));
 
@@ -59,6 +59,21 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
     // print(response.body.toString());
   }
 
+
+  CoordinatesModel? getCoordinates;
+
+  Future<void> getLatLngGeoCodingApi(String address) async {
+    String geoCodingApiKey = "AIzaSyAeKxMwTMJzHH2AR1xt7OLWIWFMIzm-JLM&libraries";
+    String geoCodingBaseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
+    String requestUrl = "$geoCodingBaseUrl?address=$address&key=$geoCodingApiKey";
+    var response = await http.get(Uri.parse(requestUrl));
+    if(response.statusCode == 200){
+      setState(() {
+        getCoordinates = CoordinatesModel.fromJson(jsonDecode(response.body));
+      });
+      // print("response : ${response.body}");
+    }
+  }
   @override
   void dispose() {
     searchController.dispose();
@@ -82,7 +97,7 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: Theme.of(context).primaryColor, width: 1),
+          BorderSide(color: Theme.of(context).primaryColor, width: 1),
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
@@ -97,16 +112,19 @@ class _GooglePlacesApiState extends State<GooglePlacesApi> {
       }).toList(),
       onSuggestionTap: (p0) async {
         FocusScope.of(context).unfocus();
-        List<Location> location = await locationFromAddress(p0.item.toString());
-        searchData.getAddress(
-          address = searchController.text,
-          longitude = location.last.longitude,
-          latitude = location.last.latitude,
-        );
-        debugPrint("\n \n \n \n ");
-        debugPrint("full address : $address");
-        debugPrint("latitude: $latitude");
-        debugPrint("longitude: $longitude");
+        getLatLngGeoCodingApi(searchController.text).then((value) {
+          searchData.getAddress(
+            address = searchController.text,
+            longitude = getCoordinates!.results[0].geometry.location.lng,
+            latitude = getCoordinates!.results[0].geometry.location.lat,
+          );
+          debugPrint("\n \n \n \n ");
+          debugPrint("full address : $address");
+          debugPrint("latitude:  $latitude");
+          debugPrint("longitude: $longitude");
+        });
+        // List<Location> location = await locationFromAddress(searchController.text);
+
       },
     );
   }
