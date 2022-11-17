@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../widgets/chart_widget.dart';
-import '../../widgets/commented_jobs_widgets/commented_jobs_widget.dart';
+import 'package:collection/collection.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -43,22 +43,22 @@ class _WalletScreenState extends State<WalletScreen>
           'Wallet',
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        actions: [
-          Row(
-            children: const <Widget>[
-              Text(
-                'Assistance',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Cerebri Sans Bold',
-                ),
-              ),
-              Icon(Icons.more_vert_rounded)
-            ],
-          ),
-        ],
+        // actions: [
+        //   Row(
+        //     children: const <Widget>[
+        //       Text(
+        //         'Assistance',
+        //         style: TextStyle(
+        //           fontSize: 18,
+        //           color: Colors.blue,
+        //           fontWeight: FontWeight.w700,
+        //           fontFamily: 'Cerebri Sans Bold',
+        //         ),
+        //       ),
+        //       Icon(Icons.more_vert_rounded)
+        //     ],
+        //   ),
+        // ],
       ),
       body: ListView(
         children: [
