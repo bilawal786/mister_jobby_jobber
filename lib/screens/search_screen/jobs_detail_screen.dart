@@ -398,9 +398,13 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          widget.jobsDetail.address,
-                          style: Theme.of(context).textTheme.labelMedium,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.4,
+                          child: Text(
+                            widget.jobsDetail.address,
+                            style: Theme.of(context).textTheme.labelMedium,
+                            maxLines: 2,
+                          ),
                         ),
                       ],
                     ),

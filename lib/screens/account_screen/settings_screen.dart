@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
 import '../auth_screens/forget_password_screens/change_password.dart';
-import '../auth_screens/forget_password_screens/confirm_password_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -54,20 +53,6 @@ class SettingScreen extends StatelessWidget {
                     ),
                     title: Text(
                       "Personal_Information",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ).tr(),
-                  ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    onTap: ()=> Navigator.of(context).pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),
-                    leading: Icon(
-                      Icons.account_balance_wallet_outlined,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text(
-                      "Identity_Documents",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ).tr(),
                   ),
