@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/accounts_providers/transaction_provider.dart';
 import '../../widgets/chart_widget.dart';
 import 'package:collection/collection.dart';
 
@@ -34,6 +36,9 @@ class _WalletScreenState extends State<WalletScreen>
 
   @override
   Widget build(BuildContext context) {
+    final transactionData = Provider.of<TransactionProvider>(context);
+    final extractData = transactionData.transactionModel;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -70,7 +75,7 @@ class _WalletScreenState extends State<WalletScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '0',
+                      extractData!.wallet,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     SizedBox(
@@ -185,28 +190,36 @@ class _WalletScreenState extends State<WalletScreen>
                 ),
                 Container(
                   child: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 2,
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              'Commercial Bank France',
-                              style: Theme.of(context).textTheme.titleSmall,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: extractData.transactions.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            ListTile(
+                              horizontalTitleGap: 0,
+                              leading: Text(
+                                extractData.transactions[index].transactionId.toString(),
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              title: Text(
+                                extractData.transactions[index].jobTitle,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              subtitle: Text(
+                                extractData.transactions[index].invoiceNo,
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
+                              trailing: Text(
+                                extractData.transactions[index].jobberGet,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
                             ),
-                            subtitle: Text(
-                              '25-10-2022',
-                              style: Theme.of(context).textTheme.labelSmall,
-                            ),
-                            trailing: Text(
-                              '€300',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ),
-                          const Divider(),
-                        ],
+                            const Divider(),
+                          ],
+                        ),
                       ),
                     ),
                     ListView.builder(

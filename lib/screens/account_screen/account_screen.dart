@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
+import '../../providers/accounts_providers/transaction_provider.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
@@ -33,6 +34,7 @@ class _AccountScreenState extends State<AccountScreen> {
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context);
     final mediaQuery = MediaQuery.of(context);
+    final transactionData = Provider.of<TransactionProvider>(context).transactionModel;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -186,7 +188,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   height: mediaQuery.size.width / 80,
                                 ),
                                 Text(
-                                  "0",
+                                  transactionData!.wallet,
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(
