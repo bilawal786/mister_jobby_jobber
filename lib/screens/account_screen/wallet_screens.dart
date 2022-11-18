@@ -213,7 +213,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 style: Theme.of(context).textTheme.labelSmall,
                               ),
                               trailing: Text(
-                                extractData.transactions[index].jobberGet,
+                                "${extractData.transactions[index].jobberGet} €",
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                             ),

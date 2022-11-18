@@ -188,7 +188,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   height: mediaQuery.size.width / 80,
                                 ),
                                 Text(
-                                  transactionData!.wallet,
+                                  "${transactionData!.wallet}€",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(
