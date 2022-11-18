@@ -86,283 +86,281 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height / 2.9,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.black38),
-                ),
-              ),
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(double.parse(profileData.profile!.latitude),
-                      double.parse(profileData.profile!.longitude)),
-                  zoom: 15,
-                ),
-                onMapCreated: (controller) {
-                  mapController = controller;
-                  addMarker("test", currentLocation);
-                },
-                markers: _markers.values.toSet(),
-                zoomControlsEnabled: false,
-                myLocationButtonEnabled: false,
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height / 2.9,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.black38),
               ),
             ),
-            if ((extractedCompleteData?.skills == "") &&
-                (extractedCompleteData?.monday == "" ||
-                    extractedCompleteData!.tuesday == "" ||
-                    extractedCompleteData.wednesday == "" ||
-                    extractedCompleteData.thersday == "" ||
-                    extractedCompleteData.friday == "" ||
-                    extractedCompleteData.saturday == "" ||
-                    extractedCompleteData.sunday == "") ||
-                extractedCompleteData?.answer1 == "" ||
-                extractedCompleteData?.insurance1 == "" ||
-                extractedCompleteData?.rules1 == "" ||
-                profileData.profile?.image == 'main/avatar.png' ||
-                (extractedCompleteData?.phone == "") ||
-                (extractedCompleteData?.euIdCardFront == "" &&
-                    extractedCompleteData?.euIdResidencePermitFront ==
-                        "") ||
-                (extractedCompleteData?.vitalCardNumber == "" ||
-                    extractedCompleteData?.socialSecurityNumber ==
-                        "") ||
-                extractedCompleteData?.score == "") ...[
-              GestureDetector(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
-                child: Container(
-                  color: Colors.amber.shade700,
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: <Widget>[
-                      const Icon(
-                        Icons.circle_notifications_outlined,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 40,
-                      ),
-                      Text(
-                        "Actions required",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 16,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(double.parse(profileData.profile!.latitude),
+                    double.parse(profileData.profile!.longitude)),
+                zoom: 15,
+              ),
+              onMapCreated: (controller) {
+                mapController = controller;
+                addMarker("test", currentLocation);
+              },
+              markers: _markers.values.toSet(),
+              zoomControlsEnabled: false,
+              myLocationButtonEnabled: false,
+            ),
+          ),
+          if ((extractedCompleteData?.skills == "") &&
+              (extractedCompleteData?.monday == "" ||
+                  extractedCompleteData!.tuesday == "" ||
+                  extractedCompleteData.wednesday == "" ||
+                  extractedCompleteData.thersday == "" ||
+                  extractedCompleteData.friday == "" ||
+                  extractedCompleteData.saturday == "" ||
+                  extractedCompleteData.sunday == "") ||
+              extractedCompleteData?.answer1 == "" ||
+              extractedCompleteData?.insurance1 == "" ||
+              extractedCompleteData?.rules1 == "" ||
+              profileData.profile?.image == 'main/avatar.png' ||
+              (extractedCompleteData?.phone == "") ||
+              (extractedCompleteData?.euIdCardFront == "" &&
+                  extractedCompleteData?.euIdResidencePermitFront ==
+                      "") ||
+              (extractedCompleteData?.vitalCardNumber == "" ||
+                  extractedCompleteData?.socialSecurityNumber ==
+                      "") ||
+              extractedCompleteData?.score == "") ...[
+            GestureDetector(
+              onTap: () => Navigator.of(context)
+                  .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+              child: Container(
+                color: Colors.amber.shade700,
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.circle_notifications_outlined,
+                      size: 20,
+                      color: Colors.black,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Text(
+                      "Actions required",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const Spacer(),
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.black,
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 40,
-              ),
-            ],
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                children: <Widget>[
-                  Consumer<AvailableJobsProvider>(
-                    builder: (_, jobsData, child) => InkWell(
-                      onTap: () {
-                        jobsData.setCheckApi();
-                        Provider.of<AvailableJobsProvider>(context,
-                                listen: false)
-                            .getAvailableJobs();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: (jobsData.checkApi == false)
-                            ? const SizedBox(
-                                width: 25,
-                                height: 25,
-                                child: CircularProgressIndicator())
-                            : const Icon(
-                                Icons.refresh,
-                                size: 25,
-                                color: Colors.black,
-                              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.width / 40,
+            ),
+          ],
+          Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: <Widget>[
+                Consumer<AvailableJobsProvider>(
+                  builder: (_, jobsData, child) => InkWell(
+                    onTap: () {
+                      jobsData.setCheckApi();
+                      Provider.of<AvailableJobsProvider>(context,
+                              listen: false)
+                          .getAvailableJobs();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: (jobsData.checkApi == false)
+                          ? const SizedBox(
+                              width: 25,
+                              height: 25,
+                              child: CircularProgressIndicator())
+                          : const Icon(
+                              Icons.refresh,
+                              size: 25,
+                              color: Colors.black,
+                            ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 40,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.4,
+                  child: Center(
+                    child: Consumer<AvailableJobsProvider>(
+                      builder: (_, availableJobs, child) => Text(
+                        "${availableJobs.availableJobs?.length} Jobs are available",
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 40,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.4,
-                    child: Center(
-                      child: Consumer<AvailableJobsProvider>(
-                        builder: (_, availableJobs, child) => Text(
-                          "${availableJobs.availableJobs?.length} Jobs are available",
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            // const Divider(),
-            Consumer<AvailableJobsProvider>(
-              builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
-                onRefresh: () {
-                  return Provider.of<AvailableJobsProvider>(context,
-                          listen: false)
-                      .getAvailableJobs();
-                },
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.4,
-                  child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
-                      ? ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount:
-                              extractedAvailableJobs.availableJobs?.length,
-                          itemBuilder: (ctx, index) => Column(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (ctx) => JobDetailScreen(
-                                          jobsDetail: extractedAvailableJobs
-                                              .availableJobs![index])));
-                                },
-                                child: Container(
-                                  color: const Color(0xFFebf9fe),
-                                  width: MediaQuery.of(context).size.width,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 5.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.brown.shade300,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            child: Icon(
-                                              Icons.handyman_rounded,
-                                              color: Colors.brown.shade700,
-                                              size: 30,
-                                            ),
+          ),
+          // const Divider(),
+          Consumer<AvailableJobsProvider>(
+            builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
+              onRefresh: () {
+                return Provider.of<AvailableJobsProvider>(context,
+                        listen: false)
+                    .getAvailableJobs();
+              },
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 2.45,
+                child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
+                    ? ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount:
+                            extractedAvailableJobs.availableJobs?.length,
+                        itemBuilder: (ctx, index) => Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) => JobDetailScreen(
+                                        jobsDetail: extractedAvailableJobs
+                                            .availableJobs![index])));
+                              },
+                              child: Container(
+                                color: const Color(0xFFebf9fe),
+                                width: MediaQuery.of(context).size.width,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 5.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.brown.shade300,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
                                           ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                40,
+                                          child: Icon(
+                                            Icons.handyman_rounded,
+                                            color: Colors.brown.shade700,
+                                            size: 30,
                                           ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context).size.width / 1.5,
-                                            child: Text(
-                                              extractedAvailableJobs
-                                                  .availableJobs![index].title,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            "${extractedAvailableJobs.availableJobs![index].estimateBudget} €",
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              40,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width / 1.5,
+                                          child: Text(
+                                            extractedAvailableJobs
+                                                .availableJobs![index].title,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
                                           ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.width /
-                                                80,
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Text(
-                                            "${extractedAvailableJobs.availableJobs![index].startTime} - ${extractedAvailableJobs.availableJobs![index].endTime} (${extractedAvailableJobs.availableJobs![index].duration} h)",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall,
-                                          ),
-                                          const Spacer(),
-                                          if (extractedAvailableJobs
-                                                  .availableJobs![index]
-                                                  .urgent ==
-                                              1)
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.all(5.0),
-                                              decoration: BoxDecoration(
-                                                color: Colors.red.shade900,
-                                                borderRadius:
-                                                    BorderRadius.circular(20.0),
-                                              ),
-                                              child: const FittedBox(
-                                                child: Text(
-                                                  "Urgent",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontFamily:
-                                                        'Cerebri Sans Bold',
-                                                    color: Colors.white,
-                                                  ),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          "${extractedAvailableJobs.availableJobs![index].estimateBudget} €",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.width /
+                                              80,
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "${extractedAvailableJobs.availableJobs![index].startTime} - ${extractedAvailableJobs.availableJobs![index].endTime} (${extractedAvailableJobs.availableJobs![index].duration} h)",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall,
+                                        ),
+                                        const Spacer(),
+                                        if (extractedAvailableJobs
+                                                .availableJobs![index]
+                                                .urgent ==
+                                            1)
+                                          Container(
+                                            padding:
+                                                const EdgeInsets.all(5.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.red.shade900,
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                            ),
+                                            child: const FittedBox(
+                                              child: Text(
+                                                "Urgent",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily:
+                                                      'Cerebri Sans Bold',
+                                                  color: Colors.white,
                                                 ),
                                               ),
                                             ),
-                                        ],
-                                      ),
-                                      Text(
-                                        extractedAvailableJobs
-                                            .availableJobs![index].serviceDate,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium,
-                                      ),
-                                      const Divider(),
-                                    ],
-                                  ),
+                                          ),
+                                      ],
+                                    ),
+                                    Text(
+                                      extractedAvailableJobs
+                                          .availableJobs![index].serviceDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    ),
+                                    const Divider(),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        )
-                      : ListView(
-                          children: [
-                            Column(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.maps_home_work,
-                                  size: 150,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                Text(
-                                  "No Job Found",
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                ).tr(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 40,
-                                ),
-                              ],
                             ),
                           ],
                         ),
-                ),
+                      )
+                    : ListView(
+                        children: [
+                          Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.maps_home_work,
+                                size: 150,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              Text(
+                                "No Job Found",
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ).tr(),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 40,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
