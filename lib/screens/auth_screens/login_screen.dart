@@ -47,9 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.width/1.4,
+                height: MediaQuery.of(context).size.width/1.2,
                 width: MediaQuery.of(context).size.width,
-                child: Image.asset('assets/images/login.png',
+                child: Image.asset('assets/images/jobber_login.jpeg',
                   fit: BoxFit.cover,
                 ),
               ),

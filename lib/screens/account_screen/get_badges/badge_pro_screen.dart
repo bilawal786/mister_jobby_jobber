@@ -47,7 +47,8 @@ class BadgeProScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  if(profileData.profile!.pro == 1) ...[Container(
+                  if(profileData.profile!.pro == 1) ...[
+                    Container(
                     margin: EdgeInsets.all(0),
                     padding: EdgeInsets.all(0),
                     width: double.infinity,

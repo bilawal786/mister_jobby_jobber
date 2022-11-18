@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 
 class TermsAndCondition extends StatefulWidget {
@@ -80,7 +81,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                             color: Colors.red.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.instagram),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -89,7 +90,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                             color: Colors.pink.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.twitter),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -98,7 +99,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
                             color: Colors.green.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.pinterest),
                         ),
                       ],
                     ),

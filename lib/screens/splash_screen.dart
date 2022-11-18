@@ -28,8 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      Provider.of<PreferencesProvider>(context, listen: false)
-          .checkToken(context);
+      Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
       Provider.of<IndicateSkillsProvider>(context, listen: false).getMainCategories(context);
       Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();

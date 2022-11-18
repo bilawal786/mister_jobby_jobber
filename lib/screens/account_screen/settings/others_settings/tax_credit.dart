@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TaxCredit extends StatefulWidget {
   const TaxCredit({Key? key}) : super(key: key);
@@ -76,7 +77,7 @@ class _TaxCreditState extends State<TaxCredit> {
                             color: Colors.red.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.instagram),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -85,7 +86,7 @@ class _TaxCreditState extends State<TaxCredit> {
                             color: Colors.pink.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.twitter),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -94,7 +95,7 @@ class _TaxCreditState extends State<TaxCredit> {
                             color: Colors.green.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.pinterest),
                         ),
                       ],
                     ),

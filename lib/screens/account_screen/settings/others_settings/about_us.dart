@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/about_provider/about_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.red.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.instagram),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -89,7 +90,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.pink.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.twitter),
                         ),
                         Container(
                           height: MediaQuery.of(context).size.height * .08,
@@ -98,7 +99,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             color: Colors.green.shade50,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.facebook),
+                          child: const Icon(FontAwesomeIcons.pinterest),
                         ),
                       ],
                     ),
