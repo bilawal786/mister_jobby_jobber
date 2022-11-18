@@ -75,6 +75,9 @@ class _IndexScreenState extends State<IndexScreen> {
       // print(mySelectedEvents);
     } else {
       debugPrint('Schedule Jobs Api is not working');
+      if (!mounted) {
+        return;
+      }
       setState(() {
         checkApi = true;
       });

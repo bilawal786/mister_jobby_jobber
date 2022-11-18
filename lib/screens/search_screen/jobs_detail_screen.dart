@@ -21,8 +21,6 @@ class JobDetailScreen extends StatefulWidget {
   State<JobDetailScreen> createState() => _JobDetailScreenState();
 }
 
-const LatLng currentLocation = LatLng(31.561920, 74.348080);
-
 class _JobDetailScreenState extends State<JobDetailScreen> {
   void ignoreJobOpenSheet() {
     showModalBottomSheet(
@@ -35,7 +33,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
             // padding: const EdgeInsets.all(10,),
             child: InkWell(
               onTap: () {
-                Provider.of<AvailableJobsProvider>(context, listen: false).ignoreThisJob(context, widget.jobsDetail.id.toString());
+                Provider.of<AvailableJobsProvider>(context, listen: false)
+                    .ignoreThisJob(context, widget.jobsDetail.id.toString());
               },
               child: Container(
                 width: double.infinity,
@@ -81,8 +80,10 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
   Map<String, Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
-    int commentedJobs = Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
-    final jobberProfileData = Provider.of<PersonalInformationProvider>(context, listen: false);
+    int commentedJobs =
+        Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
+    final jobberProfileData =
+        Provider.of<PersonalInformationProvider>(context, listen: false);
     final extractedProfile = jobberProfileData.profile;
     return Scaffold(
       bottomNavigationBar: Container(
@@ -128,61 +129,60 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
-                (extractedProfile!.verified == false) ?
-                Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    border: Border.all(
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
-                  child: Text(
-                    "Please Complete your Profile",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).errorColor,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cerebri Sans Bold'),
-                  ),
-                )
-                :
-                (widget.jobsDetail.isApplied == false)
-                    ? Expanded(
-                        child: Consumer<JobsDetailProvider>(
-                          builder: (_, bottomSheet, child) => CustomButton(
-                              onPress: () {
-                                bottomSheet.postId = widget.jobsDetail.id;
-                                bottomSheet.fixedRate =
-                                    int.parse(widget.jobsDetail.hours);
-                                bottomSheet.hourlyRate =
-                                    int.parse(widget.jobsDetail.hours);
-                                bottomSheet.hours =
-                                    double.parse(widget.jobsDetail.duration);
-                                bottomSheet.showBottomSheet(
-                                  context,
-                                );
-                              },
-                              buttonName: "To apply"),
-                        ),
-                      )
-                    : Container(
+                (extractedProfile!.verified == false)
+                    ? Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
                           border: Border.all(
-                            color: Colors.green.shade700,
+                            color: Theme.of(context).errorColor,
                           ),
                         ),
                         child: Text(
-                          "Already Applied",
+                          "Please Complete your Profile",
                           style: TextStyle(
                               fontSize: 16,
-                              color: Colors.green.shade700,
+                              color: Theme.of(context).errorColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Cerebri Sans Bold'),
                         ),
-                      ),
+                      )
+                    : (widget.jobsDetail.isApplied == false)
+                        ? Expanded(
+                            child: Consumer<JobsDetailProvider>(
+                              builder: (_, bottomSheet, child) => CustomButton(
+                                  onPress: () {
+                                    bottomSheet.postId = widget.jobsDetail.id;
+                                    bottomSheet.fixedRate =
+                                        int.parse(widget.jobsDetail.hours);
+                                    bottomSheet.hourlyRate =
+                                        int.parse(widget.jobsDetail.hours);
+                                    bottomSheet.hours = double.parse(
+                                        widget.jobsDetail.duration);
+                                    bottomSheet.showBottomSheet(
+                                      context,
+                                    );
+                                  },
+                                  buttonName: "To apply"),
+                            ),
+                          )
+                        : Container(
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.0),
+                              border: Border.all(
+                                color: Colors.green.shade700,
+                              ),
+                            ),
+                            child: Text(
+                              "Already Applied",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.green.shade700,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Cerebri Sans Bold'),
+                            ),
+                          ),
               ],
             )
           ],
@@ -203,13 +203,22 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       ),
                     ),
                     child: GoogleMap(
-                      initialCameraPosition: const CameraPosition(
-                        target: currentLocation,
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(
+                          double.parse(widget.jobsDetail.latitude),
+                          double.parse(widget.jobsDetail.longitude),
+                        ),
                         zoom: 15,
                       ),
                       onMapCreated: (controller) {
                         mapController = controller;
-                        addMarker("test", currentLocation);
+                        addMarker(
+                          "test",
+                          LatLng(
+                            double.parse(widget.jobsDetail.latitude),
+                            double.parse(widget.jobsDetail.longitude),
+                          ),
+                        );
                       },
                       markers: _markers.values.toSet(),
                       zoomControlsEnabled: false,
@@ -234,14 +243,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     top: 10,
                     right: 10,
                     child: InkWell(
-                      onTap: (){ignoreJobOpenSheet();},
+                      onTap: () {
+                        ignoreJobOpenSheet();
+                      },
                       child: Container(
                         height: 30,
                         width: 30,
-                        decoration: const BoxDecoration(shape: BoxShape.circle,
-                        color: Colors.white,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
                         ),
-                        child: const Icon(Icons.more_vert_rounded, color: Colors.black,size: 25,),
+                        child: const Icon(
+                          Icons.more_vert_rounded,
+                          color: Colors.black,
+                          size: 25,
+                        ),
                       ),
                     ),
                   ),
@@ -436,7 +452,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     ),
                     const Divider(),
                     InkWell(
-                      onTap: () => Navigator.of(context).pushNamed(MyRoutes.COMMENTSCREENROUTE, arguments: {
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MyRoutes.COMMENTSCREENROUTE, arguments: {
                         'jobId': widget.jobsDetail.id.toString(),
                       }),
                       child: Padding(
@@ -2807,8 +2824,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.subcategoryId == 36 ||
                   widget.jobsDetail.subcategoryId == 66 ||
                   widget.jobsDetail.subcategoryId == 68 ||
-                  widget.jobsDetail.subcategoryId == 69
-              ) ...[
+                  widget.jobsDetail.subcategoryId == 69) ...[
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(

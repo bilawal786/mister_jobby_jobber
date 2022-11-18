@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../helper/routes.dart';
+import '../../../screens/home_screens/home_tab_screen.dart';
 import '../../../widgets/const_widgets/progress_indicator.dart';
 import '../../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../available_jobs_provider/available_jobs_provider.dart';
@@ -59,7 +60,12 @@ class AreaInterventionProvider with ChangeNotifier {
       Provider.of<AvailableJobsProvider>(context, listen: false)
           .getAvailableJobs();
       Navigator.pop(context);
-      Navigator.pop(context);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (ctx) => HomeTabScreen(
+                    pageIndex: 0,
+                  )),
+          (route) => false);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
