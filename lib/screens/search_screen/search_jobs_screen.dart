@@ -231,9 +231,10 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     .getAvailableJobs();
               },
               child: SizedBox(
-                height: MediaQuery.of(context).size.height / 2.89,
+                height: MediaQuery.of(context).size.width / 1.15,
                 child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
                     ? ListView.builder(
+                        shrinkWrap: true,
                         padding: EdgeInsets.zero,
                         itemCount: extractedAvailableJobs.availableJobs?.length,
                         itemBuilder: (ctx, index) => Column(
