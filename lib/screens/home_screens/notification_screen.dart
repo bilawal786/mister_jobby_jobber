@@ -28,8 +28,6 @@ class NotificationDisplay extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: ListView.builder(
-            shrinkWrap: true,
-            // physics: const NeverScrollableScrollPhysics(),
             itemCount: extractNotification!.length,
             itemBuilder: (ctx, index) => Column(
               children:<Widget> [

@@ -33,6 +33,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        centerTitle: false,
         elevation: 0,
         iconTheme: const IconThemeData(
           color: Colors.black,
@@ -230,7 +231,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     .getAvailableJobs();
               },
               child: SizedBox(
-                height: MediaQuery.of(context).size.height / 2.45,
+                height: MediaQuery.of(context).size.height / 2.89,
                 child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
                     ? ListView.builder(
                         padding: EdgeInsets.zero,
