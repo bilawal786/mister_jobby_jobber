@@ -230,7 +230,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                         listen: false)
                     .getAvailableJobs();
               },
-              // child: Expanded(
+              child: Expanded(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.width / 1.3,
                   child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
