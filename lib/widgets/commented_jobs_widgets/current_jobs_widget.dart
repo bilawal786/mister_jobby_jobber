@@ -90,6 +90,7 @@ class CurrentJobsWidget extends StatelessWidget {
                                   .bodySmall,
                             ),
                             const Spacer(),
+                            (extractCommentedJobsData[index].job.urgent == true) ?
                             Container(
                               padding:
                               const EdgeInsets.all(5.0),
@@ -110,7 +111,7 @@ class CurrentJobsWidget extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ),
+                            ) : const SizedBox(),
                           ],
                         ),
                         SizedBox(height: MediaQuery.of(context).size.width/40),

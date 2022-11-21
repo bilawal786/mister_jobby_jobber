@@ -6,9 +6,6 @@ import 'package:provider/provider.dart';
 import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../widgets/commented_jobs_widgets/commented_jobs_widget.dart';
 import '../../widgets/commented_jobs_widgets/current_jobs_widget.dart';
-import '../../widgets/const_widgets/custom_button.dart';
-import '../search_screen/jobs_detail_screen.dart';
-import 'current_offer_jobs_details_screen.dart';
 
 class CurrentOffers extends StatelessWidget {
   const CurrentOffers({Key? key,}) : super(key: key);

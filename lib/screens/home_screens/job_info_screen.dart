@@ -15,8 +15,6 @@ class JobInfoScreen extends StatefulWidget {
   @override
   State<JobInfoScreen> createState() => _JobInfoScreenState();
 }
-
-const LatLng currentLocation = LatLng(31.561920, 74.348080);
 class _JobInfoScreenState extends State<JobInfoScreen> {
   var jobsDetail;
 
@@ -55,13 +53,19 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                       ),
                     ),
                     child: GoogleMap(
-                      initialCameraPosition: const CameraPosition(
-                        target: currentLocation,
+                      initialCameraPosition:  CameraPosition(
+                        target: LatLng(
+                            double.parse(singleJobData.jobDetail!.latitude),
+                            double.parse(singleJobData.jobDetail!.longitude),
+                        ),
                         zoom: 15,
                       ),
                       onMapCreated: (controller) {
                         mapController = controller;
-                        addMarker("test", currentLocation);
+                        addMarker("test", LatLng(
+                          double.parse(singleJobData.jobDetail!.latitude),
+                          double.parse(singleJobData.jobDetail!.longitude),
+                        ),);
                       },
                       markers: _markers.values.toSet(),
                       zoomControlsEnabled: false,

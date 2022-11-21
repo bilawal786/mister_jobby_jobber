@@ -6,10 +6,7 @@ import 'package:mister_jobby_jobber/providers/jobs_providers/available_jobs_prov
 import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
-import '../../../widgets/const_widgets/custom_button.dart';
-import '../../../providers/jobs_providers/job_details_provider.dart';
 import '../../models/commented_jobs_model/current_jobs_offers_model.dart';
-import '../../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import '../image_preview_screen.dart';
 
 class SingleJobDetailScreen extends StatefulWidget {
@@ -19,8 +16,6 @@ class SingleJobDetailScreen extends StatefulWidget {
   @override
   State<SingleJobDetailScreen> createState() => _SingleJobDetailScreenState();
 }
-
-const LatLng currentLocation = LatLng(31.561920, 74.348080);
 
 class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
   void ignoreJobOpenSheet() {
@@ -81,89 +76,6 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Container(
-      //   padding: const EdgeInsets.all(20.0),
-      //   height: MediaQuery.of(context).size.width / 2.3,
-      //   decoration: const BoxDecoration(
-      //     border: Border(
-      //       top: BorderSide(
-      //         color: Colors.black12,
-      //       ),
-      //     ),
-      //   ),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: <Widget>[
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           Icon(
-      //             Icons.add_alert,
-      //             size: 30,
-      //             color: Colors.grey.shade500,
-      //           ),
-      //           SizedBox(
-      //             width: MediaQuery.of(context).size.width / 40,
-      //           ),
-      //           Text(
-      //             "Already 1 jobber has applied",
-      //             style: Theme.of(context).textTheme.bodyMedium,
-      //           ),
-      //         ],
-      //       ),
-      //       const Divider(),
-      //       Text(
-      //         "Client proposal",
-      //         style: Theme.of(context).textTheme.labelMedium,
-      //       ),
-      //       Row(
-      //         children: <Widget>[
-      //           Text(
-      //             "${widget.jobsDetail.estimateBudget} €",
-      //             style: Theme.of(context).textTheme.titleMedium,
-      //           ),
-      //           const Spacer(),
-      //           (widget.jobsDetail.isApplied == false)
-      //               ? Expanded(
-      //             child: Consumer<JobsDetailProvider>(
-      //               builder: (_, bottomSheet, child) => CustomButton(
-      //                   onPress: () {
-      //                     bottomSheet.postId = widget.jobsDetail.id;
-      //                     bottomSheet.fixedRate =
-      //                         int.parse(widget.jobsDetail.hours);
-      //                     bottomSheet.hourlyRate =
-      //                         int.parse(widget.jobsDetail.hours);
-      //                     bottomSheet.hours =
-      //                         double.parse(widget.jobsDetail.duration);
-      //                     bottomSheet.showBottomSheet(
-      //                       context,
-      //                     );
-      //                   },
-      //                   buttonName: "To apply"),
-      //             ),
-      //           )
-      //               : Container(
-      //             padding: const EdgeInsets.all(10.0),
-      //             decoration: BoxDecoration(
-      //               borderRadius: BorderRadius.circular(5.0),
-      //               border: Border.all(
-      //                 color: Colors.green.shade700,
-      //               ),
-      //             ),
-      //             child: Text(
-      //               "Already Applied",
-      //               style: TextStyle(
-      //                   fontSize: 16,
-      //                   color: Colors.green.shade700,
-      //                   fontWeight: FontWeight.bold,
-      //                   fontFamily: 'Cerebri Sans Bold'),
-      //             ),
-      //           ),
-      //         ],
-      //       )
-      //     ],
-      //   ),
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child:
@@ -180,13 +92,17 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                       ),
                     ),
                     child: GoogleMap(
-                      initialCameraPosition: const CameraPosition(
-                        target: currentLocation,
+                      initialCameraPosition:  CameraPosition(
+                        target: LatLng(
+                        double.parse(widget.jobsDetail.latitude)
+                        , double.parse(widget.jobsDetail.longitude),),
                         zoom: 15,
                       ),
                       onMapCreated: (controller) {
                         mapController = controller;
-                        addMarker("test", currentLocation);
+                        addMarker("test", LatLng(
+                          double.parse(widget.jobsDetail.latitude)
+                          , double.parse(widget.jobsDetail.longitude),),);
                       },
                       markers: _markers.values.toSet(),
                       zoomControlsEnabled: false,
