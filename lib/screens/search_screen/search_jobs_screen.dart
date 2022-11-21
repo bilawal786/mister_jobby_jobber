@@ -89,42 +89,45 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.width / 1.2,
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.black38),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: MediaQuery.of(context).size.width / 1.2,
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.black38),
+                ),
               ),
-            ),
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(double.parse(profileData.profile!.latitude),
-                    double.parse(profileData.profile!.longitude)),
-                zoom: 10,
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(double.parse(profileData.profile!.latitude),
+                      double.parse(profileData.profile!.longitude)),
+                  zoom: 10,
+                ),
+                onMapCreated: (controller) {
+                  mapController = controller;
+                  if (availableJobsData.availableJobs != null){
+                    for (int i = 0;
+                        i < availableJobsData.availableJobs!.length;
+                        i++) {
+                      addMarker(
+                        "$i",
+                        LatLng(
+                          double.parse(
+                              availableJobsData.availableJobs![i].latitude),
+                          double.parse(
+                              availableJobsData.availableJobs![i].longitude),
+                        ),
+                        availableJobsData.availableJobs![i].title,
+                        availableJobsData.availableJobs![i].address,
+                      );
+                    }
+                    }
+                },
+                markers: _markers.values.toSet(),
+                zoomControlsEnabled: false,
+                myLocationButtonEnabled: false,
               ),
-              onMapCreated: (controller) {
-                mapController = controller;
-                if (availableJobsData.availableJobs != null){
-                  for (int i = 0;
-                      i < availableJobsData.availableJobs!.length;
-                      i++) {
-                    addMarker(
-                      "$i",
-                      LatLng(
-                        double.parse(
-                            availableJobsData.availableJobs![i].latitude),
-                        double.parse(
-                            availableJobsData.availableJobs![i].longitude),
-                      ),
-                      availableJobsData.availableJobs![i].title,
-                      availableJobsData.availableJobs![i].address,
-                    );
-                  }
-                  }
-              },
-              markers: _markers.values.toSet(),
-              zoomControlsEnabled: false,
-              myLocationButtonEnabled: false,
             ),
           ),
           if ((extractedCompleteData?.skills == "") &&
@@ -231,6 +234,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     .getAvailableJobs();
               },
               child: Expanded(
+                flex: 2,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.width / 1.3,
                   child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
