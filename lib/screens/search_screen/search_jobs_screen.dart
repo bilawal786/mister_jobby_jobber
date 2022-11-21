@@ -90,7 +90,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height / 2.9,
+            height: MediaQuery.of(context).size.width / 1.5,
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: Colors.black38),
@@ -231,7 +231,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     .getAvailableJobs();
               },
               child: SizedBox(
-                height: MediaQuery.of(context).size.width / 1.15,
+                height: MediaQuery.of(context).size.width / 1.09,
                 child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
                     ? ListView.builder(
                         shrinkWrap: true,
