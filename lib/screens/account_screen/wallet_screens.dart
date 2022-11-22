@@ -68,7 +68,7 @@ class _WalletScreenState extends State<WalletScreen>
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
                 Row(
@@ -146,134 +146,205 @@ class _WalletScreenState extends State<WalletScreen>
                 SizedBox(height: MediaQuery.of(context).size.width/40,),
                 const LineChartWidget(),
                 SizedBox(height: MediaQuery.of(context).size.width/40,),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.grey.shade200,
-                  ),
-                  child: TabBar(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    indicator: BoxDecoration(
-                      border: Border.all(color: Colors.black26, width: 0.8),
-                      borderRadius: BorderRadius.circular(5), // Creates border
-                      color: Colors.white,
-                    ),
-                    controller: _tabController,
-                    unselectedLabelColor: Colors.grey,
-                    labelColor: Colors.black,
-                    labelStyle: Theme.of(context).textTheme.bodySmall,
-                    tabs: [
-                      Tab(
-                        child: Center(
-                          child: const Text(
-                            "Day",
-                          ).tr(),
-                        ),
+                ListView.builder(
+                  itemCount: extractData.transactions.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => Container(
+                    color: Colors.grey.shade300,
+                    padding: EdgeInsets.all(10),
+                    child:
+
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0,right: 5, top: 5, bottom: 5),
+                      horizontalTitleGap: 10,
+                      leading: Container(
+                        width: MediaQuery.of(context).size.width /7,
+                        height: MediaQuery.of(context).size.width /8,
+                        child: Stack(children: <Widget>[
+                          Center(
+                            child: Container(
+                                width: MediaQuery.of(context).size.width /10,
+                                height: MediaQuery.of(context).size.width /10,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.black26,),
+                                child: Icon(FontAwesomeIcons.coins,
+                                  size: MediaQuery.of(context).size.width /20,
+                                  color: Colors.white,)),
+                          ),
+                          Positioned(
+                            right: -1,
+                            top: 0,
+                            child: Icon(
+                              Icons.arrow_upward,
+                              size: MediaQuery.of(context).size.width / 25,
+                              color: Colors.red.shade300,
+                            ),
+                          ),],),
                       ),
-                      Tab(
-                        child: Center(
-                          child: const Text(
-                            "Month",
-                          ).tr(),
-                        ),
-                      ),
-                      Tab(
-                        child: Center(
-                          child: const Text(
-                            "Year",
-                          ).tr(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  child: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: extractData.transactions.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            ListTile(
-                              horizontalTitleGap: 0,
-                              leading: Text(
-                                extractData.transactions[index].transactionId.toString(),
-                                style: Theme.of(context).textTheme.titleSmall,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          // SizedBox(height: MediaQuery.of(context).size.width /60,),
+                          Text(
+                            extractData.transactions[index].jobTitle,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                extractData.transactions[index].createdAt,
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
-                              title: Text(
-                                extractData.transactions[index].jobTitle,
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                              subtitle: Text(
-                                extractData.transactions[index].invoiceNo,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                              trailing: Text(
+                              const Spacer(),
+                              Text(
                                 "${extractData.transactions[index].jobberGet} €",
-                                style: Theme.of(context).textTheme.titleSmall,
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
-                            ),
-                            const Divider(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      controller: ScrollController(),
-                      primary: false,
-                      itemCount: 3,
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              'IBFT BNP',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                            subtitle: Text(
-                              'November',
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                            trailing: Text(
-                              '€ 300',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
+                            ],
                           ),
-                          const Divider(),
+                          Text(
+                            extractData.transactions[index].invoiceNo,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
                         ],
                       ),
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      controller: ScrollController(),
-                      primary: false,
-                      itemCount: 5,
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              'IBFT BNP',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                            subtitle: Text(
-                              '2022',
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                            trailing: Text(
-                              '€ 300',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ),
-                          const Divider(),
-                        ],
+                      subtitle: Text(
+                        extractData.transactions[index].transactionId.toString(),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
-                  ][_tabController!.index],
+                  ),
                 ),
+                // Container(
+                //   padding: const EdgeInsets.symmetric(vertical: 3),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(6),
+                //     color: Colors.grey.shade200,
+                //   ),
+                //   child: TabBar(
+                //     padding: const EdgeInsets.only(left: 10, right: 10),
+                //     indicator: BoxDecoration(
+                //       border: Border.all(color: Colors.black26, width: 0.8),
+                //       borderRadius: BorderRadius.circular(5), // Creates border
+                //       color: Colors.white,
+                //     ),
+                //     controller: _tabController,
+                //     unselectedLabelColor: Colors.grey,
+                //     labelColor: Colors.black,
+                //     labelStyle: Theme.of(context).textTheme.bodySmall,
+                //     tabs: [
+                //       Tab(
+                //         child: Center(
+                //           child: const Text(
+                //             "Day",
+                //           ).tr(),
+                //         ),
+                //       ),
+                //       Tab(
+                //         child: Center(
+                //           child: const Text(
+                //             "Month",
+                //           ).tr(),
+                //         ),
+                //       ),
+                //       Tab(
+                //         child: Center(
+                //           child: const Text(
+                //             "Year",
+                //           ).tr(),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Container(
+                //   child: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(top: 10),
+                //       child: ListView.builder(
+                //         shrinkWrap: true,
+                //         physics: const NeverScrollableScrollPhysics(),
+                //         itemCount: extractData.transactions.length,
+                //         itemBuilder: (context, index) => Column(
+                //           children: [
+                //             ListTile(
+                //               horizontalTitleGap: 0,
+                //               leading: Text(
+                //                 extractData.transactions[index].transactionId.toString(),
+                //                 style: Theme.of(context).textTheme.titleSmall,
+                //               ),
+                //               title: Text(
+                //                 extractData.transactions[index].jobTitle,
+                //                 style: Theme.of(context).textTheme.titleSmall,
+                //               ),
+                //               subtitle: Text(
+                //                 extractData.transactions[index].invoiceNo,
+                //                 style: Theme.of(context).textTheme.labelSmall,
+                //               ),
+                //               trailing: Text(
+                //                 "${extractData.transactions[index].jobberGet} €",
+                //                 style: Theme.of(context).textTheme.titleSmall,
+                //               ),
+                //             ),
+                //             const Divider(),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //     ListView.builder(
+                //       shrinkWrap: true,
+                //       controller: ScrollController(),
+                //       primary: false,
+                //       itemCount: 3,
+                //       itemBuilder: (context, index) => Column(
+                //         children: [
+                //           ListTile(
+                //             title: Text(
+                //               'IBFT BNP',
+                //               style: Theme.of(context).textTheme.titleSmall,
+                //             ),
+                //             subtitle: Text(
+                //               'November',
+                //               style: Theme.of(context).textTheme.bodySmall,
+                //             ),
+                //             trailing: Text(
+                //               '€ 300',
+                //               style: Theme.of(context).textTheme.titleSmall,
+                //             ),
+                //           ),
+                //           const Divider(),
+                //         ],
+                //       ),
+                //     ),
+                //     ListView.builder(
+                //       shrinkWrap: true,
+                //       controller: ScrollController(),
+                //       primary: false,
+                //       itemCount: 5,
+                //       itemBuilder: (context, index) => Column(
+                //         children: [
+                //           ListTile(
+                //             title: Text(
+                //               'IBFT BNP',
+                //               style: Theme.of(context).textTheme.titleSmall,
+                //             ),
+                //             subtitle: Text(
+                //               '2022',
+                //               style: Theme.of(context).textTheme.bodySmall,
+                //             ),
+                //             trailing: Text(
+                //               '€ 300',
+                //               style: Theme.of(context).textTheme.titleSmall,
+                //             ),
+                //           ),
+                //           const Divider(),
+                //         ],
+                //       ),
+                //     ),
+                //   ][_tabController!.index],
+                // ),
               ],
             ),
           ),

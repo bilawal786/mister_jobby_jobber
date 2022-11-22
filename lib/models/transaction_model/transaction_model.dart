@@ -38,6 +38,7 @@ class Transaction {
     required this.jobberGet,
     required this.type,
     required this.jobTitle,
+    required this.createdAt,
   });
 
   int transactionId;
@@ -48,6 +49,7 @@ class Transaction {
   String jobberGet;
   String type;
   String jobTitle;
+  String createdAt;
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
     transactionId: json["transaction_id"],
@@ -58,6 +60,7 @@ class Transaction {
     jobberGet: json["jobber_get"],
     type: json["type"],
     jobTitle: json["job_title"],
+    createdAt: json["created_at"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -69,5 +72,6 @@ class Transaction {
     "jobber_get": jobberGet,
     "type": type,
     "job_title": jobTitle,
+    "created_at": createdAt,
   };
 }
