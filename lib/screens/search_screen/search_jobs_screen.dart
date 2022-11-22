@@ -24,16 +24,15 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
   @override
   Widget build(BuildContext context) {
     final profileData =
-        Provider.of<PersonalInformationProvider>(context, listen: true);
+        Provider.of<PersonalInformationProvider>(context, listen: false);
     final checkCompleteProfile =
-        Provider.of<CheckProfileCompletionProvider>(context);
+    Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
-    final availableJobsData =
-        Provider.of<AvailableJobsProvider>(context, listen: true);
+    LatLng currentLocation = LatLng(double.parse(profileData.profile!.latitude),
+        double.parse(profileData.profile!.longitude));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        centerTitle: false,
         elevation: 0,
         iconTheme: const IconThemeData(
           color: Colors.black,
@@ -87,156 +86,145 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.width / 1.2,
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.black38),
-              ),
-            ),
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(double.parse(profileData.profile!.latitude),
-                    double.parse(profileData.profile!.longitude)),
-                zoom: 10,
-              ),
-              onMapCreated: (controller) {
-                mapController = controller;
-                if (availableJobsData.availableJobs != null){
-                  for (int i = 0;
-                      i < availableJobsData.availableJobs!.length;
-                      i++) {
-                    addMarker(
-                      "$i",
-                      LatLng(
-                        double.parse(
-                            availableJobsData.availableJobs![i].latitude),
-                        double.parse(
-                            availableJobsData.availableJobs![i].longitude),
-                      ),
-                      availableJobsData.availableJobs![i].title,
-                      availableJobsData.availableJobs![i].address,
-                    );
-                  }
-                  }
-              },
-              markers: _markers.values.toSet(),
-              zoomControlsEnabled: false,
-              myLocationButtonEnabled: false,
-            ),
-          ),
-          if ((extractedCompleteData?.skills == "") &&
-                  (extractedCompleteData?.monday == "" ||
-                      extractedCompleteData!.tuesday == "" ||
-                      extractedCompleteData.wednesday == "" ||
-                      extractedCompleteData.thersday == "" ||
-                      extractedCompleteData.friday == "" ||
-                      extractedCompleteData.saturday == "" ||
-                      extractedCompleteData.sunday == "") ||
-              extractedCompleteData?.answer1 == "" ||
-              extractedCompleteData?.insurance1 == "" ||
-              extractedCompleteData?.rules1 == "" ||
-              profileData.profile?.image == 'main/avatar.png' ||
-              (extractedCompleteData?.phone == "") ||
-              (extractedCompleteData?.euIdCardFront == "" &&
-                  extractedCompleteData?.euIdResidencePermitFront == "") ||
-              (extractedCompleteData?.vitalCardNumber == "" ||
-                  extractedCompleteData?.socialSecurityNumber == "") ||
-              extractedCompleteData?.score == "") ...[
-            GestureDetector(
-              onTap: () => Navigator.of(context)
-                  .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
-              child: Container(
-                color: Colors.amber.shade700,
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: <Widget>[
-                    const Icon(
-                      Icons.circle_notifications_outlined,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Text(
-                      "Actions required",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    const Spacer(),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16,
-                      color: Colors.black,
-                    ),
-                  ],
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height / 2.9,
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.black38),
                 ),
               ),
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(double.parse(profileData.profile!.latitude),
+                      double.parse(profileData.profile!.longitude)),
+                  zoom: 15,
+                ),
+                onMapCreated: (controller) {
+                  mapController = controller;
+                  addMarker("test", currentLocation);
+                },
+                markers: _markers.values.toSet(),
+                zoomControlsEnabled: false,
+                myLocationButtonEnabled: false,
+              ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.width / 40,
-            ),
-          ],
-          Container(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              children: <Widget>[
-                Consumer<AvailableJobsProvider>(
-                  builder: (_, jobsData, child) => InkWell(
-                    onTap: () {
-                      jobsData.setCheckApi();
-                      Provider.of<AvailableJobsProvider>(context, listen: false)
-                          .getAvailableJobs();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: (jobsData.checkApi == false)
-                          ? const SizedBox(
-                              width: 25,
-                              height: 25,
-                              child: CircularProgressIndicator())
-                          : const Icon(
-                              Icons.refresh,
-                              size: 25,
-                              color: Colors.black,
-                            ),
-                    ),
+            if ((extractedCompleteData?.skills == "") &&
+                (extractedCompleteData?.monday == "" ||
+                    extractedCompleteData!.tuesday == "" ||
+                    extractedCompleteData.wednesday == "" ||
+                    extractedCompleteData.thersday == "" ||
+                    extractedCompleteData.friday == "" ||
+                    extractedCompleteData.saturday == "" ||
+                    extractedCompleteData.sunday == "") ||
+                extractedCompleteData?.answer1 == "" ||
+                extractedCompleteData?.insurance1 == "" ||
+                extractedCompleteData?.rules1 == "" ||
+                profileData.profile?.image == 'main/avatar.png' ||
+                (extractedCompleteData?.phone == "") ||
+                (extractedCompleteData?.euIdCardFront == "" &&
+                    extractedCompleteData?.euIdResidencePermitFront ==
+                        "") ||
+                (extractedCompleteData?.vitalCardNumber == "" ||
+                    extractedCompleteData?.socialSecurityNumber ==
+                        "") ||
+                extractedCompleteData?.score == "") ...[
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
+                child: Container(
+                  color: Colors.amber.shade700,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: <Widget>[
+                      const Icon(
+                        Icons.circle_notifications_outlined,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Text(
+                        "Actions required",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.black,
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 40,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.4,
-                  child: Center(
-                    child: Consumer<AvailableJobsProvider>(
-                      builder: (_, availableJobs, child) => Text(
-                        "${availableJobs.availableJobs?.length} Jobs are available",
-                        style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width / 40,
+              ),
+            ],
+            Container(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                children: <Widget>[
+                  Consumer<AvailableJobsProvider>(
+                    builder: (_, jobsData, child) => InkWell(
+                      onTap: () {
+                        jobsData.setCheckApi();
+                        Provider.of<AvailableJobsProvider>(context,
+                                listen: false)
+                            .getAvailableJobs();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: (jobsData.checkApi == false)
+                            ? const SizedBox(
+                                width: 25,
+                                height: 25,
+                                child: CircularProgressIndicator())
+                            : const Icon(
+                                Icons.refresh,
+                                size: 25,
+                                color: Colors.black,
+                              ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 40,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: Center(
+                      child: Consumer<AvailableJobsProvider>(
+                        builder: (_, availableJobs, child) => Text(
+                          "${availableJobs.availableJobs?.length} Jobs are available",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          // const Divider(),
-          Consumer<AvailableJobsProvider>(
-            builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
-              onRefresh: () {
-                return Provider.of<AvailableJobsProvider>(context,
-                        listen: false)
-                    .getAvailableJobs();
-              },
-              child: SizedBox(
-                height: MediaQuery.of(context).size.width / 1.3,
-                child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
-                    ? Expanded(
-                      child: ListView.builder(
+            // const Divider(),
+            Consumer<AvailableJobsProvider>(
+              builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
+                onRefresh: () {
+                  return Provider.of<AvailableJobsProvider>(context,
+                          listen: false)
+                      .getAvailableJobs();
+                },
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.4,
+                  child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
+                      ? ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: extractedAvailableJobs.availableJobs?.length,
+                          itemCount:
+                              extractedAvailableJobs.availableJobs?.length,
                           itemBuilder: (ctx, index) => Column(
                             children: [
                               InkWell(
@@ -252,7 +240,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 5.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Row(
                                         children: <Widget>[
@@ -275,10 +264,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                                 40,
                                           ),
                                           SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                1.5,
+                                            width: MediaQuery.of(context).size.width / 1.5,
                                             child: Text(
                                               extractedAvailableJobs
                                                   .availableJobs![index].title,
@@ -311,10 +297,12 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                           ),
                                           const Spacer(),
                                           if (extractedAvailableJobs
-                                                  .availableJobs![index].urgent ==
+                                                  .availableJobs![index]
+                                                  .urgent ==
                                               1)
                                             Container(
-                                              padding: const EdgeInsets.all(5.0),
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
                                               decoration: BoxDecoration(
                                                 color: Colors.red.shade900,
                                                 borderRadius:
@@ -349,44 +337,44 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                               ),
                             ],
                           ),
+                        )
+                      : ListView(
+                          children: [
+                            Column(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.maps_home_work,
+                                  size: 150,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                Text(
+                                  "No Job Found",
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ).tr(),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 40,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                    )
-                    : ListView(
-                        children: [
-                          Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.maps_home_work,
-                                size: 150,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              Text(
-                                "No Job Found",
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ).tr(),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 40,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  addMarker(
-      String mId, LatLng location, String title, String description) async {
+  addMarker(String mId, LatLng location) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,
-      infoWindow: InfoWindow(
-        title: title,
-        snippet: description,
+      infoWindow: const InfoWindow(
+        title: "some text here",
+        snippet: 'some description of the place',
       ),
     );
     _markers[mId] = marker;
