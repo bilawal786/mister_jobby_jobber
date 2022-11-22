@@ -11,6 +11,7 @@ import '../../helper/routes.dart';
 
 import '../../widgets/const_widgets/custom_button.dart';
 import '../../widgets/const_widgets/progress_indicator.dart';
+import 'available_jobs_provider/available_jobs_provider.dart';
 
 class JobsDetailProvider with ChangeNotifier {
   int? postId;
@@ -307,6 +308,7 @@ class JobsDetailProvider with ChangeNotifier {
       debugPrint("submit Proposal api working");
       debugPrint("$postId");
       Navigator.pop(context);
+      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (ctx) => HomeTabScreen(
