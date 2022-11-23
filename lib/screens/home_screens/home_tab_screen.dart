@@ -55,20 +55,13 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
     super.initState();
     // sendToken();
 
-    //
-
-
-    // sendToken();
-
-    //
-
     FirebaseMessaging.onMessage.listen(
       // check if notification is not empty display the notification
             (RemoteMessage message) {
           RemoteNotification? notification = message.notification;
           AndroidNotification? android = message.notification?.android;
-
           if(notification != null && android != null) {
+
             flutterLocalNotificationsPlugin.show(
               notification.hashCode, //id
               notification.title, //title
@@ -93,8 +86,8 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       if(notification != null && android != null)
       {
         setState((){
-          // widget.index = 3;
           Navigator.of(context).pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE);
+          print('notification');
         });
       }
     });
