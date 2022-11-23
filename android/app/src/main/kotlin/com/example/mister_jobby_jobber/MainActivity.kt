@@ -1,4 +1,4 @@
-package com.example.mister_jobby_jobber
+package com.jobber.misterjobby
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

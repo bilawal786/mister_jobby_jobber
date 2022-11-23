@@ -38,7 +38,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:997765955371:android:ba37246a7ac04fdb670f6e",
         "android_client_info": {
-          "package_name": "com.example.mister_jobby_jobber"
+          "package_name": "com.jobber.misterjobby"
         }
       },
       "oauth_client": [
