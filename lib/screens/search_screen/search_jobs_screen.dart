@@ -24,12 +24,12 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
   @override
   Widget build(BuildContext context) {
     final profileData =
-        Provider.of<PersonalInformationProvider>(context, listen: false);
+    Provider.of<PersonalInformationProvider>(context, listen: true);
     final checkCompleteProfile =
     Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
-    LatLng currentLocation = LatLng(double.parse(profileData.profile!.latitude),
-        double.parse(profileData.profile!.longitude));
+    final availableJobsData =
+    Provider.of<AvailableJobsProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -102,11 +102,27 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 initialCameraPosition: CameraPosition(
                   target: LatLng(double.parse(profileData.profile!.latitude),
                       double.parse(profileData.profile!.longitude)),
-                  zoom: 15,
+                  zoom: 11,
                 ),
                 onMapCreated: (controller) {
                   mapController = controller;
-                  addMarker("test", currentLocation);
+                  if (availableJobsData.availableJobs != null){
+                    for (int i = 0;
+                    i < availableJobsData.availableJobs!.length;
+                    i++) {
+                      addMarker(
+                        "$i",
+                        LatLng(
+                          double.parse(
+                              availableJobsData.availableJobs![i].latitude),
+                          double.parse(
+                              availableJobsData.availableJobs![i].longitude),
+                        ),
+                        availableJobsData.availableJobs![i].title,
+                        availableJobsData.availableJobs![i].address,
+                      );
+                    }
+                  }
                 },
                 markers: _markers.values.toSet(),
                 zoomControlsEnabled: false,
@@ -369,13 +385,15 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
     );
   }
 
-  addMarker(String mId, LatLng location) async {
+
+  addMarker(
+      String mId, LatLng location, String title, String description) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,
-      infoWindow: const InfoWindow(
-        title: "some text here",
-        snippet: 'some description of the place',
+      infoWindow: InfoWindow(
+        title: title,
+        snippet: description,
       ),
     );
     _markers[mId] = marker;
