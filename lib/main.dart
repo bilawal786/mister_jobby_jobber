@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_badges_provider.dart';
 import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_provider.dart';
@@ -90,19 +91,58 @@ import 'providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_c
 import 'providers/notifications_provider/notifications_provider.dart';
 import 'providers/single_job_provider/single_job_provider.dart';
 
+late final FirebaseMessaging _messaging;
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Important Notification', // name, title
+  // 'This channel is used for important notification', // description
+  importance: Importance.high,
+  playSound: true,
+);
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  // print('A bg message just showed up : ${message.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = 'pk_test_51LRubcLtkEa5U40QDdRaKQr5SIt815sibBnPLIGbQMzr1mSRgF8EUesAVr5UNRt7mcEGwicNuTSwIdN3UEypjZLO00WV9Hc6ME';
   await EasyLocalization.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  // 2. Instantiate Firebase Messaging
+  _messaging = FirebaseMessaging.instance;
 
-  Future<void> backgroundHandler(RemoteMessage message) async {
-    print(message.data.toString());
-    print(message.notification!.title.toString());
+  // 3. On iOS, this helps to take the user permissions
+  NotificationSettings settings = await _messaging.requestPermission(
+    alert: true,
+    badge: true,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    // print('User granted permission');
+    // TODO: handle the received notifications
+  } else {
+    // print('User declined or has not accepted permission');
   }
-  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  final token = await FirebaseMessaging.instance.getToken();
+  print("firebase token: "+token.toString());
 
   runApp(
     EasyLocalization(
