@@ -9,6 +9,7 @@ import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_prov
 import 'package:mister_jobby_jobber/providers/commented_jobs_provider/commented_jobs_provider.dart';
 import 'package:mister_jobby_jobber/providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
+import 'package:mister_jobby_jobber/screens/account_screen/reviews_screen.dart';
 import 'package:mister_jobby_jobber/screens/search_screen/comment_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -389,6 +390,8 @@ class MyApp extends StatelessWidget {
           const FAQScreen(),
           MyRoutes.COMMENTSCREENROUTE: (ctx) =>
           const CommentScreen(),
+          MyRoutes.REVIEWSSCREENROUTE: (ctx) =>
+          const ReviewsScreen(),
         },
       ),
     );

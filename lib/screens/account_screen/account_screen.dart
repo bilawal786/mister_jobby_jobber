@@ -114,38 +114,43 @@ class _AccountScreenState extends State<AccountScreen> {
               SizedBox(
                 height: mediaQuery.size.width / 40,
               ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    if(profileData.profile!.rating == 0)
-                      const Icon(Icons.star, size: 14,),
-                    for (int i = 0; i < profileData.profile!.rating; i++)
-                      const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                        size: 14,
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).pushNamed(MyRoutes.REVIEWSSCREENROUTE);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      if(profileData.profile!.rating == 0)
+                        const Icon(Icons.star, size: 14,),
+                      for (int i = 0; i < profileData.profile!.rating; i++)
+                        const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 14,
+                        ),
+                      SizedBox(
+                        width: mediaQuery.size.width / 40,
                       ),
-                    SizedBox(
-                      width: mediaQuery.size.width / 40,
-                    ),
-                    Text(
-                     "${profileData.profile!.rating}",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    SizedBox(
-                      width: mediaQuery.size.width / 80,
-                    ),
-                    Text(
-                      "/5",
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ],
+                      Text(
+                       "${profileData.profile!.rating}",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      SizedBox(
+                        width: mediaQuery.size.width / 80,
+                      ),
+                      Text(
+                        "/5",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
