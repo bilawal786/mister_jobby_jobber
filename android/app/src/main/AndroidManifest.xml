@@ -38,5 +38,8 @@
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDSztKwG57QqCxM-FZ7W8wfDQTlLd1Kc2M"/>
+       <meta-data
+           android:name="com.google.firebase.messaging.default_notification_channel_id"
+           android:value="pushnotificationapp"/>
     </application>
 </manifest>

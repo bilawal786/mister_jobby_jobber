@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -91,8 +93,17 @@ import 'providers/single_job_provider/single_job_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = 'pk_test_51LRubcLtkEa5U40QDdRaKQr5SIt815sibBnPLIGbQMzr1mSRgF8EUesAVr5UNRt7mcEGwicNuTSwIdN3UEypjZLO00WV9Hc6ME';
   await EasyLocalization.ensureInitialized();
+
+  Future<void> backgroundHandler(RemoteMessage message) async {
+    print(message.data.toString());
+    print(message.notification!.title.toString());
+  }
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+
   runApp(
     EasyLocalization(
       supportedLocales: const [
