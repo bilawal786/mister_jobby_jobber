@@ -34,7 +34,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: true,
+        centerTitle: false,
         iconTheme: const IconThemeData(
           color: Colors.black,
           size: 25,
