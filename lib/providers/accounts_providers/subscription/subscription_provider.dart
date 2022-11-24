@@ -71,6 +71,23 @@ class SubscriptionProvider with ChangeNotifier{
       debugPrint('Subscription Api is not working');}
   }
 
+   Future<void> getSubscriptionIntent () async {
+     SharedPreferences sharedPref = await SharedPreferences.getInstance();
+     String? userToken = sharedPref.getString('token');
+     var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/get/subscription/intent'),
+         headers: <String, String>{
+           'Accept':'application/json',
+           'Content-Type':'application/json',
+           'Authorization':'Bearer $userToken'
+         });
+     if(response.statusCode == 200){
+       debugPrint('Subscription Intent Api is working');
+       // subscriptionModel = subscriptionModelFromJson(response.body);
+       notifyListeners();
+     }else{
+       debugPrint('Subscription Intent Api is not working');}
+   }
+
 
 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
@@ -25,7 +26,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   var _isInit = true;
-
   @override
   void didChangeDependencies() {
     if (_isInit) {

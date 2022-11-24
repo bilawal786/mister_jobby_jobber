@@ -23,6 +23,7 @@ class _AccountScreenState extends State<AccountScreen> {
     if(isInit) {
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
+      Provider.of<TransactionProvider>(context, listen: false).getTransaction();
     }
     isInit = false;
     super.didChangeDependencies();
@@ -193,7 +194,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   height: mediaQuery.size.width / 80,
                                 ),
                                 Text(
-                                  "${transactionData!.wallet}€",
+                                  "${transactionData?.wallet}€",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(

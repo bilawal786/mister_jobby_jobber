@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
 import '../../models/commented_jobs_model/current_jobs_offers_model.dart';
+import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../image_preview_screen.dart';
 
 class SingleJobDetailScreen extends StatefulWidget {
@@ -18,6 +19,18 @@ class SingleJobDetailScreen extends StatefulWidget {
 }
 
 class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
+
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit) {
+      Provider.of<SingleJobCommentsProvider>(context,
+          listen: false).getSingleJobComments(widget.jobsDetail.id.toString());
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
   void ignoreJobOpenSheet() {
     showModalBottomSheet(
       context: context,
@@ -102,7 +115,10 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                         mapController = controller;
                         addMarker("test", LatLng(
                           double.parse(widget.jobsDetail.latitude)
-                          , double.parse(widget.jobsDetail.longitude),),);
+                          , double.parse(widget.jobsDetail.longitude),),
+                            widget.jobsDetail.title,
+                            widget.jobsDetail.address,
+                        );
                       },
                       markers: _markers.values.toSet(),
                       zoomControlsEnabled: false,
@@ -292,9 +308,13 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          widget.jobsDetail.address,
-                          style: Theme.of(context).textTheme.labelMedium,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.4,
+                          child: Text(
+                            widget.jobsDetail.address,
+                            style: Theme.of(context).textTheme.labelMedium,
+                            maxLines: 2,
+                          ),
                         ),
                       ],
                     ),
@@ -352,12 +372,15 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 40,
                             ),
-                            Text(
-                              "(${widget.jobsDetail.count})",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 16,
-                                fontFamily: "Cerebri Sans Bold",
+                            Consumer<SingleJobCommentsProvider>(
+                              builder: (context, data, child) => Text(
+                                  (data.singleJobComments?.length == null) ? "(0)" :
+                                "(${data.singleJobComments?.length.toString()})",
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 16,
+                                  fontFamily: "Cerebri Sans Bold",
+                                ),
                               ),
                             ),
                           ],
@@ -4018,13 +4041,13 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
     );
   }
 
-  addMarker(String mId, LatLng location) async {
+  addMarker(String mId, LatLng location, String title, String address) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,
-      infoWindow: const InfoWindow(
-        title: "some text here",
-        snippet: 'some description of the place',
+      infoWindow: InfoWindow(
+        title: title,
+        snippet: address,
       ),
     );
     _markers[mId] = marker;

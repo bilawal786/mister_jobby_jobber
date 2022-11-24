@@ -51,24 +51,27 @@ class _CommentScreenState extends State<CommentScreen> {
             child: Consumer<SingleJobCommentsProvider>(
               builder: (_, commentsData, child) =>
               (commentsData.singleJobComments != null)
-                  ? commentsData.singleJobComments!.isEmpty ? Column(
-                children: <Widget>[
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Icon(
-                    Icons.find_in_page_rounded,
-                    size: 150,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  Text(
-                    "No_Comments",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ).tr(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 40,
-                  ),
-                ],
+                  ? commentsData.singleJobComments!.isEmpty ?
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Icon(
+                      Icons.find_in_page_rounded,
+                      size: 150,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    Text(
+                      "No_Comments",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ).tr(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 40,
+                    ),
+                  ],
+                ),
               ) :ListView.builder(
                 itemCount: commentsData.singleJobComments!.length,
                 itemBuilder: (ctx, index) => ChangeNotifierProvider.value (

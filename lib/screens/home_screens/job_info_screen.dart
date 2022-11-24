@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
 import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
+import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/single_job_provider/single_job_provider.dart';
 import '../image_preview_screen.dart';
 
@@ -25,8 +26,9 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
   @override
   void didChangeDependencies() {
     if(isInit) {
-      Provider.of<SingleJobProvider>(context, listen: false).getSingleJobDetail(
+      Provider.of<SingleJobProvider>(context).getSingleJobDetail(
           widget.id.toString());
+      Provider.of<SingleJobCommentsProvider>(context, listen: false).getSingleJobComments(widget.id.toString());
     }
     isInit = false;
     super.didChangeDependencies();
@@ -37,7 +39,8 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
     int commentedJobs = Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
     final singleJobData = Provider.of<SingleJobProvider>(context, listen: true);
     jobsDetail = singleJobData.jobDetail;
-    return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),) : Scaffold(
+    return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)
+        : Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -65,7 +68,10 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                         addMarker("test", LatLng(
                           double.parse(singleJobData.jobDetail!.latitude),
                           double.parse(singleJobData.jobDetail!.longitude),
-                        ),);
+                        ),
+                        singleJobData.jobDetail!.title,
+                          singleJobData.jobDetail!.address,
+                        );
                       },
                       markers: _markers.values.toSet(),
                       zoomControlsEnabled: false,
@@ -238,9 +244,13 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          jobsDetail.address,
-                          style: Theme.of(context).textTheme.labelMedium,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.4,
+                          child: Text(
+                            jobsDetail.address,
+                            style: Theme.of(context).textTheme.labelMedium,
+                            maxLines: 2,
+                          ),
                         ),
                       ],
                     ),
@@ -298,14 +308,17 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 40,
                             ),
-                            Text(
-                              "(${commentedJobs})",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 16,
-                                fontFamily: "Cerebri Sans Bold",
+                            Consumer<SingleJobCommentsProvider>(
+                              builder: (context, data, child) => Text(
+                                  (data.singleJobComments?.length == null) ? "(0)" :
+                                "(${data.singleJobComments?.length.toString()})",
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 16,
+                                  fontFamily: "Cerebri Sans Bold",
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
@@ -3913,13 +3926,13 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
     );
   }
 
-  addMarker(String mId, LatLng location) async {
+  addMarker(String mId, LatLng location, String title, String address) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,
-      infoWindow: const InfoWindow(
-        title: "some text here",
-        snippet: 'some description of the place',
+      infoWindow: InfoWindow(
+        title: title,
+        snippet: address,
       ),
     );
     _markers[mId] = marker;

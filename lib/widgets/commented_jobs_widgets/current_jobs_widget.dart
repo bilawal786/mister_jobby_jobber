@@ -116,7 +116,7 @@ class CurrentJobsWidget extends StatelessWidget {
                         ),
                         SizedBox(height: MediaQuery.of(context).size.width/40),
                         Row(
-                          children: [
+                          children: <Widget>[
                             Text(
                               extractCommentedJobsData[index].job.serviceDate,
                               style: Theme.of(context)
@@ -124,18 +124,15 @@ class CurrentJobsWidget extends StatelessWidget {
                                   .labelMedium,
                             ),
                             const Spacer(),
-                            if(extractCommentedJobsData[index].status == 2) ...[
+                            (extractCommentedJobsData[index].status == 2) ?
                               Text(
                                 "Accepted",
                                 style: Theme.of(context).textTheme.bodyMedium,
-                              ) ] else ... [
-                              if (extractCommentedJobsData[index]
-                                  .job.urgent ==
-                                  1)
+                              ) :
                                 Text(
                                   "In Progress",
                                   style: Theme.of(context).textTheme.bodyMedium,
-                                ),],
+                                ),
                           ],
                         ),
                         const Divider(),

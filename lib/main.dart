@@ -112,7 +112,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey = 'pk_test_51LRubcLtkEa5U40QDdRaKQr5SIt815sibBnPLIGbQMzr1mSRgF8EUesAVr5UNRt7mcEGwicNuTSwIdN3UEypjZLO00WV9Hc6ME';
+  Stripe.publishableKey = 'pk_test_mhfC6RVLoiK6pNLoINPHyjGO00LXtQiByW';
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   // 2. Instantiate Firebase Messaging

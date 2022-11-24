@@ -10,6 +10,7 @@ import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
 import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
+import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../image_preview_screen.dart';
 
@@ -22,6 +23,19 @@ class JobDetailScreen extends StatefulWidget {
 }
 
 class _JobDetailScreenState extends State<JobDetailScreen> {
+
+  var isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isInit) {
+      Provider.of<SingleJobCommentsProvider>(context)
+          .getSingleJobComments(widget.jobsDetail.id.toString());
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
   void ignoreJobOpenSheet() {
     showModalBottomSheet(
       context: context,
@@ -218,6 +232,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             double.parse(widget.jobsDetail.latitude),
                             double.parse(widget.jobsDetail.longitude),
                           ),
+                          widget.jobsDetail.title,
+                          widget.jobsDetail.address,
                         );
                       },
                       markers: _markers.values.toSet(),
@@ -479,12 +495,15 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 40,
                             ),
-                            Text(
-                              "(${commentedJobs})",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 16,
-                                fontFamily: "Cerebri Sans Bold",
+                            Consumer<SingleJobCommentsProvider>(
+                              builder:(context, data, child) => Text(
+                                  (data.singleJobComments?.length == null) ? '(0)' :
+                                "(${data.singleJobComments?.length.toString()})",
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 16,
+                                  fontFamily: "Cerebri Sans Bold",
+                                ),
                               ),
                             ),
                           ],
@@ -4089,13 +4108,13 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
     );
   }
 
-  addMarker(String mId, LatLng location) async {
+  addMarker(String mId, LatLng location, String title, String description) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,
-      infoWindow: const InfoWindow(
-        title: "some text here",
-        snippet: 'some description of the place',
+      infoWindow: InfoWindow(
+        title: title,
+        snippet: description,
       ),
     );
     _markers[mId] = marker;

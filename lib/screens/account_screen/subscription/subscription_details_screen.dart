@@ -32,6 +32,8 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final subData = Provider.of<SubscriptionProvider>(context);
+    // final extractData = subData.getSubscriptionIntent();
 
     return Scaffold(
       appBar: AppBar(
@@ -122,7 +124,9 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                   ),
                   CustomButton(onPress: () async{
                     (double.parse(widget.price) < 1) ?
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully"))):await makePayment();}, buttonName: 'Buy Now'),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully"))):
+                    await makePayment();},
+                      buttonName: 'Buy Now'),
                 ],
               ),
             ),
@@ -130,7 +134,6 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
       ),
     );
   }
-
   Future<void> makePayment() async {
   var amount = double.parse(widget.price);
     try {
@@ -141,30 +144,23 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
               paymentIntentClientSecret: paymentIntentData!['client_secret'],
               merchantDisplayName: 'Jobber')).then((value){
       });
-
     displayPaymentSheet();
     } catch (e, s) {
       print('exception:$e$s');
     }
   }
-
   displayPaymentSheet() async {
-
     try {
       await Stripe.instance.presentPaymentSheet(
           parameters: PresentPaymentSheetParameters(
-            clientSecret: paymentIntentData!['client_secret'],
+            clientSecret: 'pi_3M7ZQcD4LNNtfNaO24ABAyQf_secret_If9bBjQ3jVzMdRa2Yn2r6R1WT',
             confirmPayment: true,
           )).then((newValue){
-
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully")));
-
         paymentIntentData = null;
-
       }).onError((error, stackTrace){
         print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
       });
-
     } on StripeException catch (e) {
       print('Exception/DISPLAYPAYMENTSHEET==> $e');
       // showDialog(
@@ -176,7 +172,6 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
       print('$e');
     }
   }
-
   createPaymentIntent(double amount, String currency) async {
     try {
       Map<String, dynamic> body = {
@@ -190,7 +185,7 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
           body: body,
           headers: {
             'Authorization':
-            'Bearer sk_test_51LRubcLtkEa5U40QApwIt13tNTcs9x2v95PKmJjoZ57xvfMf1PaPH0hYB556mGLJyhFDniqtEBRQbbDAY4wtmFE500xuKSA0Qb',
+            'Bearer sk_test_bNs6F2GH5AWstJEQg7KT852l00SdVU7GF0',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       print('Create Intent reponse ===> ${response.body.toString()}');
@@ -199,7 +194,6 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
       print('err charging user: ${err.toString()}');
     }
   }
-
   calculateAmount(double amount) {
     final a = (amount * 100).toInt() ;
     return a.toString();

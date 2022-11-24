@@ -8,8 +8,9 @@ import '../../models/single_job_model/single_job_model.dart';
 
 class SingleJobProvider with ChangeNotifier {
   SingleJobModel? jobDetail;
-  var checkApi = false;
+  var checkApi;
   Future<void>  getSingleJobDetail(id) async {
+    checkApi = false;
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/single/job/$id'),
@@ -28,6 +29,7 @@ class SingleJobProvider with ChangeNotifier {
       checkApi = true;
       notifyListeners();
     }
+    notifyListeners();
   }
 
 

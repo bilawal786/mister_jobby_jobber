@@ -45,7 +45,7 @@ class CommentedJobsWidget extends StatelessWidget {
               title: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 2.2,
+                    width: MediaQuery.of(context).size.width / 2.45,
                     child: Text(
                       extractData[index].name,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -63,7 +63,7 @@ class CommentedJobsWidget extends StatelessWidget {
               subtitle: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.8,
+                    width: MediaQuery.of(context).size.width / 2.4,
                     child: Text(
                       extractData[index].message,
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -74,6 +74,7 @@ class CommentedJobsWidget extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
                   ),
+                  const Spacer(),
                   Text(
                     "See job...",
                     style: TextStyle(

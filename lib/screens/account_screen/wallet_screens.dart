@@ -29,9 +29,17 @@ class _WalletScreenState extends State<WalletScreen>
     _tabController!.addListener(_handleTabSelection);
     super.initState();
   }
-
   _handleTabSelection() {
     if (_tabController!.indexIsChanging) setState(() {});
+  }
+  var isInIt = true;
+  @override
+  void didChangeDependencies() {
+    if(isInIt) {
+      Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+    }
+    isInIt = false;
+    super.didChangeDependencies();
   }
 
   @override
@@ -48,307 +56,297 @@ class _WalletScreenState extends State<WalletScreen>
           'Wallet',
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        // actions: [
-        //   Row(
-        //     children: const <Widget>[
-        //       Text(
-        //         'Assistance',
-        //         style: TextStyle(
-        //           fontSize: 18,
-        //           color: Colors.blue,
-        //           fontWeight: FontWeight.w700,
-        //           fontFamily: 'Cerebri Sans Bold',
-        //         ),
-        //       ),
-        //       Icon(Icons.more_vert_rounded)
-        //     ],
-        //   ),
-        // ],
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      extractData!.wallet,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 40,
-                    ),
-                    Text(
-                      '€',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text(
-                      'No amount to come',
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.black38,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Cerebri Sans Regular',
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 20,
-                    ),
-                    const Icon(
-                      FontAwesomeIcons.circleQuestion,
-                      color: Colors.black,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 20,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  height: MediaQuery.of(context).size.width / 5,
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade300,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Row(
+      body: RefreshIndicator(
+        onRefresh: () async{
+          await Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+        },
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Icon(
-                        Icons.add,
-                        color: Colors.white70,
+                    children: [
+                      Text(
+                        extractData!.wallet,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 40,
                       ),
+                      Text(
+                        '€',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
                       const Text(
-                        'Transfer my balance',
+                        'No amount to come',
                         style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white70,
+                          fontSize: 22,
+                          color: Colors.black38,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Cerebri Sans Regular',
                         ),
                       ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 20,
+                      ),
+                      const Icon(
+                        FontAwesomeIcons.circleQuestion,
+                        color: Colors.black,
+                      ),
                     ],
                   ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.width/40,),
-                const LineChartWidget(),
-                SizedBox(height: MediaQuery.of(context).size.width/40,),
-                ListView.builder(
-                  itemCount: extractData.transactions.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => Container(
-                    color: Colors.grey.shade300,
-                    padding: EdgeInsets.all(10),
-                    child:
-
-                    ListTile(
-                      contentPadding: EdgeInsets.only(left: 0,right: 5, top: 5, bottom: 5),
-                      horizontalTitleGap: 10,
-                      leading: Container(
-                        width: MediaQuery.of(context).size.width /7,
-                        height: MediaQuery.of(context).size.width /8,
-                        child: Stack(children: <Widget>[
-                          Center(
-                            child: Container(
-                                width: MediaQuery.of(context).size.width /10,
-                                height: MediaQuery.of(context).size.width /10,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black26,),
-                                child: Icon(FontAwesomeIcons.coins,
-                                  size: MediaQuery.of(context).size.width /20,
-                                  color: Colors.white,)),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 20,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    height: MediaQuery.of(context).size.width / 5,
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade300,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Icon(
+                          Icons.add,
+                          color: Colors.white70,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 40,
+                        ),
+                        const Text(
+                          'Transfer my balance',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Cerebri Sans Regular',
                           ),
-                          Positioned(
-                            right: -1,
-                            top: 0,
-                            child: Icon(
-                              Icons.arrow_upward,
-                              size: MediaQuery.of(context).size.width / 25,
-                              color: Colors.red.shade300,
-                            ),
-                          ),],),
-                      ),
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          // SizedBox(height: MediaQuery.of(context).size.width /60,),
-                          Text(
-                            extractData.transactions[index].jobTitle,
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                extractData.transactions[index].createdAt,
-                                style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.width/40,),
+                  const LineChartWidget(),
+                  SizedBox(height: MediaQuery.of(context).size.width/40,),
+                  ListView.builder(
+                    itemCount: extractData.transactions.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Container(
+                        color: Colors.grey.shade300,
+                        child:
+                        ListTile(
+                          contentPadding: EdgeInsets.only(left: 0,right: 5, top: 5, bottom: 5),
+                          horizontalTitleGap: 10,
+                          leading: Container(
+                            width: MediaQuery.of(context).size.width /7,
+                            height: MediaQuery.of(context).size.width /8,
+                            child: Stack(children: <Widget>[
+                              Center(
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width /10,
+                                    height: MediaQuery.of(context).size.width /10,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black26,),
+                                    child: Icon(FontAwesomeIcons.coins,
+                                      size: MediaQuery.of(context).size.width /20,
+                                      color: Colors.white,)),
                               ),
-                              const Spacer(),
+                              Positioned(
+                                right: -1,
+                                top: 0,
+                                child: Icon(
+                                  Icons.arrow_downward,
+                                  size: MediaQuery.of(context).size.width / 25,
+                                  color: Colors.green.shade500,
+                                ),
+                              ),],),
+                          ),
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+                              // SizedBox(height: MediaQuery.of(context).size.width /60,),
                               Text(
-                                "${extractData.transactions[index].jobberGet} €",
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                extractData.transactions[index].jobTitle,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    extractData.transactions[index].createdAt,
+                                    style: Theme.of(context).textTheme.labelMedium,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    "${extractData.transactions[index].jobberGet} €",
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                extractData.transactions[index].invoiceNo,
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
                             ],
                           ),
-                          Text(
-                            extractData.transactions[index].invoiceNo,
-                            style: Theme.of(context).textTheme.labelMedium,
+                          subtitle: Text(
+                            extractData.transactions[index].transactionId.toString(),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
-                        ],
-                      ),
-                      subtitle: Text(
-                        extractData.transactions[index].transactionId.toString(),
-                        style: Theme.of(context).textTheme.bodySmall,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // Container(
-                //   padding: const EdgeInsets.symmetric(vertical: 3),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(6),
-                //     color: Colors.grey.shade200,
-                //   ),
-                //   child: TabBar(
-                //     padding: const EdgeInsets.only(left: 10, right: 10),
-                //     indicator: BoxDecoration(
-                //       border: Border.all(color: Colors.black26, width: 0.8),
-                //       borderRadius: BorderRadius.circular(5), // Creates border
-                //       color: Colors.white,
-                //     ),
-                //     controller: _tabController,
-                //     unselectedLabelColor: Colors.grey,
-                //     labelColor: Colors.black,
-                //     labelStyle: Theme.of(context).textTheme.bodySmall,
-                //     tabs: [
-                //       Tab(
-                //         child: Center(
-                //           child: const Text(
-                //             "Day",
-                //           ).tr(),
-                //         ),
-                //       ),
-                //       Tab(
-                //         child: Center(
-                //           child: const Text(
-                //             "Month",
-                //           ).tr(),
-                //         ),
-                //       ),
-                //       Tab(
-                //         child: Center(
-                //           child: const Text(
-                //             "Year",
-                //           ).tr(),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Container(
-                //   child: [
-                //     Padding(
-                //       padding: const EdgeInsets.only(top: 10),
-                //       child: ListView.builder(
-                //         shrinkWrap: true,
-                //         physics: const NeverScrollableScrollPhysics(),
-                //         itemCount: extractData.transactions.length,
-                //         itemBuilder: (context, index) => Column(
-                //           children: [
-                //             ListTile(
-                //               horizontalTitleGap: 0,
-                //               leading: Text(
-                //                 extractData.transactions[index].transactionId.toString(),
-                //                 style: Theme.of(context).textTheme.titleSmall,
-                //               ),
-                //               title: Text(
-                //                 extractData.transactions[index].jobTitle,
-                //                 style: Theme.of(context).textTheme.titleSmall,
-                //               ),
-                //               subtitle: Text(
-                //                 extractData.transactions[index].invoiceNo,
-                //                 style: Theme.of(context).textTheme.labelSmall,
-                //               ),
-                //               trailing: Text(
-                //                 "${extractData.transactions[index].jobberGet} €",
-                //                 style: Theme.of(context).textTheme.titleSmall,
-                //               ),
-                //             ),
-                //             const Divider(),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     ListView.builder(
-                //       shrinkWrap: true,
-                //       controller: ScrollController(),
-                //       primary: false,
-                //       itemCount: 3,
-                //       itemBuilder: (context, index) => Column(
-                //         children: [
-                //           ListTile(
-                //             title: Text(
-                //               'IBFT BNP',
-                //               style: Theme.of(context).textTheme.titleSmall,
-                //             ),
-                //             subtitle: Text(
-                //               'November',
-                //               style: Theme.of(context).textTheme.bodySmall,
-                //             ),
-                //             trailing: Text(
-                //               '€ 300',
-                //               style: Theme.of(context).textTheme.titleSmall,
-                //             ),
-                //           ),
-                //           const Divider(),
-                //         ],
-                //       ),
-                //     ),
-                //     ListView.builder(
-                //       shrinkWrap: true,
-                //       controller: ScrollController(),
-                //       primary: false,
-                //       itemCount: 5,
-                //       itemBuilder: (context, index) => Column(
-                //         children: [
-                //           ListTile(
-                //             title: Text(
-                //               'IBFT BNP',
-                //               style: Theme.of(context).textTheme.titleSmall,
-                //             ),
-                //             subtitle: Text(
-                //               '2022',
-                //               style: Theme.of(context).textTheme.bodySmall,
-                //             ),
-                //             trailing: Text(
-                //               '€ 300',
-                //               style: Theme.of(context).textTheme.titleSmall,
-                //             ),
-                //           ),
-                //           const Divider(),
-                //         ],
-                //       ),
-                //     ),
-                //   ][_tabController!.index],
-                // ),
-              ],
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(vertical: 3),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(6),
+                  //     color: Colors.grey.shade200,
+                  //   ),
+                  //   child: TabBar(
+                  //     padding: const EdgeInsets.only(left: 10, right: 10),
+                  //     indicator: BoxDecoration(
+                  //       border: Border.all(color: Colors.black26, width: 0.8),
+                  //       borderRadius: BorderRadius.circular(5), // Creates border
+                  //       color: Colors.white,
+                  //     ),
+                  //     controller: _tabController,
+                  //     unselectedLabelColor: Colors.grey,
+                  //     labelColor: Colors.black,
+                  //     labelStyle: Theme.of(context).textTheme.bodySmall,
+                  //     tabs: [
+                  //       Tab(
+                  //         child: Center(
+                  //           child: const Text(
+                  //             "Day",
+                  //           ).tr(),
+                  //         ),
+                  //       ),
+                  //       Tab(
+                  //         child: Center(
+                  //           child: const Text(
+                  //             "Month",
+                  //           ).tr(),
+                  //         ),
+                  //       ),
+                  //       Tab(
+                  //         child: Center(
+                  //           child: const Text(
+                  //             "Year",
+                  //           ).tr(),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // Container(
+                  //   child: [
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 10),
+                  //       child: ListView.builder(
+                  //         shrinkWrap: true,
+                  //         physics: const NeverScrollableScrollPhysics(),
+                  //         itemCount: extractData.transactions.length,
+                  //         itemBuilder: (context, index) => Column(
+                  //           children: [
+                  //             ListTile(
+                  //               horizontalTitleGap: 0,
+                  //               leading: Text(
+                  //                 extractData.transactions[index].transactionId.toString(),
+                  //                 style: Theme.of(context).textTheme.titleSmall,
+                  //               ),
+                  //               title: Text(
+                  //                 extractData.transactions[index].jobTitle,
+                  //                 style: Theme.of(context).textTheme.titleSmall,
+                  //               ),
+                  //               subtitle: Text(
+                  //                 extractData.transactions[index].invoiceNo,
+                  //                 style: Theme.of(context).textTheme.labelSmall,
+                  //               ),
+                  //               trailing: Text(
+                  //                 "${extractData.transactions[index].jobberGet} €",
+                  //                 style: Theme.of(context).textTheme.titleSmall,
+                  //               ),
+                  //             ),
+                  //             const Divider(),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     ListView.builder(
+                  //       shrinkWrap: true,
+                  //       controller: ScrollController(),
+                  //       primary: false,
+                  //       itemCount: 3,
+                  //       itemBuilder: (context, index) => Column(
+                  //         children: [
+                  //           ListTile(
+                  //             title: Text(
+                  //               'IBFT BNP',
+                  //               style: Theme.of(context).textTheme.titleSmall,
+                  //             ),
+                  //             subtitle: Text(
+                  //               'November',
+                  //               style: Theme.of(context).textTheme.bodySmall,
+                  //             ),
+                  //             trailing: Text(
+                  //               '€ 300',
+                  //               style: Theme.of(context).textTheme.titleSmall,
+                  //             ),
+                  //           ),
+                  //           const Divider(),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     ListView.builder(
+                  //       shrinkWrap: true,
+                  //       controller: ScrollController(),
+                  //       primary: false,
+                  //       itemCount: 5,
+                  //       itemBuilder: (context, index) => Column(
+                  //         children: [
+                  //           ListTile(
+                  //             title: Text(
+                  //               'IBFT BNP',
+                  //               style: Theme.of(context).textTheme.titleSmall,
+                  //             ),
+                  //             subtitle: Text(
+                  //               '2022',
+                  //               style: Theme.of(context).textTheme.bodySmall,
+                  //             ),
+                  //             trailing: Text(
+                  //               '€ 300',
+                  //               style: Theme.of(context).textTheme.titleSmall,
+                  //             ),
+                  //           ),
+                  //           const Divider(),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ][_tabController!.index],
+                  // ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
