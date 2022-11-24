@@ -92,6 +92,7 @@ import 'providers/accounts_providers/transaction_provider.dart';
 import 'providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
 import 'providers/notifications_provider/notifications_provider.dart';
 import 'providers/single_job_provider/single_job_provider.dart';
+import 'screens/account_screen/reviews_screen.dart';
 
 late final FirebaseMessaging _messaging;
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -391,6 +392,8 @@ class MyApp extends StatelessWidget {
           const FAQScreen(),
           MyRoutes.COMMENTSCREENROUTE: (ctx) =>
           const CommentScreen(),
+          MyRoutes.REVIEWSSCREENROUTE: (ctx) =>
+          const ReviewsScreen(),
         },
       ),
     );

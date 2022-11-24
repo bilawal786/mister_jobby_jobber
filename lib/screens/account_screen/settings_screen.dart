@@ -90,6 +90,21 @@ class SettingScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () =>Navigator.of(context)
+                        .pushNamed(MyRoutes.REVIEWSSCREENROUTE),
+                    leading: Icon(
+                      Icons.reviews_outlined,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      "My Reviews",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ).tr(),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
                     leading: Icon(
                       Icons.notification_important_outlined,
