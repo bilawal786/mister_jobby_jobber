@@ -34,7 +34,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       var response = await http.get(
         Uri.parse('${MyRoutes.BASEURL}/save-token/$token'),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+          'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Authorization': 'Bearer $userToken',
         },

@@ -112,9 +112,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey = 'pk_test_mhfC6RVLoiK6pNLoINPHyjGO00LXtQiByW';
-  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
+
   // 2. Instantiate Firebase Messaging
   _messaging = FirebaseMessaging.instance;
 
@@ -146,6 +145,8 @@ void main() async {
   final token = await FirebaseMessaging.instance.getToken();
   print("firebase token: "+token.toString());
 
+  Stripe.publishableKey = 'pk_test_mhfC6RVLoiK6pNLoINPHyjGO00LXtQiByW';
+  await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
       supportedLocales: const [
