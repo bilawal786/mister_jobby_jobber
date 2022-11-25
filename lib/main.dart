@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:mister_jobby_jobber/providers/accounts_providers/all_reviews_provider.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_badges_provider.dart';
 import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_provider.dart';
 import 'package:mister_jobby_jobber/providers/commented_jobs_provider/commented_jobs_provider.dart';
@@ -197,6 +198,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => CommentedJobsProvider()),
         ChangeNotifierProvider(create: (ctx) => SingleJobProvider()),
         ChangeNotifierProvider(create: (ctx) => TransactionProvider()),
+        ChangeNotifierProvider(create: (ctx) => AllReviewsProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

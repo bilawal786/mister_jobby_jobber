@@ -4,6 +4,7 @@ import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments
 import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
+import '../providers/accounts_providers/all_reviews_provider.dart';
 import '../providers/accounts_providers/subscription/subscription_provider.dart';
 import '../providers/accounts_providers/transaction_provider.dart';
 import '../providers/commented_jobs_provider/commented_jobs_provider.dart';
@@ -42,6 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<CurrentJobsOffersProvider>(context).commentedJobsModel;
       Provider.of<CommentedJobsProvider>(context).commentedJobsModel;
       Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+      Provider.of<AllReviewsProvider>(context, listen: false).getAllReviews();
     }
     _isInit = false;
     super.didChangeDependencies();

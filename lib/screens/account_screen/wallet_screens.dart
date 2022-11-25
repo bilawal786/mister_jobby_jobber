@@ -145,6 +145,7 @@ class _WalletScreenState extends State<WalletScreen>
                   ListView.builder(
                     itemCount: extractData.transactions.length,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Container(

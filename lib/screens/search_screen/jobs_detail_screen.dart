@@ -13,6 +13,7 @@ import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../image_preview_screen.dart';
+import 'jobee_profile.dart';
 
 class JobDetailScreen extends StatefulWidget {
   final AvailableJobsModel jobsDetail;
@@ -23,7 +24,6 @@ class JobDetailScreen extends StatefulWidget {
 }
 
 class _JobDetailScreenState extends State<JobDetailScreen> {
-
   var isInit = true;
 
   @override
@@ -303,34 +303,51 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
                     ),
-                    Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 12,
-                          foregroundImage: NetworkImage(
-                            "${MyRoutes.IMAGEURL}/${widget.jobsDetail.demander.image}",
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) => JobbyProfile(
+                              demanderImgUrl: widget.jobsDetail.demander.image,
+                              demanderLName: widget.jobsDetail.demander.lastName,
+                              demanderName: widget.jobsDetail.demander.firstName,
+                              memberSince: widget.jobsDetail.demander.memberSince,
+                              demands: widget.jobsDetail.demander.activeJobs.toString(),
+                              reservations: widget.jobsDetail.demander.totalHireJobber.toString(),
+                              evaluations: widget.jobsDetail.demander.rating.toString(),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          child: Text(
-                            "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
-                            style: Theme.of(context).textTheme.bodySmall,
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
+                        );
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 12,
+                            foregroundImage: NetworkImage(
+                              "${MyRoutes.IMAGEURL}/${widget.jobsDetail.demander.image}",
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          child: Text(
-                            "- ${widget.jobsDetail.createdAt}",
-                            style: Theme.of(context).textTheme.labelMedium,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 40,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            child: Text(
+                              "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
+                              style: Theme.of(context).textTheme.bodySmall,
+                              textAlign: TextAlign.left,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            child: Text(
+                              "- ${widget.jobsDetail.createdAt}",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
@@ -496,9 +513,10 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               width: MediaQuery.of(context).size.width / 40,
                             ),
                             Consumer<SingleJobCommentsProvider>(
-                              builder:(context, data, child) => Text(
-                                  (data.singleJobComments?.length == null) ? '(0)' :
-                                "(${data.singleJobComments?.length.toString()})",
+                              builder: (context, data, child) => Text(
+                                (data.singleJobComments?.length == null)
+                                    ? '(0)'
+                                    : "(${data.singleJobComments?.length.toString()})",
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 16,
@@ -1418,10 +1436,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                             if (widget.jobsDetail.childcategoryId == 29)
-                              Text(
-                                "How many washing machines should be connected ?",
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ).tr(),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 1.4,
+                                child: Text(
+                                  "How many washing machines should be connected ?",
+                                  style: Theme.of(context).textTheme.labelMedium,
+                                  maxLines: 3,
+                                ).tr(),
+                              ),
                             if (widget.jobsDetail.childcategoryId == 30)
                               Text(
                                 "How many toilets do you need to fix ?",
@@ -4108,7 +4130,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
     );
   }
 
-  addMarker(String mId, LatLng location, String title, String description) async {
+  addMarker(
+      String mId, LatLng location, String title, String description) async {
     var marker = Marker(
       markerId: MarkerId(mId),
       position: location,

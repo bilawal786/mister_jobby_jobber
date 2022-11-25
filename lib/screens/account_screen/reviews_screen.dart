@@ -1,12 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/helper/routes.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/accounts_providers/all_reviews_provider.dart';
 
 class ReviewsScreen extends StatelessWidget {
   const ReviewsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final reviewsData = Provider.of<AllReviewsProvider>(context);
+    final extractData = reviewsData.allReviewsModel;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -32,7 +38,7 @@ class ReviewsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        RichText(text: TextSpan(text: '4.5',
+                        RichText(text: TextSpan(text: extractData!.rating.toString(),
                           style: Theme.of(context).textTheme.titleLarge,
                           children: [
                             WidgetSpan(child: Text(' /',
@@ -47,18 +53,16 @@ class ReviewsScreen extends StatelessWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            if(5 == 0)
-                              const Icon(Icons.star, size: 27,),
                             for (int i = 0; i < 5; i++)
-                              const Icon(
+                              Icon(
                                 Icons.star,
-                                color: Colors.amber,
+                                color: i == extractData.rating ? Colors.grey.shade300 : Colors.amber ,
                                 size: 27,
                               ),
                           ],
                         ),
                         SizedBox(height: MediaQuery.of(context).size.width / 40,),
-                        Text('Based on 100 Reviews',
+                        Text('Based on ${extractData.totalReviews} Reviews',
                           style: Theme.of(context).textTheme.labelMedium,).tr(),
                       ],),
                     const Spacer(),
@@ -69,47 +73,47 @@ class ReviewsScreen extends StatelessWidget {
                         LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width/3.5,
                           lineHeight: 10.0,
-                          percent: 1.0,
+                          percent: extractData.stars5/extractData.totalReviews,
                           leading: Text('5 Star', style: Theme.of(context).textTheme.bodyMedium,),
                           barRadius: Radius.circular(20),
                           progressColor: Colors.amber,
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade300,
                         ),
                         LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width/3.5,
                           lineHeight: 10.0,
-                          percent: 0.85,
+                          percent: extractData.stars4/extractData.totalReviews,
                           leading: Text('4 Star', style: Theme.of(context).textTheme.bodyMedium,),
                           barRadius: Radius.circular(20),
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade300,
                           progressColor: Colors.amber,
                         ),
                         LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width/3.5,
                           lineHeight: 10.0,
-                          percent: 0.7,
+                          percent: extractData.stars3/extractData.totalReviews,
                           leading: Text('3 Star', style: Theme.of(context).textTheme.bodyMedium,),
                           barRadius: Radius.circular(20),
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade300,
                           progressColor: Colors.amber,
                         ),
                         LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width/3.5,
                           lineHeight: 10.0,
-                          percent: 0.6,
+                          percent: extractData.stars2/extractData.totalReviews,
                           leading: Text('2 Star', style: Theme.of(context).textTheme.bodyMedium,),
                           barRadius: Radius.circular(20),
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade300,
                           progressColor: Colors.amber,
                         ),
                         LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width/3.5,
                           lineHeight: 10.0,
-                          percent: 0.5,
+                          percent: extractData.stars1/extractData.totalReviews,
                           leading: Text('1 Star', style: Theme.of(context).textTheme.bodyMedium,),
                           barRadius: Radius.circular(20),
                           progressColor: Colors.amber,
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.grey.shade300,
                         ),
                       ],),
                   ],),
@@ -121,8 +125,10 @@ class ReviewsScreen extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (context, index) => Column(children: <Widget>[
+                itemCount: extractData.reviews.length,
+                itemBuilder: (context, index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: Container(
@@ -137,33 +143,37 @@ class ReviewsScreen extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(35),
                         child: Image.network(
-                          "https://www.hayalanka.com/wp-content/uploads/2017/07/avtar-image.jpg",
+                          "${MyRoutes.IMAGEURL}${extractData.reviews[index].image}",
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    title: Text('Frank Garrett', style: Theme.of(context).textTheme.bodyMedium,),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(extractData.reviews[index].name, style: Theme.of(context).textTheme.bodyMedium,),
+                        Text(extractData.reviews[index].date, style: Theme.of(context).textTheme.labelSmall,),
+                      ],
+                    ),
                     subtitle: Row(children: <Widget>[
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           if(5 == 0)
-                            const Icon(Icons.star, size: 27,),
-                          for (int i = 0; i < 5; i++)
+                            const Icon(Icons.star, size: 15,),
+                          for (int i = 0; i < extractData.reviews[index].star; i++)
                             const Icon(
                               Icons.star,
                               color: Colors.amber,
-                              size: 27,
+                              size: 15,
                             ),
                           SizedBox(width: MediaQuery.of(context).size.width/100,),
-                          Text('(5)',style:Theme.of(context).textTheme.bodyMedium,),
+                          Text('(${extractData.reviews[index].star})',style:Theme.of(context).textTheme.bodySmall,),
                         ],
                       ),
-                      const Spacer(),
-                      Text('1 day ago', style: Theme.of(context).textTheme.labelMedium,),
                     ],),
                   ),
-                  Text('Furniture repair man was great, his work is excelent, having latest tools and techonology, satisified with his work he must be recommended',
+                  Text(extractData.reviews[index].message,
                     style: Theme.of(context).textTheme.labelMedium,),
                   const Divider(),
                 ],),),
