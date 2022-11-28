@@ -45,6 +45,7 @@ class _IndexScreenState extends State<IndexScreen> {
       Provider.of<CurrentJobsOffersProvider>(context, listen: false)
           .getCommentedJobs();
       Provider.of<CommentedJobsProvider>(context).getCommentedJobs();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
     }
     isInit = false;
     super.didChangeDependencies();
@@ -106,7 +107,7 @@ class _IndexScreenState extends State<IndexScreen> {
     final checkCompleteProfile =
         Provider.of<CheckProfileCompletionProvider>(context);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
-    final profileData = Provider.of<PersonalInformationProvider>(context);
+    final profileData = Provider.of<PersonalInformationProvider>(context, listen: false);
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: (commentedJobsData.checkApi == false &&
@@ -235,7 +236,7 @@ class _IndexScreenState extends State<IndexScreen> {
                         height: mediaQuery.size.width / 40,
                       ),
                     ],
-                    if(profileData.profile!.verified  == 1 )... [
+                    if(profileData.profile != null  && profileData.profile!.verified == 1 )... [
                       Container(
                         color: Colors.amber.shade200,
                         padding: const EdgeInsets.all(20.0),

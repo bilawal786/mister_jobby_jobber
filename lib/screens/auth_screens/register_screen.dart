@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(
                           height: MediaQuery.of(context).size.width/1.2,
                           width: MediaQuery.of(context).size.width,
-                          child: Image.asset('assets/images/login.png',
+                          child: Image.asset('assets/images/mr-jobber-logo.png',
                             fit: BoxFit.cover,
                           ),
                         ),

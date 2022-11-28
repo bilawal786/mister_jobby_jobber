@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: MediaQuery.of(context).size.width/1.2,
                 width: MediaQuery.of(context).size.width,
-                child: Image.asset('assets/images/jobber_login.jpeg',
+                child: Image.asset('assets/images/mr-jobber-logo.png',
                   fit: BoxFit.cover,
                 ),
               ),

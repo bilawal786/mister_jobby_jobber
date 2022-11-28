@@ -6,7 +6,6 @@ import '../../helper/routes.dart';
 import '../../providers/accounts_providers/transaction_provider.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
-import '../auth_screens/mandatory_steps/reliability_score_step/reliability_score_step_screen.dart';
 import 'reliabiltity_score_screen.dart';
 import 'wallet_screens.dart';
 
