@@ -39,10 +39,6 @@ class CurrentOffers extends StatelessWidget {
               leading: GestureDetector(
                   onTap: Navigator.of(context).pop,
                   child: const Icon(Icons.arrow_back, color: Colors.black,)),
-              actions: const [Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.more_vert_rounded, color: Colors.black,),
-              ),],
               backgroundColor: Colors.white,
               bottom: TabBar(
                 padding: const EdgeInsets.only(left: 10, right: 10),

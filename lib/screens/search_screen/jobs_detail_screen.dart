@@ -9,7 +9,7 @@ import '../../helper/routes.dart';
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
-import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
+// import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../image_preview_screen.dart';
@@ -75,7 +75,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       width: MediaQuery.of(context).size.width / 1.4,
                       child: Center(
                         child: Text(
-                          "Ignor_Job",
+                          "Ignore_Job",
                           style: Theme.of(context).textTheme.bodySmall,
                         ).tr(),
                       ),
@@ -94,8 +94,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
   Map<String, Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
-    int commentedJobs =
-        Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
+    // int commentedJobs =
+    //     Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
     final jobberProfileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
     final extractedProfile = jobberProfileData.profile;
@@ -143,7 +143,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
-                (extractedProfile!.verified == false)
+                (extractedProfile!.verified == 0)
                     ? Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
@@ -159,8 +159,25 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               color: Theme.of(context).errorColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Cerebri Sans Bold'),
-                        ),
-                      )
+                        ).tr(),
+                      ) : (extractedProfile.verified == 1)
+                    ? Container(
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(
+                      color: Colors.amber.shade700,
+                    ),
+                  ),
+                  child: Text(
+                    "Waiting for admin approval",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.amber.shade700,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Cerebri Sans Bold'),
+                  ).tr(),
+                )
                     : (widget.jobsDetail.isApplied == false)
                         ? Expanded(
                             child: Consumer<JobsDetailProvider>(

@@ -110,7 +110,7 @@ class _IndexScreenState extends State<IndexScreen> {
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: (commentedJobsData.checkApi == false &&
-              currentOfferData.checkApi == false)
+              currentOfferData.checkApi == false && profileData.profile == null)
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -220,7 +220,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               Text(
                                 "Actions required",
                                 style: Theme.of(context).textTheme.bodySmall,
-                              ),
+                              ).tr(),
                               const Spacer(),
                               const Icon(
                                 Icons.arrow_forward_ios,
@@ -233,6 +233,28 @@ class _IndexScreenState extends State<IndexScreen> {
                       ),
                       SizedBox(
                         height: mediaQuery.size.width / 40,
+                      ),
+                    ],
+                    if(profileData.profile!.verified  == 1 )... [
+                      Container(
+                        color: Colors.amber.shade200,
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(
+                              Icons.circle_notifications_outlined,
+                              size: 20,
+                              color: Colors.black,
+                            ),
+                            SizedBox(
+                              width: mediaQuery.size.width / 40,
+                            ),
+                            Text(
+                              "Your profile is under review",
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ).tr(),
+                          ],
+                        ),
                       ),
                     ],
                     Padding(
@@ -260,7 +282,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        "${extractCurrentOfferData?.length}",
+                                        extractCurrentOfferData == null ? "0" : "${extractCurrentOfferData.length}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium,
@@ -318,7 +340,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        "${extractCommentJobsData?.length}",
+                                        extractCommentJobsData == null ? "0": "${extractCommentJobsData.length}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium,
@@ -388,7 +410,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               Text(
                                 "No job planned soon",
                                 style: Theme.of(context).textTheme.titleMedium,
-                              ),
+                              ).tr(),
                               SizedBox(
                                 height: mediaQuery.size.width / 40,
                               ),
@@ -396,7 +418,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                 "Go to your job list to find your next job.",
                                 style: Theme.of(context).textTheme.labelMedium,
                                 textAlign: TextAlign.center,
-                              ),
+                              ).tr(),
                               SizedBox(
                                 height: mediaQuery.size.width / 20,
                               ),

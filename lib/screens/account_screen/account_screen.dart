@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +38,7 @@ class _AccountScreenState extends State<AccountScreen> {
     final mediaQuery = MediaQuery.of(context);
     final transactionData = Provider.of<TransactionProvider>(context).transactionModel;
     return Scaffold(
-      body: SafeArea(
+      body: (profileData.profile == null) ? const Center(child: CircularProgressIndicator(),) :SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -352,11 +353,11 @@ class _AccountScreenState extends State<AccountScreen> {
                         title: Text(
                           "Incomplete profile",
                           style: Theme.of(context).textTheme.bodyMedium,
-                        ),
+                        ).tr(),
                         subtitle: Text(
                           "Please complete your profile to start offering your services.",
                           style: Theme.of(context).textTheme.labelMedium,
-                        ),
+                        ).tr(),
                         trailing: const Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.black,
@@ -364,6 +365,29 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                       ),
                     ],
+                    ],
+                  ),
+                ),
+              ],
+              if(profileData.profile!.verified  == 1 )... [
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  color: Colors.amber.shade200,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: <Widget>[
+                      const Icon(
+                        Icons.circle_notifications_outlined,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: mediaQuery.size.width / 40,
+                      ),
+                      Text(
+                        "Your profile is under review",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ).tr(),
                     ],
                   ),
                 ),

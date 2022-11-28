@@ -30,7 +30,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final availableJobsData =
     Provider.of<AvailableJobsProvider>(context, listen: true);
-    return Scaffold(
+    return (profileData.profile == null)? const Center(child: CircularProgressIndicator(),) : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -183,6 +183,28 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 height: MediaQuery.of(context).size.width / 40,
               ),
             ],
+            if(profileData.profile!.verified  == 1 )... [
+              Container(
+                color: Colors.amber.shade200,
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.circle_notifications_outlined,
+                      size: 20,
+                      color: Colors.black,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Text(
+                      "Your profile is under review",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ).tr(),
+                  ],
+                ),
+              ),
+            ],
             Container(
               padding: const EdgeInsets.all(5.0),
               child: Row(
@@ -235,7 +257,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                           listen: false)
                       .getAvailableJobs();
                 },
-                child: SizedBox(
+                child: extractedAvailableJobs.availableJobs == null ? const Center(child: CircularProgressIndicator(),): SizedBox(
                   height: MediaQuery.of(context).size.height / 2.4,
                   child: (extractedAvailableJobs.availableJobs!.isNotEmpty)
                       ? ListView.builder(
