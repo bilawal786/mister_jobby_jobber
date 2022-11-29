@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class PersonalInformationScreen extends StatefulWidget {
 class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   final formKey = GlobalKey<FormState>();
 
-  void formSubmit(fName, lName, gen, number, prof) {
+  void formSubmit(fName, lName, gen, number, prof, description) {
     final updateProfileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
     var isValid = formKey.currentState!.validate();
@@ -32,6 +33,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
       gen,
       number,
       prof,
+      description,
     );
   }
 
@@ -60,14 +62,14 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Text(
                   "Personal Information",
                   style: Theme.of(context).textTheme.titleMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 20,
                 ),
                 Text(
                   "First Name",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -99,7 +101,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Text(
                   "Last Name",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -131,7 +133,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Text(
                   "Sex",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -163,7 +165,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Text(
                   "Phone number",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -186,6 +188,39 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                         contentPadding: EdgeInsets.all(10.0),
                       ),
                       style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 20,
+                ),
+                Text(
+                  "Description",
+                  style: Theme.of(context).textTheme.labelMedium,
+                ).tr(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                Consumer<PersonalInformationProvider>(
+                  builder: (_, info, child) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(7.0),
+                    ),
+                    child: TextFormField(
+                      initialValue: extractedData.description,
+                      autovalidateMode: AutovalidateMode.always,
+                      onChanged: (value) {
+                        info.getDescription(value);
+                      },
+                      decoration: const InputDecoration(
+                        focusedBorder: InputBorder.none,
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.all(10.0),
+                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      maxLines: 3,
                     ),
                   ),
                 ),
@@ -269,6 +304,9 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                       ? extractedData.phone
                       : profileData.changePhoneNumber,
                   profileData.statusName,
+                  (profileData.changeDescription == null)
+                      ? extractedData.description
+                      : profileData.changeDescription,
                 );
               },
               buttonName: "Confirm"),),),

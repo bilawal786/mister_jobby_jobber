@@ -4,7 +4,6 @@ import 'package:mister_jobby_jobber/providers/commented_jobs_provider/commented_
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
-import '../../screens/home_screens/job_info_screen.dart';
 
 class CommentedJobsWidget extends StatelessWidget {
   const CommentedJobsWidget({Key? key}) : super(key: key);
@@ -87,9 +86,12 @@ class CommentedJobsWidget extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => JobInfoScreen(
-                        id: extractData[index].jobId.toString())));
+                Navigator.of(context).pushNamed(MyRoutes.COMMENTSCREENROUTE, arguments: {
+                  'jobId': extractData[index].jobId.toString(),
+                });
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (ctx) => JobInfoScreen(
+                //         id: extractData[index].jobId.toString())));
               },
             ),
             const Divider(),

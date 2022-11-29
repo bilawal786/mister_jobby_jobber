@@ -22,6 +22,7 @@ class PersonalInformationProvider with ChangeNotifier {
   String? changeFName;
   String? changeLName;
   String? changePhoneNumber;
+  String? changeDescription;
 
 
 
@@ -35,6 +36,10 @@ class PersonalInformationProvider with ChangeNotifier {
   }
   getPhoneNumber(value){
     changePhoneNumber = value;
+    notifyListeners();
+  }
+  getDescription(value){
+    changeDescription = value;
     notifyListeners();
   }
 
@@ -198,6 +203,7 @@ class PersonalInformationProvider with ChangeNotifier {
     gender,
     number,
     prof,
+      description,
   ) async {
     showDialog(context: context, builder: (BuildContext context){
       return const LoginProgressIndicator();
@@ -217,6 +223,7 @@ class PersonalInformationProvider with ChangeNotifier {
         'phone': number.toString(),
         'gender': gender.toString(),
         'professional': prof.toString(),
+        'description': description.toString(),
       }),
     );
     if (response.statusCode == 200) {

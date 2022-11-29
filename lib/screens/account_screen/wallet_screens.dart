@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../providers/accounts_providers/transaction_provider.dart';
 import '../../widgets/chart_widget.dart';
-import 'package:collection/collection.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key? key}) : super(key: key);
@@ -55,7 +54,7 @@ class _WalletScreenState extends State<WalletScreen>
         title: Text(
           'Wallet',
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
       ),
       body: RefreshIndicator(
         onRefresh: () async{
@@ -71,7 +70,7 @@ class _WalletScreenState extends State<WalletScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        extractData!.wallet,
+                        extractData!.wallet.isEmpty ? "0" : extractData.wallet,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       SizedBox(

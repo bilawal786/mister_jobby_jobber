@@ -13,7 +13,6 @@ class BadgeProScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileData =
     Provider.of<PersonalInformationProvider>(context, listen: false);
-    int value = 1;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,10 +46,47 @@ class BadgeProScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  if(profileData.profile!.pro == 1) ...[
+                  if(profileData.profile!.pro == 2) ...[
                     Container(
-                    margin: EdgeInsets.all(0),
-                    padding: EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
+                      width: double.infinity,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.amber.shade300),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 60,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),
+                              color: Colors.amber.shade100,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20,left: 10),
+                              child: Text(
+                                "Congrats You get PRO badge",
+                                style: Theme.of(context).textTheme.bodyMedium,
+
+                              ).tr(),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30, left: 10,right: 10, bottom: 30),
+                            child: Text(
+                              "Now you are able to get more jobs.",
+                              style: Theme.of(context).textTheme.bodySmall,
+                              textAlign: TextAlign.justify,
+                            ).tr(),
+                          ),
+                        ],),
+                    ),]
+                  else if(profileData.profile!.pro == 1) ...[
+                    Container(
+                    margin: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: double.infinity,
                     height: 200,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),

@@ -271,7 +271,7 @@ class SocialSecurityProvider with ChangeNotifier {
 
   bool securityCompleted = false;
 
-  Future<void> postSecurityCertificates (context, vitalCard, vitalCardNumber, securityCertificate, securityCertificateNumber,) async {
+  Future<void> postSecurityCertificates (context, vitalCard, vitalCardNum, securityCertificate, securityCertificateNumber,) async {
     showDialog(context: context, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
@@ -295,13 +295,13 @@ class SocialSecurityProvider with ChangeNotifier {
       request.files.add(await http.MultipartFile.fromPath('social_security_certificate', securityCertificate));
     }
 
-    request.fields['vital_card_number']= vitalCardNumber;
+    request.fields['vital_card_number']= vitalCardNum;
     request.fields['social_security_number']= securityCertificateNumber;
 
     http.Response response = await http.Response.fromStream(await request.send());
 
     if (response.statusCode == 200) {
-      debugPrint("Non-European identification documents Posted successfully ");
+      debugPrint("Social security documents Posted successfully ");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData();
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
@@ -327,9 +327,7 @@ class SocialSecurityProvider with ChangeNotifier {
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
     }
-    if (kDebugMode) {
-      print(response.request);
-    }
+    print(response.body);
     notifyListeners();
   }
 

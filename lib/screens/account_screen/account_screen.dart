@@ -54,22 +54,41 @@ class _AccountScreenState extends State<AccountScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width / 3.5,
-                          height: MediaQuery.of(context).size.width / 3.5,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.black38,
+                        Stack(
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width / 3.5,
+                              height: MediaQuery.of(context).size.width / 3.5,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.black38,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(200),
+                                child: Image.network(
+                                  "${MyRoutes.IMAGEURL}${profileData.profile!.image}",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(200),
-                            child: Image.network(
-                              "${MyRoutes.IMAGEURL}${profileData.profile!.image}",
-                              fit: BoxFit.cover,
+                            if(profileData.profile!.verified == 2)
+                            Positioned(
+                              right: 2,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color:Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.verified_user_sharp,
+                                  color: Colors.green.shade700,
+                                  size: 24,
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
@@ -108,9 +127,36 @@ class _AccountScreenState extends State<AccountScreen> {
               SizedBox(
                 height: mediaQuery.size.width / 40,
               ),
-              Text(
-                "${profileData.profile!.firstName} ${profileData.profile!.lastName}",
-                style: Theme.of(context).textTheme.titleMedium,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "${profileData.profile!.firstName} ${profileData.profile!.lastName}",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  if(profileData.profile!.pro == 2) ... [
+                  SizedBox(width: MediaQuery.of(context).size.width / 40,),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius:
+                      BorderRadius.circular(2),
+                    ),
+                    padding: const EdgeInsets.only(
+                      left: 1,
+                      right: 1,
+                    ),
+                    child: const Text(
+                      'PRO',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontFamily: 'Cerebri Sans Bold',
+                      ),
+                    ),
+                  ),
+                  ],
+                ],
               ),
               SizedBox(
                 height: mediaQuery.size.width / 40,
@@ -194,7 +240,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   height: mediaQuery.size.width / 80,
                                 ),
                                 Text(
-                                  "${transactionData?.wallet}€",
+                                  transactionData!.wallet.isEmpty ? "0€":"${transactionData.wallet}€",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(
