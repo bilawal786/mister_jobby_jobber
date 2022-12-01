@@ -4,13 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:mister_jobby_jobber/providers/accounts_providers/all_reviews_provider.dart';
-import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_badges_provider.dart';
-import 'package:mister_jobby_jobber/providers/auth_provider/forget_password_provider.dart';
-import 'package:mister_jobby_jobber/providers/commented_jobs_provider/commented_jobs_provider.dart';
-import 'package:mister_jobby_jobber/providers/commented_jobs_provider/current_jobs_offers_provider.dart';
-import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
-import 'package:mister_jobby_jobber/screens/search_screen/comment_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -86,6 +79,14 @@ import './providers/faq_provider.dart';
 import './providers/accounts_providers/about_provider/about_provider.dart';
 import './providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 import './providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
+import './providers/accounts_providers/all_reviews_provider.dart';
+import './providers/accounts_providers/get_badges/get_badges_provider.dart';
+import './providers/auth_provider/forget_password_provider.dart';
+import './providers/commented_jobs_provider/commented_jobs_provider.dart';
+import './providers/commented_jobs_provider/current_jobs_offers_provider.dart';
+import './providers/jobs_providers/single_job_comments_provider.dart';
+import './screens/search_screen/comment_screen.dart';
+
 import 'providers/accounts_providers/subscription/subscription_provider.dart';
 import 'providers/accounts_providers/transaction_provider.dart';
 import 'providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
