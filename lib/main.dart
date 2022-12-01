@@ -143,9 +143,7 @@ void main() async {
     badge: true,
     sound: true,
   );
-  final token = await FirebaseMessaging.instance.getToken();
-  print("firebase token: "+token.toString());
-
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
   Stripe.publishableKey = 'pk_test_mhfC6RVLoiK6pNLoINPHyjGO00LXtQiByW';
   await EasyLocalization.ensureInitialized();
   runApp(
