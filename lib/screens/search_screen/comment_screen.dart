@@ -24,7 +24,7 @@ class _CommentScreenState extends State<CommentScreen> {
     jobId = routeArgs['jobId'];
     if (isInit) {
       Provider.of<SingleJobCommentsProvider>(context)
-          .getSingleJobComments(jobId);
+          .getSingleJobComments(context , jobId);
     }
     isInit = false;
     super.didChangeDependencies();

@@ -12,6 +12,16 @@ class FAQScreen extends StatefulWidget {
 
 class _FAQScreenState extends State<FAQScreen> {
   List<int> expansion = [];
+
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<FAQProvider>(context).getFAQ();
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +75,7 @@ class _FAQScreenState extends State<FAQScreen> {
               ),
               const Divider(thickness: 1),
               Consumer<FAQProvider>(
-                builder: (index, faqData, child) => ListView.builder(
+                builder: (index, faqData, child) => faqData.myFAQ == null ? const Center(child: CircularProgressIndicator(),) : ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: faqData.myFAQ!.length,

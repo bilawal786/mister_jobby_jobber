@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-// import 'package:mister_jobby_jobber/providers/jobs_providers/single_job_comments_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/accounts_providers/about_provider/about_provider.dart';
 import '../providers/accounts_providers/all_reviews_provider.dart';
-import '../providers/accounts_providers/subscription/subscription_provider.dart';
 import '../providers/accounts_providers/transaction_provider.dart';
-import '../providers/commented_jobs_provider/commented_jobs_provider.dart';
-import '../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import '../providers/notifications_provider/notifications_provider.dart';
 import '../providers/preferences_provider/preferences_provider.dart';
-import '../providers/accounts_providers/terms_and_condition_provider/terms_and_condition_provider.dart';
 import '../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
-import '../providers/faq_provider.dart';
 import '../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
@@ -30,20 +24,26 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      Provider.of<PreferencesProvider>(context, listen: false).checkToken(context);
-      Provider.of<IndicateSkillsProvider>(context, listen: false).getMainCategories(context);
-      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
-      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
-      Provider.of<FAQProvider>(context, listen: false).getFAQ();
-      Provider.of<AboutProvider>(context, listen: false).getAbout();
-      Provider.of<TermsAndConditonProvider>(context, listen: false).getTermsAndConditions();
-      Provider.of<NotificationsProvider>(context, listen: false).getNotification();
-      Provider.of<SubscriptionProvider>(context, listen: false).getSubscriptionPlan();
-      Provider.of<CurrentJobsOffersProvider>(context).commentedJobsModel;
-      Provider.of<CommentedJobsProvider>(context).commentedJobsModel;
-      Provider.of<TransactionProvider>(context, listen: false).getTransaction();
-      Provider.of<AllReviewsProvider>(context, listen: false).getAllReviews();
+      String? isToken;
+      Provider.of<PreferencesProvider>(context, listen: false)
+          .checkToken(context)
+          .then((value) => isToken =
+              Provider.of<PreferencesProvider>(context, listen: false).token);
+      if(isToken != null){
+        Provider.of<IndicateSkillsProvider>(context, listen: false)
+            .getMainCategories(context);
+        Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+            .getProfileCompletionData(context);
+        Provider.of<PersonalInformationProvider>(context, listen: true)
+            .getProfile(context);
+        Provider.of<AvailableJobsProvider>(context, listen: false)
+            .getAvailableJobs(context);
+        Provider.of<AboutProvider>(context, listen: false).getAbout();
+        Provider.of<NotificationsProvider>(context, listen: false)
+            .getNotification(context);
+        Provider.of<TransactionProvider>(context, listen: false).getTransaction(context);
+        Provider.of<AllReviewsProvider>(context, listen: false).getAllReviews(context);
+      }
     }
     _isInit = false;
     super.didChangeDependencies();

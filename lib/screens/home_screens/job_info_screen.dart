@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
-import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/single_job_provider/single_job_provider.dart';
 import '../image_preview_screen.dart';
@@ -27,9 +26,9 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
   @override
   void didChangeDependencies() {
     if(isInit) {
-      Provider.of<SingleJobProvider>(context).getSingleJobDetail(
+      Provider.of<SingleJobProvider>(context).getSingleJobDetail(context,
           widget.id.toString());
-      Provider.of<SingleJobCommentsProvider>(context, listen: false).getSingleJobComments(widget.id.toString());
+      Provider.of<SingleJobCommentsProvider>(context).getSingleJobComments(context, widget.id.toString());
     }
     isInit = false;
     super.didChangeDependencies();
@@ -37,7 +36,6 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int commentedJobs = Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
     final singleJobData = Provider.of<SingleJobProvider>(context, listen: true);
     jobsDetail = singleJobData.jobDetail;
     return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)

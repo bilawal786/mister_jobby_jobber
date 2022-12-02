@@ -11,6 +11,16 @@ class TermsAndCondition extends StatefulWidget {
 }
 
 class _TermsAndConditionState extends State<TermsAndCondition> {
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<TermsAndConditonProvider>(context, listen: false)
+          .getTermsAndConditions();
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     final termsAndConditionsData = Provider.of<TermsAndConditonProvider>(context);
@@ -28,13 +38,13 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
+          child: extractTermsAndConditionData == null ? const Center(child: CircularProgressIndicator(),) :Column(
             children: [
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    extractTermsAndConditionData!.terms,
+                    extractTermsAndConditionData.terms,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),

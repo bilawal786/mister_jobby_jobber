@@ -44,9 +44,9 @@ class _IndexScreenState extends State<IndexScreen> {
   void didChangeDependencies() {
     if (isInit) {
       Provider.of<CurrentJobsOffersProvider>(context, listen: false)
-          .getCommentedJobs();
-      Provider.of<CommentedJobsProvider>(context).getCommentedJobs();
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+          .getCommentedJobs(context);
+      Provider.of<CommentedJobsProvider>(context).getCommentedJobs(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
     }
     isInit = false;
     super.didChangeDependencies();

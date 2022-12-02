@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
-import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
+
 import 'package:provider/provider.dart';
 
-import '../../../models/subscription/subscription_model.dart';
-import 'subscription_details_screen.dart';
 
-class Subscription extends StatelessWidget {
+class Subscription extends StatefulWidget {
   const Subscription({Key? key}) : super(key: key);
 
   @override
+  State<Subscription> createState() => _SubscriptionState();
+}
+
+class _SubscriptionState extends State<Subscription> {
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<SubscriptionProvider>(context).getSubscriptionPlan(context);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
 
-    final subscriptionData = Provider.of<SubscriptionProvider>(context);
+    final subscriptionData = Provider.of<SubscriptionProvider>(context, listen: false);
     final extractSubscriptionData = subscriptionData.subscriptionModel;
     return Scaffold(
       appBar: AppBar(
@@ -23,7 +35,7 @@ class Subscription extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(
+          child: extractSubscriptionData == null ? const Center(child: CircularProgressIndicator(),) : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
@@ -67,11 +79,11 @@ class Subscription extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:  <Widget>[
                                 Text(
-                                    (extractSubscriptionData?[index].id == 1) ?
-                                    extractSubscriptionData![index].name
-                                        : (extractSubscriptionData?[index].id == 2) ?
-                                    extractSubscriptionData![index].name :
-                                    extractSubscriptionData![index].name
+                                    (extractSubscriptionData[index].id == 1) ?
+                                    extractSubscriptionData[index].name
+                                        : (extractSubscriptionData[index].id == 2) ?
+                                    extractSubscriptionData[index].name :
+                                    extractSubscriptionData[index].name
                                     ,
                                   style: const TextStyle(
                                     fontSize: 22,
@@ -115,7 +127,7 @@ class Subscription extends StatelessWidget {
                                       child: Transform.translate(
                                         offset: const Offset(0.0, -13.0),
                                         child: const Text(
-                                          '\€',
+                                          '€',
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.white,
@@ -141,7 +153,7 @@ class Subscription extends StatelessWidget {
                                           (extractSubscriptionData[index].id == 2) ? 'mo' :
                                            "",
 
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 12,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w700,

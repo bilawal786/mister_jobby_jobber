@@ -18,18 +18,29 @@ class SearchJobScreen extends StatefulWidget {
 }
 
 class _SearchJobScreenState extends State<SearchJobScreen> {
+
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<AvailableJobsProvider>(context).getAvailableJobs(context);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
 
   @override
   Widget build(BuildContext context) {
     final profileData =
-    Provider.of<PersonalInformationProvider>(context, listen: true);
+    Provider.of<PersonalInformationProvider>(context, listen: false);
     final checkCompleteProfile =
-    Provider.of<CheckProfileCompletionProvider>(context);
+    Provider.of<CheckProfileCompletionProvider>(context, listen: false);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final availableJobsData =
-    Provider.of<AvailableJobsProvider>(context, listen: true);
+    Provider.of<AvailableJobsProvider>(context, listen: false);
     return (profileData.profile == null)? const Center(child: CircularProgressIndicator(),) : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -213,9 +224,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     builder: (_, jobsData, child) => InkWell(
                       onTap: () {
                         jobsData.setCheckApi();
-                        Provider.of<AvailableJobsProvider>(context,
-                                listen: false)
-                            .getAvailableJobs();
+                            jobsData.getAvailableJobs(context);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -253,9 +262,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
             Consumer<AvailableJobsProvider>(
               builder: (_, extractedAvailableJobs, child) => RefreshIndicator(
                 onRefresh: () {
-                  return Provider.of<AvailableJobsProvider>(context,
-                          listen: false)
-                      .getAvailableJobs();
+                  return extractedAvailableJobs.getAvailableJobs(context);
                 },
                 child: extractedAvailableJobs.availableJobs == null ? const Center(child: CircularProgressIndicator(),): SizedBox(
                   height: MediaQuery.of(context).size.height / 2.4,

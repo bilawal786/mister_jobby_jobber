@@ -86,7 +86,7 @@ class RulesProvider with ChangeNotifier{
     );
 
     if(response.statusCode == 200) {
-      Provider.of<CheckProfileCompletionProvider>(context,listen: false).getProfileCompletionData();
+      Provider.of<CheckProfileCompletionProvider>(context,listen: false).getProfileCompletionData(context);
       debugPrint(response.body);
       debugPrint("rules availability api is working");
       Navigator.pop(context);
@@ -94,20 +94,38 @@ class RulesProvider with ChangeNotifier{
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.blueGrey,
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
           content: Text(
             'Learn Rules Completed',
-            // textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          duration: Duration(
+          duration: const Duration(
             seconds: 2,
           ),
         ),
       );
       rulesCompleted = true;
       notifyListeners();
-    }else{
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    } else{
       debugPrint(response.body);
       debugPrint("rules availability api not working ");
     }

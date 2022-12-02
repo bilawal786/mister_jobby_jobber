@@ -612,11 +612,11 @@ class EuropeanIdentificationProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       debugPrint("European identification documents Posted successfully ");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
+          .getProfileCompletionData(context);
       Navigator.pop(context);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -631,6 +631,23 @@ class EuropeanIdentificationProvider with ChangeNotifier {
         ),
       );
       euroCompleted = true;
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
     } else {
       Navigator.pop(context);
       debugPrint('European identification documents upload Failed');

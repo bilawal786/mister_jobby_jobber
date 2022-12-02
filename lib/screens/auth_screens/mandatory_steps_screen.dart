@@ -22,10 +22,10 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (isInit) {
-      Provider.of<PersonalInformationProvider>(context, listen: false)
-          .getProfile();
-      Provider.of<JobberCheckSkillsProvider>(context, listen: true)
-          .getCheckSkills();
+      Provider.of<PersonalInformationProvider>(context)
+          .getProfile(context);
+      Provider.of<JobberCheckSkillsProvider>(context)
+          .getCheckSkills(context);
     }
     isInit = false;
   }
@@ -33,9 +33,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
   @override
   Widget build(BuildContext context) {
     final checkCompleteProfile =
-        Provider.of<CheckProfileCompletionProvider>(context);
+        Provider.of<CheckProfileCompletionProvider>(context, listen: false);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
-    final profileData = Provider.of<PersonalInformationProvider>(context);
+    final profileData = Provider.of<PersonalInformationProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

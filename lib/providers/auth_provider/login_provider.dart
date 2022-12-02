@@ -44,30 +44,32 @@ class LoginProvider with ChangeNotifier {
         );
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.blueGrey,
+          SnackBar(
+            padding :const EdgeInsets.all(20.0),
+            backgroundColor: const Color(0xFFebf9fe),
             content: Text(
               'Login Successfully',
-              // textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            duration: Duration(
+            duration: const Duration(
               seconds: 2,
             ),
           ),
         );
         notifyListeners();
-      } else {
+      }else {
         Navigator.pop(context);
         print("Failed to login.");
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.blueGrey,
+          SnackBar(
+            padding :const EdgeInsets.all(20.0),
+            backgroundColor: const Color(0xFFebf9fe),
             content: Text(
               'Incorrect Credentials',
-              // textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            duration: Duration(
+            duration: const Duration(
               seconds: 2,
             ),
           ),

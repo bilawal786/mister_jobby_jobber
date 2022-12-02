@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 import 'package:provider/provider.dart';
@@ -40,27 +41,45 @@ class AvailabilityProvider with ChangeNotifier {
     if(response.statusCode == 200) {
       debugPrint(response.body);
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+          .getProfileCompletionData(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       debugPrint("time availability api is working");
       Navigator.pop(context);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.blueGrey,
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
           content: Text(
             'Time Availability Completed',
-            // textAlign: TextAlign.center,
-          ),
-          duration: Duration(
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
             seconds: 2,
           ),
         ),
       );
       availabilityCompleted = true;
       notifyListeners();
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
     }else{
       Navigator.pop(context);
       debugPrint(response.body);

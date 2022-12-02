@@ -23,65 +23,11 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
   @override
   void didChangeDependencies() {
     if(isInit) {
-      Provider.of<SingleJobCommentsProvider>(context,
-          listen: false).getSingleJobComments(widget.jobsDetail.id.toString());
+      Provider.of<SingleJobCommentsProvider>(context).getSingleJobComments(context, widget.jobsDetail.id.toString());
     }
     isInit = false;
     super.didChangeDependencies();
   }
-
-  // void ignoreJobOpenSheet() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return SafeArea(
-  //         child: Container(
-  //           height: MediaQuery.of(context).size.width / 6,
-  //           margin: const EdgeInsets.all(10),
-  //           // padding: const EdgeInsets.all(10,),
-  //           child: InkWell(
-  //             onTap: () {
-  //               Provider.of<AvailableJobsProvider>(context, listen: false).ignoreThisJob(context, widget.jobsDetail.id.toString());
-  //             },
-  //             child: Container(
-  //               width: double.infinity,
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5),
-  //                 border: Border.all(width: 1, color: Colors.blue),
-  //               ),
-  //               child: Row(
-  //                 children: [
-  //                   Container(
-  //                     width: 60,
-  //                     height: double.infinity,
-  //                     decoration: BoxDecoration(
-  //                       color: Colors.blueGrey.shade100,
-  //                       borderRadius: BorderRadius.circular(3),
-  //                     ),
-  //                     child: Icon(
-  //                       FontAwesomeIcons.personCircleXmark,
-  //                       color: Colors.red.shade400,
-  //                       size: 25,
-  //                     ),
-  //                   ),
-  //                   SizedBox(
-  //                     width: MediaQuery.of(context).size.width / 1.4,
-  //                     child: Center(
-  //                       child: Text(
-  //                         "Ignor_Job",
-  //                         style: Theme.of(context).textTheme.bodySmall,
-  //                       ).tr(),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};

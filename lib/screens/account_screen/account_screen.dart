@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
@@ -22,8 +23,8 @@ class _AccountScreenState extends State<AccountScreen> {
   void didChangeDependencies() {
     if(isInit) {
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
-      Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+          .getProfileCompletionData(context);
+      Provider.of<TransactionProvider>(context).getTransaction(context);
     }
     isInit = false;
     super.didChangeDependencies();
@@ -113,7 +114,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               ),
                             ),
                             child: const Icon(
-                              Icons.settings,
+                              CupertinoIcons.gear_solid,
                               size: 30,
                               color: Colors.black,
                             ),
@@ -240,7 +241,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   height: mediaQuery.size.width / 80,
                                 ),
                                 Text(
-                                  transactionData!.wallet.isEmpty ? "0€":"${transactionData.wallet}€",
+                                  (transactionData?.wallet == null || transactionData!.wallet.isEmpty) ? "0€":"${transactionData.wallet}€",
                                   style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 SizedBox(

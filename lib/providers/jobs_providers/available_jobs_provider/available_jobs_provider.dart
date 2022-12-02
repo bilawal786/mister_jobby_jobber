@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mister_jobby_jobber/screens/search_screen/search_jobs_screen.dart';
@@ -10,7 +11,7 @@ import '../../../widgets/const_widgets/login_progress_indicator.dart';
 class AvailableJobsProvider with ChangeNotifier {
   List<AvailableJobsModel>? availableJobs;
 
-  bool? checkApi = false;
+  bool? checkApi;
 
   setCheckApi(){
     checkApi = false;
@@ -50,9 +51,30 @@ class AvailableJobsProvider with ChangeNotifier {
       ),);
 
       notifyListeners();
-    }else{debugPrint('Ignore job Api is not working');}
+    }
+    else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }
+    else{debugPrint('Ignore job Api is not working');
+    }
   }
-  Future<void> getAvailableJobs() async {
+  Future<void> getAvailableJobs(context) async {
+    checkApi = false;
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
     var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/jobs'),
@@ -66,10 +88,30 @@ class AvailableJobsProvider with ChangeNotifier {
       availableJobs = availableJobsModelFromJson(response.body);
       checkApi = true;
       notifyListeners();
-    } else {
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      checkApi = true;
+    }
+    else {
       debugPrint('get available jobs api not working');
       checkApi = true;
       notifyListeners();
     }
+    notifyListeners();
   }
 }

@@ -54,7 +54,7 @@ class SubscriptionProvider with ChangeNotifier{
     notifyListeners();
   }
   
-  Future<void> getSubscriptionPlan () async {
+  Future<void> getSubscriptionPlan (context) async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     String? userToken = sharedPref.getString('token');
     var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/subscriptions'),
@@ -67,11 +67,28 @@ class SubscriptionProvider with ChangeNotifier{
       debugPrint('Subscription Api is working');
       subscriptionModel = subscriptionModelFromJson(response.body);
       notifyListeners();
+    }else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
     }else{
       debugPrint('Subscription Api is not working');}
   }
 
-   Future<void> getSubscriptionIntent () async {
+   Future<void> getSubscriptionIntent (context) async {
      SharedPreferences sharedPref = await SharedPreferences.getInstance();
      String? userToken = sharedPref.getString('token');
      var response = await http.get(Uri.parse('${MyRoutes.BASEURL}/jobber/get/subscription/intent'),
@@ -84,6 +101,24 @@ class SubscriptionProvider with ChangeNotifier{
        debugPrint('Subscription Intent Api is working');
        // subscriptionModel = subscriptionModelFromJson(response.body);
        notifyListeners();
+     }
+     else if(response.statusCode == 401){
+       debugPrint('error: 401');
+       Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+       ScaffoldMessenger.of(context).hideCurrentSnackBar();
+       ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           padding :const EdgeInsets.all(20.0),
+           backgroundColor: const Color(0xFFebf9fe),
+           content:  Text(
+             'Session Expired...  Please Log-In',
+             style: Theme.of(context).textTheme.bodyMedium,
+           ).tr(),
+           duration: const Duration(
+             seconds: 2,
+           ),
+         ),
+       );
      }else{
        debugPrint('Subscription Intent Api is not working');}
    }

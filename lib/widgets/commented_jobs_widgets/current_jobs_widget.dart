@@ -13,7 +13,7 @@ class CurrentJobsWidget extends StatelessWidget {
     final extractCommentedJobsData = commentedJobsData.commentedJobsModel;
     return RefreshIndicator(
       onRefresh: () async{
-        await Provider.of<CurrentJobsOffersProvider>(context, listen: false).getCommentedJobs();
+        await Provider.of<CurrentJobsOffersProvider>(context, listen: false).getCommentedJobs(context);
       },
       child: ListView.builder(
         shrinkWrap: true,

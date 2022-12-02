@@ -9,7 +9,6 @@ import '../../helper/routes.dart';
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
-// import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../image_preview_screen.dart';
@@ -30,7 +29,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
   void didChangeDependencies() {
     if (isInit) {
       Provider.of<SingleJobCommentsProvider>(context)
-          .getSingleJobComments(widget.jobsDetail.id.toString());
+          .getSingleJobComments(context, widget.jobsDetail.id.toString());
     }
     isInit = false;
     super.didChangeDependencies();

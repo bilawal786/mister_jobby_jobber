@@ -35,7 +35,7 @@ class _WalletScreenState extends State<WalletScreen>
   @override
   void didChangeDependencies() {
     if(isInIt) {
-      Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+      Provider.of<TransactionProvider>(context).getTransaction(context);
     }
     isInIt = false;
     super.didChangeDependencies();
@@ -58,7 +58,7 @@ class _WalletScreenState extends State<WalletScreen>
       ),
       body: RefreshIndicator(
         onRefresh: () async{
-          await Provider.of<TransactionProvider>(context, listen: false).getTransaction();
+          await Provider.of<TransactionProvider>(context, listen: false).getTransaction(context);
         },
         child: ListView(
           children: [

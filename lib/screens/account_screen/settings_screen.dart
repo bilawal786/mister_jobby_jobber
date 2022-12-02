@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/screens/account_screen/subscription/subscription_screen.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class SettingScreen extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                     onTap: () => Navigator.of(context).pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
                     leading: Icon(
-                      Icons.person_outline,
+                      CupertinoIcons.person_alt,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -62,7 +63,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.BADGEPROSCREENROUTE),
                     leading: Icon(
-                      Icons.all_inbox,
+                      CupertinoIcons.bolt_badge_a,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -92,7 +93,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.REVIEWSSCREENROUTE),
                     leading: Icon(
-                      Icons.reviews_outlined,
+                      CupertinoIcons.square_favorites,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -102,21 +103,21 @@ class SettingScreen extends StatelessWidget {
                     ).tr(),
                   ),
                   const Divider(),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
-                        .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
-                    leading: Icon(
-                      Icons.notification_important_outlined,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text(
-                      "Manage_My_Notifications",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ).tr(),
-                  ),
-                  const Divider(),
+                  // ListTile(
+                  //   contentPadding: EdgeInsets.zero,
+                  //   onTap: () =>Navigator.of(context)
+                  //       .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
+                  //   leading: Icon(
+                  //     Icons.notification_important_outlined,
+                  //     size: 30,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   title: Text(
+                  //     "Manage_My_Notifications",
+                  //     style: Theme.of(context).textTheme.bodyMedium,
+                  //   ).tr(),
+                  // ),
+                  // const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () =>Navigator.of(context)
@@ -154,7 +155,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.FAQSCREENROUTE),
                     leading: Icon(
-                      Icons.question_answer_outlined,
+                      CupertinoIcons.chat_bubble_2_fill,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -169,7 +170,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.HELPCENTERSCREENROUTE),
                     leading: Icon(
-                      Icons.question_mark_rounded,
+                      CupertinoIcons.question_circle,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -214,7 +215,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.TAXCREDITSCREENROUTE),
                     leading: Icon(
-                      Icons.percent_outlined,
+                      CupertinoIcons.percent,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -244,7 +245,7 @@ class SettingScreen extends StatelessWidget {
                     onTap: () =>Navigator.of(context)
                         .pushNamed(MyRoutes.ABOUTUSSCREENROUTE),
                     leading: Icon(
-                      Icons.info_outline_rounded,
+                      CupertinoIcons.info,
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -263,7 +264,7 @@ class SettingScreen extends StatelessWidget {
                           contentPadding: EdgeInsets.zero,
                           onTap: () => prefData.logOut(context),
                           leading: Icon(
-                            Icons.exit_to_app_outlined,
+                            CupertinoIcons.square_arrow_right,
                             size: 30,
                             color: Colors.red.shade700,
                           ),

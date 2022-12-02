@@ -174,7 +174,7 @@ class PersonalInformationProvider with ChangeNotifier {
 
   JobberProfileModel? profile;
 
-  Future<void> getProfile() async {
+  Future<void> getProfile(context) async {
 
     final SharedPreferences sharePref = await SharedPreferences.getInstance();
     String? token = sharePref.getString('token');
@@ -191,7 +191,26 @@ class PersonalInformationProvider with ChangeNotifier {
       debugPrint('get profile successfully');
       profile = JobberProfileModel.fromJson(jsonDecode(response.body));
       notifyListeners();
-    } else {
+    }else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }
+    else{
+      Navigator.of(context).pushNamed(MyRoutes.ERRORSCREENROUTE);
       debugPrint('get profile api not working');
     }
   }
@@ -228,23 +247,42 @@ class PersonalInformationProvider with ChangeNotifier {
     );
     if (response.statusCode == 200) {
       Navigator.pop(context);
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
-      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData();
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData(context);
       debugPrint("Profile Updated");
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.blueGrey,
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
           content: Text(
             'Profile Updated Successfully',
-            // textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          duration: Duration(
+          duration: const Duration(
             seconds: 2,
           ),
         ),
       );
-    } else {
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }
+    else{
       Navigator.pop(context);
       debugPrint("Profile Not Updated");
     }

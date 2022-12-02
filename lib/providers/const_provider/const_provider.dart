@@ -431,8 +431,8 @@ class ConstProvider with ChangeNotifier {
       debugPrint(response.body);
       debugPrint("Skill add api is working");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+          .getProfileCompletionData(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       clearData();
       Navigator.pop(context);
       Navigator.of(context)

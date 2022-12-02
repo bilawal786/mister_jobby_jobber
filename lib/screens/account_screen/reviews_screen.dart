@@ -18,7 +18,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   @override
   void didChangeDependencies() {
     if (isInit) {
-      Provider.of<AllReviewsProvider>(context).getAllReviews();
+      Provider.of<AllReviewsProvider>(context).getAllReviews(context);
     }
     isInit = false;
     super.didChangeDependencies();
@@ -39,30 +39,39 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         ).tr(),
       ),
       body: SingleChildScrollView(
-        child: (reviewsData.allReviewsModel!.totalReviews == 0)
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: reviewsData.allReviewsModel == null ? Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.find_in_page_rounded,
-                      size: 150,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Text(
-                      "No Reviews Available",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ).tr(),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / 40,
+                  children:  <Widget>[
+                    SizedBox(width: double.infinity,
+                    height: MediaQuery.of(context).size.width / 2,),
+                    const CircularProgressIndicator(),
+                  ],
+                ): (reviewsData.allReviewsModel!.totalReviews == 0)
+                    ? Column(
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        SizedBox( width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width / 2,),
+                        Icon(
+                          Icons.find_in_page_rounded,
+                          size: 150,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        Text(
+                          "No Reviews Available",
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ).tr(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
+                )
+                    : Column(
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width,

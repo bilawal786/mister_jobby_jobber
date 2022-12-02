@@ -308,7 +308,7 @@ class JobsDetailProvider with ChangeNotifier {
       debugPrint("submit Proposal api working");
       debugPrint("$postId");
       Navigator.pop(context);
-      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs();
+      Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs(context);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (ctx) => HomeTabScreen(
@@ -318,19 +318,37 @@ class JobsDetailProvider with ChangeNotifier {
           (route) => false);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.blueGrey,
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
           content: Text(
             'Proposal submit Successfully',
-            // textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          duration: Duration(
+          duration: const Duration(
             seconds: 2,
           ),
         ),
       );
       notifyListeners();
-    } else {
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }  else {
       Navigator.pop(context);
       debugPrint("Proposal submit api not working");
     }

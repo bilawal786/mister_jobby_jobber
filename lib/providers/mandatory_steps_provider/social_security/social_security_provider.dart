@@ -303,31 +303,49 @@ class SocialSecurityProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       debugPrint("Social security documents Posted successfully ");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
-          .getProfileCompletionData();
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile();
+          .getProfileCompletionData(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       Navigator.pop(context);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.blueGrey,
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
           content: Text(
             'Security Identification Step Completed',
-            // textAlign: TextAlign.center,
+         style: Theme.of(context).textTheme.bodyMedium,
           ),
-          duration: Duration(
+          duration: const Duration(
             seconds: 2,
           ),
         ),
       );
       securityCompleted = true;
-    } else {
+    } else if(response.statusCode == 401){
+      debugPrint('error: 401');
+      Navigator.of(context).pushNamedAndRemoveUntil(MyRoutes.LOGINSCREENROUTE, (route) => false);
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          padding :const EdgeInsets.all(20.0),
+          backgroundColor: const Color(0xFFebf9fe),
+          content:  Text(
+            'Session Expired...  Please Log-In',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ).tr(),
+          duration: const Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+    }else {
       Navigator.pop(context);
       debugPrint('Non-European identification documents upload Failed');
       debugPrint(response.body);
     }
-    print(response.body);
+    // print(response.body);
     notifyListeners();
   }
 

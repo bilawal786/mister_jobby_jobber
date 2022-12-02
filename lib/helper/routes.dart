@@ -50,6 +50,7 @@ class MyRoutes {
   static const String JOBDETAILSCREENROUTE = "Job-Detail-Screen";
   static const String COMMENTSCREENROUTE = "Comment-Screen";
   static const String REVIEWSSCREENROUTE = "Reviews-Screen";
+  static const String ERRORSCREENROUTE = "Error-Screen";
 
   static String BASEURL = 'https://misterjobby.ikaedigital.com/api';
   static String IMAGEURL = 'https://misterjobby.ikaedigital.com/';
