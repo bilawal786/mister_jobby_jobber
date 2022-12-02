@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mister_jobby_jobber/helper/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -87,7 +88,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       {
         setState((){
           Navigator.of(context).pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE);
-          print('notification');
+          debugPrint('notification');
         });
       }
     });
@@ -95,7 +96,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
 
   //-------------------------
   final PageStorageBucket bucket = PageStorageBucket();
-  List<Widget> screenWidgets = [
+  List<Widget> screenWidgets = const [
     IndexScreen(),
     SearchJobScreen(),
     MessagesScreen(),
@@ -124,7 +125,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                     widget.pageIndex = 0;
                   });
                 },
-                Icons.home_rounded,
+                CupertinoIcons.house,
                 "Home_AppBar_Title",
                 0,
               ),
@@ -134,7 +135,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                       widget.pageIndex = 1;
                   });
                 },
-                Icons.work_history_outlined,
+                CupertinoIcons.rectangle_stack_badge_person_crop,
                 "Search",
                 1,
               ),
@@ -144,7 +145,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                     widget.pageIndex = 2;
                   });
                 },
-                Icons.mark_as_unread_outlined,
+                CupertinoIcons.bubble_left_bubble_right,
                 "Chat",
                 2,
               ),
@@ -154,7 +155,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                     widget.pageIndex = 3;
                   });
                 },
-                Icons.person_outline,
+                CupertinoIcons.person,
                 "Account",
                 3,
               ),

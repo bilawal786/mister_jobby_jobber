@@ -250,7 +250,7 @@ class JobsDetailProvider with ChangeNotifier {
                       const Spacer(),
                       Consumer<JobsDetailProvider>(
                         builder: (_, modalSheet, child) => Text(
-                          "${(modalSheet.hourlyRate! * modalSheet.hours + ((modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100))} €",
+                          "${(modalSheet.hourlyRate! * modalSheet.hours - ((modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100))} €",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),

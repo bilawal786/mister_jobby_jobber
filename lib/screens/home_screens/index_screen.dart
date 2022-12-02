@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_localization/easy_localization.dart';
@@ -139,7 +140,7 @@ class _IndexScreenState extends State<IndexScreen> {
                         onPressed: () => Navigator.of(context)
                             .pushNamed(MyRoutes.EVENTCALENDERSCREENROUTE),
                         icon: const Icon(
-                          Icons.date_range,
+                          CupertinoIcons.calendar,
                           color: Colors.amber,
                         ),
                       ),
@@ -152,7 +153,7 @@ class _IndexScreenState extends State<IndexScreen> {
                             onPressed: () => Navigator.of(context)
                                 .pushNamed(MyRoutes.NOTIFICATIONSCREENROUTE),
                             icon: const Icon(
-                              Icons.notifications_none_outlined,
+                              CupertinoIcons.bell,
                               color: Colors.amber,
                             ),
                           ),
