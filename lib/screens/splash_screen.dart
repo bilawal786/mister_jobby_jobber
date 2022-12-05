@@ -10,7 +10,6 @@ import '../providers/preferences_provider/preferences_provider.dart';
 import '../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../providers/jobs_providers/available_jobs_provider/available_jobs_provider.dart';
 import '../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
-import '../providers/mandatory_steps_provider/indicate_skills_provider/indicate_skills_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,24 +24,22 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     if (_isInit) {
       String? isToken;
-      Provider.of<PreferencesProvider>(context, listen: false)
+      Provider.of<PreferencesProvider>(context)
           .checkToken(context)
           .then((value) => isToken =
               Provider.of<PreferencesProvider>(context, listen: false).token);
       if(isToken != null){
-        Provider.of<IndicateSkillsProvider>(context, listen: false)
-            .getMainCategories(context);
-        Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+        Provider.of<CheckProfileCompletionProvider>(context)
             .getProfileCompletionData(context);
-        Provider.of<PersonalInformationProvider>(context, listen: true)
+        Provider.of<PersonalInformationProvider>(context)
             .getProfile(context);
-        Provider.of<AvailableJobsProvider>(context, listen: false)
+        Provider.of<AvailableJobsProvider>(context)
             .getAvailableJobs(context);
-        Provider.of<AboutProvider>(context, listen: false).getAbout();
-        Provider.of<NotificationsProvider>(context, listen: false)
+        Provider.of<AboutProvider>(context).getAbout();
+        Provider.of<NotificationsProvider>(context)
             .getNotification(context);
-        Provider.of<TransactionProvider>(context, listen: false).getTransaction(context);
-        Provider.of<AllReviewsProvider>(context, listen: false).getAllReviews(context);
+        Provider.of<TransactionProvider>(context).getTransaction(context);
+        Provider.of<AllReviewsProvider>(context).getAllReviews(context);
       }
     }
     _isInit = false;

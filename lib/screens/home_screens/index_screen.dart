@@ -43,10 +43,12 @@ class _IndexScreenState extends State<IndexScreen> {
   @override
   void didChangeDependencies() {
     if (isInit) {
-      Provider.of<CurrentJobsOffersProvider>(context, listen: false)
+      Provider.of<CurrentJobsOffersProvider>(context)
           .getCommentedJobs(context);
       Provider.of<CommentedJobsProvider>(context).getCommentedJobs(context);
-      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
+      Provider.of<PersonalInformationProvider>(context).getProfile(context);
+      Provider.of<CheckProfileCompletionProvider>(context)
+          .getProfileCompletionData(context);
     }
     isInit = false;
     super.didChangeDependencies();

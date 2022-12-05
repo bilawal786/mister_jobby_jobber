@@ -11,9 +11,26 @@ import 'sub_skills_selection_step/computer_skill_selection_step_screen.dart';
 import 'sub_skills_selection_step/course_skill_selection_step_screen.dart';
 import 'sub_skills_selection_step/livraison_skills_selection_step_screen.dart';
 
-class SkillsSelectionScreen extends StatelessWidget {
+class SkillsSelectionScreen extends StatefulWidget {
   const SkillsSelectionScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SkillsSelectionScreen> createState() => _SkillsSelectionScreenState();
+}
+
+class _SkillsSelectionScreenState extends State<SkillsSelectionScreen> {
+
+
+  var isInit =true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<IndicateSkillsProvider>(context, listen:true)
+          .getMainCategories(context);
+    }
+    isInit= false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     final getSkillsData =
@@ -32,7 +49,7 @@ class SkillsSelectionScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: extractedCheckSkills == null ? const Center(child: CircularProgressIndicator()):
+        child: (extractedCheckSkills == null || extractedSkills == null )? const Center(child: CircularProgressIndicator()):
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -62,7 +79,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
-                          extractedSkills![0].title,
+                          extractedSkills[0].title,
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
@@ -125,7 +142,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![1].title,
+                    extractedSkills[1].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -154,7 +171,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![2].title,
+                    extractedSkills[2].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -183,7 +200,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![3].title,
+                    extractedSkills[3].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -212,7 +229,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![4].title,
+                    extractedSkills[4].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -241,7 +258,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![5].title,
+                    extractedSkills[5].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -270,7 +287,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![6].title,
+                    extractedSkills[6].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -299,7 +316,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![7].title,
+                    extractedSkills[7].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -328,7 +345,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![8].title,
+                    extractedSkills[8].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -357,7 +374,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![9].title,
+                    extractedSkills[9].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -386,7 +403,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![10].title,
+                    extractedSkills[10].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -415,7 +432,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![11].title,
+                    extractedSkills[11].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -444,7 +461,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   title: Text(
-                    extractedSkills![12].title,
+                    extractedSkills[12].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -498,7 +515,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
-                          extractedSkills![0].title,
+                          extractedSkills[0].title,
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
@@ -519,7 +536,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![1].title,
+                    extractedSkills[1].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -541,7 +558,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![2].title,
+                    extractedSkills[2].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -563,7 +580,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![3].title,
+                    extractedSkills[3].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -585,7 +602,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![4].title,
+                    extractedSkills[4].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -607,7 +624,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![5].title,
+                    extractedSkills[5].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -629,7 +646,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![6].title,
+                    extractedSkills[6].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -651,7 +668,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![7].title,
+                    extractedSkills[7].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -673,7 +690,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![8].title,
+                    extractedSkills[8].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -695,7 +712,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![9].title,
+                    extractedSkills[9].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -717,7 +734,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![10].title,
+                    extractedSkills[10].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -739,7 +756,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![11].title,
+                    extractedSkills[11].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(
@@ -761,7 +778,7 @@ class SkillsSelectionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   title: Text(
-                    extractedSkills![12].title,
+                    extractedSkills[12].title,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   trailing: const Icon(

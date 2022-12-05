@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -295,8 +294,8 @@ class SocialSecurityProvider with ChangeNotifier {
       request.files.add(await http.MultipartFile.fromPath('social_security_certificate', securityCertificate));
     }
 
-    request.fields['vital_card_number']= vitalCardNum;
-    request.fields['social_security_number']= securityCertificateNumber;
+    request.fields['vital_card_number']= vitalCardNum ?? "";
+    request.fields['social_security_number']= securityCertificateNumber ?? "";
 
     http.Response response = await http.Response.fromStream(await request.send());
 
