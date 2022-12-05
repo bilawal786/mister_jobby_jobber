@@ -160,8 +160,8 @@ class EuropeanCitizenIdentificationScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width / 2.2,
               ),
-              if (euoIdCardData.licensePicked == true &&
-                  euoIdCardData.passportPicked == true &&
+              if (euoIdCardData.licensePicked == true ||
+                  euoIdCardData.passportPicked == true ||
                   euoIdCardData.idCardPicked == true)
                 CustomButton(
                   onPress: () {

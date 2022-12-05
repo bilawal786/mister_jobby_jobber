@@ -131,7 +131,7 @@ class SocialSecurityCertificate extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: (securityData.vitalCardPicked == true &&
+      bottomNavigationBar: (securityData.vitalCardPicked == true ||
     securityData.securityCardPicked == true) ? BottomAppBar(elevation: 20, child:
       Padding(padding: const EdgeInsets.only(left: 20,right: 20, top: 5, bottom: 5),
           child: CustomButton(
