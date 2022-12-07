@@ -498,13 +498,18 @@ class _AccountScreenState extends State<AccountScreen> {
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
-                          extractedSkills == null ? const Center(child: CircularProgressIndicator()):
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: extractedSkills.length,
-                            itemBuilder: (ctx, index) => MySkillsItemWidget(mySkillsModel: extractedSkills[index]),
-                          ),
+                          extractedSkills == null
+                              ? const Center(child: CircularProgressIndicator())
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: extractedSkills.length,
+                                  itemBuilder: (ctx, index) =>
+                                      MySkillsItemWidget(
+                                    mySkillsModel: extractedSkills[index],
+                                    index: index,
+                                  ),
+                                ),
                         ],
                       ),
                     ],

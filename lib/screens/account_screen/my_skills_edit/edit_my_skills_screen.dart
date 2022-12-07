@@ -1,27 +1,41 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mister_jobby_jobber/providers/my_skills_provider/my_skills_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../../models/my_skills_model/my_skills_model.dart';
-import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_steps/layout_skill_selection_steps/child_skills_screen.dart';
-import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_steps/layout_skill_selection_steps/engagements_selection_step.dart';
-import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_steps/layout_skill_selection_steps/equipments_selection_step.dart';
-import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_steps/layout_skill_selection_steps/experience_diploma_step.dart';
+import '../../../models/my_skills_model/my_skills_model.dart';
+import 'edit_engagements_selection_step.dart';
+import 'edit_equipments_selection_step.dart';
+import 'edit_selected_skills.dart';
 
 class EditMySkillsScreen extends StatefulWidget {
   final MySkillsModel myskillsModel;
-  const EditMySkillsScreen({Key? key, required this.myskillsModel}) : super(key: key);
+  final int index;
+  const EditMySkillsScreen({Key? key, required this.myskillsModel, required this.index,}) : super(key: key);
 
   @override
   State<EditMySkillsScreen> createState() => _EditMySkillsScreenState();
 }
 
 class _EditMySkillsScreenState extends State<EditMySkillsScreen> {
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit) {
+      Provider.of<MySkillsProvider>(context,listen: false).addTempData(widget.index);
+      Provider.of<MySkillsProvider>(context,listen: false).addTempEquipmentData(widget.index);
+      Provider.of<MySkillsProvider>(context,listen: false).addTempEngagementData(widget.index);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
+    final editSkillsData = Provider.of<MySkillsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text("${widget.myskillsModel.subCategory} Edit", style: Theme.of(context).textTheme.bodyLarge,),
+        title: Text(widget.myskillsModel.subCategory != "" ? widget.myskillsModel.subCategory : widget.myskillsModel.mainCategory, style: Theme.of(context).textTheme.bodyLarge,),
         centerTitle: false,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -40,6 +54,9 @@ class _EditMySkillsScreenState extends State<EditMySkillsScreen> {
           if (isLastStep) {
             debugPrint("Step completed");
 
+            print(editSkillsData.temp.join(','));
+            print(editSkillsData.tempEquipment.join(','));
+            print(editSkillsData.tempEngagement.join(','));
 
 
           } else {
@@ -205,25 +222,25 @@ class _EditMySkillsScreenState extends State<EditMySkillsScreen> {
       isActive: currentStep >= 0,
       state: currentStep > 0 ? StepState.complete : StepState.indexed,
       title: const Text(""),
-      content: Container(),
+      content: EditSelectedSkills(stepSkills: widget.myskillsModel, index: widget.index,),
     ),
     Step(
       isActive: currentStep >= 1,
       state: currentStep > 1 ? StepState.complete : StepState.indexed,
       title: const Text(""),
-      content: const EquipmentSelectionStep(),
+      content: EditEquipmentSelectionStep(mySkillEquimpent: widget.myskillsModel),
     ),
     Step(
       isActive: currentStep >= 2,
       state: currentStep > 2 ? StepState.complete : StepState.indexed,
       title: const Text(""),
-      content: const ExperienceDiplomaStep(),
+      content: Container(),
     ),
     Step(
       isActive: currentStep >= 3,
       state: currentStep > 3 ? StepState.complete : StepState.indexed,
       title: const Text(""),
-      content: const EngagementSelectionStep(),
+      content: const EditEngagementSelectionStep(),
     ),
   ];
 }

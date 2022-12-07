@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -432,6 +433,7 @@ class ConstProvider with ChangeNotifier {
       debugPrint("Skill add api is working");
       Provider.of<CheckProfileCompletionProvider>(context, listen: false)
           .getProfileCompletionData(context);
+      Provider.of<JobberCheckSkillsProvider>(context, listen: false).getCheckSkills(context);
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       clearData();
       Navigator.pop(context);

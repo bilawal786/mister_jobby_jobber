@@ -49,4 +49,133 @@ class MySkillsProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+
+  List<String> temp = [];
+
+  void addTempData (index) {
+    var check = mySkills![index].skills.split(',');
+    temp = check;
+  }
+
+  void isAdded(String value) {
+    if (temp.contains(value)) {
+      temp.remove(value);
+    } else {
+      temp.add(value);
+    }
+    notifyListeners();
+  }
+
+  List<String> equipmentList = [
+    "Hammer".tr(),
+    "screwdriver".tr(),
+    "Plane".tr(),
+    "Drill Perforator".tr(),
+    "Wrench".tr(),
+    "Sander".tr(),
+    "Saw".tr(),
+    "Circular saw".tr(),
+    "Screwdriver set".tr(),
+    "Level".tr(),
+  ];
+
+  List<String> tempEquipment = [];
+
+  void addTempEquipmentData (index) {
+    var check = mySkills![index].equipments.split(',');
+    tempEquipment = check;
+    print(tempEquipment);
+  }
+
+  void isAddedEquipments(String value) {
+    if (tempEquipment.contains(value)) {
+      tempEquipment.remove(value);
+    } else {
+      tempEquipment.add(value);
+    }
+    notifyListeners();
+  }
+
+  List<String> engagementList = [
+    "Respect for places".tr(),
+    "Impeccable result".tr(),
+    "Neat work".tr(),
+    "expert work".tr(),
+    "passionate work".tr(),
+    "Organized and methodical".tr(),
+    "Safe work".tr(),
+    "Effective and discreet".tr(),
+    "Friendliness".tr(),
+    "Quality before speed".tr(),
+    "Speed and reliability".tr(),
+    "Dynamic and smiling".tr(),
+    "Guaranteed result".tr(),
+    "Satisfied or redone".tr(),
+    "Responsive and flexible".tr(),
+    "Clean site".tr(),
+  ];
+
+  List<String> tempEngagement = [];
+
+  void addTempEngagementData (index) {
+    var check = mySkills![index].engagments.split(',');
+    tempEngagement = check;
+    print(tempEngagement);
+  }
+
+  void isAddedEngagements(String value) {
+    if (tempEngagement.contains(value)) {
+      tempEngagement.remove(value);
+    } else {
+      tempEngagement.add(value);
+    }
+    notifyListeners();
+  }
+
+  List<String> jardinageEquipmentList = [
+    "Arm mower".tr(),
+    "Ride-on mower".tr(),
+    "Chopped".tr(),
+    "Saw".tr(),
+    "Small gardening equipment (secateurs, hoe, etc.)".tr(),
+    "Large gardening equipment (shovel, rake, etc.)".tr(),
+    "Wheelbarrow".tr(),
+  ];
+
+  List<String> livraisonEquipmentList = [
+    "Pick-up (2 to 3 m²)".tr(),
+    "Van (3 to 6 m²)".tr(),
+    "Small van (7 to 9 m²)".tr(),
+    "Big van (10 to 12 m²)".tr(),
+    "Small truck (20 to 22 m²)".tr(),
+    "Big truck (+30 m²)".tr(),
+    "Straps".tr(),
+    "Blankets".tr(),
+    "Boxes".tr(),
+    "Vacuum".tr(),
+    "Household products".tr(),
+    "Karcher".tr(),
+    "Steam plant".tr(),
+    "Iron".tr(),
+  ];
+
+  List<String> animalEquipmentList = [
+    "Kennel".tr(),
+    "Garden".tr(),
+    "Cage".tr(),
+    "Aviary".tr(),
+    "Outdoor enclosure".tr(),
+    "Indoor enclosure".tr(),
+    "Cat tree".tr(),
+    "Litter".tr(),
+    "Transport container".tr(),
+  ];
+
+  List<String> computerEquipmentList = [
+    "diagnostic tool".tr(),
+    "Mac computer".tr(),
+    "Window computer".tr(),
+    "linux computer".tr(),
+  ];
 }

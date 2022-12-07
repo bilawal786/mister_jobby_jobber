@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../helper/routes.dart';
 import '../../models/my_skills_model/my_skills_model.dart';
-import '../../screens/account_screen/edit_my_skills_screen.dart';
+import '../../screens/account_screen/my_skills_edit/edit_my_skills_screen.dart';
 
 class MySkillsItemWidget extends StatelessWidget {
   final MySkillsModel mySkillsModel;
-  const MySkillsItemWidget({Key? key, required this.mySkillsModel})
+  final int index;
+  const MySkillsItemWidget({Key? key, required this.mySkillsModel, required this.index,})
       : super(key: key);
 
   @override
@@ -67,6 +68,7 @@ class MySkillsItemWidget extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (ctx) => EditMySkillsScreen(
                               myskillsModel: mySkillsModel,
+                              index: index,
                             ),
                           ),
                         );
