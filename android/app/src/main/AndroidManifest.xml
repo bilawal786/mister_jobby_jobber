@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jobber.misterjobby">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="MJ JOBBER"
         android:name="${applicationName}"
@@ -39,4 +40,8 @@
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDSztKwG57QqCxM-FZ7W8wfDQTlLd1Kc2M"/>
     </application>
+    <queries>
+        <intent> <action android:name="android.intent.action.VIEW" /> <data android:scheme="https" /> </intent>
+        <intent> <action android:name="android.intent.action.VIEW" /> <data android:scheme="tel" /> </intent>
+    </queries>
 </manifest>
