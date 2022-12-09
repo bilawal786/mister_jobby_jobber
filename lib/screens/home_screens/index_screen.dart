@@ -634,12 +634,11 @@ class _IndexScreenState extends State<IndexScreen> {
                                               const Spacer(),
                                               Text(
                                                 events['status'] == 2
-                                                    ? "Complete"
-                                                    : "In process",
+                                                    ? "Complete" : "",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyLarge,
-                                              ).tr(),
+                                              ),
                                             ],
                                           ),
                                           const Divider(),

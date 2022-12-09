@@ -250,6 +250,7 @@ class PersonalInformationProvider with ChangeNotifier {
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
       Provider.of<CheckProfileCompletionProvider>(context, listen: false).getProfileCompletionData(context);
       debugPrint("Profile Updated");
+      Navigator.of(context).pop();
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

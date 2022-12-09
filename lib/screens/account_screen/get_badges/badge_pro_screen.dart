@@ -6,9 +6,24 @@ import '../../../helper/routes.dart';
 import '../../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 
-class BadgeProScreen extends StatelessWidget {
+class BadgeProScreen extends StatefulWidget {
   const BadgeProScreen({Key? key}) : super(key: key);
 
+  @override
+  State<BadgeProScreen> createState() => _BadgeProScreenState();
+}
+
+class _BadgeProScreenState extends State<BadgeProScreen> {
+  var isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<PersonalInformationProvider>(context).getProfile(context);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     final profileData =
@@ -28,7 +43,13 @@ class BadgeProScreen extends StatelessWidget {
         ).tr(),
       ),
       body: SingleChildScrollView(
-        child: Column(
+        child: profileData.profile == null ? Column(
+          children: const  <Widget>[
+            Center(
+              child: CircularProgressIndicator(),
+            )
+          ],
+        ) :Column(
           children: <Widget>[
             SizedBox(
               height: MediaQuery.of(context).size.height / 2.5,
