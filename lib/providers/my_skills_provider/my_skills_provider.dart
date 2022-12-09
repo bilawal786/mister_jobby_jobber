@@ -1,10 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart'as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helper/routes.dart';
 import '../../models/my_skills_model/my_skills_model.dart';
+import '../../widgets/const_widgets/login_progress_indicator.dart';
+import '../check_profile_completion_provider/check_profile_completion_provider.dart';
+import '../mandatory_steps_provider/jobber_check_skills_provider/jobber_check_skills_provider.dart';
+import '../mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 
 class MySkillsProvider with ChangeNotifier {
 
@@ -85,7 +92,7 @@ class MySkillsProvider with ChangeNotifier {
   void addTempEquipmentData (index) {
     var check = mySkills![index].equipments.split(',');
     tempEquipment = check;
-    print(tempEquipment);
+
   }
 
   void isAddedEquipments(String value) {
@@ -121,7 +128,7 @@ class MySkillsProvider with ChangeNotifier {
   void addTempEngagementData (index) {
     var check = mySkills![index].engagments.split(',');
     tempEngagement = check;
-    print(tempEngagement);
+
   }
 
   void isAddedEngagements(String value) {
@@ -178,4 +185,77 @@ class MySkillsProvider with ChangeNotifier {
     "Window computer".tr(),
     "linux computer".tr(),
   ];
+
+  String skillsDetail = '';
+  String changeSkillsDetail  = '';
+
+  getDescription(value){
+    changeSkillsDetail = value;
+    notifyListeners();
+  }
+
+  Future<void> updataMySkill(
+      context,
+      skillId,
+      skills,
+      description,
+      equipments,
+      engagements,
+      ) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const LoginProgressIndicator();
+        });
+    SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+    String? userToken = sharedPrefs.getString("token");
+    var response = await http.post(
+      Uri.parse('${MyRoutes.BASEURL}/jobber/update/skills/$skillId'),
+      headers: <String, String>{
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': "Bearer $userToken",
+      },
+      body: jsonEncode(<String, String>{
+        'skills': skills,
+        'description': description,
+        'equipments': equipments,
+        'engagments': engagements,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      debugPrint(response.body);
+      debugPrint("Skill add api is working");
+      Provider.of<CheckProfileCompletionProvider>(context, listen: false)
+          .getProfileCompletionData(context);
+      Provider.of<JobberCheckSkillsProvider>(context, listen: false).getCheckSkills(context);
+      Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
+      Provider.of<MySkillsProvider>(context,listen: false).getMySkill(context);
+      Navigator.pop(context);
+      Navigator.of(context)
+          .pop();
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.blueGrey,
+          content: Text(
+            'Skill updated',
+            // textAlign: TextAlign.center,
+          ),
+          duration: Duration(
+            seconds: 2,
+          ),
+        ),
+      );
+      notifyListeners();
+    } else {
+      Navigator.pop(context);
+      debugPrint(response.body);
+      debugPrint("skill update api not working ");
+    }
+    notifyListeners();
+  }
+
+
 }

@@ -11,6 +11,15 @@ class AboutUsScreen extends StatefulWidget {
 }
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
+  var isInit = true;
+  @override
+  void didChangeDependencies() {
+    if(isInit){
+      Provider.of<AboutProvider>(context).getAbout();
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     final aboutData = Provider.of<AboutProvider>(context, listen: false);
@@ -26,7 +35,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: extractedAbout == null ? const Center(child: CircularProgressIndicator(),):Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
@@ -34,7 +43,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    extractedAbout!.description,
+                    extractedAbout.description,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),

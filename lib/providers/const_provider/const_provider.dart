@@ -11,6 +11,7 @@ import '../../helper/routes.dart';
 import '../../widgets/const_widgets/login_progress_indicator.dart';
 import '../check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../my_skills_provider/my_skills_provider.dart';
 
 class ConstProvider with ChangeNotifier {
   List<String> temp = [];
@@ -435,10 +436,11 @@ class ConstProvider with ChangeNotifier {
           .getProfileCompletionData(context);
       Provider.of<JobberCheckSkillsProvider>(context, listen: false).getCheckSkills(context);
       Provider.of<PersonalInformationProvider>(context,listen: false).getProfile(context);
+      Provider.of<MySkillsProvider>(context,listen: false).getMySkill(context);
       clearData();
       Navigator.pop(context);
       Navigator.of(context)
-          .popUntil(ModalRoute.withName(MyRoutes.MANDATORYSTEPSSCREENROUTE));
+          .pop();
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

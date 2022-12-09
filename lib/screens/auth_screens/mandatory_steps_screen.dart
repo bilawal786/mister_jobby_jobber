@@ -26,6 +26,8 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
           .getProfile(context);
       Provider.of<JobberCheckSkillsProvider>(context)
           .getCheckSkills(context);
+      Provider.of<CheckProfileCompletionProvider>(context)
+          .getProfileCompletionData(context);
     }
     isInit = false;
   }
@@ -33,7 +35,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
   @override
   Widget build(BuildContext context) {
     final checkCompleteProfile =
-        Provider.of<CheckProfileCompletionProvider>(context, listen: false);
+        Provider.of<CheckProfileCompletionProvider>(context, listen: true);
     final extractedCompleteData = checkCompleteProfile.checkProfileComplete;
     final profileData = Provider.of<PersonalInformationProvider>(context, listen: false);
     return Scaffold(
@@ -249,7 +251,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.euIdCardFront == "" )&&
+                  if ((extractedCompleteData?.euIdCardFront == "" && extractedCompleteData?.euIdDrivingFront == "" && extractedCompleteData?.euIdPassportFront == "" )&&
                       extractedCompleteData?.euIdResidencePermitFront ==
                           "" ) ...[
                     ListTile(
@@ -272,7 +274,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.vitalCardNumber == "" ) &&
+                  if (extractedCompleteData?.vitalCardNumber == ""  &&
                       extractedCompleteData?.socialSecurityNumber == "" ) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
@@ -307,9 +309,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                       extractedCompleteData?.rules1 != "" ||
                       profileData.profile!.image != 'main/avatar.png' ||
                       (extractedCompleteData?.phone != "" )||
-                      (extractedCompleteData?.euIdCardFront != "" ||
+                      ((extractedCompleteData?.euIdCardFront != "" && extractedCompleteData?.euIdDrivingFront != "" && extractedCompleteData?.euIdPassportFront != "" ) &&
                           extractedCompleteData?.euIdResidencePermitFront !=
-                              "") ||
+                              "" ) ||
                       (extractedCompleteData?.vitalCardNumber != "" ||
                           extractedCompleteData?.socialSecurityNumber !=
                               "") ||
@@ -499,9 +501,9 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.euIdCardFront != "" ) ||
-                      (extractedCompleteData?.euIdResidencePermitFront !=
-                              "" )) ...[
+                  if ((extractedCompleteData?.euIdCardFront != "" || extractedCompleteData?.euIdDrivingFront != "" || extractedCompleteData?.euIdPassportFront != "" ) ||
+                      extractedCompleteData?.euIdResidencePermitFront !=
+                          "" ) ...[
                     ListTile(
                       onTap: () => Navigator.of(context)
                           .pushNamed(MyRoutes.VALIDIDENTITYDOCUMENTSCREENROUTE),

@@ -368,13 +368,16 @@ class _AccountScreenState extends State<AccountScreen> {
                         extractedCompleteData?.rules1 == "" ||
                         profileData.profile?.image == 'main/avatar.png' ||
                         (profileData.profile?.phone == '') ||
-                        (extractedCompleteData?.euIdCardFront == "" &&
+                        (extractedCompleteData?.score == "") ||
+                        ((extractedCompleteData?.euIdCardFront == "" &&
+                                extractedCompleteData?.euIdDrivingFront == "" &&
+                                extractedCompleteData?.euIdPassportFront ==
+                                    "") &&
                             extractedCompleteData?.euIdResidencePermitFront ==
                                 "") ||
-                        (extractedCompleteData?.vitalCardNumber == "" ||
+                        (extractedCompleteData?.vitalCardNumber == "" &&
                             extractedCompleteData?.socialSecurityNumber ==
-                                "") ||
-                        extractedCompleteData?.score == "") ...[
+                                "")) ...[
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -418,15 +421,22 @@ class _AccountScreenState extends State<AccountScreen> {
                                 profileData.profile?.image ==
                                     'main/avatar.png' ||
                                 (extractedCompleteData?.phone == "") ||
-                                (extractedCompleteData?.euIdCardFront == "" &&
+                                (extractedCompleteData?.score == "") ||
+                                ((extractedCompleteData?.euIdPassportFront ==
+                                            "" &&
+                                        extractedCompleteData
+                                                ?.euIdDrivingFront ==
+                                            "" &&
+                                        extractedCompleteData
+                                                ?.euIdPassportFront ==
+                                            "") &&
                                     extractedCompleteData
                                             ?.euIdResidencePermitFront ==
                                         "") ||
-                                (extractedCompleteData?.vitalCardNumber == "" ||
+                                (extractedCompleteData?.vitalCardNumber == "" &&
                                     extractedCompleteData
                                             ?.socialSecurityNumber ==
-                                        "") ||
-                                extractedCompleteData?.score == "") ...[
+                                        "")) ...[
                               ListTile(
                                 onTap: () => Navigator.of(context).pushNamed(
                                     MyRoutes.MANDATORYSTEPSSCREENROUTE),

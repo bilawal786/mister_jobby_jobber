@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
 import '../auth_screens/forget_password_screens/change_password.dart';
+import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class SettingScreen extends StatelessWidget {
           "Settings",
           style: Theme.of(context).textTheme.titleMedium,
         ).tr(),
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -54,6 +55,22 @@ class SettingScreen extends StatelessWidget {
                     ),
                     title: Text(
                       "Personal_Information",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ).tr(),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SkillsSelectionScreen()),);
+                    },
+                    leading: Icon(
+                      CupertinoIcons.doc_append,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      "Add More Skills",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ).tr(),
                   ),

@@ -140,26 +140,29 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 myLocationButtonEnabled: false,
               ),
             ),
-            if ((extractedCompleteData?.skills == "") &&
+            if ((extractedCompleteData?.skills == "") ||
                 (extractedCompleteData?.monday == "" ||
-                    extractedCompleteData!.tuesday == "" ||
-                    extractedCompleteData.wednesday == "" ||
-                    extractedCompleteData.thersday == "" ||
-                    extractedCompleteData.friday == "" ||
-                    extractedCompleteData.saturday == "" ||
-                    extractedCompleteData.sunday == "") ||
+                    extractedCompleteData?.tuesday == "" ||
+                    extractedCompleteData?.wednesday == "" ||
+                    extractedCompleteData?.thersday == "" ||
+                    extractedCompleteData?.friday == "" ||
+                    extractedCompleteData?.saturday == "" ||
+                    extractedCompleteData?.sunday == "") ||
                 extractedCompleteData?.answer1 == "" ||
                 extractedCompleteData?.insurance1 == "" ||
                 extractedCompleteData?.rules1 == "" ||
                 profileData.profile?.image == 'main/avatar.png' ||
-                (extractedCompleteData?.phone == "") ||
-                (extractedCompleteData?.euIdCardFront == "" &&
+                (profileData.profile?.phone == '') ||
+                (extractedCompleteData?.score == "") ||
+                ((extractedCompleteData?.euIdCardFront == "" &&
+                    extractedCompleteData?.euIdDrivingFront == "" &&
+                    extractedCompleteData?.euIdPassportFront ==
+                        "") &&
                     extractedCompleteData?.euIdResidencePermitFront ==
                         "") ||
-                (extractedCompleteData?.vitalCardNumber == "" ||
+                (extractedCompleteData?.vitalCardNumber == "" &&
                     extractedCompleteData?.socialSecurityNumber ==
-                        "") ||
-                extractedCompleteData?.score == "") ...[
+                        "")) ...[
               GestureDetector(
                 onTap: () => Navigator.of(context)
                     .pushNamed(MyRoutes.MANDATORYSTEPSSCREENROUTE),
@@ -194,7 +197,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 height: MediaQuery.of(context).size.width / 40,
               ),
             ],
-            if(profileData.profile!.verified  == 1 )... [
+            if(profileData.profile!.verified  == 1)... [
               Container(
                 color: Colors.amber.shade200,
                 padding: const EdgeInsets.all(20.0),

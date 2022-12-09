@@ -37,7 +37,7 @@ class MySkillsItemWidget extends StatelessWidget {
                 child: Image(
                   colorBlendMode: BlendMode.srcOver,
                   filterQuality: FilterQuality.high,
-                  color: Colors.black45,
+                  color: Colors.white12,
                   image: NetworkImage(
                     "${MyRoutes.IMAGEURL}${mySkillsModel.image}",
                   ),
@@ -58,7 +58,7 @@ class MySkillsItemWidget extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 2,
-                      child: Text(mySkillsModel.subCategory,
+                      child: Text(mySkillsModel.subCategory != "" ? mySkillsModel.subCategory : mySkillsModel.mainCategory,
                           style: Theme.of(context).textTheme.bodyLarge),
                     ),
                     const Spacer(),

@@ -2,7 +2,6 @@
 //
 //     final checkProfileCompletion = checkProfileCompletionFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 CheckProfileCompletion checkProfileCompletionFromJson(String str) => CheckProfileCompletion.fromJson(json.decode(str));
@@ -22,6 +21,8 @@ class CheckProfileCompletion {
     required this.insurance1,
     required this.rules1,
     required this.euIdCardFront,
+    required this.euIdDrivingFront,
+    required this.euIdPassportFront,
     required this.euIdResidencePermitFront,
     required this.vitalCardNumber,
     required this.socialSecurityNumber,
@@ -41,6 +42,8 @@ class CheckProfileCompletion {
   String insurance1;
   String rules1;
   String euIdCardFront;
+  String euIdDrivingFront;
+  String euIdPassportFront;
   String euIdResidencePermitFront;
   String vitalCardNumber;
   String socialSecurityNumber;
@@ -60,6 +63,8 @@ class CheckProfileCompletion {
     insurance1: json["insurance1"],
     rules1: json["rules1"],
     euIdCardFront: json["eu_id_card_front"],
+    euIdDrivingFront: json["eu_id_driving_front"],
+    euIdPassportFront: json["eu_id_passport_front"],
     euIdResidencePermitFront: json["eu_id_residence_permit_front"],
     vitalCardNumber: json["vital_card_number"],
     socialSecurityNumber: json["social_security_number"],
@@ -80,6 +85,8 @@ class CheckProfileCompletion {
     "insurance1": insurance1,
     "rules1": rules1,
     "eu_id_card_front": euIdCardFront,
+    "eu_id_driving_front": euIdDrivingFront,
+    "eu_id_passport_front": euIdPassportFront,
     "eu_id_residence_permit_front": euIdResidencePermitFront,
     "vital_card_number": vitalCardNumber,
     "social_security_number": socialSecurityNumber,

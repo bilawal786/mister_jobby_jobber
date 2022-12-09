@@ -387,5 +387,15 @@
   "Please complete your profile to start offering your services.": "Please complete your profile to start offering your services.",
   "Pick_Image_Title": "Pick Image",
   "Pick_Image_From_Camera_Title": "Pick Image from Camera",
-  "Pick_Image_From_Gallery_Title": "Pick Image from Gallery"
+  "Pick_Image_From_Gallery_Title": "Pick Image from Gallery",
+  "Add More Skills": "Add More Skills",
+  "Personal Information": "Personal Information",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Sex": "Sex",
+  "Phone number": "Phone number",
+  "Description": "Description",
+  "Completed Skills": "Completed Skills",
+  "Small": "Small"
+
 }
