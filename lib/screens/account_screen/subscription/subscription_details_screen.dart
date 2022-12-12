@@ -1,14 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
+import 'package:mister_jobby_jobber/providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../widgets/const_widgets/custom_button.dart';
 
 class SubscriptionDetails extends StatefulWidget {
+  final String planId;
+  final int subId;
   final String name;
   final String price;
   final String details;
@@ -16,6 +15,8 @@ class SubscriptionDetails extends StatefulWidget {
 
   const SubscriptionDetails({
     Key? key,
+    required this.planId,
+    required this.subId,
     required this.name,
     required this.price,
     required this.details,
@@ -32,9 +33,9 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final subData = Provider.of<SubscriptionProvider>(context);
-    // final extractData = subData.getSubscriptionIntent();
-
+    final subscriptionData = Provider.of<SubscriptionProvider>(context,listen: false);
+    final profileData = Provider.of<PersonalInformationProvider>(context, listen: false);
+    final extractedProfile = profileData.profile;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -64,7 +65,7 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                             child: Transform.translate(
                               offset: const Offset(0.0, -15.0),
                               child: const Text(
-                                '\€',
+                                '€',
                                 style: TextStyle(
                                   fontSize: 22,
                                   color: Colors.black,
@@ -122,80 +123,15 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 1.2,
                   ),
-                  CustomButton(onPress: () async{
-                    (double.parse(widget.price) < 1) ?
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully"))):
-                    await makePayment();},
-                      buttonName: 'Buy Now'),
+                  CustomButton(onPress: (){
+                    subscriptionData.bookSubscriptionPlan(context, widget.planId, extractedProfile!.jobberId, widget.subId, widget.name);
+                  },
+                      buttonName: 'Buy Now') ,
                 ],
               ),
             ),
         ),
       ),
     );
-  }
-  Future<void> makePayment() async {
-  var amount = double.parse(widget.price);
-    try {
-      paymentIntentData =
-      await createPaymentIntent(amount, 'eur');
-      await Stripe.instance.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
-              paymentIntentClientSecret: paymentIntentData!['client_secret'],
-              merchantDisplayName: 'Jobber')).then((value){
-      });
-    displayPaymentSheet();
-    } catch (e, s) {
-      print('exception:$e$s');
-    }
-  }
-  displayPaymentSheet() async {
-    try {
-      await Stripe.instance.presentPaymentSheet(
-          parameters: PresentPaymentSheetParameters(
-            clientSecret: 'pi_3M7ZQcD4LNNtfNaO24ABAyQf_secret_If9bBjQ3jVzMdRa2Yn2r6R1WT',
-            confirmPayment: true,
-          )).then((newValue){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("paid successfully")));
-        paymentIntentData = null;
-      }).onError((error, stackTrace){
-        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
-      });
-    } on StripeException catch (e) {
-      print('Exception/DISPLAYPAYMENTSHEET==> $e');
-      // showDialog(
-      //     context: context,
-      //     builder: (_) => AlertDialog(
-      //       content: Text("Cancelled "),
-      //     ));
-    } catch (e) {
-      print('$e');
-    }
-  }
-  createPaymentIntent(double amount, String currency) async {
-    try {
-      Map<String, dynamic> body = {
-        'amount': calculateAmount(amount),
-        'currency': currency,
-        'payment_method_types[]': 'card'
-      };
-      print(body);
-      var response = await http.post(
-          Uri.parse('https://api.stripe.com/v1/payment_intents'),
-          body: body,
-          headers: {
-            'Authorization':
-            'Bearer sk_test_bNs6F2GH5AWstJEQg7KT852l00SdVU7GF0',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          });
-      print('Create Intent reponse ===> ${response.body.toString()}');
-      return jsonDecode(response.body);
-    } catch (err) {
-      print('err charging user: ${err.toString()}');
-    }
-  }
-  calculateAmount(double amount) {
-    final a = (amount * 100).toInt() ;
-    return a.toString();
   }
 }

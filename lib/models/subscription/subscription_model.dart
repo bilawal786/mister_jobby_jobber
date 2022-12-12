@@ -15,6 +15,7 @@ class SubscriptionModel {
     required this.offers,
     required this.fee,
     required this.price,
+    required this.planId,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -24,6 +25,7 @@ class SubscriptionModel {
   String offers;
   String fee;
   String price;
+  String planId;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -33,6 +35,7 @@ class SubscriptionModel {
     offers: json["offers"],
     fee: json["fee"],
     price: json["price"],
+    planId: json["plan_id"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
   );
@@ -43,6 +46,7 @@ class SubscriptionModel {
     "offers": offers,
     "fee": fee,
     "price": price,
+    "plan_id": planId,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
   };

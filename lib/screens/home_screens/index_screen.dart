@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../helper/routes.dart';
+import '../../providers/accounts_providers/subscription/subscription_provider.dart';
 import '../../providers/check_profile_completion_provider/check_profile_completion_provider.dart';
 import '../../providers/commented_jobs_provider/commented_jobs_provider.dart';
 import '../../providers/commented_jobs_provider/current_jobs_offers_provider.dart';
@@ -49,6 +50,8 @@ class _IndexScreenState extends State<IndexScreen> {
       Provider.of<PersonalInformationProvider>(context).getProfile(context);
       Provider.of<CheckProfileCompletionProvider>(context)
           .getProfileCompletionData(context);
+      Provider.of<SubscriptionProvider>(context)
+          .getRetrieveSubscription(context);
     }
     isInit = false;
     super.didChangeDependencies();

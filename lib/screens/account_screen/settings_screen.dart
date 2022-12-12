@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/screens/account_screen/subscription/subscription_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
 import '../auth_screens/forget_password_screens/change_password.dart';
 import '../auth_screens/mandatory_steps/indicate_skills/skills_selection_screen.dart';
+import '../web_view.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -128,14 +128,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () async {
-                      final Uri url = Uri.parse(
-                          'https://misterjobby.com');
-                      if (!await launchUrl(url,
-                          mode: LaunchMode.inAppWebView,
-                      )) {
-                        throw 'Could not launch $url';
-                      }
+                    onTap: () {
                     },
                     leading: Icon(
                       Icons.notification_important_outlined,
