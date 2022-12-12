@@ -9,8 +9,10 @@ import '../../helper/routes.dart';
 import '../../../models/job_models/available_jobs_model.dart';
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../../providers/jobs_providers/job_details_provider.dart';
+import '../../providers/accounts_providers/subscription/subscription_provider.dart';
 import '../../providers/jobs_providers/single_job_comments_provider.dart';
 import '../../providers/mandatory_steps_provider/personal_information_provider/personal_information_provider.dart';
+import '../account_screen/subscription/subscription_screen.dart';
 import '../image_preview_screen.dart';
 import 'jobee_profile.dart';
 
@@ -93,8 +95,10 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
   Map<String, Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
-    // int commentedJobs =
-    //     Provider.of<CommentedJobsProvider>(context).commentedJobsModel!.length;
+    final retrieveSubscriptionData =
+        Provider.of<SubscriptionProvider>(context, listen: false);
+    final extractedSubscriptionData =
+        retrieveSubscriptionData.retrieveSubscription;
     final jobberProfileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
     final extractedProfile = jobberProfileData.profile;
@@ -159,60 +163,96 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Cerebri Sans Bold'),
                         ).tr(),
-                      ) : (extractedProfile.verified == 1)
-                    ? Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    border: Border.all(
-                      color: Colors.amber.shade700,
-                    ),
-                  ),
-                  child: Text(
-                    "Waiting for admin approval",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.amber.shade700,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cerebri Sans Bold'),
-                  ).tr(),
-                )
-                    : (widget.jobsDetail.isApplied == false)
-                        ? Expanded(
-                            child: Consumer<JobsDetailProvider>(
-                              builder: (_, bottomSheet, child) => CustomButton(
-                                  onPress: () {
-                                    bottomSheet.postId = widget.jobsDetail.id;
-                                    bottomSheet.fixedRate =
-                                        int.parse(widget.jobsDetail.hours);
-                                    bottomSheet.hourlyRate =
-                                        int.parse(widget.jobsDetail.hours);
-                                    bottomSheet.hours = double.parse(
-                                        widget.jobsDetail.duration);
-                                    bottomSheet.showBottomSheet(
-                                      context,
-                                    );
-                                  },
-                                  buttonName: "To apply"),
-                            ),
-                          )
-                        : Container(
+                      )
+                    : (extractedProfile.verified == 1)
+                        ? Container(
                             padding: const EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
                               border: Border.all(
-                                color: Colors.green.shade700,
+                                color: Colors.amber.shade700,
                               ),
                             ),
                             child: Text(
-                              "Already Applied",
+                              "Waiting for admin approval",
                               style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.green.shade700,
+                                  color: Colors.amber.shade700,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Cerebri Sans Bold'),
-                            ),
-                          ),
+                            ).tr(),
+                          )
+                        : (widget.jobsDetail.isApplied == false)
+                            ? Expanded(
+                                child: Consumer<JobsDetailProvider>(
+                                  builder: (_, bottomSheet, child) =>
+                                      CustomButton(
+                                          onPress: () {
+                                            bottomSheet.postId =
+                                                widget.jobsDetail.id;
+                                            bottomSheet.fixedRate = int.parse(
+                                                widget.jobsDetail.hours);
+                                            bottomSheet.hourlyRate = int.parse(
+                                                widget.jobsDetail.hours);
+                                            bottomSheet.hours = double.parse(
+                                                widget.jobsDetail.duration);
+                                            (int.parse(extractedSubscriptionData!
+                                                            .remainingOffers) <
+                                                        1 ||
+                                                    extractedSubscriptionData
+                                                            .subscriptionStatus !=
+                                                        'Active')
+                                                ? showDialog(
+                                                    context: context,
+                                                    builder: (ctx) =>
+                                                        AlertDialog(
+                                                      title: Text(
+                                                        "Please get Subscription for further use",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge,
+                                                      ),
+                                                      actions: [
+                                                        ElevatedButton(
+                                                            onPressed: () {
+                                                              Navigator.of(context).pop();
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .push(MaterialPageRoute(
+                                                                      builder:
+                                                                          (ctx) =>
+                                                                              const Subscription()));
+                                                            },
+                                                            child: const Text(
+                                                                    "Open Subscription")
+                                                                .tr())
+                                                      ],
+                                                    ),
+                                                  )
+                                                : bottomSheet.showBottomSheet(
+                                                    context,
+                                                  );
+                                          },
+                                          buttonName: "To apply"),
+                                ),
+                              )
+                            : Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  border: Border.all(
+                                    color: Colors.green.shade700,
+                                  ),
+                                ),
+                                child: Text(
+                                  "Already Applied",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.green.shade700,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Cerebri Sans Bold'),
+                                ),
+                              ),
               ],
             )
           ],
@@ -325,12 +365,19 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           MaterialPageRoute(
                             builder: (ctx) => JobbyProfile(
                               demanderImgUrl: widget.jobsDetail.demander.image,
-                              demanderLName: widget.jobsDetail.demander.lastName,
-                              demanderName: widget.jobsDetail.demander.firstName,
-                              memberSince: widget.jobsDetail.demander.memberSince,
-                              demands: widget.jobsDetail.demander.activeJobs.toString(),
-                              reservations: widget.jobsDetail.demander.totalHireJobber.toString(),
-                              evaluations: widget.jobsDetail.demander.rating.toString(),
+                              demanderLName:
+                                  widget.jobsDetail.demander.lastName,
+                              demanderName:
+                                  widget.jobsDetail.demander.firstName,
+                              memberSince:
+                                  widget.jobsDetail.demander.memberSince,
+                              demands: widget.jobsDetail.demander.activeJobs
+                                  .toString(),
+                              reservations: widget
+                                  .jobsDetail.demander.totalHireJobber
+                                  .toString(),
+                              evaluations:
+                                  widget.jobsDetail.demander.rating.toString(),
                             ),
                           ),
                         );
@@ -1456,7 +1503,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "How many washing machines should be connected ?",
-                                  style: Theme.of(context).textTheme.labelMedium,
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium,
                                   maxLines: 3,
                                 ).tr(),
                               ),

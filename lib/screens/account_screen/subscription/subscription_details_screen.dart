@@ -42,6 +42,15 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
         foregroundColor: Colors.black,
         elevation: 0,
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: CustomButton(onPress: (){
+            subscriptionData.bookSubscriptionPlan(context, widget.planId, extractedProfile!.jobberId, widget.subId, widget.name);
+          },
+              buttonName: 'Buy Now'),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -120,13 +129,6 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                       fontFamily: 'Cerebri Sans Bold',
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width / 0.8,
-                  ),
-                  CustomButton(onPress: (){
-                    subscriptionData.bookSubscriptionPlan(context, widget.planId, extractedProfile!.jobberId, widget.subId, widget.name);
-                  },
-                      buttonName: 'Buy Now') ,
                 ],
               ),
             ),
