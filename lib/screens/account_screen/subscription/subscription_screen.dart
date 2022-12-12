@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
 
 import 'package:provider/provider.dart';
-
 import '../../../widgets/const_widgets/custom_button.dart';
 import '../../web_view.dart';
 
@@ -249,8 +248,7 @@ class _SubscriptionState extends State<Subscription> {
                                         ),
                                       ),
                                       child: Text(
-                                        subscriptionData.retrieveSubscription!
-                                            .subscriptionStatus,
+                                        subscriptionData.retrieveSubscription!.subscriptionStatus,
                                         style: const TextStyle(
                                           fontSize: 22,
                                           color: Colors.white,

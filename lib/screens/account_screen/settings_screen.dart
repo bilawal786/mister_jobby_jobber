@@ -126,21 +126,21 @@ class SettingScreen extends StatelessWidget {
                     ).tr(),
                   ),
                   const Divider(),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    onTap: () {
-                    },
-                    leading: Icon(
-                      Icons.notification_important_outlined,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text(
-                      "Inner Web View",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ).tr(),
-                  ),
-                  const Divider(),
+                  // ListTile(
+                  //   contentPadding: EdgeInsets.zero,
+                  //   onTap: () {
+                  //   },
+                  //   leading: Icon(
+                  //     Icons.notification_important_outlined,
+                  //     size: 30,
+                  //     color: Theme.of(context).primaryColor,
+                  //   ),
+                  //   title: Text(
+                  //     "Inner Web View",
+                  //     style: Theme.of(context).textTheme.bodyMedium,
+                  //   ).tr(),
+                  // ),
+                  // const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(

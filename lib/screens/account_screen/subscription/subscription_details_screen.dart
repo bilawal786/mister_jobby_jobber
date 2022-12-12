@@ -121,7 +121,7 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.width / 0.8,
                   ),
                   CustomButton(onPress: (){
                     subscriptionData.bookSubscriptionPlan(context, widget.planId, extractedProfile!.jobberId, widget.subId, widget.name);
