@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mister_jobby_jobber/screens/account_screen/subscription/subscription_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/preferences_provider/preferences_provider.dart';
@@ -47,7 +48,8 @@ class SettingScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () => Navigator.of(context).pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(MyRoutes.PERSONALINFORMATIONSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.person_alt,
                       size: 30,
@@ -62,7 +64,10 @@ class SettingScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => const SkillsSelectionScreen()),);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (ctx) => const SkillsSelectionScreen()),
+                      );
                     },
                     leading: Icon(
                       CupertinoIcons.doc_append,
@@ -92,8 +97,9 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
-                        .push(MaterialPageRoute(builder:(context) => const Subscription(),)),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Subscription(),
+                    )),
                     leading: Icon(
                       Icons.subscriptions,
                       size: 30,
@@ -107,7 +113,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.REVIEWSSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.square_favorites,
@@ -120,25 +126,33 @@ class SettingScreen extends StatelessWidget {
                     ).tr(),
                   ),
                   const Divider(),
-                  // ListTile(
-                  //   contentPadding: EdgeInsets.zero,
-                  //   onTap: () =>Navigator.of(context)
-                  //       .pushNamed(MyRoutes.MANAGENOTIFICATIONSSCREENROUTE),
-                  //   leading: Icon(
-                  //     Icons.notification_important_outlined,
-                  //     size: 30,
-                  //     color: Theme.of(context).primaryColor,
-                  //   ),
-                  //   title: Text(
-                  //     "Manage_My_Notifications",
-                  //     style: Theme.of(context).textTheme.bodyMedium,
-                  //   ).tr(),
-                  // ),
-                  // const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
-                        .push(MaterialPageRoute(builder:(context) => const ChangePassword(),)),
+                    onTap: () async {
+                      final Uri url = Uri.parse(
+                          'https://misterjobby.com');
+                      if (!await launchUrl(url,
+                          mode: LaunchMode.inAppWebView,
+                      )) {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    leading: Icon(
+                      Icons.notification_important_outlined,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(
+                      "Inner Web View",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ).tr(),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ChangePassword(),
+                    )),
                     leading: Icon(
                       Icons.key,
                       size: 30,
@@ -150,7 +164,6 @@ class SettingScreen extends StatelessWidget {
                     ).tr(),
                   ),
                   const Divider(),
-
                 ],
               ),
             ),
@@ -169,7 +182,7 @@ class SettingScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.FAQSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.chat_bubble_2_fill,
@@ -184,7 +197,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.HELPCENTERSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.question_circle,
@@ -199,7 +212,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.INSURANCESETTINGSCREENROUTE),
                     leading: Icon(
                       Icons.handshake_outlined,
@@ -214,7 +227,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.TRUSTANDSECURITYSCREENROUTE),
                     leading: Icon(
                       Icons.security_outlined,
@@ -229,7 +242,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.TAXCREDITSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.percent,
@@ -244,7 +257,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.TERMSANDCONDITIONSSCREENROUTE),
                     leading: Icon(
                       Icons.fact_check_outlined,
@@ -259,7 +272,7 @@ class SettingScreen extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>Navigator.of(context)
+                    onTap: () => Navigator.of(context)
                         .pushNamed(MyRoutes.ABOUTUSSCREENROUTE),
                     leading: Icon(
                       CupertinoIcons.info,

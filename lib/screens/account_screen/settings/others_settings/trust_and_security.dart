@@ -33,7 +33,7 @@ class _TrustAndSecurityState extends State<TrustAndSecurity> {
     final termsAndConditionData = Provider.of<TermsAndConditonProvider>(context, listen: false);
     final extractTermsAndCondition = termsAndConditionData.termsAndCondition;
     final aboutData = Provider.of<AboutProvider>(context, listen: false);
-    final extratedAboutData = aboutData.about;
+    final extractedAboutData = aboutData.about;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -46,7 +46,7 @@ class _TrustAndSecurityState extends State<TrustAndSecurity> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: extractTermsAndCondition == null ? const Center(child: CircularProgressIndicator()) :Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class _TrustAndSecurityState extends State<TrustAndSecurity> {
               Center(child: Image.asset("assets/images/appLogo.png", scale: 4)),
               Center(
                 child: HtmlWidget(
-                  extractTermsAndCondition!.privacy,
+                  extractTermsAndCondition.privacy,
                 ),
               ),
               SizedBox(
@@ -64,13 +64,13 @@ class _TrustAndSecurityState extends State<TrustAndSecurity> {
                 child: Column(
                   children: [
                     Image.asset("assets/images/appLogo.png", scale: 4),
-                    HtmlWidget(extratedAboutData!.copyright),
+                    HtmlWidget(extractedAboutData!.copyright),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
                     ),
                     Container(
                       margin: const EdgeInsets.all(10),
-                      child: HtmlWidget(extratedAboutData.condition),
+                      child: HtmlWidget(extractedAboutData.condition),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
