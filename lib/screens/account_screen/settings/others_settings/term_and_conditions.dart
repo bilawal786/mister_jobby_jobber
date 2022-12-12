@@ -54,7 +54,7 @@ class _TermsAndConditionState extends State<TermsAndCondition> {
               Center(child: Image.asset("assets/images/appLogo.png", scale: 4)),
               Center(
                 child: HtmlWidget(
-                  extractTermsAndCondition!.terms,
+                  extractTermsAndCondition.terms,
                 ),
               ),
               SizedBox(
