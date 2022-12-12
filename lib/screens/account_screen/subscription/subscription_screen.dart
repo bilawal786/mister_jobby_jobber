@@ -45,7 +45,7 @@ class _SubscriptionState extends State<Subscription> {
                   child: CircularProgressIndicator(),
                 )
               : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Center(
                         child: Text(
@@ -56,8 +56,9 @@ class _SubscriptionState extends State<Subscription> {
                       height: MediaQuery.of(context).size.width / 40,
                     ),
                     Text(
-                      'Chose a subscription plan to unlock all the functionality of application.',
+                      'Chose a subscription plan to unlock all the functionality of application.\n Offers: ${subscriptionData.retrieveSubscription!.remainingOffers} ',
                       style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 10,
