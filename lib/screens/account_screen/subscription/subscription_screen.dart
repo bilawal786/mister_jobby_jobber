@@ -40,7 +40,8 @@ class _SubscriptionState extends State<Subscription> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: (extractSubscriptionData == null || subscriptionData.retrieveSubscription == null)
+          child: (extractSubscriptionData == null ||
+                  subscriptionData.retrieveSubscription == null)
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
@@ -268,10 +269,28 @@ class _SubscriptionState extends State<Subscription> {
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 10,
                     ),
-                    if(subscriptionData.retrieveSubscription!.activeSubscriptionId == "2" ||  subscriptionData.retrieveSubscription!.activeSubscriptionId == "3")
-                      CustomButton(onPress: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => WebView(url: subscriptionData.retrieveSubscription!.subscriptionPortal, title: subscriptionData.retrieveSubscription!.activeSubscriptionId == "2" ? "Intermediate" : "Pro",)));
-                      }, buttonName: 'View Subscription',),
+                    if (subscriptionData
+                                .retrieveSubscription!.activeSubscriptionId ==
+                            "2" ||
+                        subscriptionData
+                                .retrieveSubscription!.activeSubscriptionId ==
+                            "3")
+                      CustomButton(
+                        onPress: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => WebView(
+                                    url: subscriptionData.retrieveSubscription!
+                                        .subscriptionPortal,
+                                    title: subscriptionData
+                                                .retrieveSubscription!
+                                                .activeSubscriptionId ==
+                                            "2"
+                                        ? "Intermediate"
+                                        : "Pro",
+                                  )));
+                        },
+                        buttonName: 'View Subscription',
+                      ),
                   ],
                 ),
         ),
