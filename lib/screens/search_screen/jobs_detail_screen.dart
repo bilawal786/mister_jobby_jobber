@@ -196,44 +196,48 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                                 widget.jobsDetail.hours);
                                             bottomSheet.hours = double.parse(
                                                 widget.jobsDetail.duration);
-                                            (int.parse(extractedSubscriptionData!
+                                            if ((extractedSubscriptionData!
+                                                            .remainingOffers !=
+                                                        "Unlimited" &&
+                                                    int.parse(extractedSubscriptionData
                                                             .remainingOffers) <
-                                                        1 ||
-                                                    extractedSubscriptionData
-                                                            .subscriptionStatus !=
-                                                        'Active')
-                                                ? showDialog(
-                                                    context: context,
-                                                    builder: (ctx) =>
-                                                        AlertDialog(
-                                                      title: Text(
-                                                        "Please get Subscription for further use",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyLarge,
-                                                      ),
-                                                      actions: [
-                                                        ElevatedButton(
-                                                            onPressed: () {
-                                                              Navigator.of(context).pop();
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .push(MaterialPageRoute(
-                                                                      builder:
-                                                                          (ctx) =>
-                                                                              const Subscription()));
-                                                            },
-                                                            child: const Text(
-                                                                    "Open Subscription")
-                                                                .tr())
-                                                      ],
-                                                    ),
-                                                  )
-                                                : bottomSheet.showBottomSheet(
-                                                    context,
-                                                  );
+                                                        1 ) ||
+                                                extractedSubscriptionData
+                                                        .subscriptionStatus !=
+                                                    'Active') {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) => AlertDialog(
+                                                  title: Text(
+                                                    "Please get Subscription for further use",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge,
+                                                  ),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          Navigator.of(context).push(
+                                                              MaterialPageRoute(
+                                                                  builder: (ctx) =>
+                                                                      const Subscription()));
+                                                        },
+                                                        child: const Text(
+                                                                "Open Subscription")
+                                                            .tr())
+                                                  ],
+                                                ),
+                                              );
+                                            }else
+                                            if(extractedSubscriptionData.subscriptionStatus == "Active" && extractedSubscriptionData.remainingOffers == "Unlimited") {
+                                              bottomSheet.showBottomSheet(
+                                                context,
+                                              );
+                                            }
                                           },
-                                          buttonName: "To apply"),
+                                          buttonName: "To apply") ,
                                 ),
                               )
                             : Container(
