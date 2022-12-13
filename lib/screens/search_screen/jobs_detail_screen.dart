@@ -196,6 +196,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                                 widget.jobsDetail.hours);
                                             bottomSheet.hours = double.parse(
                                                 widget.jobsDetail.duration);
+                                            bottomSheet.fixedHours = double.parse(
+                                                widget.jobsDetail.duration);
                                             if ((extractedSubscriptionData!
                                                             .remainingOffers !=
                                                         "Unlimited" &&
@@ -209,7 +211,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                                 context: context,
                                                 builder: (ctx) => AlertDialog(
                                                   title: Text(
-                                                    "Please get Subscription for further use",
+                                                    "Please get Subscription for further use".tr(),
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyLarge,
@@ -224,8 +226,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                                                   builder: (ctx) =>
                                                                       const Subscription()));
                                                         },
-                                                        child: const Text(
-                                                                "Open Subscription")
+                                                        child: Text(
+                                                                "Open Subscription".tr())
                                                             .tr())
                                                   ],
                                                 ),
@@ -249,7 +251,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Already Applied",
+                                  "Already Applied".tr(),
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.green.shade700,

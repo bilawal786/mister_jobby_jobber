@@ -16,8 +16,21 @@ import 'available_jobs_provider/available_jobs_provider.dart';
 class JobsDetailProvider with ChangeNotifier {
   int? postId;
   int fixedRate = 0;
+  double fixedHours = 0;
   int? hourlyRate;
-  double hours = 0.5;
+  double? hours;
+
+  void decreaseHours() {
+    if (hours! > fixedHours) {
+      hours = hours! - 0.5;
+    }
+    notifyListeners();
+  }
+
+  void increaseHours() {
+    hours = hours! + 0.5;
+    notifyListeners();
+  }
 
   void decreaseHourlyRate() {
     if (hourlyRate! > fixedRate) {
@@ -37,7 +50,7 @@ class JobsDetailProvider with ChangeNotifier {
       isScrollControlled: true,
       builder: (context) {
         return FractionallySizedBox(
-          heightFactor: .65,
+          heightFactor: .7,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
@@ -45,13 +58,12 @@ class JobsDetailProvider with ChangeNotifier {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         padding: const EdgeInsets.all(5),
                         width: MediaQuery.of(context).size.width / 1.5,
                         child: Text(
-                          "Adjust your hourly rate",
+                          "Send Your Proposal",
                           style: Theme.of(context).textTheme.titleSmall,
                         ).tr(),
                       ),
@@ -66,67 +78,143 @@ class JobsDetailProvider with ChangeNotifier {
                     ],
                   ),
                   SizedBox(
+                    height: MediaQuery.of(context).size.width / 40,
+                  ),
+                  const Divider(),
+                  SizedBox(
                     height: MediaQuery.of(context).size.width / 20,
                   ),
-                  Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            decreaseHourlyRate();
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black12,
-                              ),
-                              color: Colors.white,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text("Adjust your hourly rate",style: Theme.of(context).textTheme.bodyLarge),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {
+                          decreaseHourlyRate();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.black12,
                             ),
-                            child: const Icon(
-                              Icons.remove,
-                              color: Colors.black,
-                              size: 20,
-                            ),
+                            color: Colors.white,
+                          ),
+                          child: const Icon(
+                            Icons.remove,
+                            color: Colors.black,
+                            size: 20,
                           ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        Consumer<JobsDetailProvider>(
-                          builder: (_, modalSheet, child) => Text(
-                            modalSheet.hourlyRate.toString(),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 80,
+                      ),
+                      Consumer<JobsDetailProvider>(
+                        builder: (_, modalSheet, child) => SizedBox(
+                          width: MediaQuery.of(context).size.width / 10,
+                          child: Text(
+                            "${modalSheet.hourlyRate}",
+                            textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 40,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            increaseHourlyRate();
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black12,
-                              ),
-                              color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 80,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          increaseHourlyRate();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.black12,
                             ),
-                            child: const Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                            color: Colors.black,
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 20,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text("Adjust your hours", style: Theme.of(context).textTheme.bodyLarge,),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {
+                          decreaseHours();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.black12,
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: const Icon(
+                            Icons.remove,
+                            color: Colors.black,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 80,
+                      ),
+                      Consumer<JobsDetailProvider>(
+                        builder: (_, modalSheet, child) => SizedBox(
+                          width: MediaQuery.of(context).size.width / 10,
+                          child: Text(
+                            "${modalSheet.hours}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 80,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          increaseHours();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.black12,
+                            ),
+                            color: Colors.black,
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 40,
+                  ),
+                  const Divider(),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 20,
                   ),
@@ -144,9 +232,11 @@ class JobsDetailProvider with ChangeNotifier {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       const Spacer(),
-                      Text(
-                        "$hours hours",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      Consumer<JobsDetailProvider>(
+                        builder:(_,modalSheet,child) => Text(
+                          "${modalSheet.hours!} hours",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
                     ],
                   ),
@@ -162,7 +252,7 @@ class JobsDetailProvider with ChangeNotifier {
                       const Spacer(),
                       Consumer<JobsDetailProvider>(
                         builder: (_, modalSheet, child) => Text(
-                          "${modalSheet.hourlyRate! * modalSheet.hours} €",
+                          "${modalSheet.hourlyRate! * modalSheet.hours!} €",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -214,7 +304,7 @@ class JobsDetailProvider with ChangeNotifier {
                       const Spacer(),
                       Consumer<JobsDetailProvider>(
                         builder: (_, modalSheet, child) => Text(
-                          "${modalSheet.hourlyRate! * modalSheet.hours}€",
+                          "${modalSheet.hourlyRate! * modalSheet.hours!}€",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -232,7 +322,7 @@ class JobsDetailProvider with ChangeNotifier {
                       const Spacer(),
                       Consumer<JobsDetailProvider>(
                         builder: (_, modalSheet, child) => Text(
-                          "${(modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100}€",
+                          "${(modalSheet.hourlyRate! * modalSheet.hours!) * 10 / 100}€",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -250,7 +340,7 @@ class JobsDetailProvider with ChangeNotifier {
                       const Spacer(),
                       Consumer<JobsDetailProvider>(
                         builder: (_, modalSheet, child) => Text(
-                          "${(modalSheet.hourlyRate! * modalSheet.hours - ((modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100))} €",
+                          "${(modalSheet.hourlyRate! * modalSheet.hours! - ((modalSheet.hourlyRate! * modalSheet.hours!) * 10 / 100))} €",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -265,10 +355,10 @@ class JobsDetailProvider with ChangeNotifier {
                           postProposal(
                               context,
                               postId,
-                              "${modalSheet.hourlyRate! * modalSheet.hours}",
+                              "${modalSheet.hourlyRate! * modalSheet.hours!}",
                               hourlyRate,
                               hours,
-                              "${(modalSheet.hourlyRate! * modalSheet.hours) * 10 / 100}");
+                              "${(modalSheet.hourlyRate! * modalSheet.hours!) * 10 / 100}");
                         },
                         buttonName: "To post"),
                   ),
