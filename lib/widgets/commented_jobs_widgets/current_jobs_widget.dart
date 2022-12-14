@@ -27,7 +27,8 @@ class CurrentJobsWidget extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => SingleJobDetailScreen(
                             jobsDetail:
-                            extractCommentedJobsData[index].job)));
+                            extractCommentedJobsData[index].job,
+                        index: index,),),);
                   },
                   child: Container(
                     color: const Color(0xFFebf9fe),

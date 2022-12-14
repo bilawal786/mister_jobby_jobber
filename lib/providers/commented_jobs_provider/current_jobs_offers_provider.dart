@@ -46,5 +46,18 @@ class CurrentJobsOffersProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  List<String> temp = [];
+
+  void addTempData (index) {
+    var check = commentedJobsModel![index].job.question.split(',');
+    temp = check;
+  }
+  List<String> tempDoB = [];
+
+  void addTempDobData (index) {
+    var checkDob = commentedJobsModel![index].job.question1.split(',');
+    tempDoB = checkDob;
+  }
   
 }

@@ -28,6 +28,8 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
     if(isInit) {
       Provider.of<SingleJobProvider>(context).getSingleJobDetail(context,
           widget.id.toString());
+      Provider.of<SingleJobProvider>(context).addTempData();
+      Provider.of<SingleJobProvider>(context).addTempDobData();
       Provider.of<SingleJobCommentsProvider>(context).getSingleJobComments(context, widget.id.toString());
     }
     isInit = false;
@@ -3771,6 +3773,69 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                               ),
                               textAlign: TextAlign.right,
                             ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if(jobsDetail.subcategoryId == 29) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children : <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Text("Gender", style: Theme.of(context).textTheme.bodyLarge,),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 40,
+                              ),
+                              for(int i = 0 ; i < singleJobData.temp.length; i++)
+                                Column(
+                                  children: <Widget>[
+                                    Text(singleJobData.temp[i], style:  Theme.of(context).textTheme.bodyMedium,),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.width / 40,
+                                    ),
+                                  ],
+                                ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Text("Date of Birth", style: Theme.of(context).textTheme.bodyLarge,),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 40,
+                              ),
+                              for(int j = 0 ; j < singleJobData.tempDoB.length; j++)
+                                Column(
+                                  children: <Widget>[
+                                    Text(singleJobData.tempDoB[j], style:  Theme.of(context).textTheme.bodyMedium,),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.width / 40,
+                                    ),
+                                  ],
+                                ),
+                            ],
                           ),
                         ],
                       ),

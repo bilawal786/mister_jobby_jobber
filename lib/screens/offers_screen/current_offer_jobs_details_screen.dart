@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mister_jobby_jobber/providers/commented_jobs_provider/current_jobs_offers_provider.dart';
 import 'package:provider/provider.dart';
 import '../../helper/routes.dart';
 
@@ -11,7 +12,8 @@ import '../search_screen/jobee_profile.dart';
 
 class SingleJobDetailScreen extends StatefulWidget {
   final Job jobsDetail;
-  const SingleJobDetailScreen({Key? key, required this.jobsDetail}) : super(key: key);
+  final int index;
+  const SingleJobDetailScreen({Key? key, required this.jobsDetail, required this.index,}) : super(key: key);
 
   @override
   State<SingleJobDetailScreen> createState() => _SingleJobDetailScreenState();
@@ -24,6 +26,8 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
   void didChangeDependencies() {
     if(isInit) {
       Provider.of<SingleJobCommentsProvider>(context).getSingleJobComments(context, widget.jobsDetail.id.toString());
+      Provider.of<CurrentJobsOffersProvider>(context).addTempData(widget.index);
+      Provider.of<CurrentJobsOffersProvider>(context).addTempDobData(widget.index);
     }
     isInit = false;
     super.didChangeDependencies();
@@ -33,6 +37,7 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
   Map<String, Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
+    final currentJobData = Provider.of<CurrentJobsOffersProvider>(context,listen:false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -3781,6 +3786,69 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                               ),
                               textAlign: TextAlign.right,
                             ).tr(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if(widget.jobsDetail.subcategoryId == 29) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                        children : <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Text("Gender", style: Theme.of(context).textTheme.bodyLarge,),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 40,
+                              ),
+                              for(int i = 0 ; i < currentJobData.temp.length; i++)
+                                Column(
+                                  children: <Widget>[
+                                    Text(currentJobData.temp[i], style:  Theme.of(context).textTheme.bodyMedium,),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.width / 40,
+                                    ),
+                                  ],
+                                ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            children: [
+                              Text("Date of Birth", style: Theme.of(context).textTheme.bodyLarge,),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 40,
+                              ),
+                              for(int j = 0 ; j < currentJobData.tempDoB.length; j++)
+                                Column(
+                                  children: <Widget>[
+                                    Text(currentJobData.tempDoB[j], style:  Theme.of(context).textTheme.bodyMedium,),
+                                    SizedBox(
+                                      height: MediaQuery.of(context).size.width / 40,
+                                    ),
+                                  ],
+                                ),
+                            ],
                           ),
                         ],
                       ),

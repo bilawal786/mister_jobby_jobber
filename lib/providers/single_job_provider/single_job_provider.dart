@@ -50,5 +50,18 @@ class SingleJobProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  List<String> temp = [];
+
+  void addTempData () {
+    var check = jobDetail!.question.split(',');
+    temp = check;
+  }
+  List<String> tempDoB = [];
+
+  void addTempDobData () {
+    var checkDob = jobDetail!.question1.split(',');
+    tempDoB = checkDob;
+  }
+
 
 }

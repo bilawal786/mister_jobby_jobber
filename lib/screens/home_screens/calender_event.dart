@@ -137,12 +137,16 @@ class _EventCalenderState extends State<EventCalender> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => JobInfoScreen(
-                              id: events['id'].toString())));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (ctx) => JobInfoScreen(
+                                  id: events['id']
+                                      .toString())));
                     },
                     child: Container(
-                      color: events['status'] == 2? Colors.green.shade100: const Color(0xFFebf9fe),
+                      color: events['status'] == 2
+                          ? Colors.green.shade100
+                          : const Color(0xFFebf9fe),
                       width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10.0, vertical: 5.0),
@@ -156,7 +160,8 @@ class _EventCalenderState extends State<EventCalender> {
                                 decoration: BoxDecoration(
                                   color: Colors.brown.shade300,
                                   borderRadius:
-                                  BorderRadius.circular(10.0),
+                                  BorderRadius.circular(
+                                      10.0),
                                 ),
                                 child: Icon(
                                   Icons.handyman_rounded,
@@ -171,7 +176,10 @@ class _EventCalenderState extends State<EventCalender> {
                                     40,
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.5,
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width /
+                                    1.5,
                                 child: Text(
                                   events['title'],
                                   style: Theme.of(context)
@@ -189,8 +197,9 @@ class _EventCalenderState extends State<EventCalender> {
                             ],
                           ),
                           SizedBox(
-                            height:
-                            MediaQuery.of(context).size.width /
+                            height: MediaQuery.of(context)
+                                .size
+                                .width /
                                 80,
                           ),
                           Row(
@@ -202,22 +211,23 @@ class _EventCalenderState extends State<EventCalender> {
                                     .bodySmall,
                               ),
                               const Spacer(),
-                              if (events['urgent'] ==
-                                  1)
+                              if (events['urgent'] == 1)
                                 Container(
                                   padding:
                                   const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
                                     color: Colors.red.shade900,
                                     borderRadius:
-                                    BorderRadius.circular(20.0),
+                                    BorderRadius.circular(
+                                        20.0),
                                   ),
                                   child: const FittedBox(
                                     child: Text(
                                       "Urgent",
                                       style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight:
+                                        FontWeight.bold,
                                         fontFamily:
                                         'Cerebri Sans Bold',
                                         color: Colors.white,
@@ -227,11 +237,29 @@ class _EventCalenderState extends State<EventCalender> {
                                 ),
                             ],
                           ),
-                          Text(
-                            events['service_date'],
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium,
+                          SizedBox(
+                            height: MediaQuery.of(context)
+                                .size
+                                .width /
+                                40,
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                events['service_date'],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium,
+                              ),
+                              const Spacer(),
+                              Text(
+                                events['status'] == 2
+                                    ? "Complete" : "",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge,
+                              ),
+                            ],
                           ),
                           const Divider(),
                         ],
