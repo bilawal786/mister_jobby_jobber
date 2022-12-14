@@ -281,7 +281,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (ctx) => JobDetailScreen(
                                           jobsDetail: extractedAvailableJobs
-                                              .availableJobs![index])));
+                                              .availableJobs![index],
+                                      index : index),),);
                                 },
                                 child: Container(
                                   color: const Color(0xFFebf9fe),

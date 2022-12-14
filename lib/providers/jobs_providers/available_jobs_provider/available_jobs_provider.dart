@@ -114,4 +114,19 @@ class AvailableJobsProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+
+  List<String> temp = [];
+
+  void addTempData (index) {
+    var check = availableJobs![index].question.split(',');
+    temp = check;
+  }
+  List<String> tempDoB = [];
+
+  void addTempDobData (index) {
+    var checkDob = availableJobs![index].question1.split(',');
+    tempDoB = checkDob;
+  }
+
 }

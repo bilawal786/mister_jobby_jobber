@@ -18,7 +18,8 @@ import 'jobee_profile.dart';
 
 class JobDetailScreen extends StatefulWidget {
   final AvailableJobsModel jobsDetail;
-  const JobDetailScreen({Key? key, required this.jobsDetail}) : super(key: key);
+  final int index;
+  const JobDetailScreen({Key? key, required this.jobsDetail, required this.index}) : super(key: key);
 
   @override
   State<JobDetailScreen> createState() => _JobDetailScreenState();
@@ -32,6 +33,8 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
     if (isInit) {
       Provider.of<SingleJobCommentsProvider>(context)
           .getSingleJobComments(context, widget.jobsDetail.id.toString());
+      Provider.of<AvailableJobsProvider>(context).addTempData(widget.index);
+      Provider.of<AvailableJobsProvider>(context).addTempDobData(widget.index);
     }
     isInit = false;
     super.didChangeDependencies();
@@ -102,6 +105,9 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
     final jobberProfileData =
         Provider.of<PersonalInformationProvider>(context, listen: false);
     final extractedProfile = jobberProfileData.profile;
+    final tempData = Provider.of<AvailableJobsProvider>(context,listen: false);
+    final extractTemp = tempData.temp;
+    final extractDob = tempData.tempDoB;
     return Scaffold(
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(20.0),
@@ -4031,6 +4037,69 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             ).tr(),
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 40,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 10,
+                ),
+              ],
+              if(widget.jobsDetail.subcategoryId == 29) ...[
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Information",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Row(
+                          children : <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Text("Gender", style: Theme.of(context).textTheme.bodyLarge,),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width / 40,
+                                ),
+                                for(int i = 0 ; i < extractTemp.length; i++)
+                                  Column(
+                                    children: <Widget>[
+                                      Text(extractTemp[i], style:  Theme.of(context).textTheme.bodyMedium,),
+                                      SizedBox(
+                                          height: MediaQuery.of(context).size.width / 40,
+                                      ),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Column(
+                              children: [
+                                Text("Date of Birth", style: Theme.of(context).textTheme.bodyLarge,),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width / 40,
+                                ),
+                                for(int j = 0 ; j < extractDob.length; j++)
+                                  Column(
+                                    children: <Widget>[
+                                      Text(extractDob[j], style:  Theme.of(context).textTheme.bodyMedium,),
+                                      SizedBox(
+                                        height: MediaQuery.of(context).size.width / 40,
+                                      ),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ],
                       ),
                     ],
                   ),

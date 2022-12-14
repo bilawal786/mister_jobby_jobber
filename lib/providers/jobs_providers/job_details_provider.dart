@@ -27,6 +27,8 @@ class JobsDetailProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
+
   void increaseHours() {
     hours = hours! + 0.5;
     notifyListeners();
