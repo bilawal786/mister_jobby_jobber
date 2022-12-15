@@ -9,15 +9,15 @@ class CurrentJobsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final commentedJobsData = Provider.of<CurrentJobsOffersProvider>(context);
+    final commentedJobsData = Provider.of<CurrentJobsOffersProvider>(context,listen: false);
     final extractCommentedJobsData = commentedJobsData.commentedJobsModel;
     return RefreshIndicator(
       onRefresh: () async{
         await Provider.of<CurrentJobsOffersProvider>(context, listen: false).getCommentedJobs(context);
       },
       child: ListView.builder(
-        shrinkWrap: true,
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.zero,
         itemCount: extractCommentedJobsData!.length,
         itemBuilder: (context, index) =>
             Column(

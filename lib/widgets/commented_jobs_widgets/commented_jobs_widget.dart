@@ -18,10 +18,8 @@ class CommentedJobsWidget extends StatelessWidget {
             .getCommentedJobs(context);
       },
       child: ListView.builder(
-        shrinkWrap: true,
-        physics: const AlwaysScrollableScrollPhysics(),
-        controller: ScrollController(),
-        primary: false,
+        padding: EdgeInsets.zero,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: extractData!.length,
         itemBuilder: (context, index) => Column(
           children: [
