@@ -17,7 +17,7 @@ class JobInfoScreen extends StatefulWidget {
   State<JobInfoScreen> createState() => _JobInfoScreenState();
 }
 class _JobInfoScreenState extends State<JobInfoScreen> {
-  var jobsDetail;
+
 
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
@@ -27,9 +27,10 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
   void didChangeDependencies() {
     if(isInit) {
       Provider.of<SingleJobProvider>(context).getSingleJobDetail(context,
-          widget.id.toString());
-      Provider.of<SingleJobProvider>(context).addTempData();
-      Provider.of<SingleJobProvider>(context).addTempDobData();
+          widget.id.toString()).then((value){
+        Provider.of<SingleJobProvider>(context, listen: false).addTempData();
+        Provider.of<SingleJobProvider>(context, listen: false).addTempDobData();
+      });
       Provider.of<SingleJobCommentsProvider>(context).getSingleJobComments(context, widget.id.toString());
     }
     isInit = false;
@@ -38,8 +39,8 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final singleJobData = Provider.of<SingleJobProvider>(context, listen: true);
-    jobsDetail = singleJobData.jobDetail;
+    final singleJobData = Provider.of<SingleJobProvider>(context, listen: false);
+    final jobsDetail = singleJobData.jobDetail;
     return (singleJobData.checkApi != true) ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)
         : Scaffold(
       body: SafeArea(
@@ -104,7 +105,7 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 1.5,
                           child: Text(
-                            jobsDetail.title,
+                            jobsDetail!.title,
                             style: Theme.of(context).textTheme.titleMedium,
                             overflow: TextOverflow.ellipsis,
                           ),
