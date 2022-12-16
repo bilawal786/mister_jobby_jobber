@@ -83,7 +83,7 @@ class _EventCalenderState extends State<EventCalender> {
           "Calender".tr(),
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        centerTitle: true,
+        centerTitle: false,
         iconTheme: const IconThemeData(
           color: Colors.black,
           size: 25,
@@ -221,8 +221,8 @@ class _EventCalenderState extends State<EventCalender> {
                                     BorderRadius.circular(
                                         20.0),
                                   ),
-                                  child: const FittedBox(
-                                    child: Text(
+                                  child: FittedBox(
+                                    child: const Text(
                                       "Urgent",
                                       style: TextStyle(
                                         fontSize: 16,
@@ -232,7 +232,7 @@ class _EventCalenderState extends State<EventCalender> {
                                         'Cerebri Sans Bold',
                                         color: Colors.white,
                                       ),
-                                    ),
+                                    ).tr(),
                                   ),
                                 ),
                             ],
@@ -254,7 +254,7 @@ class _EventCalenderState extends State<EventCalender> {
                               const Spacer(),
                               Text(
                                 events['status'] == 2
-                                    ? "Complete" : "",
+                                    ? "Complete".tr() : "",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge,

@@ -89,23 +89,6 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //   top: 10,
-                  //   right: 10,
-                  //   child: InkWell(
-                  //     onTap: (){
-                  //       ignoreJobOpenSheet();
-                  //       },
-                  //     child: Container(
-                  //       height: 30,
-                  //       width: 30,
-                  //       decoration: BoxDecoration(shape: BoxShape.circle,
-                  //         color: Colors.white,
-                  //       ),
-                  //       child: const Icon(Icons.more_vert_rounded, color: Colors.black,size: 25,),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
               Padding(
@@ -305,9 +288,18 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          "${widget.jobsDetail.jobbers} Jobber ask",
-                          style: Theme.of(context).textTheme.labelMedium,
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "${widget.jobsDetail.jobbers} ",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                            SizedBox(width: MediaQuery.of(context).size.width / 40),
+                            Text(
+                              "Jobber ask",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ],
                         ),
                       ],
                     ),
@@ -335,7 +327,7 @@ class _SingleJobDetailScreenState extends State<SingleJobDetailScreen> {
                                 fontSize: 16,
                                 fontFamily: "Cerebri Sans Bold",
                               ),
-                            ),
+                            ).tr(),
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 40,
                             ),

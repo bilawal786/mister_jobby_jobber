@@ -73,7 +73,7 @@ class AreaInterventionProvider with ChangeNotifier {
           padding :const EdgeInsets.all(20.0),
           backgroundColor: const Color(0xFFebf9fe),
           content: Text(
-            'Area of Intervention set Successfully',
+            'Area of Intervention set Successfully'.tr(),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           duration: const Duration(
@@ -92,7 +92,7 @@ class AreaInterventionProvider with ChangeNotifier {
           padding :const EdgeInsets.all(20.0),
           backgroundColor: const Color(0xFFebf9fe),
           content:  Text(
-            'Session Expired...  Please Log-In',
+            'Session Expired...  Please Log-In'.tr(),
             style: Theme.of(context).textTheme.bodyMedium,
           ).tr(),
           duration: const Duration(

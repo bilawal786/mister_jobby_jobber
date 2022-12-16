@@ -226,9 +226,18 @@ class _AccountScreenState extends State<AccountScreen> {
                     SizedBox(
                       height: mediaQuery.size.width / 40,
                     ),
-                    Text(
-                      "${profileData.profile!.reviews.length} views",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          "${profileData.profile!.reviews.length} ",
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        Text(
+                          "Views",
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ).tr(),
+                      ],
                     ),
                     SizedBox(
                       height: mediaQuery.size.width / 20,
@@ -282,7 +291,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium,
-                                      ),
+                                      ).tr(),
                                     ],
                                   ),
                                   const Spacer(),
@@ -336,7 +345,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium,
-                                      ),
+                                      ).tr(),
                                     ],
                                   ),
                                   const Spacer(),
@@ -388,7 +397,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   "Action Required (1)",
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
-                                ),
+                                ).tr(),
                                 const Spacer(),
                                 Container(
                                   padding: const EdgeInsets.all(5.0),
@@ -506,7 +515,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             child: Text(
                               "My Skills",
                               style: Theme.of(context).textTheme.bodyLarge,
-                            ),
+                            ).tr(),
                           ),
                           extractedSkills == null
                               ? const Center(child: CircularProgressIndicator())

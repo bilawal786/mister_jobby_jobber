@@ -447,11 +447,11 @@ class _IndexScreenState extends State<IndexScreen> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    'Schedule ',
+                                    'Schedule',
                                     style:
                                         Theme.of(context).textTheme.titleSmall,
                                     textAlign: TextAlign.center,
-                                  ),
+                                  ).tr(),
                                   const Spacer(),
                                   GestureDetector(
                                     onTap: () {
@@ -604,8 +604,8 @@ class _IndexScreenState extends State<IndexScreen> {
                                                         BorderRadius.circular(
                                                             20.0),
                                                   ),
-                                                  child: const FittedBox(
-                                                    child: Text(
+                                                  child: FittedBox(
+                                                    child: const Text(
                                                       "Urgent",
                                                       style: TextStyle(
                                                         fontSize: 16,
@@ -615,7 +615,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                                             'Cerebri Sans Bold',
                                                         color: Colors.white,
                                                       ),
-                                                    ),
+                                                    ).tr(),
                                                   ),
                                                 ),
                                             ],
@@ -637,7 +637,7 @@ class _IndexScreenState extends State<IndexScreen> {
                                               const Spacer(),
                                               Text(
                                                 events['status'] == 2
-                                                    ? "Complete" : "",
+                                                    ? "Complete" .tr(): "",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyLarge,

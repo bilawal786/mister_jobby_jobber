@@ -53,16 +53,36 @@ class CurrentOffers extends StatelessWidget {
                 tabs: [
                   Tab(
                     child: Center(
-                      child: Text(
-                        "Offers ($currentOffer)",
-                      ).tr(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const Text(
+                            "Offers",
+                          ).tr(),
+                          Text(
+                            " ($currentOffer)",
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Tab(
                     child: Center(
-                      child: Text(
-                        "Commented jobs ($commentedJobs)",
-                      ).tr(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3,
+                            child: const Text(
+                              "Commented jobs",
+                              textAlign: TextAlign.center,
+                            ).tr(),
+                          ),
+                          Text(
+                            "($commentedJobs)",
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

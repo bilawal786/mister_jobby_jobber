@@ -68,7 +68,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 Text(
                   "Intervention zone",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 Consumer<PersonalInformationProvider>(
                   builder: (_, profileData, child) => SizedBox(
                     width: MediaQuery.of(context).size.width / 2.5,
@@ -94,7 +94,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                 fontSize: 18,
                 fontFamily: 'Cerebri Sans Bold',
               ),
-            ),
+            ).tr(),
           )
         ],
       ),
@@ -182,7 +182,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                       Text(
                         "Actions required",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       const Spacer(),
                       const Icon(
                         Icons.arrow_forward_ios,
@@ -251,9 +251,19 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                     width: MediaQuery.of(context).size.width / 1.4,
                     child: Center(
                       child: Consumer<AvailableJobsProvider>(
-                        builder: (_, availableJobs, child) => Text(
-                          "${availableJobs.availableJobs?.length} Jobs are available",
-                          style: Theme.of(context).textTheme.bodyLarge,
+                        builder: (_, availableJobs, child) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              availableJobs.availableJobs?.length == null ? "0":"${availableJobs.availableJobs?.length} ",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            SizedBox(width: MediaQuery.of(context).size.width / 40),
+                            Text(
+                              "Jobs are available",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ).tr(),
+                          ],
                         ),
                       ),
                     ),
@@ -358,8 +368,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                                 borderRadius:
                                                     BorderRadius.circular(20.0),
                                               ),
-                                              child: const FittedBox(
-                                                child: Text(
+                                              child: FittedBox(
+                                                child: const Text(
                                                   "Urgent",
                                                   style: TextStyle(
                                                     fontSize: 16,
@@ -368,7 +378,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                                                         'Cerebri Sans Bold',
                                                     color: Colors.white,
                                                   ),
-                                                ),
+                                                ).tr(),
                                               ),
                                             ),
                                         ],

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,7 +51,7 @@ class RegisterProvider with ChangeNotifier {
           content: Text(
             'Registration Successfully',
             style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          ).tr(),
           duration: const Duration(
             seconds: 2,
           ),
@@ -66,7 +67,7 @@ class RegisterProvider with ChangeNotifier {
           padding :const EdgeInsets.all(20.0),
           backgroundColor: const Color(0xFFebf9fe),
           content: Text(
-            'Already Registered',
+            'Already Registered'.tr(),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           duration: const Duration(

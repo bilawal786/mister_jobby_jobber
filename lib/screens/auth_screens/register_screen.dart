@@ -130,7 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 enabled: true,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "Please Enter Last Name";
+                                    return "Please Enter Last Name".tr();
                                   }
                                   return null;
                                 },
@@ -161,9 +161,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 enabled: true,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "Please Enter Email Address";
+                                    return "Please Enter Email Address".tr();
                                   } else if (!regExp.hasMatch(value)) {
-                                    return 'Please Enter Valid Email Address';
+                                    return 'Please Enter Valid Email Address'.tr();
                                   }
                                   return null;
                                 },
@@ -202,9 +202,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   enabled: true,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'Please Enter the password';
+                                      return 'Please Enter the password'.tr();
                                     } else if (value.length < 5) {
-                                      return 'Must be more than 5 characters';
+                                      return 'Must be more than 5 characters'.tr();
                                     }
                                     return null;
                                   },

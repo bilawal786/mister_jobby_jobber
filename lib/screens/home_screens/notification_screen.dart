@@ -75,7 +75,7 @@ class _NotificationDisplayState extends State<NotificationDisplay> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text("Notifications".tr(),style: Theme.of(context).textTheme.titleSmall,),
-        centerTitle: true,
+        centerTitle: false,
         iconTheme: const IconThemeData(
           color: Colors.black,
           size: 25,
@@ -88,7 +88,7 @@ class _NotificationDisplayState extends State<NotificationDisplay> {
         child: extractNotification == null ? const Center(child: CircularProgressIndicator(),) : Padding(
           padding: const EdgeInsets.all(15),
           child: ListView.builder(
-            itemCount: extractNotification!.length,
+            itemCount: extractNotification.length,
             itemBuilder: (ctx, index) => Column(
               children:<Widget> [
                 Container(

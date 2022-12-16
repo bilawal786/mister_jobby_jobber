@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.blue.shade700,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -83,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.handyman_rounded,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                           Text(
                             "Diy",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ).tr(),
                         ],
                       ),
@@ -100,33 +100,38 @@ class _SplashScreenState extends State<SplashScreen> {
                       width: mediaQuery.size.width / 40,
                     ),
                     Container(
-                      width: mediaQuery.size.width / 2.5,
+                      width: mediaQuery.size.width / 2.2,
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Icon(
                             Icons.pets,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
                             width: mediaQuery.size.width / 40,
                           ),
-                          Text(
-                            "Pet_Sitting",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ).tr(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3.2,
+                            child: Text(
+                              "Pet_Sitting",
+                              style: Theme.of(context).textTheme.bodySmall,
+                              overflow: TextOverflow.ellipsis,
+                            ).tr(),
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: mediaQuery.size.width / 40,
+                  height: mediaQuery.size.width / 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -138,10 +143,11 @@ class _SplashScreenState extends State<SplashScreen> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Icon(
                             Icons.snowshoeing,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -149,7 +155,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                           Text(
                             "Gardening",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ).tr(),
                         ],
                       ),
@@ -158,7 +164,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       width: mediaQuery.size.width / 40,
                     ),
                     Container(
-                      width: mediaQuery.size.width / 2.5,
+                      width: mediaQuery.size.width / 2.2,
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -168,7 +174,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.format_paint_rounded,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -176,7 +182,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                           Text(
                             "Housework",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ).tr(),
                         ],
                       ),
@@ -184,7 +190,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: mediaQuery.size.width / 40,
+                  height: mediaQuery.size.width / 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -199,7 +205,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.computer_rounded,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -209,7 +215,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             child: Text(
                               "Computer_Science",
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ).tr(),
                           ),
                         ],
@@ -219,7 +225,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       width: mediaQuery.size.width / 40,
                     ),
                     Container(
-                      width: mediaQuery.size.width / 2.5,
+                      width: mediaQuery.size.width / 2.2,
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -229,7 +235,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.child_friendly_rounded,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -237,7 +243,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                           Text(
                             "Child_Care",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ).tr(),
                         ],
                       ),
@@ -245,7 +251,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: mediaQuery.size.width / 40,
+                  height: mediaQuery.size.width / 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -260,7 +266,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.shopping_bag_rounded,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -270,7 +276,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             child: Text(
                               "Move",
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ).tr(),
                           ),
                         ],
@@ -280,7 +286,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       width: mediaQuery.size.width / 40,
                     ),
                     Container(
-                      width: mediaQuery.size.width / 2.5,
+                      width: mediaQuery.size.width / 2.2,
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -290,7 +296,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.history_edu,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -300,7 +306,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             child: Text(
                               "Private_Lessons",
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ).tr(),
                           ),
                         ],
@@ -309,7 +315,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: mediaQuery.size.width / 40,
+                  height: mediaQuery.size.width / 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -324,7 +330,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.bakery_dining_outlined,
-                            size: 25,
+                            size: 18,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -334,7 +340,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             child: Text(
                               "Home_Help",
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ).tr(),
                           ),
                         ],
@@ -346,7 +352,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: mediaQuery.size.width / 40,
                 ),
                 SizedBox(
-                  height: mediaQuery.size.width / 2.5,
+                  height: mediaQuery.size.width / 1.8,
                   child: Image.asset(
                     "assets/images/appLogo.png",
                     fit: BoxFit.cover,

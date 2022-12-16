@@ -110,7 +110,7 @@ class LoginProvider with ChangeNotifier {
             content: Text(
               'Incorrect Credentials',
               style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            ).tr(),
             duration: const Duration(
               seconds: 2,
             ),

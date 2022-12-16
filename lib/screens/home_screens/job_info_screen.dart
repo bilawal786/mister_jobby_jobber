@@ -147,17 +147,22 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 40,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 2.4,
-                            child: Text(
-                              "Posted by ${jobsDetail.demander.firstName} ${jobsDetail.demander.lastName},",
-                              style: Theme.of(context).textTheme.bodySmall,
-                              textAlign: TextAlign.left,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                "Posted by",
+                                style: Theme.of(context).textTheme.bodySmall,
+                                textAlign: TextAlign.left,
+                              ).tr(),
+                              SizedBox(width: MediaQuery.of(context).size.width / 40),
+                              Text(
+                                " ${jobsDetail.demander.firstName},",
+                                style: Theme.of(context).textTheme.bodySmall,
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 40,
-                          ),
+                          const Spacer(),
                           Text(
                             "- ${jobsDetail.createdAt}",
                             style: Theme.of(context).textTheme.bodySmall,
@@ -293,9 +298,18 @@ class _JobInfoScreenState extends State<JobInfoScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          "${jobsDetail.jobbers} Jobber ask",
-                          style: Theme.of(context).textTheme.labelMedium,
+                        Row(
+                          children: [
+                            Text(
+                              "${jobsDetail.jobbers} ",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                            SizedBox(width: MediaQuery.of(context).size.width / 40),
+                            Text(
+                              "Jobber ask",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ],
                         ),
                       ],
                     ),

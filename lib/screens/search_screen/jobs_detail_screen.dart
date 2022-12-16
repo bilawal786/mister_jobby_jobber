@@ -405,14 +405,22 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 40,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 2.2,
-                            child: Text(
-                              "Posted by ${widget.jobsDetail.demander.firstName} ${widget.jobsDetail.demander.lastName},",
-                              style: Theme.of(context).textTheme.bodySmall,
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                "Posted by",
+                                style: Theme.of(context).textTheme.bodySmall,
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.ellipsis,
+                              ).tr(),
+                              SizedBox(width: MediaQuery.of(context).size.width / 40),
+                              Text(
+                                "${widget.jobsDetail.demander.firstName},",
+                                style: Theme.of(context).textTheme.bodySmall,
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           SizedBox(
@@ -552,9 +560,18 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 40,
                         ),
-                        Text(
-                          "${widget.jobsDetail.jobbers} Jobber ask",
-                          style: Theme.of(context).textTheme.labelMedium,
+                        Row(
+                          children: [
+                            Text(
+                              "${widget.jobsDetail.jobbers} ",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                            SizedBox(width: MediaQuery.of(context).size.width/ 40),
+                            Text(
+                              "Jobber ask",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ).tr(),
+                          ],
                         ),
                       ],
                     ),
@@ -583,7 +600,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 fontSize: 16,
                                 fontFamily: "Cerebri Sans Bold",
                               ),
-                            ),
+                            ).tr(),
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 40,
                             ),
@@ -616,14 +633,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       widget.jobsDetail.childcategoryId == 19 ||
                       widget.jobsDetail.childcategoryId == 23)) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -652,7 +669,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         Row(
                           children: <Widget>[
                             Text(
-                              "Medium Size ",
+                              "Medium Size",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                             const Spacer(),
@@ -670,7 +687,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         Row(
                           children: <Widget>[
                             Text(
-                              "Large Size ",
+                              "Large Size",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                             const Spacer(),
@@ -688,7 +705,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         Row(
                           children: <Widget>[
                             Text(
-                              "Very Large Size ",
+                              "Very Large Size",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                             const Spacer(),
@@ -711,8 +728,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 child: Text(
                                   "Do you want the service provider to clear the boxes ?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -729,8 +745,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 child: Text(
                                   "Pass two coats?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -745,7 +760,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -755,14 +770,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 3) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -787,9 +802,6 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
-                ),
                 const Divider(
                   height: 2,
                   thickness: 10,
@@ -798,14 +810,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 4) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -831,7 +843,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -841,14 +853,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 5) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -874,7 +886,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -884,14 +896,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 6) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -917,7 +929,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -927,14 +939,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 7) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -960,7 +972,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -970,14 +982,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 8) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1003,7 +1015,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1011,21 +1023,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                 ),
               ],
               if (widget.jobsDetail.childcategoryId != null &&
-                      ((widget.jobsDetail.childcategoryId == 9 ||
-                              widget.jobsDetail.childcategoryId == 10 ||
-                              widget.jobsDetail.childcategoryId == 11 ||
-                              widget.jobsDetail.childcategoryId == 12) &&
-                          widget.jobsDetail.description.isNotEmpty) ||
+                  ((widget.jobsDetail.childcategoryId == 9 ||
+                      widget.jobsDetail.childcategoryId == 10 ||
+                      widget.jobsDetail.childcategoryId == 11 ||
+                      widget.jobsDetail.childcategoryId == 12) &&
+                      widget.jobsDetail.description.isNotEmpty) ||
                   widget.jobsDetail.childcategoryId == 13) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1070,25 +1082,24 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 14) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1114,7 +1125,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1124,14 +1135,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 15) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1157,7 +1168,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1167,14 +1178,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 16) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1200,7 +1211,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1211,14 +1222,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   (widget.jobsDetail.childcategoryId == 17 ||
                       widget.jobsDetail.childcategoryId == 20)) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1234,8 +1245,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "Do you want the service provider to clear the boxes?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -1251,8 +1261,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "Equipment(s)?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -1268,8 +1277,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "Camera?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -1287,8 +1295,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "Need to install baseboards?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -1304,8 +1311,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.4,
                                 child: Text(
                                   "Does the jobber have to bring his own cutting material?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                               const Spacer(),
@@ -1321,7 +1327,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1331,14 +1337,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId != null &&
                   widget.jobsDetail.childcategoryId == 18) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1364,7 +1370,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1374,14 +1380,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.childcategoryId == 21 ||
                   widget.jobsDetail.childcategoryId == 22) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1403,7 +1409,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1412,14 +1418,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.childcategoryId == 24) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1457,7 +1463,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1473,14 +1479,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                       widget.jobsDetail.childcategoryId == 30 ||
                       widget.jobsDetail.childcategoryId == 31)) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1511,15 +1517,10 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                             if (widget.jobsDetail.childcategoryId == 29)
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.4,
-                                child: Text(
-                                  "How many washing machines should be connected ?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
-                                  maxLines: 3,
-                                ).tr(),
-                              ),
+                              Text(
+                                "How many washing machines should be connected ?",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ).tr(),
                             if (widget.jobsDetail.childcategoryId == 30)
                               Text(
                                 "How many toilets do you need to fix ?",
@@ -1542,25 +1543,24 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.subcategoryId == 5 ||
                   widget.jobsDetail.subcategoryId == 8) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1613,8 +1613,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.5,
                                 child: Text(
                                   "Does the jobber have to remove waste from your home?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                             if (widget.jobsDetail.subcategoryId == 8)
@@ -1622,8 +1621,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                                 width: MediaQuery.of(context).size.width / 1.5,
                                 child: Text(
                                   "Does the jobber have to remove waste from your home?",
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  style: Theme.of(context).textTheme.labelMedium,
                                 ).tr(),
                               ),
                             const Spacer(),
@@ -1657,7 +1655,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1666,14 +1664,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 6) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1784,7 +1782,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1793,14 +1791,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 7) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1825,7 +1823,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           Row(
                             children: <Widget>[
                               Text(
-                                "Small size",
+                                "Small Size",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                               const Spacer(),
@@ -1839,7 +1837,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           Row(
                             children: <Widget>[
                               Text(
-                                "Medium size ",
+                                "Medium Size",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                               const Spacer(),
@@ -1853,7 +1851,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           Row(
                             children: <Widget>[
                               Text(
-                                "Large size ",
+                                "Large size",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                               const Spacer(),
@@ -1911,24 +1909,23 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.subcategoryId == 9) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -1983,7 +1980,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -1995,21 +1992,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 12 ||
                   widget.jobsDetail.subcategoryId == 13) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
                         "What do you need?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2047,31 +2044,30 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.subcategoryId == 14) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
                         "Pick-up address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2086,9 +2082,9 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "destination address?",
+                        "Destination address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2107,7 +2103,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           Text(
                             "Housing area to move",
                             style: Theme.of(context).textTheme.labelLarge,
-                          ),
+                          ).tr(),
                           const Spacer(),
                           Text(
                             widget.jobsDetail.surface,
@@ -2139,7 +2135,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2149,21 +2145,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.subcategoryId == 15 ||
                   widget.jobsDetail.subcategoryId == 16) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
                         "Pick-up address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2178,9 +2174,9 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "destination address?",
+                        "Destination address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2199,7 +2195,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           Text(
                             "Number of pieces of furniture",
                             style: Theme.of(context).textTheme.labelLarge,
-                          ),
+                          ).tr(),
                           const Spacer(),
                           Text(
                             widget.jobsDetail.question,
@@ -2231,7 +2227,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2251,21 +2247,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 44 ||
                   widget.jobsDetail.subcategoryId == 45) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
                         "What do you need?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2322,34 +2318,33 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.subcategoryId == 19 ||
                   widget.jobsDetail.subcategoryId == 20 ||
                   widget.jobsDetail.subcategoryId == 21 ||
                   widget.jobsDetail.subcategoryId == 22) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "Pick-up address",
+                        "Pick-up address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2364,9 +2359,9 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       Text(
-                        "Destination address",
+                        "Destination address?",
                         style: Theme.of(context).textTheme.labelLarge,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2424,7 +2419,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2433,14 +2428,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 23) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2541,7 +2536,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 2,
                             child: Text(
-                              "Demand Frequencies",
+                              "Demand Frequencies?",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                           ),
@@ -2560,7 +2555,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2571,14 +2566,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 25 ||
                   widget.jobsDetail.subcategoryId == 27) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2627,7 +2622,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 2,
                             child: Text(
-                              "Demand Frequencies",
+                              "Demand Frequencies?",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                           ),
@@ -2646,7 +2641,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2655,14 +2650,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 26) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2713,7 +2708,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2725,14 +2720,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 32 ||
                   widget.jobsDetail.subcategoryId == 34) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2744,7 +2739,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                "Type of gaurd",
+                                "Type of guard",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                             ),
@@ -2771,7 +2766,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2780,14 +2775,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 33) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2825,7 +2820,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               color: Colors.black,
                               fontFamily: 'Cerebri Sans Bold',
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                       SizedBox(
@@ -2878,7 +2873,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2887,14 +2882,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 35) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -2924,14 +2919,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                               color: Colors.black,
                               fontFamily: 'Cerebri Sans Bold',
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -2943,21 +2938,21 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 68 ||
                   widget.jobsDetail.subcategoryId == 69) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: Text(
-                          "What you need",
+                          "What you need?",
                           style: Theme.of(context).textTheme.labelMedium,
                         ).tr(),
                       ),
@@ -2975,14 +2970,13 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
                   thickness: 10,
                 ),
               ],
-
               if (widget.jobsDetail.subcategoryId == 46 ||
                   widget.jobsDetail.subcategoryId == 47 ||
                   widget.jobsDetail.subcategoryId == 48 ||
@@ -2999,14 +2993,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   widget.jobsDetail.subcategoryId == 59 ||
                   widget.jobsDetail.subcategoryId == 60) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3069,7 +3063,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                           SizedBox(
                             width: MediaQuery.of(context).size.width / 2,
                             child: Text(
-                              "Request Frequency",
+                              "Request Frequency?",
                               style: Theme.of(context).textTheme.labelMedium,
                             ).tr(),
                           ),
@@ -3092,7 +3086,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3102,14 +3096,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               if (widget.jobsDetail.subcategoryId == 61 ||
                   widget.jobsDetail.subcategoryId == 65) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3186,7 +3180,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3195,14 +3189,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 62) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3247,7 +3241,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                "cocktail buffet",
+                                "Cocktail buffet",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                             ),
@@ -3359,7 +3353,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3368,14 +3362,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 63) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3488,7 +3482,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3497,14 +3491,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 64) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3549,7 +3543,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                "cocktail buffet",
+                                "Cocktail buffet",
                                 style: Theme.of(context).textTheme.labelMedium,
                               ).tr(),
                             ),
@@ -3607,7 +3601,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3616,14 +3610,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 67) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3699,7 +3693,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3708,14 +3702,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 70) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3806,7 +3800,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3815,14 +3809,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 71) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -3929,7 +3923,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,
@@ -3938,14 +3932,14 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
               ],
               if (widget.jobsDetail.subcategoryId == 72) ...[
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "Information",
                         style: Theme.of(context).textTheme.titleMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 40,
                       ),
@@ -4042,7 +4036,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.width / 40,
+                  height: MediaQuery.of(context).size.width / 20,
                 ),
                 const Divider(
                   height: 2,

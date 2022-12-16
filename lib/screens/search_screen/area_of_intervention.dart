@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,14 +33,14 @@ class AreaOfInterventionScreen extends StatelessWidget {
               Text(
                 "Define your area of intervention",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
               Text(
                 "Only the jobs present in this zone will be in your job list.",
                 style: Theme.of(context).textTheme.bodySmall,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
@@ -56,7 +57,7 @@ class AreaOfInterventionScreen extends StatelessWidget {
                   Text(
                     "Address",
                     style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  ).tr(),
                 ],
               ),
               SizedBox(
@@ -83,7 +84,7 @@ class AreaOfInterventionScreen extends StatelessWidget {
                   Text(
                     "Intervention radius",
                     style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  ).tr(),
                 ],
               ),
               SizedBox(
