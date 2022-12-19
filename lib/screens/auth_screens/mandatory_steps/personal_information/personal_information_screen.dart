@@ -230,7 +230,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 Text(
                   "Professional status",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -277,11 +277,10 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                     color: Colors.black,
                   ),
                   subtitle: Text(
-                    "Your personal information is necessary to guarantee a good level of security. "
-                    "They are secure and will never be communicated publicly. ",
+                    "Your personal information is necessary to guarantee a good level of security. They are secure and will never be communicated publicly. ",
                     style: Theme.of(context).textTheme.labelMedium,
                     textAlign: TextAlign.justify,
-                  ),
+                  ).tr(),
                 ),
               ],
             ),

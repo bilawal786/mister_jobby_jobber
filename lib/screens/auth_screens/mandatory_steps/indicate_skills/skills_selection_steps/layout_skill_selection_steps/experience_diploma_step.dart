@@ -33,7 +33,7 @@ class ExperienceDiplomaStep extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) =>
                     OutlineSelectedButton(
                   onTap: () => diploma.diplomaCheck(index),
-                  textTitle: index == 0 ? "Yes" : "No",
+                  textTitle: index == 0 ? "Yes".tr() : "No".tr(),
                   color: diploma.diploma - 1 == index
                       ? Colors.blue.shade50
                       : Colors.grey.shade300,
@@ -47,14 +47,14 @@ class ExperienceDiplomaStep extends StatelessWidget {
           ),
           Consumer<ConstProvider>(
             builder: (_, checkDiploma, child) => (checkDiploma.haveDiploma ==
-                    "Yes")
+                    "Yes".tr())
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "What is the name of the degree?",
                         style: Theme.of(context).textTheme.labelMedium,
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: MediaQuery.of(context).size.width / 20,
                       ),

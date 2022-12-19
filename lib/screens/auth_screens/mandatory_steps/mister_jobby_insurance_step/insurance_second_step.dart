@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../providers/const_provider/const_provider.dart';
 import '../../../../providers/mandatory_steps_provider/insurance_provider/insurance_provider.dart';
 
 class InsuranceSecondStep extends StatelessWidget {
@@ -15,7 +15,7 @@ class InsuranceSecondStep extends StatelessWidget {
         Text(
           "In summary, to benefit from Mister Jobby insurance",
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -28,7 +28,7 @@ class InsuranceSecondStep extends StatelessWidget {
             title: Text(
               "I only work on reserved jobs on Mister Jobby.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         Consumer<InsuranceProvider>(
@@ -40,7 +40,7 @@ class InsuranceSecondStep extends StatelessWidget {
             title: Text(
               "It is I who must perform the service.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         const Divider(),

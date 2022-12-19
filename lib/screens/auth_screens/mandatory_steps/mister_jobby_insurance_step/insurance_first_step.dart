@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,12 +13,12 @@ class InsuranceFirstStep extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Questions", style: Theme.of(context).textTheme.titleMedium,),
+        Text("Questions", style: Theme.of(context).textTheme.titleMedium,).tr(),
         SizedBox(height: MediaQuery.of(context).size.width / 20,),
         Text(
           "You break an object at your customer. What's going on?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -45,7 +46,7 @@ class InsuranceFirstStep extends StatelessWidget {
         Text(
           "You come to a client without going through Mister Jobby, are you insured?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -73,7 +74,7 @@ class InsuranceFirstStep extends StatelessWidget {
         Text(
           "You come with a colleague and he breaks something. Are you covered?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),

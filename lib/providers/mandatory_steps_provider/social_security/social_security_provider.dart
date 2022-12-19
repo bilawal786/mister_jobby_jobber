@@ -315,7 +315,7 @@ class SocialSecurityProvider with ChangeNotifier {
           content: Text(
             'Security Identification Step Completed',
          style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          ).tr(),
           duration: const Duration(
             seconds: 2,
           ),

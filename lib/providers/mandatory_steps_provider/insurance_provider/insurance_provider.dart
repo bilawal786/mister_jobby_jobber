@@ -104,7 +104,7 @@ class InsuranceProvider with ChangeNotifier {
           content: Text(
             'Insurance Completed',
             style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          ).tr(),
           duration: const Duration(
             seconds: 2,
           ),

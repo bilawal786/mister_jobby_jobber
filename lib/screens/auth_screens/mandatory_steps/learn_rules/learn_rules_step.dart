@@ -52,7 +52,7 @@ class LearnRulesStepScreen extends StatelessWidget {
                     title: Text(
                       "I respect the date and time requested by the client.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -79,7 +79,7 @@ class LearnRulesStepScreen extends StatelessWidget {
                     title: Text(
                       "I respect the hourly rate on which I have committed.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -106,7 +106,7 @@ class LearnRulesStepScreen extends StatelessWidget {
                     title: Text(
                       "I do not cancel the services on which I have committed.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,

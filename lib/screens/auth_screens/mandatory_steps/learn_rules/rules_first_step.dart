@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,12 +14,12 @@ class RulesFirstStep extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Questions", style: Theme.of(context).textTheme.titleMedium,),
+        Text("Questions", style: Theme.of(context).textTheme.titleMedium,).tr(),
         SizedBox(height: MediaQuery.of(context).size.width / 20,),
         Text(
           "When I apply for an offer:",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -46,7 +47,7 @@ class RulesFirstStep extends StatelessWidget {
         Text(
           "When I offer my services for a job:",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -74,7 +75,7 @@ class RulesFirstStep extends StatelessWidget {
         Text(
           "To avoid cancellations:",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),

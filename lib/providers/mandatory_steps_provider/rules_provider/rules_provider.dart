@@ -53,6 +53,7 @@ class RulesProvider with ChangeNotifier{
 
   bool reservedJobsMisterJobby = false;
   bool mustPerformServices = false;
+  bool cashNotRequired = false;
 
   void checkStatusReserved(value) {
     reservedJobsMisterJobby = value;
@@ -61,6 +62,11 @@ class RulesProvider with ChangeNotifier{
 
   void checkMustPerformServices(value) {
     mustPerformServices = value;
+    notifyListeners();
+  }
+
+  void checkCashRequiredStatus(value) {
+    cashNotRequired = value;
     notifyListeners();
   }
 
@@ -100,7 +106,7 @@ class RulesProvider with ChangeNotifier{
           content: Text(
             'Learn Rules Completed',
             style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          ).tr(),
           duration: const Duration(
             seconds: 2,
           ),

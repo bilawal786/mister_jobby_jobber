@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class NonEuropeanCitizen extends StatelessWidget {
               Text(
                 "Select a type of document to send",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
@@ -50,7 +51,7 @@ class NonEuropeanCitizen extends StatelessWidget {
                   height: MediaQuery.of(context).size.width / 20,
                 ),
                 Text(
-                  "Completed",
+                  "Completed".tr(),
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(
@@ -66,7 +67,7 @@ class NonEuropeanCitizen extends StatelessWidget {
                   title: Text(
                     "Work permit or residence permit with work authorization",
                     style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  ).tr(),
                   trailing: Icon(
                     Icons.check_box,
                     color: Colors.green.shade700,
@@ -92,7 +93,7 @@ class NonEuropeanCitizen extends StatelessWidget {
                 subtitle: Text(
                   "These documents are necessary to validate your identity, your age, and your eligibility to work in the territory. They will never be made public.",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
               if (workPermitData.workPermitPicked == true) ...[
                 SizedBox(

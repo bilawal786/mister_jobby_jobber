@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,14 +31,14 @@ class VitalCardUpload extends StatelessWidget {
               Text(
                 "Vital Card",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
               Text(
                 "Vital Card",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -113,7 +114,7 @@ class VitalCardUpload extends StatelessWidget {
               Text(
                 "Social Security number",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -157,7 +158,7 @@ class VitalCardUpload extends StatelessWidget {
                 subtitle: Text(
                   "These documents are necessary to validate your identity, your age, and your eligibility to work in the territory. They will never be made public.",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
             ],
           ),

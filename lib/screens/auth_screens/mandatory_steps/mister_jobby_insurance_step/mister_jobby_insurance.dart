@@ -52,7 +52,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                     title: Text(
                       "You are covered against breakage.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -79,7 +79,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                     title: Text(
                       "You are covered against injury to others.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -106,7 +106,7 @@ class MisterJobbyInsuranceScreen extends StatelessWidget {
                     title: Text(
                       "In the event of a claim, you have nothing to pay because there is no deductible.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
 
                   const Divider(),

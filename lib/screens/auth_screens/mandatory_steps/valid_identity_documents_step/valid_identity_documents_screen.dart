@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class ValidIdentityDocuments extends StatelessWidget {
               Text(
                 "Are you a citizen of European nationality?",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),

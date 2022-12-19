@@ -141,8 +141,8 @@ class _CourseSkillsSelectionStepScreenState
                   // )
                   //     : const SizedBox(),
                   ((currentStep == 1) &&
-                      (getList.haveDiploma == "No" ||
-                          (getList.haveDiploma == "Yes" &&
+                      (getList.haveDiploma == "No".tr() ||
+                          (getList.haveDiploma == "Yes".tr() &&
                               getList.diplomaName.isNotEmpty)) &&
                       (getList.experienceTitle.isNotEmpty))
                       ? Expanded(

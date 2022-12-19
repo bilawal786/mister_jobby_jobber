@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,14 +31,14 @@ class SocialSecurityCertificateUpload extends StatelessWidget {
               Text(
                 "Social security certificate",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
               Text(
                 "Social security certificate",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -113,7 +114,7 @@ class SocialSecurityCertificateUpload extends StatelessWidget {
               Text(
                 "Social Security number",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -156,14 +157,14 @@ class SocialSecurityCertificateUpload extends StatelessWidget {
                 subtitle: Text(
                   "These documents are necessary to validate your identity, your age, and your eligibility to work in the territory. They will never be made public.",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
             ],
           ),
         ),
       ),
       bottomNavigationBar: (securityData.socialSecurityCardPick != null && securityData.securityCardNumber != null) ?BottomAppBar(elevation: 20,
-      child: Padding(padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+      child: Padding(padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
       child: CustomButton(onPress: () {
         securityData.confirmSecurityCard(context);
       }, buttonName: "Confirm"),

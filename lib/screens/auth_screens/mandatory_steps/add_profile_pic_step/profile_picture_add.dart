@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class ProfilePictureAdd extends StatelessWidget {
               Text(
                 "Profile picture",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
@@ -105,7 +106,7 @@ class ProfilePictureAdd extends StatelessWidget {
               Text(
                 "Your photo must respect these conditions",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -126,7 +127,7 @@ class ProfilePictureAdd extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
-                  Text("Clearly visible face", style: Theme.of(context).textTheme.bodyMedium,),
+                  Text("Clearly visible face", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                 ],
               ),
               SizedBox(
@@ -149,7 +150,7 @@ class ProfilePictureAdd extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
-                  Text("Sharp picture", style: Theme.of(context).textTheme.bodyMedium,),
+                  Text("Sharp picture", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                 ],
               ),
               SizedBox(
@@ -172,7 +173,7 @@ class ProfilePictureAdd extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
-                  Text("No face-altering filters", style: Theme.of(context).textTheme.bodyMedium,),
+                  Text("No face-altering filters", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                 ],
               ),
               SizedBox(
@@ -195,7 +196,7 @@ class ProfilePictureAdd extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
-                  Text("Alone in the photo", style: Theme.of(context).textTheme.bodyMedium,),
+                  Text("Alone in the photo", style: Theme.of(context).textTheme.bodyMedium,).tr(),
                 ],
               ),
               SizedBox(
@@ -218,7 +219,7 @@ class ProfilePictureAdd extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 40,
                   ),
-                  Text("No face masking accessories", style: Theme.of(context).textTheme.bodyMedium,),
+                  Flexible(child: Text("No face masking accessories", style: Theme.of(context).textTheme.bodyMedium,).tr()),
                 ],
               ),
               SizedBox(
@@ -242,7 +243,7 @@ class ProfilePictureAdd extends StatelessWidget {
                 subtitle: Text(
                   "In addition to guaranteeing transparency and security between members, your photo will allow your customers to recognize you during your appointments.",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
             ],
           ),

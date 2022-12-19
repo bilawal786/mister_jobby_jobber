@@ -65,15 +65,15 @@ class PersonalInformationProvider with ChangeNotifier {
   ) {
     status = value!;
     if (status == 1) {
-      statusName = "Entrepreneur";
+      statusName = "Entrepreneur".tr();
     } else if (status == 2) {
-      statusName = "Student";
+      statusName = "Student".tr();
     } else if (status == 3) {
-      statusName = "Retirement";
+      statusName = "Retirement".tr();
     } else if (status == 4) {
-      statusName = "Employee";
+      statusName = "Employee".tr();
     } else if (status == 5) {
-      statusName = "Un Employed";
+      statusName = "Un Employed".tr();
     }
     notifyListeners();
     Navigator.of(context).pop();
@@ -106,7 +106,7 @@ class PersonalInformationProvider with ChangeNotifier {
                       statusCheck.checkStatusValue(context, v);
                     },
                     title: Text(
-                      "Entrepreneur",
+                      "Entrepreneur".tr(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
@@ -121,7 +121,7 @@ class PersonalInformationProvider with ChangeNotifier {
                     title: Text(
                       "Students",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   const Divider(),
                   RadioListTile(
@@ -134,7 +134,7 @@ class PersonalInformationProvider with ChangeNotifier {
                     title: Text(
                       "Retirement",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   const Divider(),
                   RadioListTile(
@@ -147,7 +147,7 @@ class PersonalInformationProvider with ChangeNotifier {
                     title: Text(
                       "Employee",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   const Divider(),
                   RadioListTile(
@@ -160,7 +160,7 @@ class PersonalInformationProvider with ChangeNotifier {
                     title: Text(
                       "Un Employed",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   const Divider(),
                 ],
@@ -259,7 +259,7 @@ class PersonalInformationProvider with ChangeNotifier {
           content: Text(
             'Profile Updated Successfully',
             style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          ).tr(),
           duration: const Duration(
             seconds: 2,
           ),

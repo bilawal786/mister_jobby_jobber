@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,14 +35,14 @@ class AvailabilitiesScreen extends StatelessWidget {
                   Text(
                     "Fill your availabilities",
                     style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
                   ),
                   Text(
                     "Mandatory Steps",
                     style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 30,
                   ),
@@ -58,7 +59,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Mondays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -79,7 +80,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Tuesdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -100,7 +101,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Wednesdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -121,7 +122,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Thursdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -142,7 +143,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Fridays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -163,7 +164,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Saturdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -184,7 +185,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Sundays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -200,7 +201,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                     Text(
                       "Completed Steps",
                       style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                    ).tr(),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     )
@@ -218,7 +219,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Mondays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -239,7 +240,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Tuesday",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -260,7 +261,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Wednesdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -281,7 +282,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Thursdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -302,7 +303,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Fridays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -323,7 +324,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Saturdays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -344,7 +345,7 @@ class AvailabilitiesScreen extends StatelessWidget {
                       title: Text(
                         "Sundays",
                         style: Theme.of(context).textTheme.bodySmall,
-                      ),
+                      ).tr(),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
@@ -397,11 +398,11 @@ class AvailabilitiesScreen extends StatelessWidget {
                   title: Text(
                     "Incomplete profile",
                     style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  ).tr(),
                   subtitle: Text(
                     "These are your basic schedules, you can modify them later.",
                     style: Theme.of(context).textTheme.labelMedium,
-                  ),
+                  ).tr(),
                 ),
         ),
       ),

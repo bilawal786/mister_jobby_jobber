@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class WorkPermitUpload extends StatelessWidget {
               Text(
                 "Work permit or Residence permit with work authorization",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -49,7 +50,7 @@ class WorkPermitUpload extends StatelessWidget {
                 subtitle: Text(
                   "To be able to work on the territory the mention \"work\" must be written on your residence permit",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
@@ -57,7 +58,7 @@ class WorkPermitUpload extends StatelessWidget {
               Text(
                 "Work permit or residence permit front",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -133,7 +134,7 @@ class WorkPermitUpload extends StatelessWidget {
               Text(
                 "Work permit or residence permit on the back",
                 style: Theme.of(context).textTheme.labelMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 40,
               ),
@@ -221,10 +222,10 @@ class WorkPermitUpload extends StatelessWidget {
                 title: Text(
                   "We are unable to accept:",
                   style: Theme.of(context).textTheme.bodySmall,
-                ),
+                ).tr(),
                 subtitle: Text(
-                  " - Student residence permit \n "
-                  " - Commercial residence permit \n ",
+                  " - Student residence permit "
+                  " - Commercial residence permit ".tr(),
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),

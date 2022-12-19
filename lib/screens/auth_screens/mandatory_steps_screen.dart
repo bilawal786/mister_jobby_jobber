@@ -296,7 +296,7 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                     ),
                     const Divider(),
                   ],
-                  if ((extractedCompleteData?.skills != "" )  &&
+                  if ((extractedCompleteData?.skills != "" )  ||
                       (extractedCompleteData?.monday != "" ||
                           extractedCompleteData!.tuesday != "" ||
                           extractedCompleteData.wednesday != "" ||
@@ -304,25 +304,25 @@ class _MandatoryStepsScreenState extends State<MandatoryStepsScreen> {
                           extractedCompleteData.friday != "" ||
                           extractedCompleteData.saturday != "" ||
                           extractedCompleteData.sunday != "" ) ||
-                      extractedCompleteData?.answer1 != "" ||
-                      extractedCompleteData?.insurance1 != "" ||
-                      extractedCompleteData?.rules1 != "" ||
+                      extractedCompleteData.answer1 != "" ||
+                      extractedCompleteData.insurance1 != "" ||
+                      extractedCompleteData.rules1 != "" ||
                       profileData.profile!.image != 'main/avatar.png' ||
-                      (extractedCompleteData?.phone != "" )||
-                      ((extractedCompleteData?.euIdCardFront != "" && extractedCompleteData?.euIdDrivingFront != "" && extractedCompleteData?.euIdPassportFront != "" ) &&
-                          extractedCompleteData?.euIdResidencePermitFront !=
+                      (extractedCompleteData.phone != "" )||
+                      ((extractedCompleteData.euIdCardFront != "" && extractedCompleteData.euIdDrivingFront != "" && extractedCompleteData.euIdPassportFront != "" ) &&
+                          extractedCompleteData.euIdResidencePermitFront !=
                               "" ) ||
-                      (extractedCompleteData?.vitalCardNumber != "" ||
-                          extractedCompleteData?.socialSecurityNumber !=
+                      (extractedCompleteData.vitalCardNumber != "" ||
+                          extractedCompleteData.socialSecurityNumber !=
                               "") ||
-                      extractedCompleteData?.score != "") ...[
+                      extractedCompleteData.score != "") ...[
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     ),
                     Text(
                       "Completed Steps",
                       style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                    ).tr(),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 20,
                     ),

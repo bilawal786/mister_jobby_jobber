@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class SocialSecurityCertificate extends StatelessWidget {
               Text(
                 "Select a type of document to send",
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
               SizedBox(
                 height: MediaQuery.of(context).size.width / 20,
               ),
@@ -63,7 +64,7 @@ class SocialSecurityCertificate extends StatelessWidget {
                 Text(
                   "Completed",
                   style: Theme.of(context).textTheme.bodyLarge,
-                ),
+                ).tr(),
                 SizedBox(
                   height: MediaQuery.of(context).size.width / 40,
                 ),
@@ -79,7 +80,7 @@ class SocialSecurityCertificate extends StatelessWidget {
                   title: Text(
                     "Vital card",
                     style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+                  ).tr(),
                   trailing: Icon(
                     Icons.check_box,
                     color: Colors.green.shade700,
@@ -99,7 +100,7 @@ class SocialSecurityCertificate extends StatelessWidget {
                   title: Text(
                     "Social security certificate",
                     style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+                  ).tr(),
                   trailing: Icon(
                     Icons.check_box,
                     color: Colors.green.shade700,
@@ -125,7 +126,7 @@ class SocialSecurityCertificate extends StatelessWidget {
                 subtitle: Text(
                   "These documents are necessary to validate your identity, your age, and your eligibility to work in the territory. They will never be made public.",
                   style: Theme.of(context).textTheme.labelMedium,
-                ),
+                ).tr(),
               ),
             ],
           ),

@@ -142,8 +142,8 @@ class _LivraisonSkillsSelectionStepScreenState
                   )
                       : const SizedBox(),
                   ((currentStep == 2) &&
-                      (getList.haveDiploma == "No" ||
-                          (getList.haveDiploma == "Yes" &&
+                      (getList.haveDiploma == "No".tr() ||
+                          (getList.haveDiploma == "Yes".tr() &&
                               getList.diplomaName.isNotEmpty)) &&
                       (getList.experienceTitle.isNotEmpty))
                       ? Expanded(

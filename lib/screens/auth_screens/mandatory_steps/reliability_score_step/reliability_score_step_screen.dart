@@ -179,7 +179,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "You are one of the best jobbers, your profile is strongly highlighted and you will win more jobs.",
                                     style:
                                         Theme.of(context).textTheme.labelMedium,
-                                  ),
+                                  ).tr(),
                                 ),
                                 SizedBox(
                                   height:
@@ -195,7 +195,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "100 or more",
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
-                                  ),
+                                  ).tr(),
                                 ),
                               ],
                             ),
@@ -236,7 +236,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "Your profile is placed just behind that of jobbers with a reliability score higher than yours.",
                                     style:
                                         Theme.of(context).textTheme.labelMedium,
-                                  ),
+                                  ).tr(),
                                 ),
                                 SizedBox(
                                   height:
@@ -252,7 +252,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "from 0 to 99",
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
-                                  ),
+                                  ).tr(),
                                 ),
                               ],
                             ),
@@ -293,7 +293,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "Your profile is not highlighted and you will be suspended for 7 days for each cancellation.",
                                     style:
                                         Theme.of(context).textTheme.labelMedium,
-                                  ),
+                                  ).tr(),
                                 ),
                                 SizedBox(
                                   height:
@@ -309,7 +309,7 @@ class ReliabilityScoreScreen extends StatelessWidget {
                                     "less than 0",
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
-                                  ),
+                                  ).tr()
                                 ),
                               ],
                             ),

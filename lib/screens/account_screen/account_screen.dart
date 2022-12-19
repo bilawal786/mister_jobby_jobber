@@ -416,7 +416,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             SizedBox(
                               height: mediaQuery.size.width / 40,
                             ),
-                            if ((extractedCompleteData?.skills == "") &&
+                            if ((extractedCompleteData?.skills == "") ||
                                     (extractedCompleteData?.monday == "" ||
                                         extractedCompleteData!.tuesday == "" ||
                                         extractedCompleteData.wednesday == "" ||
@@ -424,27 +424,27 @@ class _AccountScreenState extends State<AccountScreen> {
                                         extractedCompleteData.friday == "" ||
                                         extractedCompleteData.saturday == "" ||
                                         extractedCompleteData.sunday == "") ||
-                                extractedCompleteData?.answer1 == "" ||
-                                extractedCompleteData?.insurance1 == "" ||
-                                extractedCompleteData?.rules1 == "" ||
+                                extractedCompleteData.answer1 == "" ||
+                                extractedCompleteData.insurance1 == "" ||
+                                extractedCompleteData.rules1 == "" ||
                                 profileData.profile?.image ==
                                     'main/avatar.png' ||
-                                (extractedCompleteData?.phone == "") ||
-                                (extractedCompleteData?.score == "") ||
-                                ((extractedCompleteData?.euIdPassportFront ==
+                                (extractedCompleteData.phone == "") ||
+                                (extractedCompleteData.score == "") ||
+                                ((extractedCompleteData.euIdPassportFront ==
                                             "" &&
                                         extractedCompleteData
-                                                ?.euIdDrivingFront ==
+                                            .euIdDrivingFront ==
                                             "" &&
                                         extractedCompleteData
-                                                ?.euIdPassportFront ==
+                                                .euIdPassportFront ==
                                             "") &&
                                     extractedCompleteData
-                                            ?.euIdResidencePermitFront ==
+                                            .euIdResidencePermitFront ==
                                         "") ||
-                                (extractedCompleteData?.vitalCardNumber == "" &&
+                                (extractedCompleteData.vitalCardNumber == "" &&
                                     extractedCompleteData
-                                            ?.socialSecurityNumber ==
+                                            .socialSecurityNumber ==
                                         "")) ...[
                               ListTile(
                                 onTap: () => Navigator.of(context).pushNamed(

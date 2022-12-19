@@ -49,7 +49,7 @@ class ProgressServices extends StatelessWidget {
                     title: Text(
                       "The customer prepaid the amount of the service on a secure Mister Jobby account when booking.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -76,7 +76,7 @@ class ProgressServices extends StatelessWidget {
                     title: Text(
                       "Once the job is done, the client confirms the payment.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -103,7 +103,7 @@ class ProgressServices extends StatelessWidget {
                     title: Text(
                       "The amount of the benefit arrives on your wallet in 72 hours.",
                       style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    ).tr(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width / 40,
@@ -126,7 +126,7 @@ class ProgressServices extends StatelessWidget {
                     subtitle: Text(
                       "If you worked overtime, your client could pay for it directly online.",
                       style: Theme.of(context).textTheme.labelMedium,
-                    ),
+                    ).tr(),
                   ),
                   ],
               ),

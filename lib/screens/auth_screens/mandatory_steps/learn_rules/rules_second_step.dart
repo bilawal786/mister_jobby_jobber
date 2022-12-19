@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class RulesSecondStep extends StatelessWidget {
         Text(
           "In summary to be a good service provider",
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -28,7 +29,7 @@ class RulesSecondStep extends StatelessWidget {
             title: Text(
               "I apply only to jobs for which I am available and competent.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         Consumer<RulesProvider>(
@@ -40,10 +41,10 @@ class RulesSecondStep extends StatelessWidget {
             title: Text(
               "I do my best to get good reviews.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
-        Consumer<ConstProvider>(
+        Consumer<RulesProvider>(
           builder:(_,summarySecure, child) => CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             dense: false,
@@ -52,7 +53,7 @@ class RulesSecondStep extends StatelessWidget {
             title: Text(
               "I do not cancel a service on which I have been reserved.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         const Divider(),

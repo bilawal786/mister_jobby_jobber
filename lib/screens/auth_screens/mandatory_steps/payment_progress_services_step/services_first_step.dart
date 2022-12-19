@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,14 +16,14 @@ class ServicesFirstStep extends StatelessWidget {
         Text(
           "Questions",
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 40,
         ),
         Text(
           "How do we ensure the seriousness of the client who reserves you?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -53,7 +54,7 @@ class ServicesFirstStep extends StatelessWidget {
         Text(
           "What happens if the mission lasts longer than expected?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -84,7 +85,7 @@ class ServicesFirstStep extends StatelessWidget {
         Text(
           "What happens if you request cash payment from your customer?",
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),

@@ -419,6 +419,7 @@ class _IndexScreenState extends State<IndexScreen> {
                               Text(
                                 "No job planned soon",
                                 style: Theme.of(context).textTheme.titleMedium,
+                                textAlign: TextAlign.center,
                               ).tr(),
                               SizedBox(
                                 height: mediaQuery.size.width / 40,

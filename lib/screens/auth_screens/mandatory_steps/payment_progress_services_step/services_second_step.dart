@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class ServicesSecondStep extends StatelessWidget {
         Text(
           "In summary to secure your payments:",
           style: Theme.of(context).textTheme.titleMedium,
-        ),
+        ).tr(),
         SizedBox(
           height: MediaQuery.of(context).size.width / 20,
         ),
@@ -27,7 +28,7 @@ class ServicesSecondStep extends StatelessWidget {
             title: Text(
               "I always go through Mister Jobby for the payment of the job.",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         Consumer<ConstProvider>(
@@ -39,7 +40,7 @@ class ServicesSecondStep extends StatelessWidget {
             title: Text(
               "I do not require cash payment",
               style: Theme.of(context).textTheme.bodySmall,
-            ),
+            ).tr(),
           ),
         ),
         const Divider(),

@@ -66,8 +66,7 @@ class _RulesStepScreenState extends State<RulesStepScreen> {
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50.0),
-                            primary: Theme.of(context).primaryColor,
+                            minimumSize: const Size.fromHeight(50.0), backgroundColor: Theme.of(context).primaryColor,
                             elevation: 5,
                           ),
                           child: Text(
@@ -84,13 +83,12 @@ class _RulesStepScreenState extends State<RulesStepScreen> {
                         ),
                       )
                     : const SizedBox(),
-                ((currentStep == 1) && (rulesData.reservedJobsMisterJobby == true))
+                ((currentStep == 1) && (rulesData.reservedJobsMisterJobby == true && rulesData.mustPerformServices == true && rulesData.cashNotRequired == true))
                     ? Expanded(
                         child: ElevatedButton(
                           onPressed: details.onStepContinue,
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50.0),
-                            primary: Theme.of(context).primaryColor,
+                            minimumSize: const Size.fromHeight(50.0), backgroundColor: Theme.of(context).primaryColor,
                             elevation: 5,
                           ),
                           child: Text(
