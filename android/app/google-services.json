@@ -1,41 +1,63 @@
 {
   "project_info": {
-    "project_number": "187646121046",
-    "project_id": "misterjobby-jobber",
-    "storage_bucket": "misterjobby-jobber.appspot.com"
+    "project_number": "173833936110",
+    "project_id": "mjobbychat",
+    "storage_bucket": "mjobbychat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:187646121046:android:4b234136873ccf917b17f7",
+        "mobilesdk_app_id": "1:173833936110:android:bb5d98b3a60de1ae2967ff",
         "android_client_info": {
-          "package_name": "com.jobber.misterjobby"
+          "package_name": "com.demandeur.misterjobby"
         }
       },
       "oauth_client": [
         {
-          "client_id": "187646121046-tuqjo4bnuodfcmfcdrpst5esj7cf5h3o.apps.googleusercontent.com",
+          "client_id": "173833936110-st5hibdpkur0qlns72p2kj69v1j4e0b6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBdukTcD5YeYYw2VmTPqxpSGJYbB-2Dt70"
+          "current_key": "AIzaSyDg8QTBYxWyqv3dYmktHprdJgkOC70zVj8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "187646121046-tuqjo4bnuodfcmfcdrpst5esj7cf5h3o.apps.googleusercontent.com",
+              "client_id": "173833936110-st5hibdpkur0qlns72p2kj69v1j4e0b6.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173833936110:android:40fa3bcfb7fc06bb2967ff",
+        "android_client_info": {
+          "package_name": "com.jobber.misterjobby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173833936110-st5hibdpkur0qlns72p2kj69v1j4e0b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg8QTBYxWyqv3dYmktHprdJgkOC70zVj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "187646121046-mp40a510lsanh3mno6qphl6ee1adq8mp.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.jobber.misterjobby"
-              }
+              "client_id": "173833936110-st5hibdpkur0qlns72p2kj69v1j4e0b6.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }
