@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mister_jobby_jobber/providers/accounts_providers/subscription/subscription_provider.dart';
 
@@ -51,14 +52,36 @@ class _SubscriptionState extends State<Subscription> {
                         child: Text(
                       'Subscription Plan',
                       style: Theme.of(context).textTheme.titleMedium,
-                    )),
+                    ).tr(),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 40,
                     ),
                     Text(
-                      'Chose a subscription plan to unlock all the functionality of application.\n Offers: ${subscriptionData.retrieveSubscription!.remainingOffers} ',
+                      'Chose a subscription plan to unlock all the functionality of application.',
                       style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.center,
+                    ).tr(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 40,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          'Offers:',
+                          style: Theme.of(context).textTheme.bodySmall,
+                          textAlign: TextAlign.center,
+                        ).tr(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 40,
+                        ),
+                        Text(
+                          ' ${subscriptionData.retrieveSubscription!.remainingOffers} ',
+                          style: Theme.of(context).textTheme.bodySmall,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width / 10,
@@ -130,13 +153,13 @@ class _SubscriptionState extends State<Subscription> {
                                               (extractSubscriptionData[index]
                                                           .id ==
                                                       1)
-                                                  ? "Offers you can get: ${extractSubscriptionData[index].offers}"
+                                                  ? "Offers you can get: 15"
                                                   : (extractSubscriptionData[
                                                                   index]
                                                               .id ==
                                                           2)
-                                                      ? "You can get ${extractSubscriptionData[index].offers} offers"
-                                                      : "You can get ${extractSubscriptionData[index].offers} offers",
+                                                      ? "You can get unlimited offers"
+                                                      : "You can get unlimited offers",
                                               overflow: TextOverflow.visible,
                                               style: const TextStyle(
                                                 fontSize: 18,
@@ -145,7 +168,7 @@ class _SubscriptionState extends State<Subscription> {
                                                 fontFamily:
                                                     'Cerebri Sans reqular',
                                               ),
-                                            ),
+                                            ).tr(),
                                           ],
                                         ),
                                       ),
@@ -234,6 +257,7 @@ class _SubscriptionState extends State<Subscription> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: MediaQuery.of(context).size.width / 40,),
                                   if (int.parse(subscriptionData
                                           .retrieveSubscription!
                                           .activeSubscriptionId) ==

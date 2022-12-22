@@ -30,7 +30,7 @@ class SubscriptionProvider with ChangeNotifier {
     if (subscriptionModel![index].id == 1) {
       planName = subscriptionModel![index].name.tr();
       planDetails =
-          "Offers you can get:${subscriptionModel![index].offers}".tr();
+          "Offers you can get: 15".tr();
       plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();
@@ -39,7 +39,7 @@ class SubscriptionProvider with ChangeNotifier {
     } else if (subscriptionModel![index].id == 2) {
       planName = subscriptionModel![index].name.tr();
       planDetails =
-          "You can get ${subscriptionModel![index].offers} offers".tr();
+          "You can get unlimited offers".tr();
       plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();
@@ -50,7 +50,7 @@ class SubscriptionProvider with ChangeNotifier {
     } else {
       planName = subscriptionModel![index].name.tr();
       planDetails =
-          "You can get ${subscriptionModel![index].offers} offers".tr();
+          "You can get unlimited offers".tr();
       plan = subscriptionModel![index].price;
       createDate = subscriptionModel![index].createdAt.toString();
       updateDate = subscriptionModel![index].updatedAt.toString();

@@ -122,7 +122,7 @@ class _SubscriptionDetailsState extends State<SubscriptionDetails> {
                   ),
                   Text(
                     widget.details,
-                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black,
