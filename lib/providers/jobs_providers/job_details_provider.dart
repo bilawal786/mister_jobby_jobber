@@ -11,6 +11,7 @@ import '../../helper/routes.dart';
 
 import '../../widgets/const_widgets/custom_button.dart';
 import '../../widgets/const_widgets/progress_indicator.dart';
+import '../accounts_providers/subscription/subscription_provider.dart';
 import 'available_jobs_provider/available_jobs_provider.dart';
 
 class JobsDetailProvider with ChangeNotifier {
@@ -401,6 +402,7 @@ class JobsDetailProvider with ChangeNotifier {
       debugPrint("$postId");
       Navigator.pop(context);
       Provider.of<AvailableJobsProvider>(context, listen: false).getAvailableJobs(context);
+      Provider.of<SubscriptionProvider>(context,listen: false).getSubscriptionPlan(context);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (ctx) => HomeTabScreen(

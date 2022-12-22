@@ -37,6 +37,7 @@ class _JobDetailScreenState extends State<JobDetailScreen> {
           .getSingleJobComments(context, widget.jobsDetail.id.toString());
       Provider.of<AvailableJobsProvider>(context).addTempData(widget.index);
       Provider.of<AvailableJobsProvider>(context).addTempDobData(widget.index);
+      Provider.of<SubscriptionProvider>(context).getSubscriptionPlan(context);
     }
     isInit = false;
     super.didChangeDependencies();
