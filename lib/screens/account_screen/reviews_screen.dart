@@ -133,11 +133,28 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                                   height:
                                       MediaQuery.of(context).size.width / 40,
                                 ),
-                                Text(
-                                  'Based on ${extractData.totalReviews} Reviews',
-                                  style:
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Text(
+                                      'Based on',
+                                      style:
                                       Theme.of(context).textTheme.labelMedium,
-                                ).tr(),
+                                    ).tr(),
+                                    SizedBox(width: MediaQuery.of(context).size.width *0.001,),
+                                    Text(
+                                      ' ${extractData.totalReviews} ',
+                                      style:
+                                      Theme.of(context).textTheme.labelMedium,
+                                    ),
+                                    SizedBox(width: MediaQuery.of(context).size.width *0.001 ,),
+                                    Text(
+                                      'Reviews',
+                                      style:
+                                      Theme.of(context).textTheme.labelMedium,
+                                    ).tr(),
+                                  ],
+                                ),
                               ],
                             ),
                             const Spacer(),

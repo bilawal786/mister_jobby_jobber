@@ -4,7 +4,6 @@ import 'package:mister_jobby_jobber/providers/accounts_providers/get_badges/get_
 import 'package:mister_jobby_jobber/widgets/const_widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../widgets/const_widgets/places_selected_input_widget.dart';
 
 class GetBadgeProScreen extends StatefulWidget {
   const GetBadgeProScreen({Key? key}) : super(key: key);
@@ -168,12 +167,10 @@ class _GetBadgeProScreenState extends State<GetBadgeProScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.5,
                       child: Text(
-                        "I declare to be covered by a professional insurance and "
-                        "I declare to mandate Netdistrict to establish, on my behalf,"
-                        " the invoices for the services that I will contract on the Mister Jobby platform.",
+                        "I declare to be covered by a professional insurance and I declare to mandate Netdistrict to establish, on my behalf, the invoices for the services that I will contract on the Mister Jobby platform.",
                         style: Theme.of(context).textTheme.labelMedium,
                         textAlign: TextAlign.justify,
-                      ),
+                      ).tr(),
                     ),
                     const Spacer(),
                     Consumer<GetBadgesProvider>(
