@@ -35,6 +35,7 @@ class AreaInterventionProvider with ChangeNotifier {
       context, lati, longi, radius, address) async {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return const LoginProgressIndicator();
         });

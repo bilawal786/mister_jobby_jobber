@@ -32,7 +32,7 @@ class GetBadgesProvider with ChangeNotifier {
   }
   
   Future<void> getBadges(BuildContext context, companyName, vatType, companyAddress, siret) async {
-    showDialog(context: context, builder: (BuildContext context) {
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
       return const LoginProgressIndicator();
     });
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();

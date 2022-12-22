@@ -16,7 +16,7 @@ class ServicesProvider with ChangeNotifier {
   bool servicesCompleted = false;
 
   Future<void> postProgressServices (context,answer1,answer2, answer3, answer4,) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     showDialog(context: context, builder: (BuildContext context){

@@ -224,7 +224,7 @@ class PersonalInformationProvider with ChangeNotifier {
     prof,
       description,
   ) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context,barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     final SharedPreferences prefs = await SharedPreferences.getInstance();

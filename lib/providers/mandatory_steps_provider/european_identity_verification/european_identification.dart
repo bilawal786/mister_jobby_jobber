@@ -571,7 +571,8 @@ class EuropeanIdentificationProvider with ChangeNotifier {
     licenseBack,
     passport,
   ) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context,
+        barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

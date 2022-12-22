@@ -117,7 +117,7 @@ class SubscriptionProvider with ChangeNotifier {
 
 
   Future<void> bookSubscriptionPlan(context, planId, uId, subId, title) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPref = await SharedPreferences.getInstance();

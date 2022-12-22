@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LoginProgressIndicator extends StatelessWidget {
@@ -29,8 +30,11 @@ class LoginProgressIndicator extends StatelessWidget {
                SizedBox(
                 width: MediaQuery.of(context).size.width/20,
               ),
-              Text(
-                'Please Wait...',style: Theme.of(context).textTheme.bodyMedium,
+              Flexible(
+                child: Text(
+                  'Please Wait...',style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ).tr(),
               ),
             ],
           ),

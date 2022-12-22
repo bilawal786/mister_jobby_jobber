@@ -377,6 +377,7 @@ class JobsDetailProvider with ChangeNotifier {
   Future<void> postProposal(context, id, price, hours, duration, tax) async {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return const LoginProgressIndicator();
         });

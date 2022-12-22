@@ -271,7 +271,7 @@ class SocialSecurityProvider with ChangeNotifier {
   bool securityCompleted = false;
 
   Future<void> postSecurityCertificates (context, vitalCard, vitalCardNum, securityCertificate, securityCertificateNumber,) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context,barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

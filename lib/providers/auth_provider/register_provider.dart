@@ -18,7 +18,7 @@ class RegisterProvider with ChangeNotifier {
 
   Future<void> registration(BuildContext context, firstName, lastName, email,
       password) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible:false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     var response = await http.post(

@@ -16,7 +16,7 @@ class AvailabilityProvider with ChangeNotifier {
   bool availabilityCompleted = false;
 
   Future<void> postAvailability (context,monday, tuesday, wednesday, thursday, friday, saturday, sunday,) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context,barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

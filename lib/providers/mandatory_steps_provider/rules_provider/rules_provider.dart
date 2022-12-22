@@ -71,7 +71,7 @@ class RulesProvider with ChangeNotifier{
   }
 
   Future<void> postRules (context, rule1, rule2, rule3, rule4,) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

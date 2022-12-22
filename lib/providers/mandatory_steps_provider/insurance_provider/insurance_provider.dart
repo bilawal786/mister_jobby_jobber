@@ -67,7 +67,7 @@ class InsuranceProvider with ChangeNotifier {
   }
 
   Future<void> postInsurance (context, insurance1, insurance2, insurance3, insurance4,) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();

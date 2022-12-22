@@ -13,7 +13,7 @@ import '../check_profile_completion_provider/check_profile_completion_provider.d
 class ReliabilityScoreProvider  with ChangeNotifier{
 
   Future<void> reliabilityScore(context,score) async {
-    showDialog(context: context, builder: (BuildContext context){
+    showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
       return const LoginProgressIndicator();
     });
     SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
