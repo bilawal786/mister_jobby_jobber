@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../helper/routes.dart';
 import '../../providers/chat_provider.dart';
+import '../../widgets/const_widgets/custom_button.dart';
+import '../home_screens/home_tab_screen.dart';
 import 'chat_screen.dart';
 
 class MessagesScreen extends StatefulWidget {
@@ -46,7 +48,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         onRefresh: ()async{
           await Provider.of<ChatProvider>(context, listen: false).getChatList();
         },
-            child: ListView.builder(
+            child: chatList.chatList!.isNotEmpty ? ListView.builder(
                 padding: const EdgeInsets.all(10.0),
                 itemCount: chatList.chatList?.length,
                 itemBuilder: (ctx, index) => GestureDetector(
@@ -102,7 +104,44 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     ),
                   ),
                 ),
+              ): Container(
+              padding: const EdgeInsets.all(40.0),
+              margin: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  Icon(
+                    Icons.mark_as_unread_outlined,
+                    size: 150,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  Text(
+                    "Chats_Page_Title",
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ).tr(),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 40,
+                  ),
+                  Text(
+                    "Chats_Page_Description",
+                    style: Theme.of(context).textTheme.labelLarge,
+                    textAlign: TextAlign.center,
+                  ).tr(),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 40,
+                  ),
+                  CustomButton(
+                    onPress: () {
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=> HomeTabScreen(pageIndex: 0,)), (route) => false);
+                    },
+                    buttonName: "I_need_a_favor",
+                    elevation: 8,
+                  ),
+                ],
               ),
+            ),
           ),
     );
   }
