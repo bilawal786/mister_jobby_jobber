@@ -257,12 +257,16 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                             Text(
                               availableJobs.availableJobs?.length == null ? "0":"${availableJobs.availableJobs?.length} ",
                               style: Theme.of(context).textTheme.bodyLarge,
+                              textAlign: TextAlign.center,
                             ),
-                            SizedBox(width: MediaQuery.of(context).size.width / 40),
-                            Text(
-                              "Jobs are available",
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ).tr(),
+                            SizedBox(width: MediaQuery.of(context).size.width *0.001),
+                            Flexible(
+                              child: Text(
+                                "Jobs are available",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ).tr(),
+                            ),
                           ],
                         ),
                       ),
