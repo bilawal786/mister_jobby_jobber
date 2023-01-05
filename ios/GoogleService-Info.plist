@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>187646121046-mp40a510lsanh3mno6qphl6ee1adq8mp.apps.googleusercontent.com</string>
+	<string>391813738541-9b7hvlud7nncbd4tgvh4glgo7tsdfbak.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.187646121046-mp40a510lsanh3mno6qphl6ee1adq8mp</string>
+	<string>com.googleusercontent.apps.391813738541-9b7hvlud7nncbd4tgvh4glgo7tsdfbak</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAkgs99d-qstTHBJWRsh1XsSqXO4tT_rfM</string>
+	<string>AIzaSyCLqQ-ibc26n8L71yqFi6RMgFOXdOVsDk0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>187646121046</string>
+	<string>391813738541</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.jobber.misterjobby</string>
 	<key>PROJECT_ID</key>
-	<string>misterjobby-jobber</string>
+	<string>misterjobby-demandeur</string>
 	<key>STORAGE_BUCKET</key>
-	<string>misterjobby-jobber.appspot.com</string>
+	<string>misterjobby-demandeur.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:187646121046:ios:962315e4494b11f47b17f7</string>
+	<string>1:391813738541:ios:e5d60418d2803ac48ac8a4</string>
 </dict>
 </plist>
