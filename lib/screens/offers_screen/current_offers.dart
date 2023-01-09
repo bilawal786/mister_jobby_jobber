@@ -72,7 +72,7 @@ class CurrentOffers extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           SizedBox(
-                            width: MediaQuery.of(context).size.width / 3,
+                            width: MediaQuery.of(context).size.width / 3.5,
                             child: const Text(
                               "Commented jobs",
                               textAlign: TextAlign.center,

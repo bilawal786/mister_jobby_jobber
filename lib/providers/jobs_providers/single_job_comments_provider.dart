@@ -74,9 +74,9 @@ class SingleJobCommentsProvider with ChangeNotifier {
       final newComment = SingleJobCommentsModel(
           id: 0,
           jobId: 1,
-          userId: profileData!.jobberId,
+          userId: profileData!.jobberId!,
           name: "${profileData.firstName} ${profileData.lastName}",
-          image: profileData.image,
+          image: profileData.image!,
           message: sComments.message,
           date: sComments.date,
       );

@@ -18,7 +18,6 @@ class JobInfoScreen extends StatefulWidget {
 }
 class _JobInfoScreenState extends State<JobInfoScreen> {
 
-
   late GoogleMapController mapController;
   Map<String, Marker> _markers = {};
 

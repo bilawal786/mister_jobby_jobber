@@ -198,7 +198,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                 size: 14,
                               ),
                             for (int i = 0;
-                                i < profileData.profile!.rating;
+                                i < profileData.profile!.rating!;
                                 i++)
                               const Icon(
                                 Icons.star,
@@ -230,7 +230,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "${profileData.profile!.reviews.length} ",
+                          "${profileData.profile!.reviews!.length} ",
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         Text(

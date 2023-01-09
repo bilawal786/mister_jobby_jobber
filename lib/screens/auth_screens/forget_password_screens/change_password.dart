@@ -50,7 +50,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     final profileData =
     Provider.of<PersonalInformationProvider>(context, listen: false);
     final extractProfile = profileData.profile;
-    getEmail = extractProfile!.email;
+    getEmail = extractProfile!.email!;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,

@@ -94,7 +94,6 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
     });
   }
 
-  //-------------------------
   final PageStorageBucket bucket = PageStorageBucket();
   List<Widget> screenWidgets = const [
     IndexScreen(),

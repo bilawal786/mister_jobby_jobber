@@ -174,16 +174,20 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.format_paint_rounded,
-                            size: 18,
+                            size: 16,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
                             width: mediaQuery.size.width / 40,
                           ),
-                          Text(
-                            "Housework",
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ).tr(),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3.2,
+                            child: Text(
+                              "Housework",
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ).tr(),
+                          ),
                         ],
                       ),
                     ),
@@ -205,7 +209,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.computer_rounded,
-                            size: 18,
+                            size: 16,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -266,7 +270,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.shopping_bag_rounded,
-                            size: 18,
+                            size: 16,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
@@ -296,13 +300,14 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.history_edu,
-                            size: 18,
+                            size: 16,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(
                             width: mediaQuery.size.width / 40,
                           ),
-                          Expanded(
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 3.2,
                             child: Text(
                               "Private_Lessons",
                               overflow: TextOverflow.ellipsis,
@@ -330,7 +335,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           Icon(
                             Icons.bakery_dining_outlined,
-                            size: 18,
+                            size: 16,
                             color: Theme.of(context).primaryColor,
                           ),
                           SizedBox(

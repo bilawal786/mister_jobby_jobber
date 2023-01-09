@@ -40,6 +40,7 @@ class JobberProfileModel {
     required this.equipements,
     required this.engagments,
     required this.personalDescription,
+    required this.deviceToken,
     required this.totalReview,
     required this.rating,
     required this.reviews,
@@ -75,6 +76,7 @@ class JobberProfileModel {
   String equipements;
   String engagments;
   String personalDescription;
+  String? deviceToken;
   int totalReview;
   int rating;
   List<dynamic> reviews;
@@ -110,6 +112,7 @@ class JobberProfileModel {
     equipements: json["equipements"],
     engagments: json["engagments"],
     personalDescription: json["personal_description"],
+    deviceToken: json["device_token"],
     totalReview: json["total_review"],
     rating: json["rating"],
     reviews: List<dynamic>.from(json["reviews"].map((x) => x)),
@@ -146,6 +149,7 @@ class JobberProfileModel {
     "equipements": equipements,
     "engagments": engagments,
     "personal_description": personalDescription,
+    "device_token": deviceToken,
     "total_review": totalReview,
     "rating": rating,
     "reviews": List<dynamic>.from(reviews.map((x) => x)),

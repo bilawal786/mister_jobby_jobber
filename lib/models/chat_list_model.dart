@@ -21,6 +21,7 @@ class ChatListModel {
     required this.image,
     required this.gender,
     required this.description,
+    required this.deviceToken,
     required this.memberSince,
     required this.totalHireJobber,
     required this.activeJobs,
@@ -39,6 +40,7 @@ class ChatListModel {
   String image;
   int gender;
   String description;
+  String? deviceToken;
   String memberSince;
   int totalHireJobber;
   int activeJobs;
@@ -57,6 +59,7 @@ class ChatListModel {
     image: json["image"],
     gender: json["gender"],
     description: json["description"],
+    deviceToken: json["device_token"],
     memberSince: json["member_since"],
     totalHireJobber: json["total_hire_jobber"],
     activeJobs: json["active_jobs"],
@@ -76,6 +79,7 @@ class ChatListModel {
     "image": image,
     "gender": gender,
     "description": description,
+    "device_token": deviceToken,
     "member_since": memberSince,
     "total_hire_jobber": totalHireJobber,
     "active_jobs": activeJobs,

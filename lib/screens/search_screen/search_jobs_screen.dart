@@ -73,7 +73,7 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
                   builder: (_, profileData, child) => SizedBox(
                     width: MediaQuery.of(context).size.width / 2.5,
                     child: Text(
-                      profileData.profile!.address,
+                      profileData.profile!.address!,
                       style: Theme.of(context).textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -111,8 +111,8 @@ class _SearchJobScreenState extends State<SearchJobScreen> {
               ),
               child: GoogleMap(
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(double.parse(profileData.profile!.latitude),
-                      double.parse(profileData.profile!.longitude)),
+                  target: LatLng(double.parse(profileData.profile!.latitude!),
+                      double.parse(profileData.profile!.longitude!)),
                   zoom: 11,
                 ),
                 onMapCreated: (controller) {
